@@ -7,7 +7,7 @@ public class heart : MonoBehaviour
 {
     private void Start()
     {
-        Destroy(this.gameObject,10f);
+        Destroy(this.gameObject,20f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

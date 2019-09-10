@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    public Text alivetime, zombiekill;
+    public Text kill, alive;
     public int zombiecount = 0;
     private int currentTime = 0;
     public Transform parent;
@@ -23,9 +23,9 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        kill.text = "Killed Zombie : " + zombiecount;
+        alive.text = "Alived Time : " + currentTime;
         Move1 player = GameObject.Find("player").GetComponent<Move1>();
-        alivetime.text = "Alive Time : " + currentTime;
-        zombiekill.text="Killed Zombie : " + zombiecount;
         if (player.isdead)
         {
             if (ismade)

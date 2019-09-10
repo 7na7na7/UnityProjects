@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class Move1 : MonoBehaviour
 {
+    public UnityEngine.UI.Slider stamina;
     public int damage;
     public Transform min, max;
     public bool isdead = false;
@@ -37,6 +38,16 @@ public class Move1 : MonoBehaviour
 
     void Update()
     {
+        stamina.value += 0.1f;
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (stamina.value > 30)
+            {
+                StartCoroutine(dash());
+                stamina.value -= 30;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             Time.timeScale = 1;
@@ -182,5 +193,14 @@ public class Move1 : MonoBehaviour
         color.a = 1f;
         sprite.color = color;
         yield return new WaitForSeconds(invisibletime);
+    }
+
+    IEnumerator dash()
+    {
+        moveforce *= 5;
+        col.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        col.enabled = true;
+        moveforce /= 5;
     }
 }
