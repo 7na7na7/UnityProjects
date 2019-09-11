@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class Move1 : MonoBehaviour
 {
+    public AudioSource audiosource; //오디오소스
     public UnityEngine.UI.Slider stamina;
     public int damage;
     public Transform min, max;
@@ -30,7 +31,7 @@ public class Move1 : MonoBehaviour
     private float plusforce;
     private void Start()
     {
-        Screen.fullScreen = true;
+       
         animator = GetComponent<Animator>();
         minusforce=this.transform.localScale.x * -1;
         plusforce=this.transform.localScale.x;
@@ -38,6 +39,8 @@ public class Move1 : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
         stamina.value += 0.1f;
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {

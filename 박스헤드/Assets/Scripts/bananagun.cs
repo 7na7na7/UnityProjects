@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class bananagun : MonoBehaviour
 {
+    public AudioSource audiosource;
+    public AudioClip bulletsound;//총알소리
+    
     private Color color;
     private Move1 player;
     public Transform tr;
@@ -45,8 +48,9 @@ public class bananagun : MonoBehaviour
             }
 
             transform.rotation = Quaternion.Euler(x, 0f, angle);
-            if (Input.GetMouseButtonDown(0))/////////////
+            if (Input.GetMouseButtonDown(0))//손아픔
             {
+                audiosource.PlayOneShot(bulletsound);
                 Instantiate(banana, tr);
             }
         }

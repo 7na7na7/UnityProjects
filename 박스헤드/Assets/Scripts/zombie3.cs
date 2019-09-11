@@ -19,6 +19,8 @@ public class zombie3 : MonoBehaviour
         {
             GameOver gameover = GameObject.Find("Canvas").GetComponent<GameOver>();
             gameover.zombiecount += 1;
+            Level level = FindObjectOfType<Level>();
+            level.zombiecount[level.i]--; //생성되면 zombiecount--
             Destroy(parent);
         }
     }

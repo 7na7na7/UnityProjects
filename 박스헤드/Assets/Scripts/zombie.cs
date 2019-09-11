@@ -13,6 +13,8 @@ public class zombie : MonoBehaviour
 
     private void Start()
     {
+        Level level = FindObjectOfType<Level>();
+        level.currentzombie++;
         obj = this.gameObject;
     }
 
@@ -35,6 +37,10 @@ public class zombie : MonoBehaviour
             int a = Random.Range(0, 20);
             if (a == 0)
                 Instantiate(heart, new Vector3(this.transform.position.x,this.transform.position.y,heart.transform.position.z),Quaternion.identity);
+            
+            Level level = FindObjectOfType<Level>();
+            level.zombiecount[level.i]--; //생성되면 zombiecount--
+            Debug.Log("현재 level.i"+level.i);
             Destroy(obj);
         }
     }
