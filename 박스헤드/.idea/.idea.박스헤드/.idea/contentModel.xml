@@ -6,26 +6,40 @@
     <e p="C:\Users\밍구\Documents\GitHub\UnityProjects\박스헤드" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Scripts" t="Include">
-          <e p="acid.cs" t="Include" />
-          <e p="banana.cs" t="Include" />
-          <e p="bananagun.cs" t="Include" />
-          <e p="detect.cs" t="Include" />
-          <e p="GameOver.cs" t="Include" />
-          <e p="heart.cs" t="Include" />
-          <e p="Level.cs" t="Include" />
-          <e p="MapMove.cs" t="Include" />
-          <e p="Move1.cs" t="Include" />
-          <e p="ScreenResolution.cs" t="Include" />
-          <e p="Slider.cs" t="Include" />
-          <e p="Spawner.cs" t="Include" />
-          <e p="zombie.cs" t="Include" />
-          <e p="zombie2.cs" t="Include" />
-          <e p="zombie3.cs" t="Include" />
-          <e p="zombie3col.cs" t="Include" />
-          <e p="zombie3move.cs" t="Include" />
-          <e p="플레이어따라가는카메라_hard.cs" t="Include" />
-          <e p="플레이어따라가는카메라_soft.cs" t="Include" />
+        <e p="ZS" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="acid.cs" t="Include" />
+            <e p="banana.cs" t="Include" />
+            <e p="bananagun.cs" t="Include" />
+            <e p="Dummyzombie.cs" t="Include" />
+            <e p="FindChild.cs" t="Include" />
+            <e p="GameOver.cs" t="Include" />
+            <e p="heart.cs" t="Include" />
+            <e p="highscore.cs" t="Include" />
+            <e p="Level.cs" t="Include" />
+            <e p="MapMove.cs" t="Include" />
+            <e p="Move1.cs" t="Include" />
+            <e p="save.cs" t="Include" />
+            <e p="ScreenResolution.cs" t="Include" />
+            <e p="Slider.cs" t="Include" />
+            <e p="Spawner.cs" t="Include" />
+            <e p="zombie.cs" t="Include" />
+            <e p="zombie2" t="Include">
+              <e p="zombie2.cs" t="Include" />
+              <e p="zombie2col.cs" t="Include" />
+              <e p="zombie2move.cs" t="Include" />
+            </e>
+            <e p="zombie3" t="Include">
+              <e p="zombie3.cs" t="Include" />
+              <e p="zombie3col.cs" t="Include" />
+              <e p="zombie3move.cs" t="Include" />
+            </e>
+            <e p="zombieking" t="Include">
+              <e p="zombieking.cs" t="Include" />
+            </e>
+            <e p="플레이어따라가는카메라_hard.cs" t="Include" />
+            <e p="플레이어따라가는카메라_soft.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
