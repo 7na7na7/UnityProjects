@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class banana : MonoBehaviour
 {
+    private int snipercount = 0;
     private GameObject obj;
     private Transform parent;
     public float speed;
@@ -13,7 +14,7 @@ public class banana : MonoBehaviour
     {
         obj = this.gameObject;
         Destroy(obj, 1f);
-        parent = GameObject.Find("BG").GetComponent<Transform>();
+            parent = GameObject.Find("BG").GetComponent<Transform>();
         this.transform.SetParent(parent.transform);//child의 부모를 parent로 설정
     }
     void Update()
@@ -25,7 +26,19 @@ public class banana : MonoBehaviour
     {
         if (!other.CompareTag("Player")&&!other.CompareTag("object"))
         {
-            Destroy(obj);
+            bananagun gun = FindObjectOfType<bananagun>();
+            if (gun.weapon != "sniper")
+            {
+                if (!other.CompareTag("banana"))
+                {
+                    if(other.CompareTag("zombie")||other.CompareTag("zombieking")) 
+                        Destroy(obj);
+                }
+            }
+            snipercount++;
+            if(snipercount>=5)
+                Destroy(obj);
+                
         }
     }
 }

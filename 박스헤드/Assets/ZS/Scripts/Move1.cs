@@ -9,7 +9,13 @@ using UnityEngine.UI;
 
 public class Move1 : MonoBehaviour
 {
-    public BoxCollider2D boxCollider; //충돌감지영역
+    private GoldManager gold;
+    public bool isflip = false;
+    public int shotdelaycount = 0,damagecount=0,specialcount=0;
+    private bool isdash;
+    public AudioClip dashsound;
+    public AudioClip healsound;
+    public AudioClip coinsound;
     public LayerMask layerMask; //통과가 불가능한 레이어 설정
     public AudioSource audiosource; //오디오소스
     public UnityEngine.UI.Slider stamina;
@@ -23,55 +29,61 @@ public class Move1 : MonoBehaviour
     public UnityEngine.UI.Slider slider;
     public Vector3 moveVelocity;
     Animator animator;//애니메이션 선언
-    public bool isflip = false;
     public Transform tr; //카메라밖 제한을 위해서 플레이어의 위치를 넣어준다.
     public float offset = 0.4f; //제한할때 오차 조정 코드(플레이어 중간을 인식해서 생기는 오차)
     float screenRation = (float)Screen.width / (float)Screen.height;
-
+    public float minusforce,plusforce;
     public float moveforce = 1;
-    private float minusforce;
-    private float plusforce;
+    public float sniperforce = 0.9f;
+    public float knifeforce = 1.2f;
+
     private void Start()
     {
-       
-        animator = GetComponent<Animator>();
+        gold = FindObjectOfType<GoldManager>();
+        gold.realgold = 0;
+        //weaponselect(0);
         minusforce=this.transform.localScale.x * -1;
         plusforce=this.transform.localScale.x;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
-        stamina.value += 0.1f;
+        
+        if(Time.timeScale!=0)
+            stamina.value += 0.1f;
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (stamina.value > 30)
+            if (Time.timeScale!=0)
             {
-                StartCoroutine(dash());
-                stamina.value -= 30;
+                if (stamina.value > 30)
+                {
+                    StartCoroutine(dash());
+                    stamina.value -= 30;
+                }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("play");
-        }
+        
         if (slider.value <= 0)
         {
-            isdead = true;
-            SpriteRenderer sprite= GetComponent<SpriteRenderer>();//스프라이트로 함
-            color.r = 255;
-            color.g = 255;
-            color.b = 255;
-            color.a = 0.0f;
-            sprite.color = color;
+            if (isdead == false)
+            {
+                SpriteRenderer sprite = GetComponent<SpriteRenderer>(); //스프라이트로 함
+                color.r = 255;
+                color.g = 255;
+                color.b = 255;
+                color.a = 0.0f;
+                sprite.color = color; //스프라이트 투명화
+                gold.savedgold += gold.realgold;
+                PlayerPrefs.SetInt(gold.goldstring, gold.savedgold); //골드저장
+                    isdead = true;
+            }
         }
     }
     private void FixedUpdate()
     {
-        Move();
+        if(!isdead) 
+            Move();
     }
 
     private void Move()
@@ -81,12 +93,12 @@ public class Move1 : MonoBehaviour
             {
                 if (transform.position.x < max.position.x)
                 {
-                    isflip = false;
                     moveVelocity.x += 1;
                     if (isCol() == true)
                         moveVelocity.x -= 1;
-                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    //transform.localScale = new Vector3(plusforce, this.transform.localScale.y, this.transform.localScale.z);//오른쪽으로 뒤집어짐
+                    //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    transform.localScale = new Vector3(plusforce, this.transform.localScale.y, this.transform.localScale.z);//오른쪽으로 뒤집어짐
+                    isflip = false;
                     animator.SetBool("iswalk", true);
                 }
             }
@@ -95,12 +107,12 @@ public class Move1 : MonoBehaviour
             {
                 if (transform.position.x > min.position.x)
                 {
-                    isflip = true;
                     moveVelocity.x -= 1;
                     if (isCol() == true)
                         moveVelocity.x += 1;
-                    transform.rotation = Quaternion.Euler(180f, 0f, 180f);
-                    //transform.localScale = new Vector3(minusforce, this.transform.localScale.y, this.transform.localScale.z); //왼쪽으로 뒤집어짐
+                    //transform.rotation = Quaternion.Euler(180f, 0f, 180f);
+                    transform.localScale = new Vector3(minusforce, this.transform.localScale.y, this.transform.localScale.z); //왼쪽으로 뒤집어짐
+                    isflip = true;
                     animator.SetBool("iswalk", true);
                 }
             }
@@ -158,28 +170,56 @@ public class Move1 : MonoBehaviour
         }
     }
 */
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("zombie"))
+        if (isdash == false)
         {
-            if (isdamaged == false)
+            if (other.CompareTag("zombie"))
             {
-                StartCoroutine(damaged());
-                StartCoroutine(invisible());
+                if (isdamaged == false)
+                {
+                    StartCoroutine(damaged("zombie"));
+                    StartCoroutine(invisible());
+                }
+            }
+            else if (other.CompareTag("zombieking"))
+            {
+                if (isdamaged == false)
+                {
+                    StartCoroutine(damaged("zombieking"));
+                    StartCoroutine(invisible());
+                }
             }
         }
+        if (other.CompareTag("brown") || other.CompareTag("silver") || other.CompareTag("gold"))
+        {
+            Debug.Log("동전에 닿음!");
+            audiosource.PlayOneShot(coinsound, 25f);
+        }
+        if(other.CompareTag("heart"))
+            audiosource.PlayOneShot(healsound,0.7f);
     }
 
-    IEnumerator damaged()
+    IEnumerator damaged(string enemy)
     {
-        isdamaged = true;
-        slider.value -= damage;
-        yield return new WaitForSeconds(1.5f);
-        //col.enabled = false;
-        //col.enabled = true;
-        isdamaged = false;
+        if (enemy == "zombie")
+        {
+            isdamaged = true;
+            slider.value -= damage;
+            yield return new WaitForSeconds(1.5f);
+            //col.enabled = false;
+            //col.enabled = true;
+            isdamaged = false;
+        }
+        else if (enemy == "zombieking")
+        {
+            isdamaged = true;
+            slider.value -= damage*2;
+            yield return new WaitForSeconds(1.5f);
+            //col.enabled = false;
+            //col.enabled = true;
+            isdamaged = false;
+        }
     }
 
     IEnumerator invisible()
@@ -210,11 +250,17 @@ public class Move1 : MonoBehaviour
 
     IEnumerator dash()
     {
+        isdash = true;
+        animator.SetBool("isdash",true);
+        audiosource.PlayOneShot(dashsound);
         moveforce *= 5;
-        col.enabled = false;
-        yield return new WaitForSeconds(0.1f);
-        col.enabled = true;
+        //col.enabled = false;
+        yield return new WaitForSeconds(0.15f);
+        //col.enabled = true;
         moveforce /= 5;
+        animator.SetBool("isdash",false);
+        yield return new WaitForSeconds(0.1f);
+        isdash = false;
     }
 
     private bool isCol()
@@ -226,10 +272,9 @@ public class Move1 : MonoBehaviour
         Vector3 start = transform.position; //A지점은 현재 위치
         Vector3 end =
             start + moveVelocity * moveforce * Time.deltaTime;
-
-        boxCollider.enabled = false; //플레이어가 자기 자신과의 충돌 판정을 하는 것을 막기 위해 잠시 콜라이더 비활성화
+        col.enabled = false; //플레이어가 자기 자신과의 충돌 판정을 하는 것을 막기 위해 잠시 콜라이더 비활성화
         hit = Physics2D.Linecast(start, end, layerMask);
-        boxCollider.enabled = true; //다시 활성화
+        col.enabled = true; //다시 활성화
         if (hit.transform != null) //만약 플레이어의 위치와 플레이어가 이동할 위치 사이에 장애물이 있을 경우
         {
             return true;
@@ -238,5 +283,34 @@ public class Move1 : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void weaponselect(int weapon)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == weapon)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+            else
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+        if (weapon == 2)
+        {
+            moveforce = sniperforce;
+        }
+        else if (weapon == 3)
+        {
+            moveforce = knifeforce;
+        }
+        shotdelaycount = 0;
+        damagecount = 0;
+        specialcount = 0;
+        button btn = FindObjectOfType<button>();
+        btn.enhancecount = 10;
+        bananagun gun = FindObjectOfType<bananagun>();
     }
 }

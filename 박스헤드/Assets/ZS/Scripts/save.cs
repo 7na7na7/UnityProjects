@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class save : MonoBehaviour
@@ -15,6 +16,8 @@ public class save : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1;
+        //PlayerPrefs.DeleteAll();
         if (instance == null)
         {
             instance = this;

@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class highscore : MonoBehaviour
 {
-    public Text kill, wave;
+    public Text kill, wave,goldtext;
     // Start is called before the first frame update
     void Start()
     {
+        GoldManager gold = FindObjectOfType<GoldManager>();
+        goldtext.text = gold.savedgold + " " + "Gold";
         save save = FindObjectOfType<save>();
         kill.text = save.highkill.ToString();
         wave.text = save.highwave.ToString();

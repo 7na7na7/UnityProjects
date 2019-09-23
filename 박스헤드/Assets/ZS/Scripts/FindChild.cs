@@ -7,20 +7,34 @@ public class FindChild : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        Level lv = FindObjectOfType<Level>();
+        if(lv.canpause)
         {
-            if (Time.timeScale != 0)
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                GameObject child = transform.Find("panel").gameObject;
-                child.SetActive(true);
-                Time.timeScale = 0;
-            }
-            else
-            {
-                GameObject child = transform.Find("panel").gameObject;
-                child.SetActive(false);
-                Time.timeScale = 1;
+                if (Time.timeScale != 0)
+                {
+                  pauseon();
+                }
+                else
+                {
+                    pauseoff();
+                }
             }
         }
+    }
+
+    public void pauseon()
+    {
+        GameObject child = transform.Find("panel").gameObject;
+        child.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void pauseoff()
+    {
+        GameObject child = transform.Find("panel").gameObject;
+        child.SetActive(false);
+        Time.timeScale = 1;
     }
 }
