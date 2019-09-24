@@ -24,21 +24,25 @@ public class banana : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")&&!other.CompareTag("object"))
+        if (!other.CompareTag("Player")&&!other.CompareTag("banana"))
         {
             bananagun gun = FindObjectOfType<bananagun>();
             if (gun.weapon != "sniper")
             {
-                if (!other.CompareTag("banana"))
-                {
-                    if(other.CompareTag("zombie")||other.CompareTag("zombieking")) 
+                if(other.CompareTag("zombie")||other.CompareTag("zombieking")) 
                         Destroy(obj);
-                }
             }
-            snipercount++;
-            if(snipercount>=5)
-                Destroy(obj);
-                
+            else
+            {
+                snipercount++;
+                if(snipercount>=5)
+                    Destroy(obj);   
+            }
+        }
+
+        if (other.CompareTag("object"))
+        {
+            Destroy(this.gameObject);
         }
     }
 }

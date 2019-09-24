@@ -16,8 +16,8 @@ public class zombie2col : MonoBehaviour
             if (isshot == false)
             {
                 parent = transform.parent.gameObject;
-                if (parent.transform.position.x > -40.5f && parent.transform.position.x < 19f &&
-                    parent.transform.position.y > -30f && parent.transform.position.y < 20.5f)
+                if (parent.transform.position.x > -41f && parent.transform.position.x < 19f &&
+                    parent.transform.position.y > -29f && parent.transform.position.y < 20.5f)
                 {
                     parent.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("isstop", true);
                     gameObject.transform.parent.GetComponent<zombie2move>().canmove = false;

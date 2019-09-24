@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class zombieking : MonoBehaviour
 {
+    private Level lv;
+    private bool isleft=false, isright=false;
+    private bool once2 = false;
     private bool once = false;
     public GameObject brown, silver, gold;
     
@@ -29,14 +32,14 @@ public class zombieking : MonoBehaviour
 
     private void Start()
     {
-        Level level = FindObjectOfType<Level>();
-        for(int i=0;i<level.wave/5;i++)
+        lv = FindObjectOfType<Level>();
+        for(int i=0;i<lv.wave/5;i++)
         {
             hp.maxValue *= 1.5f;
             hp.value *=1.5f;
         }
         anim = GetComponent<Animator>();
-        level.currentzombie++;
+        lv.currentzombie++;
         obj = this.gameObject;
         anim.SetBool("iswalk",true);
         anim.SetBool("israge",false);
@@ -45,6 +48,10 @@ public class zombieking : MonoBehaviour
 
     void Update()
     {
+        if(isleft)
+            transform.Translate(-0.1f,0,0);
+        if(isright)
+            transform.Translate(0.1f,0,0);
         if (cananotdetect == false)
         {
             Move1 player = GameObject.Find("player").GetComponent<Move1>();
@@ -54,6 +61,17 @@ public class zombieking : MonoBehaviour
 
         if (ismove)
         {
+            if (dir.x <= 0.25f && dir.y <= 0.25f)
+            {
+                if (once2 == false)
+                {
+                    once2 = true;
+                    StartCoroutine(moving());
+                }
+            }
+            Debug.Log("dirx : "+dir.x+"diry " +dir.y);
+            
+            
             anim.SetBool("iswalk",true);
             transform.position +=
                 new Vector3(Mathf.Clamp(dir.x, speed * -1, speed), Mathf.Clamp(dir.y, speed * -1, speed), dir.z) *
@@ -70,10 +88,12 @@ public class zombieking : MonoBehaviour
             }
         }
 
-        if (hp.value == 0)
+        if (hp.value <= 0)
         {
             if (isdead == false)
             {
+                BoxCollider2D col = GetComponent<BoxCollider2D>();
+                col.enabled = false;
                 audiosource.PlayOneShot(deathsound,2f);
                 GameOver gameover = GameObject.Find("Canvas").GetComponent<GameOver>();
                 gameover.zombiecount += 1;
@@ -84,8 +104,6 @@ public class zombieking : MonoBehaviour
                 canevent = false;
                 isdead = true;
                 anim.SetBool("iswalk",false);
-                BoxCollider2D col = GetComponent<BoxCollider2D>();
-                col.enabled = false;
                 StartCoroutine(delaycoin());
                 Destroy(obj, 2f);
             }
@@ -159,15 +177,12 @@ public class zombieking : MonoBehaviour
             audiosource.PlayOneShot(dashsound,4f);
             if(isdead==false) 
                 ismove = true;
-            if (anim.GetBool("israge") == true)
-                speed *= 3;
+            speed *= 5;
+            if (anim.GetBool("israge") == true) 
+                yield return new WaitForSeconds(0.15f);
             else
-                speed *= 5;
-            yield return new WaitForSeconds(0.35f);
-            if (anim.GetBool("israge") == true)
-                speed /= 3;
-            else
-                speed /= 5;
+                yield return new WaitForSeconds(0.35f);
+            speed /= 5;
             cananotdetect = false; //캐릭터 감지 on
         }
     }
@@ -179,11 +194,17 @@ public class zombieking : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (anim.GetBool("israge") == true)
             {
-                a = Random.Range(0,4);
+                if(lv.wave>13) 
+                    a = Random.Range(0,4);
+                else
+                    a = Random.Range(0,5);
             }
             else
             {
-                a = Random.Range(0, 7);
+                if(lv.wave>13)
+                    a = Random.Range(0, 8);
+                else
+                    a = Random.Range(0,10);
             }
             if (a == 0)
             {
@@ -232,6 +253,35 @@ public class zombieking : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             if (isdead == false) 
                 ismove = true;
+        }
+    }
+    IEnumerator moving()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            if (dir.x <= 0.25f && dir.y <= 0.25f)
+            {
+                int a = Random.Range(0, 2);
+                if (a == 0)
+                {
+                    isleft = true;
+                    yield return new WaitForSeconds(1);
+                    isleft = false;
+                    isright = true;
+                    yield return new WaitForSeconds(1);
+                    isright = false;
+                }
+                else
+                {
+                    isright = true;
+                    yield return new WaitForSeconds(1);
+                    isright = false;
+                    isleft = true;
+                    yield return new WaitForSeconds(1);
+                    isleft = false;
+                }
+            }
         }
     }
 }

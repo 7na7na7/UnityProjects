@@ -39,6 +39,7 @@ public class Move1 : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         gold = FindObjectOfType<GoldManager>();
         gold.realgold = 0;
         //weaponselect(0);
@@ -49,7 +50,7 @@ public class Move1 : MonoBehaviour
 
     void Update()
     {
-        
+        animator.speed = 0.2f * moveforce;
         if(Time.timeScale!=0)
             stamina.value += 0.1f;
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -68,6 +69,7 @@ public class Move1 : MonoBehaviour
         {
             if (isdead == false)
             {
+                Level lv = FindObjectOfType<Level>();
                 SpriteRenderer sprite = GetComponent<SpriteRenderer>(); //스프라이트로 함
                 color.r = 255;
                 color.g = 255;
@@ -75,8 +77,9 @@ public class Move1 : MonoBehaviour
                 color.a = 0.0f;
                 sprite.color = color; //스프라이트 투명화
                 gold.savedgold += gold.realgold;
+                lv.canpause = false;
                 PlayerPrefs.SetInt(gold.goldstring, gold.savedgold); //골드저장
-                    isdead = true;
+                isdead = true;
             }
         }
     }
@@ -206,8 +209,8 @@ public class Move1 : MonoBehaviour
         {
             isdamaged = true;
             slider.value -= damage;
-            yield return new WaitForSeconds(1.5f);
             //col.enabled = false;
+            yield return new WaitForSeconds(1.5f);
             //col.enabled = true;
             isdamaged = false;
         }
@@ -215,8 +218,8 @@ public class Move1 : MonoBehaviour
         {
             isdamaged = true;
             slider.value -= damage*2;
-            yield return new WaitForSeconds(1.5f);
             //col.enabled = false;
+            yield return new WaitForSeconds(1.5f);
             //col.enabled = true;
             isdamaged = false;
         }

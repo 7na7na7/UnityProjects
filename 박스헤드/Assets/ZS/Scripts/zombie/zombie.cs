@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class zombie : MonoBehaviour
 {
+
     private Transform parent;
     public GameObject brown;
     public GameObject gold;
@@ -19,7 +20,7 @@ public class zombie : MonoBehaviour
     private void Start()
     {
         Level level = FindObjectOfType<Level>();
-        for(int i=0;i<level.wave/5;i++)
+        for(int i=0;i<(level.wave-1)/5;i++)
         {
             if (speed == 1.2f)
             {
@@ -28,8 +29,8 @@ public class zombie : MonoBehaviour
             }
             else
             {
-                hp.maxValue += 5;
-                hp.value +=5;
+                hp.maxValue += 10;
+                hp.value +=10;
             }
             
         }
@@ -42,6 +43,7 @@ public class zombie : MonoBehaviour
         Move1 player = GameObject.Find("player").GetComponent<Move1>();
         target = player.transform;
         Vector3 dir = target.position - transform.position; //사이의 거리를 구함
+
         transform.position +=
             new Vector3(Mathf.Clamp(dir.x, speed * -1, speed), Mathf.Clamp(dir.y, speed * -1, speed), dir.z) * speed *
             Time.deltaTime;
@@ -66,7 +68,6 @@ public class zombie : MonoBehaviour
             Level level = FindObjectOfType<Level>();
             level.zombiecount[level.i]--; //생성되면 zombiecount--
             Debug.Log("현재 level.i" + level.i);
-            Destroy(hp);
             Destroy(obj);
         }
     }

@@ -34,7 +34,7 @@ public class Dummyzombie : MonoBehaviour
         if (hp.value <= 0)
         {
             GameOver gameover = GameObject.Find("Canvas").GetComponent<GameOver>();
-            gameover.zombiecount += 1;
+            //gameover.zombiecount += 1;
             int a = Random.Range(0, 20);
             if (a == 0)
                 Instantiate(heart,

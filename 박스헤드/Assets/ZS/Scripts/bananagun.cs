@@ -18,7 +18,7 @@ public class bananagun : MonoBehaviour
     private Color color;
     private Move1 player;
     public Transform tr;
-    public GameObject banana,banana2,banana3;
+    public GameObject banana,banana2,banana3,banana4,banana5;
     private Vector3 MousePositon;
     public Camera camera;
 
@@ -113,6 +113,8 @@ public class bananagun : MonoBehaviour
                             {
                                 Instantiate(banana2, tr);
                                 Instantiate(banana3, tr);
+                                Instantiate(banana4, tr);
+                                Instantiate(banana5, tr);
                             }
                             StartCoroutine(delay());
                         }
