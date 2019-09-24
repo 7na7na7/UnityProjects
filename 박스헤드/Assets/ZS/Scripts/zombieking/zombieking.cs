@@ -159,9 +159,15 @@ public class zombieking : MonoBehaviour
             audiosource.PlayOneShot(dashsound,4f);
             if(isdead==false) 
                 ismove = true;
-            speed *= 5;
+            if (anim.GetBool("israge") == true)
+                speed *= 3;
+            else
+                speed *= 5;
             yield return new WaitForSeconds(0.35f);
-            speed /= 5;
+            if (anim.GetBool("israge") == true)
+                speed /= 3;
+            else
+                speed /= 5;
             cananotdetect = false; //캐릭터 감지 on
         }
     }
@@ -173,11 +179,11 @@ public class zombieking : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (anim.GetBool("israge") == true)
             {
-                a = Random.Range(0,5);
+                a = Random.Range(0,4);
             }
             else
             {
-                a = Random.Range(0, 10);
+                a = Random.Range(0, 7);
             }
             if (a == 0)
             {
