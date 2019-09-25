@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class Move1 : MonoBehaviour
 {
+    public int level=1;
     private GoldManager gold;
     public bool isflip = false;
     public int shotdelaycount = 0,damagecount=0,specialcount=0;
