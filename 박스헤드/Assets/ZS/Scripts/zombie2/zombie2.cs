@@ -21,6 +21,8 @@ public class zombie2 : MonoBehaviour
             hp.value +=0.5f;
         }
         parent = transform.parent.gameObject;
+        if(level.currentzombie>level.zombiecount[level.i])
+            Destroy(parent);
     }
 
 

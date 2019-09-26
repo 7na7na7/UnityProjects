@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class zombieking : MonoBehaviour
 {
+    private Move1 player;
     private Level lv;
     private bool isleft=false, isright=false;
     private bool once2 = false;
@@ -32,6 +33,7 @@ public class zombieking : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("player").GetComponent<Move1>();
         lv = FindObjectOfType<Level>();
         for(int i=0;i<lv.wave/5;i++)
         {
@@ -54,7 +56,6 @@ public class zombieking : MonoBehaviour
             transform.Translate(0.1f,0,0);
         if (cananotdetect == false)
         {
-            Move1 player = GameObject.Find("player").GetComponent<Move1>();
             target = player.transform;
             dir = target.position - transform.position; //사이의 거리를 구함
         }
@@ -99,7 +100,6 @@ public class zombieking : MonoBehaviour
                 gameover.zombiecount += 1;
                 Level level = FindObjectOfType<Level>();
                 level.zombiecount[level.i]--; //생성되면 zombiecount--
-                level.isBossAppear = false;
                 ismove = false;
                 canevent = false;
                 isdead = true;

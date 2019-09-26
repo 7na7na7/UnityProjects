@@ -22,8 +22,6 @@ public class Spawner : MonoBehaviour
         Level level = FindObjectOfType<Level>();
         while (true)
         {
-            if(level.isBossAppear==false) //보스가 나타났으면 스폰멈춤
-            {
             if (level.isdelay)
                 level.currentzombie = 0;
             yield return new WaitUntil(()=>level.isdelay==false);
@@ -115,9 +113,7 @@ public class Spawner : MonoBehaviour
                                 new Vector3(transform.position.x, transform.position.y, transform.position.z),
                                 Quaternion.identity);
                         break;
-                        
                 }
-            }
             #endregion spawn
             }
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));

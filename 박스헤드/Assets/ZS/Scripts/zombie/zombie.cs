@@ -36,6 +36,8 @@ public class zombie : MonoBehaviour
         }
         level.currentzombie++;
         obj = this.gameObject;
+        if(level.currentzombie>level.zombiecount[level.i])
+            Destroy(obj);
     }
 
     void Update()

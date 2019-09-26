@@ -14,7 +14,6 @@ public class Level : MonoBehaviour
     public Canvas shop;
     private int bossNumber = 0;
     public GameObject[] Boss;
-    public bool isBossAppear = false;
     public int savedcount;
     public int currentzombie = 0;
     public int i = 0;
@@ -51,33 +50,31 @@ public class Level : MonoBehaviour
     {
         while (true)
         {
-            if (isBossAppear == false)
-            {
-                int a = Random.Range(0, 4);
-                if (a == 0)
-                    Instantiate(spawner,
-                        new Vector3(Random.Range(player.min.position.x - 10, player.max.position.x + 10),
-                            player.min.position.y - 10, 0), Quaternion.identity); //아래
-                else if (a == 1)
-                    Instantiate(spawner,
-                        new Vector3(Random.Range(player.min.position.x - 10, player.max.position.x + 10),
-                            player.max.position.y + 10, 0), Quaternion.identity); //위
-                else if (a == 2)
-                    Instantiate(spawner,
-                        new Vector3(player.max.position.x + 10,
-                            Random.Range(player.min.position.y - 10, player.max.position.y + 10), 0),
-                        Quaternion.identity); //오른
-                else
-                    Instantiate(spawner,
-                        new Vector3(player.min.position.x - 10,
-                            Random.Range(player.min.position.y - 10, player.max.position.y + 10), 0),
-                        Quaternion.identity); //왼
-                //spawner.transform.SetParent(parent.transform);
-            }
+            int a = Random.Range(0, 4);
+            if (a == 0)
+                Instantiate(spawner,
+                    new Vector3(Random.Range(player.min.position.x - 10, player.max.position.x + 10),
+                        player.min.position.y - 10, 0), Quaternion.identity); //아래
+            else if (a == 1)
+                Instantiate(spawner,
+                    new Vector3(Random.Range(player.min.position.x - 10, player.max.position.x + 10),
+                        player.max.position.y + 10, 0), Quaternion.identity); //위
+            else if (a == 2)
+                Instantiate(spawner,
+                    new Vector3(player.max.position.x + 10,
+                        Random.Range(player.min.position.y - 10, player.max.position.y + 10), 0),
+                    Quaternion.identity); //오른
+            else
+                Instantiate(spawner,
+                    new Vector3(player.min.position.x - 10,
+                        Random.Range(player.min.position.y - 10, player.max.position.y + 10), 0),
+                    Quaternion.identity); //왼
+            //spawner.transform.SetParent(parent.transform);
 
             yield return new WaitForSeconds(waitTime);
         }
     }
+
     IEnumerator spawn()
     {
         save save = FindObjectOfType<save>();
@@ -119,7 +116,6 @@ public class Level : MonoBehaviour
                     Instantiate(Boss[bossNumber],new Vector3((transform.position.x*-1+transform.position.x)/2,transform.position.y+55,transform.position.z),Quaternion.identity);
                 Instantiate(Boss[bossNumber],new Vector3(transform.position.x,transform.position.y+25,transform.position.z),Quaternion.identity);
                 bossNumber++;
-                isBossAppear = true;
             }
             isdelay = false;
         }
