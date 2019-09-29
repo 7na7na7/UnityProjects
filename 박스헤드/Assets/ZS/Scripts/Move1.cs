@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
-public class Move1 : MonoBehaviour
+public  class Move1 : MonoBehaviour
 {
+    public float dashforce = 4f;
+    public float dashtime = 0.15f;
+    private button btn;
+    public float pistoldamage=0.5f;
+    public float sniperdamage=1.5f;
+    public float knifedamage = 2.5f;
+    public int criticaldamage = 0;
+    private Level lv;
+    public int criticalpercent = 20;
+    public int heartpercent = 20;
+    public float staminahealvalue = 0.1f;
+    public int healvalue = 5;
+    private hitomi htm;
     public int level=1;
     private GoldManager gold;
     public bool isflip = false;
-    public int shotdelaycount = 0,damagecount=0,specialcount=0;
-    private bool isdash;
+    public int shotdelaycount = 0, damagecount = 0; //무기강화 카운트
+    public bool isdash;
     public AudioClip dashsound;
     public AudioClip healsound;
     public AudioClip coinsound;
     public LayerMask layerMask; //통과가 불가능한 레이어 설정
     public AudioSource audiosource; //오디오소스
-    public UnityEngine.UI.Slider stamina;
+    public Slider stamina;
     public int damage;
     public Transform min, max;
     public bool isdead = false;
@@ -27,7 +38,7 @@ public class Move1 : MonoBehaviour
     private Color color;
     public bool isdamaged = false;
     public Collider2D col;
-    public UnityEngine.UI.Slider slider;
+    public Slider slider;
     public Vector3 moveVelocity;
     Animator animator;//애니메이션 선언
     public Transform tr; //카메라밖 제한을 위해서 플레이어의 위치를 넣어준다.
@@ -40,20 +51,25 @@ public class Move1 : MonoBehaviour
 
     private void Start()
     {
+        btn = FindObjectOfType<button>();
         Time.timeScale = 1;
+        lv = FindObjectOfType<Level>();
+        level = 1;
+        htm = FindObjectOfType<hitomi>();
         gold = FindObjectOfType<GoldManager>();
         gold.realgold = 0;
         //weaponselect(0);
         minusforce=this.transform.localScale.x * -1;
         plusforce=this.transform.localScale.x;
         animator = GetComponent<Animator>();
+        //dashforce += dashforce * 0.5f;
     }
 
     void Update()
     {
         animator.speed = 0.2f * moveforce;
         if(Time.timeScale!=0)
-            stamina.value += 0.1f;
+            stamina.value += staminahealvalue;
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (Time.timeScale!=0)
@@ -70,7 +86,6 @@ public class Move1 : MonoBehaviour
         {
             if (isdead == false)
             {
-                Level lv = FindObjectOfType<Level>();
                 SpriteRenderer sprite = GetComponent<SpriteRenderer>(); //스프라이트로 함
                 color.r = 255;
                 color.g = 255;
@@ -81,6 +96,10 @@ public class Move1 : MonoBehaviour
                 lv.canpause = false;
                 PlayerPrefs.SetInt(gold.goldstring, gold.savedgold); //골드저장
                 isdead = true;
+                for (int i = 0; i < 5; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);   
+                }
             }
         }
     }
@@ -178,7 +197,7 @@ public class Move1 : MonoBehaviour
     {
         if (isdash == false)
         {
-            if (other.CompareTag("zombie"))
+            if (other.CompareTag("zombie")||other.CompareTag("acid"))
             {
                 if (isdamaged == false)
                 {
@@ -198,10 +217,21 @@ public class Move1 : MonoBehaviour
         if (other.CompareTag("brown") || other.CompareTag("silver") || other.CompareTag("gold"))
         {
             Debug.Log("동전에 닿음!");
-            audiosource.PlayOneShot(coinsound, 25f);
+            audiosource.PlayOneShot(coinsound, 5f);
         }
-        if(other.CompareTag("heart"))
-            audiosource.PlayOneShot(healsound,0.7f);
+
+        if (other.CompareTag("heart"))
+        {
+            Destroy(other.gameObject);
+            slider.value += healvalue;
+            audiosource.PlayOneShot(healsound, 0.7f);
+        }
+        if (other.CompareTag("bigheart"))
+        {
+            Destroy(other.gameObject);
+            slider.value += healvalue+15;
+            audiosource.PlayOneShot(healsound, 0.7f);
+        }
     }
 
     IEnumerator damaged(string enemy)
@@ -254,14 +284,16 @@ public class Move1 : MonoBehaviour
 
     IEnumerator dash()
     {
+        htm.gameObject.SetActive(false);
         isdash = true;
         animator.SetBool("isdash",true);
         audiosource.PlayOneShot(dashsound);
-        moveforce *= 5;
+        moveforce *= dashforce;
         //col.enabled = false;
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(dashtime);
         //col.enabled = true;
-        moveforce /= 5;
+        moveforce /= dashforce;
+        htm.gameObject.SetActive(true);
         animator.SetBool("isdash",false);
         yield return new WaitForSeconds(0.1f);
         isdash = false;
@@ -311,10 +343,8 @@ public class Move1 : MonoBehaviour
             moveforce = knifeforce;
         }
         shotdelaycount = 0;
-        damagecount = 0;
-        specialcount = 0;
-        button btn = FindObjectOfType<button>();
-        btn.enhancecount = 10;
-        bananagun gun = FindObjectOfType<bananagun>();
+        btn.enhancecount = 20;
+        btn.enhancesaving = 15;
+        btn.enhancebtn.text = "무기 강화 - " + btn.enhancecount + "G";
     }
 }

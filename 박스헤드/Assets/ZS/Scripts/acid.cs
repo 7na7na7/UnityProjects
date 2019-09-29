@@ -39,7 +39,7 @@ public class acid : MonoBehaviour
             if(player.isdamaged==false) 
                 Destroy(obj);
         }
-        if(other.CompareTag("object"))
+        if(other.CompareTag("object")||other.CompareTag("knife"))
         {
             Destroy(obj);
         }

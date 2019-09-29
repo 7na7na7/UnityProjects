@@ -14,7 +14,7 @@ public class FindChild : MonoBehaviour
             {
                 if (Time.timeScale != 0)
                 {
-                  pauseon();
+                    pauseon();
                 }
                 else
                 {

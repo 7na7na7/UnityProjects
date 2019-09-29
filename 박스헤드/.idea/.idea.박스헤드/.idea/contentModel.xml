@@ -4,35 +4,59 @@
     <e p="C:\Users\mingu\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\mingu\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_박스헤드.44224003.00" t="ExcludeRecursive" />
     <e p="C:\Users\mingu\Documents\GitHub\UnityProjects\박스헤드" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Joystick Pack" t="Include">
+          <e p="Examples" t="Include">
+            <e p="JoystickPlayerExample.cs" t="Include" />
+            <e p="JoystickSetterExample.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Base" t="Include">
+              <e p="Joystick.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="DynamicJoystickEditor.cs" t="Include" />
+              <e p="FloatingJoystickEditor.cs" t="Include" />
+              <e p="JoystickEditor.cs" t="Include" />
+              <e p="VariableJoystickEditor.cs" t="Include" />
+            </e>
+            <e p="Joysticks" t="Include">
+              <e p="DynamicJoystick.cs" t="Include" />
+              <e p="FixedJoystick.cs" t="Include" />
+              <e p="FloatingJoystick.cs" t="Include" />
+              <e p="VariableJoystick.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="ZS" t="Include">
           <e p="Scripts" t="Include">
             <e p="ability.cs" t="Include" />
             <e p="acid.cs" t="Include" />
             <e p="banana.cs" t="Include" />
             <e p="bananagun.cs" t="Include" />
-            <e p="Bigheart.cs" t="Include" />
             <e p="button.cs" t="Include" />
             <e p="critical.cs" t="Include" />
             <e p="destroy.cs" t="Include" />
             <e p="FindChild.cs" t="Include" />
+            <e p="followcam.cs" t="Include" />
             <e p="GameOver.cs" t="Include" />
             <e p="gold.cs" t="Include" />
             <e p="GoldManager.cs" t="Include" />
             <e p="hardcam.cs" t="Include" />
-            <e p="heart.cs" t="Include" />
             <e p="highscore.cs" t="Include" />
+            <e p="hitomi.cs" t="Include" />
             <e p="knife.cs" t="Include" />
             <e p="Level.cs" t="Include" />
             <e p="MapMove.cs" t="Include" />
             <e p="Move1.cs" t="Include" />
             <e p="save.cs" t="Include" />
             <e p="ScreenResolution.cs" t="Include" />
-            <e p="Slider.cs" t="Include" />
             <e p="softcam.cs" t="Include" />
             <e p="Spawner.cs" t="Include" />
             <e p="zombie" t="Include">
+              <e p="bigzombie.cs" t="Include" />
               <e p="Dummyzombie.cs" t="Include" />
               <e p="zombie.cs" t="Include" />
             </e>
@@ -46,6 +70,7 @@
               <e p="zombie3col.cs" t="Include" />
               <e p="zombie3move.cs" t="Include" />
             </e>
+            <e p="zombieclass.cs" t="Include" />
             <e p="zombieking" t="Include">
               <e p="zombieking.cs" t="Include" />
             </e>

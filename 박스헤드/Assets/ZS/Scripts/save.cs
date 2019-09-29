@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class save : MonoBehaviour
 {
+    public bool isbgm = true;
     public static save instance;
     
     public static int highwave = 1;

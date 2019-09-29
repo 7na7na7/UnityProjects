@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class bananagun : MonoBehaviour
 {
+    public float fullspeed = 0, lessspeed = 0;
     public float[] savedpitch;
     public float pitchctr=1;
     private SpriteRenderer renderer;
@@ -18,7 +19,7 @@ public class bananagun : MonoBehaviour
     private Color color;
     private Move1 player;
     public Transform tr;
-    public GameObject banana,banana2,banana3,banana4,banana5;
+    public GameObject[] banana;
     private Vector3 MousePositon;
     public Camera camera;
 
@@ -45,11 +46,27 @@ public class bananagun : MonoBehaviour
         pitchctr = 0;
         weapon = gameObject.name;
         savedshotdelay = savedsavedshotdelay;
-        for (int i = 0; i < player.shotdelaycount; i++)
+        for (int i = 0; i < player.shotdelaycount; i++) //강화스피드
         {
             pitchctr += 0.2f;
             savedshotdelay *= 0.85f;
-        } 
+        }
+
+        if (player.slider.maxValue - player.slider.value == 0) //풀피일떄
+        {
+            for (int i = 0; i < fullspeed; i++)
+            {
+                savedshotdelay *= 0.8f;
+            }
+        }
+        if (player.slider.value<=player.slider.maxValue*0.3f)//현재hp의30%이하일때
+        {
+            for (int i = 0; i < lessspeed; i++)
+            {
+                savedshotdelay *= 0.8f;
+            }
+        }
+
         if(weapon!="knife") 
             audiosource.pitch += pitchctr;
         shotdelay = savedshotdelay;
@@ -107,14 +124,12 @@ public class bananagun : MonoBehaviour
                                 StartCoroutine(knife.attackanim());
                             }
 
-                            Instantiate(banana, tr);
-                            audiosource.PlayOneShot(bulletsound);
+                            Instantiate(banana[0], tr);
+                            audiosource.PlayOneShot(bulletsound,0.8f);
                             if (weapon == "shotgun")
                             {
-                                Instantiate(banana2, tr);
-                                Instantiate(banana3, tr);
-                                Instantiate(banana4, tr);
-                                Instantiate(banana5, tr);
+                                Instantiate(banana[1], tr);
+                                Instantiate(banana[2], tr);
                             }
                             StartCoroutine(delay());
                         }

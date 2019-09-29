@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class GameOver : MonoBehaviour
 {
-    private bool isexit = false;
+    public bool canexit = true;
+    public bool isexit = false;
     public GameObject exit;
     public Text kill, alive;
     public int zombiecount = 0;
@@ -39,10 +40,13 @@ public class GameOver : MonoBehaviour
             {
                 if (!player.isdead)
                 {
-                    exit.gameObject.SetActive(true);
-                    lv.canpause = false;
-                    Time.timeScale = 0;
-                    isexit = true;
+                    if (canexit)
+                    {
+                        exit.gameObject.SetActive(true);
+                        lv.canpause = false;
+                        Time.timeScale = 0;
+                        isexit = true;
+                    }
                 }
             }
             else

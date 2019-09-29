@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class zombieking : MonoBehaviour
 {
+    private Level level;
+    private float maxhp;
+    private bananagun gun;
     private Move1 player;
     private Level lv;
-    private bool isleft=false, isright=false;
+    private bool isleft = false, isright = false;
     private bool once2 = false;
     private bool once = false;
     public GameObject brown, silver, gold;
-    
+
     public GameObject critical;
-    public GameObject bigheart; 
+    public GameObject bigheart;
     private bool isdead = false;
     private bool canevent = true;
     public AudioSource audiosource;
@@ -26,34 +29,38 @@ public class zombieking : MonoBehaviour
     private bool cananotdetect = false;
     private Animator anim;
     private bool ismove = true;
-    public UnityEngine.UI.Slider hp;
+    public GameObject hp, hpframe;
     private GameObject obj;
     private Transform target; // 따라갈 물체의 방향
     public float speed = 1.0f;
 
     private void Start()
     {
+        level = FindObjectOfType<Level>();
+        gun = FindObjectOfType<bananagun>();
         player = GameObject.Find("player").GetComponent<Move1>();
         lv = FindObjectOfType<Level>();
-        for(int i=0;i<lv.wave/5;i++)
+        for (int i = 0; i < lv.wave / 5; i++) //일단 보스강화, 나중에 없애야지
         {
-            hp.maxValue *= 1.5f;
-            hp.value *=1.5f;
+            hp.transform.localScale += new Vector3(this.transform.localScale.x*0.5f, 0, 0);
+            hpframe.transform.localScale += new Vector3(this.transform.localScale.x*0.5f, 0, 0);
         }
+        maxhp = hp.transform.localScale.x;
         anim = GetComponent<Animator>();
         lv.currentzombie++;
         obj = this.gameObject;
-        anim.SetBool("iswalk",true);
-        anim.SetBool("israge",false);
+        anim.SetBool("israge", false);
         StartCoroutine(pattern());
     }
 
     void Update()
     {
-        if(isleft)
-            transform.Translate(-0.1f,0,0);
-        if(isright)
-            transform.Translate(0.1f,0,0);
+        if (!player.isdead)
+        {
+            if (isleft)
+                transform.Translate(-0.1f, 0, 0);
+        if (isright)
+            transform.Translate(0.1f, 0, 0);
         if (cananotdetect == false)
         {
             target = player.transform;
@@ -62,7 +69,7 @@ public class zombieking : MonoBehaviour
 
         if (ismove)
         {
-            if (dir.x <= 0.25f && dir.y <= 0.25f)
+            if (dir.x <= 0.005f && dir.y <= 0.005f)
             {
                 if (once2 == false)
                 {
@@ -70,79 +77,74 @@ public class zombieking : MonoBehaviour
                     StartCoroutine(moving());
                 }
             }
-            Debug.Log("dirx : "+dir.x+"diry " +dir.y);
-            
-            
-            anim.SetBool("iswalk",true);
+
+            dir.Normalize();
             transform.position +=
-                new Vector3(Mathf.Clamp(dir.x, speed * -1, speed), Mathf.Clamp(dir.y, speed * -1, speed), dir.z) *
-                speed *
+                dir* speed *
                 Time.deltaTime;
         }
-        if (hp.value <= hp.maxValue / 2)
+
+        if (hp.transform.localScale.x <= maxhp / 2)
         {
             if (once == false)
             {
+                Debug.Log("레이제리에지레이제리에지레잊");
                 anim.SetBool("israge", true);
                 speed *= 2f;
                 once = true;
             }
         }
 
-        if (hp.value <= 0)
+        if (hp.transform.localScale.x <= 0)
         {
             if (isdead == false)
             {
                 BoxCollider2D col = GetComponent<BoxCollider2D>();
                 col.enabled = false;
-                audiosource.PlayOneShot(deathsound,2f);
+                audiosource.PlayOneShot(deathsound, 2f);
                 GameOver gameover = GameObject.Find("Canvas").GetComponent<GameOver>();
                 gameover.zombiecount += 1;
-                Level level = FindObjectOfType<Level>();
                 level.zombiecount[level.i]--; //생성되면 zombiecount--
+                level.currentzombie--;
                 ismove = false;
                 canevent = false;
                 isdead = true;
-                anim.SetBool("iswalk",false);
                 StartCoroutine(delaycoin());
                 Destroy(obj, 2f);
             }
         }
     }
+}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        bananagun gun = FindObjectOfType<bananagun>();
-        if (other.CompareTag("banana"))
+        if (other.CompareTag("banana")||other.CompareTag("knife"))
         {
-            int r = Random.Range(0, 30);
+            if (gun.weapon == "sniper")
+                hp.transform.localScale += new Vector3(-1*player.sniperdamage*0.4f, 0, 0);
+            else if (gun.weapon == "knife")
+                hp.transform.localScale += new Vector3(-1*player.knifedamage*0.4f, 0, 0);
+            else
+                hp.transform.localScale += new Vector3(-1*player.pistoldamage*0.4f, 0, 0);
+            int r = Random.Range(0, player.criticalpercent); //치명타확률계산
             if (r == 0)
             {
                 Instantiate(critical, new Vector3(transform.position.x + 0.1f, transform.position.y + 0.5f,transform.position.z),Quaternion.identity);
                 if (gun.weapon == "sniper")
-                    hp.value -=6;
+                    hp.transform.localScale += new Vector3(-1*player.sniperdamage*0.4f, 0, 0);
                 else if (gun.weapon == "knife")
-                    hp.value -= 10;
+                    hp.transform.localScale += new Vector3(-1*player.knifedamage*0.4f, 0, 0);
                 else
-                    hp.value -= 2;
+                    hp.transform.localScale += new Vector3(-1*player.pistoldamage*0.4f, 0, 0);
+                hp.transform.localScale += new Vector3(-1*player.criticaldamage*0.4f, 0, 0);
+            }
+            if (r == 0) //총기강화
+            {
+                hp.transform.localScale += new Vector3(-1*player.damagecount*0.4f, 0, 0);
             }
             else
             {
-                if (gun.weapon == "sniper")
-                    hp.value -= 3;
-                else if (gun.weapon == "knife")
-                    hp.value -= 5;
-                else
-                    hp.value--;
-            }
-            Move1 player = GameObject.Find("player").GetComponent<Move1>();
-            if (r == 0)
-            {
-                hp.value -= player.damagecount;
-            }
-            else
-            {
-                hp.value -= player.damagecount * 0.5f;
+                hp.transform.localScale += new Vector3(-1*player.damagecount*0.5f*0.4f, 0, 0);
             }
         }
     }
@@ -177,12 +179,12 @@ public class zombieking : MonoBehaviour
             audiosource.PlayOneShot(dashsound,4f);
             if(isdead==false) 
                 ismove = true;
-            speed *= 5;
+            speed *= 25;
             if (anim.GetBool("israge") == true) 
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.25f);
             else
-                yield return new WaitForSeconds(0.35f);
-            speed /= 5;
+                yield return new WaitForSeconds(0.5f);
+            speed /= 25;
             cananotdetect = false; //캐릭터 감지 on
         }
     }
@@ -260,7 +262,7 @@ public class zombieking : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            if (dir.x <= 0.25f && dir.y <= 0.25f)
+            if (dir.x <= 0.005f && dir.y <= 0.005f)
             {
                 int a = Random.Range(0, 2);
                 if (a == 0)

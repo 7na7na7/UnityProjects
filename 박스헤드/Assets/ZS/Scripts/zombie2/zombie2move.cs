@@ -7,13 +7,7 @@ public class zombie2move : MonoBehaviour
     public bool canmove = true;
     private Transform target; // 따라갈 물체의 방향
     public float speed = 1.0f;
-
-    private void Awake()
-    {
-        Level level = FindObjectOfType<Level>();
-        level.currentzombie++;
-    }
-
+    
     void Update()
     {
         if (canmove == true)

@@ -24,7 +24,7 @@ public class banana : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")&&!other.CompareTag("banana"))
+        if (!other.CompareTag("Player")&&!other.CompareTag("banana")&&!other.CompareTag("acid"))
         {
             bananagun gun = FindObjectOfType<bananagun>();
             if (gun.weapon != "sniper")
