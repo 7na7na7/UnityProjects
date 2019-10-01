@@ -117,7 +117,12 @@ public class Level : MonoBehaviour
             if (wave % 5 == 0) //웨이브5번째마다 보스출현
             {
                 Instantiate(Boss[bossNumber],new Vector3(transform.position.x,transform.position.y+25,transform.position.z),Quaternion.identity);
+                if (wave % 20 == 0||wave%25==0)
+                {
+                    Instantiate(Boss[bossNumber],new Vector3(transform.position.x,transform.position.y+25,transform.position.z),Quaternion.identity);
+                }
                 bossNumber++;
+                player.moveforce += player.bossstrong;
             }
             yield return new WaitUntil(() => zombiecount[i] <= 0);
             isdelay = true;

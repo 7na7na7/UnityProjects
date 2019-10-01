@@ -18,19 +18,7 @@ public class zombie3 : zombieclass
     private void LateUpdate()
     {
         if (hp.transform.localScale.x <= 0)
-        { 
-            int a = UnityEngine.Random.Range(0,100);
-            if (0<=a&&a<=coinpercent) 
-            {
-                Instantiate(silver,
-                    new Vector3(this.transform.position.x, this.transform.position.y, silver.transform.position.z),
-                    Quaternion.identity); //은화생성
-            }
-            int r = UnityEngine.Random.Range(0, player.heartpercent);
-            if (r == 0)
-                Instantiate(heart,
-                    new Vector3(this.transform.position.x, this.transform.position.y, heart.transform.position.z),
-                    Quaternion.identity);
+        {
             Destroy(parent);
         }
     }

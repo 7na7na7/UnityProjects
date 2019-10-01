@@ -9,13 +9,25 @@ public class banana : MonoBehaviour
     private GameObject obj;
     private Transform parent;
     public float speed;
-
+    private bananagun gun;
     private void Start()
     {
+        gun = FindObjectOfType<bananagun>();
         obj = this.gameObject;
-        Destroy(obj, 1f);
-            parent = GameObject.Find("BG").GetComponent<Transform>();
+        parent = GameObject.Find("BG").GetComponent<Transform>();
         this.transform.SetParent(parent.transform);//child의 부모를 parent로 설정
+        if (gun.weapon == "sniper")
+        {
+            Destroy(obj, 3f);
+        }
+        else if (gun.weapon == "shotgun"||gun.weapon=="shotgun2")
+        {
+            Destroy(obj, 0.4f);
+        }
+        else
+        {
+            Destroy(obj,1f);
+        }
     }
     void Update()
     {
@@ -26,16 +38,21 @@ public class banana : MonoBehaviour
     {
         if (!other.CompareTag("Player")&&!other.CompareTag("banana")&&!other.CompareTag("acid"))
         {
-            bananagun gun = FindObjectOfType<bananagun>();
-            if (gun.weapon != "sniper")
+            if (gun.weapon != "sniper"&&gun.weapon!="sniper2")
             {
                 if(other.CompareTag("zombie")||other.CompareTag("zombieking")) 
                         Destroy(obj);
             }
-            else
+            else if(gun.weapon=="sniper")
             {
                 snipercount++;
-                if(snipercount>=5)
+                if(snipercount>=6)
+                    Destroy(obj);   
+            }
+            else if(gun.weapon=="sniper2")
+            {
+                snipercount++;
+                if(snipercount>=10)
                     Destroy(obj);   
             }
         }

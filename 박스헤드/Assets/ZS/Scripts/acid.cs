@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class acid : MonoBehaviour
 {
+    private Level lv;
     private Move1 player;
     private GameObject obj;
     private Transform parent;
@@ -11,6 +12,7 @@ public class acid : MonoBehaviour
     private Transform target;
     private void Start()
     {
+        lv = FindObjectOfType<Level>();
         obj = this.gameObject;
         Destroy(obj, 5f);
         parent = GameObject.Find("BG").GetComponent<Transform>();
@@ -22,6 +24,10 @@ public class acid : MonoBehaviour
         Vector3 dir = target.position - transform.position; //사이의 거리를 구함
         float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        for (int i = 0; i < lv.wave / 5; i++) //일단 보스강화, 나중에 없애야지
+        {
+            speed += speed * 0.2f;
+        }
     }
     void Update()
     {

@@ -42,78 +42,81 @@ public class Spawner : MonoBehaviour
                             break;
                         case 3:
                         case 4:
-                            random = Random.Range(1, 11);
-                            if (random == 1 || random == 2)
-                                Instantiate(zombie[2],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //웨이브 3부터 빠른좀비 소환, 5분의 1의 확률
-                                    Quaternion.identity);
+                            random = Random.Range(0,3);
+                            if (random == 0||random==1)
+                            {
+                                Instantiate(zombie[0], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                            }
                             else
-                                Instantiate(zombie[0],
-                                    new Vector3(transform.position.x, transform.position.y, transform.position.z),
-                                    Quaternion.identity);
+                            {
+                                random = Random.Range(0, 2);
+                                if (random == 0)
+                                {
+                                    Instantiate(zombie[1], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                                else
+                                {
+                                    Instantiate(zombie[2], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                            }
                             break;
                         case 5:
                         case 6:
-                            random = Random.Range(1, 12);
-                            if (random == 1)
-                                Instantiate(zombie[2],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //빠른좀비 11분의 1의 확률
-                                    Quaternion.identity);
-                            else if (random == 2)
-                                Instantiate(zombie[1],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //웨이브 5부터 원거리좀비소환, 11분의 1의 확률
-                                    Quaternion.identity);
-                            else
-                                Instantiate(zombie[0],
-                                    new Vector3(transform.position.x, transform.position.y, transform.position.z),
-                                    Quaternion.identity);
-                            break;
                         case 7:
-                            random = Random.Range(1, 16);
-                            if (random == 1 || random == 2)
-                                Instantiate(zombie[2],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //빠른좀비 11분의 1의 확률
-                                    Quaternion.identity);
-                            else if (random == 3 || random == 4)
-                                Instantiate(zombie[1],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //웨이브 3부터 원거리좀비조환, 11분의 1의 확률
-                                    Quaternion.identity);
-                            else if (random == 5)
-                                Instantiate(zombie[3],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //웨이브 3부터 원거리좀비조환, 11분의 1의 확률
-                                    Quaternion.identity);
-                            else
+                            random = Random.Range(0,3);
+                            if (random == 0||random==1)
+                            {
                                 Instantiate(zombie[0],
                                     new Vector3(transform.position.x, transform.position.y, transform.position.z),
                                     Quaternion.identity);
+                            }
+                            else
+                            {
+                                random = Random.Range(0, 5);
+                                if (random == 0||random==1)
+                                {
+                                    Instantiate(zombie[1],
+                                        new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                                else if(random==2||random==3)
+                                {
+                                    Instantiate(zombie[2],
+                                        new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                                else
+                                {
+                                    Instantiate(zombie[3],
+                                        new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                            }
                             break;
                         default: //그 후로는 이렇게 소환
-                            random = Random.Range(1, 16);
-                            if (random == 1 || random == 2)
-                                Instantiate(zombie[2],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //빠른좀비 11분의 1의 확률
-                                    Quaternion.identity);
-                            else if (random == 3 || random == 4)
-                                Instantiate(zombie[1],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //웨이브 3부터 원거리좀비조환, 11분의 1의 확률
-                                    Quaternion.identity);
-                            else if (random == 5)
-                                Instantiate(zombie[3],
-                                    new Vector3(transform.position.x, transform.position.y,
-                                        transform.position.z), //웨이브 3부터 원거리좀비조환, 11분의 1의 확률
-                                    Quaternion.identity);
-                            else
+                            random = Random.Range(0,3);
+                            if (random == 0||random==1)
+                            {
                                 Instantiate(zombie[0],
                                     new Vector3(transform.position.x, transform.position.y, transform.position.z),
                                     Quaternion.identity);
+                            }
+                            else
+                            {
+                                random = Random.Range(0, 5);
+                                if (random == 0||random==1)
+                                {
+                                    Instantiate(zombie[1],
+                                        new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                                else if(random==2||random==3)
+                                {
+                                    Instantiate(zombie[2],
+                                        new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                                else
+                                {
+                                    Instantiate(zombie[3],
+                                        new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                                }
+                            }
                             break;
                     }
 

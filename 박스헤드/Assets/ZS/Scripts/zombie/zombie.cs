@@ -28,17 +28,7 @@ public class zombie : zombieclass
             Time.deltaTime;
         if (hp.transform.localScale.x <=0)
         {
-            int a = Random.Range(0, player.heartpercent);
-                if (a == 0)
-                    Instantiate(heart,
-                        new Vector3(this.transform.position.x, this.transform.position.y, heart.transform.position.z),
-                        Quaternion.identity);
-                int r = Random.Range(0, 100);
-                if (0<=r&&r<=coinpercent) 
-                {
-                   Instantiate(brown, new Vector3(this.transform.position.x, this.transform.position.y, brown.transform.position.z), Quaternion.identity); //동화생성
-                }
-                Destroy(obj);
+            Destroy(obj);
         }
     }
    

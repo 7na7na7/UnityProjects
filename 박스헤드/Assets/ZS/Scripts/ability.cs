@@ -85,7 +85,7 @@ public class ability : MonoBehaviour
         else if (split[1] == "standheal")
             abilityname = "가만히 있으면 체력 회복";
         else if (split[1] == "changeweapon")
-            abilityname = "한 단계 높은 무기로 변환";//////////////4
+            abilityname = "현재 등급 이상의 무기로 변환\n(강화 유지)";//////////////4
         //else if (split[1] == "revival")
             //abilityname = "한 번 부활할 수 있음";
             

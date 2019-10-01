@@ -7,12 +7,21 @@ using Random = System.Random;
 
 public  class Move1 : MonoBehaviour
 {
+    public float bossstrong = 0;
+    public float criticalheal = 0;
+    public float standheal = 0;
+    public float goldspeed = 0;
+    private float savedmoveforce;
     public float dashforce = 4f;
     public float dashtime = 0.15f;
     private button btn;
+    
     public float pistoldamage=0.5f;
     public float sniperdamage=1.5f;
     public float knifedamage = 2.5f;
+    public float cowgundamage = 0.25f;
+    public float sniper2damage = 3f;
+    
     public int criticaldamage = 0;
     private Level lv;
     public int criticalpercent = 20;
@@ -45,12 +54,15 @@ public  class Move1 : MonoBehaviour
     public float offset = 0.4f; //제한할때 오차 조정 코드(플레이어 중간을 인식해서 생기는 오차)
     float screenRation = (float)Screen.width / (float)Screen.height;
     public float minusforce,plusforce;
+    
     public float moveforce = 1;
     public float sniperforce = 0.9f;
     public float knifeforce = 1.2f;
+    public float sniper2force = 0.8f;
 
     private void Start()
     {
+        savedmoveforce = moveforce;
         btn = FindObjectOfType<button>();
         Time.timeScale = 1;
         lv = FindObjectOfType<Level>();
@@ -63,11 +75,13 @@ public  class Move1 : MonoBehaviour
         plusforce=this.transform.localScale.x;
         animator = GetComponent<Animator>();
         //dashforce += dashforce * 0.5f;
+        gold.gold = 1000;
     }
-
+    
     void Update()
     {
         animator.speed = 0.2f * moveforce;
+        
         if(Time.timeScale!=0)
             stamina.value += staminahealvalue;
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -164,6 +178,8 @@ public  class Move1 : MonoBehaviour
 
             if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0) //가만있을때
             {
+                if(lv.currentzombie>=1) 
+                    slider.value += standheal;
                 animator.SetBool("iswalk", false);
             }
             transform.position += moveVelocity * moveforce * Time.deltaTime;
@@ -214,7 +230,7 @@ public  class Move1 : MonoBehaviour
                 }
             }
         }
-        if (other.CompareTag("brown") || other.CompareTag("silver") || other.CompareTag("gold"))
+        if (other.CompareTag("gold"))
         {
             Debug.Log("동전에 닿음!");
             audiosource.PlayOneShot(coinsound, 5f);
@@ -323,7 +339,7 @@ public  class Move1 : MonoBehaviour
 
     public void weaponselect(int weapon)
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 7; i++)
         {
             if (i == weapon)
             {
@@ -342,9 +358,69 @@ public  class Move1 : MonoBehaviour
         {
             moveforce = knifeforce;
         }
+        else if (weapon == 5)
+        {
+            moveforce = sniper2force;
+        }
+        else
+        {
+            moveforce = savedmoveforce;
+        }
+        if(weapon>=0&&weapon<=3)
+        {
+            {
+                Debug.Log("asdfasf");
+                damagecount = 0;
+                shotdelaycount = 0;
+                btn.enhancecount = 20;////////////?????
+                btn.enhancesaving = 15;
+                btn.enhancebtn.text = "무기 강화 - " +  btn.enhancecount + "G";
+            }
+        }
+        else if(weapon>=4&&weapon<=7)
+        {
+            damagecount = 0;
+            shotdelaycount = 0;
+            btn.enhancecount = 30;
+            btn.enhancesaving = 20;
+            btn.enhancebtn.text = "무기 강화 - " +  btn.enhancecount + "G";
+        }
+    }
+    public void weaponupgrade(int weapon)
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            if (i == weapon)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+            else
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+        if (weapon == 2)
+        {
+            moveforce = sniperforce;
+        }
+        else if (weapon == 3)
+        {
+            moveforce = knifeforce;
+        }
+        else if (weapon == 5)
+        {
+            moveforce = sniper2force;
+        }
+        else
+        {
+            moveforce = savedmoveforce;
+        }
+        /*
+        damagecount = 0;
         shotdelaycount = 0;
         btn.enhancecount = 20;
         btn.enhancesaving = 15;
         btn.enhancebtn.text = "무기 강화 - " + btn.enhancecount + "G";
+        */
     }
 }

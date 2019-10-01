@@ -31,6 +31,9 @@
           </e>
         </e>
         <e p="ZS" t="Include">
+          <e p="Scenes" t="Include">
+            <e p="split.cs" t="Include" />
+          </e>
           <e p="Scripts" t="Include">
             <e p="ability.cs" t="Include" />
             <e p="acid.cs" t="Include" />
@@ -45,10 +48,12 @@
             <e p="gold.cs" t="Include" />
             <e p="GoldManager.cs" t="Include" />
             <e p="hardcam.cs" t="Include" />
+            <e p="heartmagnet.cs" t="Include" />
             <e p="highscore.cs" t="Include" />
             <e p="hitomi.cs" t="Include" />
             <e p="knife.cs" t="Include" />
             <e p="Level.cs" t="Include" />
+            <e p="magnet.cs" t="Include" />
             <e p="MapMove.cs" t="Include" />
             <e p="Move1.cs" t="Include" />
             <e p="save.cs" t="Include" />

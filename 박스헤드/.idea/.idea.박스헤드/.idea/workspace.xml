@@ -45,6 +45,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/zombieclass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UnityScripts/반올림.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/GameOver.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ZS/Scenes/split.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/zombie/zombie.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/Move1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/ability.cs" root0="FORCE_HIGHLIGHTING" />
@@ -55,9 +56,11 @@
     <setting file="file://$PROJECT_DIR$/../../UnityScripts/부모설정.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/followcam.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../DsmEscape/DsmEscape/Assets/Scripts/movingobj.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/magnet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/highscore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/critical.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/zombie/bigzombie.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/heartmagnet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/hardcam.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/save.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZS/Scripts/destroy.cs" root0="FORCE_HIGHLIGHTING" />
@@ -72,8 +75,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../Test_ShotingGame/Assets/Scripts/EnemyMgr.cs" />
-        <option value="$PROJECT_DIR$/../Test_ShotingGame/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Move1.cs" />
@@ -90,7 +91,6 @@
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/hardcam.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/Slider.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/destroy.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/acid.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/FindChild.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/GameOver.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/lack.cs" />
@@ -104,25 +104,28 @@
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/Human.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/Student.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie2/zombie2col.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/gold.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/GoldManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/banana.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie2/zombie2move.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie3/zombie3move.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie/Dummyzombie.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie/zombie.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie2/zombie2.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie3/zombie3.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/magnet.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/heartmagnet.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/bananagun.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/banana.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/save.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/ability.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/acid.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/Spawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombieclass.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombieking/zombieking.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombie/bigzombie.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/ability.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/bananagun.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/gold.cs" />
+        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/GoldManager.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/button.cs" />
         <option value="$PROJECT_DIR$/Assets/ZS/Scripts/Move1.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/zombieclass.cs" />
-        <option value="$PROJECT_DIR$/Assets/ZS/Scripts/save.cs" />
       </list>
     </option>
   </component>
@@ -187,7 +190,9 @@
       <workItem from="1568590146823" duration="13577000" />
       <workItem from="1568714693071" duration="117272000" />
       <workItem from="1569286242967" duration="12863000" />
-      <workItem from="1569638435818" duration="32609000" />
+      <workItem from="1569638435818" duration="59638000" />
+      <workItem from="1569888559701" duration="5888000" />
+      <workItem from="1569923748944" duration="7345000" />
     </task>
     <servers />
   </component>

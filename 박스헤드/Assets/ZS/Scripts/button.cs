@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class button : MonoBehaviour
 {
+    private Move1 player;
+    private magnet mag;
     private bananagun gun;
     private zombieclass zombieclass;
     public int enhancesaving = 20;
@@ -15,21 +17,21 @@ public class button : MonoBehaviour
     public GameObject lackobj;
     public Text leveltext,foodbtn,enhancebtn;
     public int levelcount = 20;
-    public int enhancecount = 10;
+    public int enhancecount=15;
     private int foodcount = 5;
     private int a;
     private int currentweapon = 0;
     public Canvas canvas;
     private GoldManager gold;
-    private Move1 player;
     private Level lv;
     private void Start()
     {
+        player = FindObjectOfType<Move1>();
+        mag = FindObjectOfType<magnet>();
         gun = FindObjectOfType<bananagun>();
         zombieclass = FindObjectOfType<zombieclass>();
         gold = FindObjectOfType<GoldManager>();
         lv = FindObjectOfType<Level>();
-        player = FindObjectOfType<Move1>();
         leveltext.text = "레벨 업 - " + levelcount + "G";
         foodbtn.text = "체력 회복 - " + foodcount + "G";
         enhancebtn.text = "무기 강화 - " + enhancecount + "G";
@@ -57,6 +59,7 @@ public class button : MonoBehaviour
             }
         }
     }
+    
 
     public void gatcha()
     {
@@ -65,29 +68,21 @@ public class button : MonoBehaviour
             gold.gold -= 20;
             while (true)
             {
-                a = Random.Range(0, 4);
+                if(player.level==1) 
+                    a = Random.Range(0, 4);
+                else if(player.level==2) 
+                    a = Random.Range(0, 7);
+                else if(player.level==3) 
+                    a = Random.Range(0, 7);
+                else if(player.level==4) 
+                    a = Random.Range(0, 7);
                 if (currentweapon != a)
                 {
                     currentweapon = a;
                     break;
                 }
             }
-
-            switch (a)
-                {
-                    case 0:
-                        player.weaponselect(0);
-                        break;
-                    case 1:
-                        player.weaponselect(1);
-                        break;
-                    case 2:
-                        player.weaponselect(2);
-                        break;
-                    case 3:
-                        player.weaponselect(3);
-                        break;
-                }
+            player.weaponselect(a);
         }
         else
         {
@@ -99,8 +94,8 @@ public class button : MonoBehaviour
         if (gold.gold >= foodcount)
         {
             gold.gold -= foodcount;
-            foodcount += 3;
-            player.slider.value += 25;
+            foodcount += 7;
+            player.slider.value += 20;
             player.audiosource.PlayOneShot(player.healsound, 0.7f);
             foodbtn.text = "체력 회복 - " + foodcount + "G";
         }
@@ -226,13 +221,13 @@ public class button : MonoBehaviour
     }
     public void fullspeed()
     {
-        Debug.Log("풀피에서공속증가!");
-        zombieclass.lessattack++;
+        Debug.Log("풀피에서공속증가!"); 
+        gun.fullspeed++;
     }
     public void lessattack()
     {
         Debug.Log("딸피에서공격력증가!");
-        gun.fullspeed++;
+        zombieclass.fullattack++;
     }
     public void lessspeed()
     {
@@ -245,26 +240,48 @@ public class button : MonoBehaviour
     public void strongboss()
     {
         Debug.Log("보스 상대로 강해짐!");
+        player.bossstrong += 2f;
     }
     public void standheal()
     {
         Debug.Log("가만히 있으면 체력회복!");
+        player.standheal += 0.02f;
     }
     public void magnet()
     {
         Debug.Log("자석으로 골드 끌어옴!");
+        player.goldspeed += 1f;
+        mag.radiousup();
     }
 
     public void criticalheal()
     {
         Debug.Log("치명타 시 체력 회복!");
+        player.criticalheal += 5;
     }
     #endregion
 
     #region fourstar
-    public void changeweapon()
+    public void weaponupgrade()
     {
-        Debug.Log("강화를 유지한 채 무기 변환");
+        Debug.Log("현재 등급 이상의 무기로 변환\n(강화 유지)");
+        while (true)
+        {
+            if(player.level==1) 
+                a = Random.Range(0, 7);
+            else if(player.level==2) 
+                a = Random.Range(4, 7);
+            else if(player.level==3) 
+                a = Random.Range(0, 7);//
+            else if(player.level==4) 
+                a = Random.Range(0, 7);//
+            if (currentweapon != a)
+            {
+                currentweapon = a;
+                break;
+            }
+        }
+        player.weaponupgrade(a);
     }
     #endregion
     
@@ -309,8 +326,8 @@ public class button : MonoBehaviour
             magnet();
         else if(abil1.abilityname=="가만히 있으면 체력 회복")
             standheal();
-        else if (abil1.abilityname == "한 단계 높은 무기로 변환") /////4
-            changeweapon();
+        else if (abil1.abilityname == "현재 등급 이상의 무기로 변환\n(강화 유지)") /////4
+            weaponupgrade();
         
         
         abil1.gameObject.SetActive(false);
@@ -359,8 +376,8 @@ public class button : MonoBehaviour
             magnet();
         else if(abil2.abilityname=="가만히 있으면 체력 회복")
             standheal();
-        else if (abil2.abilityname == "한 단계 높은 무기로 변환") /////4
-            changeweapon();
+        else if (abil2.abilityname == "현재 등급 이상의 무기로 변환\n(강화 유지)") /////4
+            weaponupgrade();
 
         
         abil1.gameObject.SetActive(false);

@@ -56,14 +56,14 @@ public class bananagun : MonoBehaviour
         {
             for (int i = 0; i < fullspeed; i++)
             {
-                savedshotdelay *= 0.8f;
+                savedshotdelay *= 0.7f;
             }
         }
         if (player.slider.value<=player.slider.maxValue*0.3f)//현재hp의30%이하일때
         {
             for (int i = 0; i < lessspeed; i++)
             {
-                savedshotdelay *= 0.8f;
+                savedshotdelay *= 0.7f;
             }
         }
 
@@ -131,6 +131,15 @@ public class bananagun : MonoBehaviour
                                 Instantiate(banana[1], tr);
                                 Instantiate(banana[2], tr);
                             }
+
+                            if (weapon == "shotgun2")
+                            {
+                                Instantiate(banana[1], tr);
+                                Instantiate(banana[2], tr);
+                                Instantiate(banana[3], tr);
+                                Instantiate(banana[4], tr);
+                            }
+
                             StartCoroutine(delay());
                         }
                 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class zombieking : MonoBehaviour
 {
+    private zombieclass zombieclass;
     private Level level;
     private float maxhp;
     private bananagun gun;
@@ -12,7 +13,7 @@ public class zombieking : MonoBehaviour
     private bool isleft = false, isright = false;
     private bool once2 = false;
     private bool once = false;
-    public GameObject brown, silver, gold;
+    public GameObject gold;
 
     public GameObject critical;
     public GameObject bigheart;
@@ -42,8 +43,9 @@ public class zombieking : MonoBehaviour
         lv = FindObjectOfType<Level>();
         for (int i = 0; i < lv.wave / 5; i++) //일단 보스강화, 나중에 없애야지
         {
-            hp.transform.localScale += new Vector3(this.transform.localScale.x*0.5f, 0, 0);
-            hpframe.transform.localScale += new Vector3(this.transform.localScale.x*0.5f, 0, 0);
+            //hp.transform.localScale += new Vector3(this.transform.localScale.x*0.5f, 0, 0);
+            //hpframe.transform.localScale += new Vector3(this.transform.localScale.x*0.5f, 0, 0);
+            speed += 0.3f;
         }
         maxhp = hp.transform.localScale.x;
         anim = GetComponent<Animator>();
@@ -57,64 +59,60 @@ public class zombieking : MonoBehaviour
     {
         if (!player.isdead)
         {
-            if (isleft)
-                transform.Translate(-0.1f, 0, 0);
-        if (isright)
-            transform.Translate(0.1f, 0, 0);
-        if (cananotdetect == false)
-        {
-            target = player.transform;
-            dir = target.position - transform.position; //사이의 거리를 구함
-        }
-
-        if (ismove)
-        {
-            if (dir.x <= 0.005f && dir.y <= 0.005f)
+            if(ismove)
             {
-                if (once2 == false)
+            if (isleft || isright)
+            {
+                if (isleft)
+                    transform.Translate(-0.15f, 0, 0);
+                if (isright)
+                    transform.Translate(0.15f, 0, 0);
+            }
+            else
+            {
+                if (cananotdetect == false)
                 {
-                    once2 = true;
-                    StartCoroutine(moving());
+                    target = player.transform;
+                    dir = target.position - transform.position; //사이의 거리를 구함
                 }
             }
-
             dir.Normalize();
-            transform.position +=
-                dir* speed *
-                Time.deltaTime;
-        }
-
-        if (hp.transform.localScale.x <= maxhp / 2)
-        {
-            if (once == false)
-            {
-                Debug.Log("레이제리에지레이제리에지레잊");
-                anim.SetBool("israge", true);
-                speed *= 2f;
-                once = true;
+            transform.position += Time.deltaTime * speed * dir;
             }
-        }
 
-        if (hp.transform.localScale.x <= 0)
-        {
-            if (isdead == false)
-            {
-                BoxCollider2D col = GetComponent<BoxCollider2D>();
-                col.enabled = false;
-                audiosource.PlayOneShot(deathsound, 2f);
-                GameOver gameover = GameObject.Find("Canvas").GetComponent<GameOver>();
-                gameover.zombiecount += 1;
-                level.zombiecount[level.i]--; //생성되면 zombiecount--
-                level.currentzombie--;
-                ismove = false;
-                canevent = false;
-                isdead = true;
-                StartCoroutine(delaycoin());
-                Destroy(obj, 2f);
-            }
+                if (hp.transform.localScale.x <= maxhp / 2)
+                {
+                    if (once == false)
+                    {
+                        Debug.Log("레이제리에지레이제리에지레잊");
+                        anim.SetBool("israge", true);
+                        speed *= 2f;
+                        once = true;
+                    }
+                }
+
+                if (hp.transform.localScale.x <= 0)
+                {
+                    if (isdead == false)
+                    {
+                        isdead = true;
+                        BoxCollider2D col = GetComponent<BoxCollider2D>();
+                        col.enabled = false;
+                        audiosource.PlayOneShot(deathsound, 2f);
+                        GameOver gameover = GameObject.Find("Canvas").GetComponent<GameOver>();
+                        gameover.zombiecount += 1;
+                        level.zombiecount[level.i]--; //생성되면 zombiecount--
+                        level.currentzombie--;
+                        ismove = false;
+                        canevent = false;
+                        isdead = true;
+                        StartCoroutine(delaycoin());
+                        player.moveforce -= player.bossstrong;
+                        Destroy(obj, 2f);
+                    }
+                }
         }
     }
-}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -124,28 +122,65 @@ public class zombieking : MonoBehaviour
                 hp.transform.localScale += new Vector3(-1*player.sniperdamage*0.4f, 0, 0);
             else if (gun.weapon == "knife")
                 hp.transform.localScale += new Vector3(-1*player.knifedamage*0.4f, 0, 0);
+            else if (gun.weapon == "sniper2")
+                hp.transform.localScale += new Vector3(-1 * player.sniper2damage*0.4f, 0, 0);
             else
                 hp.transform.localScale += new Vector3(-1*player.pistoldamage*0.4f, 0, 0);
             int r = Random.Range(0, player.criticalpercent); //치명타확률계산
-            if (r == 0)
+           if (r == 0) //총기강화
             {
-                Instantiate(critical, new Vector3(transform.position.x + 0.1f, transform.position.y + 0.5f,transform.position.z),Quaternion.identity);
-                if (gun.weapon == "sniper")
-                    hp.transform.localScale += new Vector3(-1*player.sniperdamage*0.4f, 0, 0);
+                if (gun.weapon == "pistol")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount * 0.5f, 0, 0);
+                else if (gun.weapon == "sniper")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*1f, 0, 0);
                 else if (gun.weapon == "knife")
-                    hp.transform.localScale += new Vector3(-1*player.knifedamage*0.4f, 0, 0);
-                else
-                    hp.transform.localScale += new Vector3(-1*player.pistoldamage*0.4f, 0, 0);
-                hp.transform.localScale += new Vector3(-1*player.criticaldamage*0.4f, 0, 0);
-            }
-            if (r == 0) //총기강화
-            {
-                hp.transform.localScale += new Vector3(-1*player.damagecount*0.4f, 0, 0);
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*2f, 0, 0);
+                else if (gun.weapon == "shotgun")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*7f, 0, 0);
+                else if (gun.weapon == "shotgun2")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*1f, 0, 0);
+                else if (gun.weapon == "cowgun")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*0.7f, 0, 0);
+                else if (gun.weapon == "sniper2")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*2f, 0, 0);
             }
             else
-            {
-                hp.transform.localScale += new Vector3(-1*player.damagecount*0.5f*0.4f, 0, 0);
+            { 
+                if (gun.weapon == "pistol")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount * 0.25f, 0, 0);
+                else if (gun.weapon == "sniper")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*0.5f, 0, 0);
+                else if (gun.weapon == "knife")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*1f, 0, 0);
+                else if (gun.weapon == "shotgun")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*0.35f, 0, 0);
+                else if (gun.weapon == "shotgun2")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*0.5f, 0, 0);
+                else if (gun.weapon == "cowgun")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*0.35f, 0, 0);
+                else if (gun.weapon == "sniper2")
+                    hp.transform.localScale += new Vector3(-1 * player.damagecount*1f, 0, 0);
             }
+            if (player.slider.maxValue - player.slider.value == 0) //풀피일떄
+            {
+                hp.transform.localScale += new Vector3(-1 * zombieclass.fullattack, 0, 0);
+            }
+
+            if (player.slider.value <= player.slider.maxValue * 0.3f) //현재hp의30%이하일때
+            {
+                hp.transform.localScale += new Vector3(-1 * zombieclass.lessattack, 0, 0);
+            }
+
+            if (player.slider.maxValue - player.slider.value == 0) //풀피일떄
+            {
+                hp.transform.localScale += new Vector3(-1 * zombieclass.fullattack, 0, 0);
+            }
+
+            if (player.slider.value <= player.slider.maxValue * 0.3f) //현재hp의30%이하일때
+            {
+                hp.transform.localScale += new Vector3(-1 * zombieclass.lessattack, 0, 0);
+            }
+            hp.transform.localScale += new Vector3(-1 * player.bossstrong*0.5f, 0, 0); //어빌리티데미지
         }
     }
 
@@ -155,18 +190,19 @@ public class zombieking : MonoBehaviour
         Instantiate(bigheart,
             new Vector3(this.transform.position.x, this.transform.position.y, bigheart.transform.position.z),
             Quaternion.identity);
-           Instantiate(brown, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화생성
-           Instantiate(brown, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화생성
-                    Instantiate(brown, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화
-                    Instantiate(brown, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화
-                    Instantiate(brown, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화
-                    Instantiate(brown, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화
-                    Instantiate(silver, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //은화
-                    Instantiate(silver, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화
-                    Instantiate(silver, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화
-                    Instantiate(silver, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //동화
-                    Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //금화
-                    Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), brown.transform.position.z), Quaternion.identity); //금화
+          Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전생성
+Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전생성
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+         Instantiate(gold, new Vector3(this.transform.position.x+Random.Range(-2.5f,2.5f), this.transform.position.y+Random.Range(-2.5f,2.5f), gold.transform.position.z), Quaternion.identity); //동전
+
     }
     IEnumerator dash()
     {
@@ -179,7 +215,7 @@ public class zombieking : MonoBehaviour
             audiosource.PlayOneShot(dashsound,4f);
             if(isdead==false) 
                 ismove = true;
-            speed *= 25;
+            speed *= 20;
             if (anim.GetBool("israge") == true) 
                 yield return new WaitForSeconds(0.25f);
             else
@@ -197,26 +233,30 @@ public class zombieking : MonoBehaviour
             if (anim.GetBool("israge") == true)
             {
                 if(lv.wave>13) 
-                    a = Random.Range(0,4);
+                    a = Random.Range(0,3);
                 else
                     a = Random.Range(0,5);
             }
             else
             {
                 if(lv.wave>13)
-                    a = Random.Range(0, 8);
+                    a = Random.Range(0, 5);
                 else
-                    a = Random.Range(0,10);
+                    a = Random.Range(0,7);
             }
             if (a == 0)
             {
-                StartCoroutine(dash());
-                yield return new WaitUntil(() =>  cananotdetect==false);
-            }
-            else if (a == 1)
-            {
-                StartCoroutine(dummyspawn());
-                yield return new WaitUntil(() => ismove == true);
+                a = Random.Range(0, 5);
+                if(a==0||a==1||a==2)//5분의3
+                {
+                    StartCoroutine(dash());
+                    yield return new WaitUntil(() => cananotdetect == false);
+                }
+                else//5분의2
+                {
+                    StartCoroutine(dummyspawn());
+                    yield return new WaitUntil(() => ismove == true);
+                }
             }
         }
     }
@@ -255,35 +295,6 @@ public class zombieking : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             if (isdead == false) 
                 ismove = true;
-        }
-    }
-    IEnumerator moving()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            if (dir.x <= 0.005f && dir.y <= 0.005f)
-            {
-                int a = Random.Range(0, 2);
-                if (a == 0)
-                {
-                    isleft = true;
-                    yield return new WaitForSeconds(1);
-                    isleft = false;
-                    isright = true;
-                    yield return new WaitForSeconds(1);
-                    isright = false;
-                }
-                else
-                {
-                    isright = true;
-                    yield return new WaitForSeconds(1);
-                    isright = false;
-                    isleft = true;
-                    yield return new WaitForSeconds(1);
-                    isleft = false;
-                }
-            }
         }
     }
 }

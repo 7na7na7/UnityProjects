@@ -31,6 +31,7 @@ public class GoldManager : MonoBehaviour
     }
     private void Update()
     {
+        
         savedgold= PlayerPrefs.GetInt(goldstring, 0);
         if (SceneManager.GetActiveScene().name == "play")
         {

@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class gold : MonoBehaviour
 {
+    private Transform target;
+    private Move1 player;
+    private bool ismagnet = false;
     private GameObject obj;
     private void Start()
     {
+        player = FindObjectOfType<Move1>();
         obj = this.gameObject;
-        Destroy(this.gameObject,20f);
+        Destroy(this.gameObject,25f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,22 +21,25 @@ public class gold : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GoldManager gold = FindObjectOfType<GoldManager>();
-            if (this.CompareTag("brown"))
-            {
-                gold.gold++;
-                gold.realgold++;
-            }
-            else if (this.CompareTag("silver"))
-            {
-                gold.gold += 2;
-                gold.realgold += 2;
-            }
-            else if (this.CompareTag("gold"))
-            {
-                gold.gold += 3;
-                gold.realgold += 3;
-            }
+            gold.gold++;
             Destroy(obj);
+        }
+        if (other.CompareTag("magnet"))
+        {
+            ismagnet = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (ismagnet)
+        {
+            target = player.transform;
+            Vector3 dir = target.position - transform.position; //사이의 거리를 구함
+            //dir.Normalize();
+            transform.position +=
+                dir* player.goldspeed *
+                Time.deltaTime;
         }
     }
 }
