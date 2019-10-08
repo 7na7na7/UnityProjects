@@ -56,7 +56,7 @@ public class ability : MonoBehaviour
             abilityname = "회복량 증가";
         else if (split[1] == "hppercent")
             abilityname = "하트 획득 확률 증가";
-        else if (split[1] == "hpslider")
+            else if (split[1] == "hpslider")
             abilityname = "최대 체력 증가";
         else if (split[1] == "staminaheal")
             abilityname = "스테미나 회복량 증가";
