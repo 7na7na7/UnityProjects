@@ -11,7 +11,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
   public InputField NickNameInput;
   public GameObject DisconnectPanel;
-  public GameObject RespawnPanel;
 
   void Awake()
   {
@@ -22,30 +21,33 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
   public void Connect()
   {
-    PhotonNetwork.ConnectUsingSettings(); //
+    PhotonNetwork.ConnectUsingSettings();//서버에 연결함
   }
 
-public override void OnConnectedToMaster()
+public override void OnConnectedToMaster()//연결이 되었을 때
   {
     PhotonNetwork.LocalPlayer.NickName = NickNameInput.text;
-    PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 6 }, null);
+    PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions { MaxPlayers = 20 }, null);
   }
 
-  public override void OnJoinedRoom()
+  public override void OnJoinedRoom() //방에 들어갔을 때
   {
     DisconnectPanel.SetActive(false); 
     Spawn();
   }
-  public void Spawn()
+  private void Spawn() //캐릭터 스폰
   {
-    PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+    PhotonNetwork.Instantiate("Player", new Vector2(UnityEngine.Random.Range(-5,5),UnityEngine.Random.Range(-5,5)), Quaternion.identity); //Resource폴더의 Player를 생성
     DisconnectPanel.SetActive(false);
-    RespawnPanel.SetActive(false);
   }
-  void Update() { if (Input.GetKeyDown(KeyCode.Escape) && PhotonNetwork.IsConnected) PhotonNetwork.Disconnect(); }
-  public override void OnDisconnected(DisconnectCause cause)
+
+  void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.Escape) && PhotonNetwork.IsConnected) PhotonNetwork.Disconnect(); //ESC키를 누르면 
+  }
+  
+  public override void OnDisconnected(DisconnectCause cause) //연결이 끊겼을 때
   {
     DisconnectPanel.SetActive(true);
-    RespawnPanel.SetActive(false);
   }
 }

@@ -19,7 +19,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     public float speed;
     public Rigidbody2D RB;
     public Animator AN;
-    public SpriteRenderer SR;
     public PhotonView PV;
     public Text NickNameText;
     public Slider HP;
@@ -49,9 +48,9 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             float axisy = Input.GetAxisRaw("Vertical");
             RB.velocity=new Vector2(speed*axisx,speed*axisy);
             if (axisx != 0||axisy!=0)
-                AN.SetBool("iswalk",true);
+                AN.SetBool("walk",true);
             else
-                AN.SetBool("iswalk",false);
+                AN.SetBool("walk",false);
 
             //총알 발사
             /*

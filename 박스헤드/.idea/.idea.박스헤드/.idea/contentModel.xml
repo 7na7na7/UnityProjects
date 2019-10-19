@@ -31,9 +31,6 @@
           </e>
         </e>
         <e p="ZS" t="Include">
-          <e p="Scenes" t="Include">
-            <e p="split.cs" t="Include" />
-          </e>
           <e p="Scripts" t="Include">
             <e p="ability.cs" t="Include" />
             <e p="acid.cs" t="Include" />
@@ -64,11 +61,11 @@
               <e p="bigzombie.cs" t="Include" />
               <e p="Dummyzombie.cs" t="Include" />
               <e p="zombie.cs" t="Include" />
-            </e>
-            <e p="zombie2" t="Include">
-              <e p="zombie2.cs" t="Include" />
-              <e p="zombie2col.cs" t="Include" />
-              <e p="zombie2move.cs" t="Include" />
+              <e p="zombie2" t="Include">
+                <e p="zombie2.cs" t="Include" />
+                <e p="zombie2col.cs" t="Include" />
+                <e p="zombie2move.cs" t="Include" />
+              </e>
             </e>
             <e p="zombie3" t="Include">
               <e p="zombie3.cs" t="Include" />
