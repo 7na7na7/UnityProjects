@@ -448,6 +448,9 @@ MonoBehaviour:
   hp: {fileID: 850459927564473383}
   bulletTr: {fileID: 5701659411851992199}
   gun: {fileID: 2128466732}
+  dashforce: 3
+  dashtime: 0.2
+  dashdelay: 2
 --- !u!114 &152975528099584724
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
   public override void OnJoinedRoom() //방에 들어갔을 때
   {
       DisconnectPanel.SetActive(false);//비활성화
+      StartCoroutine(DestroyBullet());
       PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);//플레이어 생성
   }
 
@@ -57,8 +58,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
-  public void spawn()
+  IEnumerator DestroyBullet() //리스폰할 때 모든 총알 제거
   {
-     
+      yield return new WaitForSeconds(0.1f);
+      foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Bullet")) GO.GetComponent<PhotonView>().RPC("DestroyRPC", RpcTarget.All);
   }
 }

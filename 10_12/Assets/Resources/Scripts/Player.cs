@@ -27,6 +27,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
     private Vector3 MousePositon; //회전을 위한 벡터값
     private float angle; //최종 회전값 저장
     private float x;
+    
+    //대쉬를 위한 변수들
+    public float dashforce;
+    public float dashtime;
+    public float dashdelay;
+    private bool candash = true;
 
     private void Awake()
     {
@@ -78,13 +84,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
             MousePositon =
                 camera.ScreenToWorldPoint(MousePositon) - transform.position; //플레이어포지션을 빼줘야한다!!!!!!!!!!!
             //월드포지션은 절대, 카메라와 플레이어 포지션은 변할 수 있다!!!!!!!
-
             MousePositon.y -= 0.25f; //오차조정을 위한 코드
-
             angle = Mathf.Atan2(MousePositon.y, MousePositon.x) * Mathf.Rad2Deg;
              x = 0f;
+             
+             //대쉬
+             if (Input.GetKeyDown(KeyCode.LeftShift))
+                 StartCoroutine(dash());
 
-             if (this.hp.value <= 0)
+                 if (this.hp.value <= 0)
              {
                  if (PhotonNetwork.IsConnected) //연결되어 있다면
                      PhotonNetwork.Disconnect(); //연결 끊기
@@ -131,6 +139,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
             angle = (float) stream.ReceiveNext();
             MousePositon = (Vector3) stream.ReceiveNext();
             x = (float) stream.ReceiveNext();
+        }
+    }
+    IEnumerator dash()
+    {
+        if (candash)
+        {
+            candash = false;
+            moveforce *= dashforce;
+            yield return new WaitForSeconds(dashtime);
+            moveforce /= dashforce;
+            yield return new WaitForSeconds(dashdelay);
+            candash = true;
+        }
+        else
+        {
+            yield return null;
         }
     }
 }
