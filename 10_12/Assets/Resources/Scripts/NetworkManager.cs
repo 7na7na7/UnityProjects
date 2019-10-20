@@ -14,8 +14,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
   void Start()
     {
         Screen.SetResolution(960,540,false);
-        PhotonNetwork.SendRate = 60;
-        PhotonNetwork.SerializationRate = 30; 
+        PhotonNetwork.SendRate = 30;
+        PhotonNetwork.SerializationRate = 15;
         //동기화 빠르게
     }
 

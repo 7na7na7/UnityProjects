@@ -41,21 +41,28 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
         if (pv.IsMine)
         {
             camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-            renderer = GetComponent<SpriteRenderer>();
             //카메라 Cinemachine을 찾아 자신을 따라오도록 함
             var CM = GameObject.Find("CMCamera").GetComponent<CinemachineVirtualCamera>();
             CM.Follow = transform;
             CM.LookAt = transform;
-
-            Color color = renderer.color;
-            int r = Random.Range(0, 2);
-            int g = Random.Range(0, 2);
-            int b = Random.Range(0, 2);
-            color.r = r == 0 ? 0 : 255;
-            color.g = g == 0 ? 0 : 255;
-            color.b = b == 0 ? 0 : 255;
-            Debug.Log("R : " + color.r + "G : " + color.g + "B : " + color.b);
-            renderer.color = color;
+        }
+        else
+        {
+            while (true)
+            {
+                renderer = GetComponent<SpriteRenderer>();
+                Color color = renderer.color;
+                int r = Random.Range(0, 2);
+                int g = Random.Range(0, 2);
+                int b = Random.Range(0, 2);
+                color.r = r == 0 ? 0 : 255;
+                color.g = g == 0 ? 0 : 255;
+                color.b = b == 0 ? 0 : 255;
+                Debug.Log("R : " + color.r + "G : " + color.g + "B : " + color.b);
+                renderer.color = color;
+                if (r + g + b != 3)
+                    break;
+            }
         }
     }
     private void Update()
