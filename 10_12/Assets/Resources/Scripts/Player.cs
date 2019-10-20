@@ -27,6 +27,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
     private Vector3 MousePositon; //회전을 위한 벡터값
     private float angle; //최종 회전값 저장
     private float x;
+
     private void Awake()
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName; //닉네임 설정, 자기 닉네임이 아니면 상대 닉네임으로
@@ -39,7 +40,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
             var CM = GameObject.Find("CMCamera").GetComponent<CinemachineVirtualCamera>();
             CM.Follow = transform;
             CM.LookAt = transform;
-            
+
             Color color = renderer.color;
             int r = Random.Range(0, 2);
             int g = Random.Range(0, 2);
@@ -51,27 +52,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
             renderer.color = color;
         }
     }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) //변수동기화
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(transform.position);
-            stream.SendNext(hp.value);
-            stream.SendNext(angle);
-            stream.SendNext(MousePositon);
-            stream.SendNext(x);
-        }
-        else
-        {
-            curPos = (Vector3) stream.ReceiveNext();
-            hp.value = (float) stream.ReceiveNext();
-            angle = (float) stream.ReceiveNext();
-            MousePositon = (Vector3) stream.ReceiveNext();
-            x = (float) stream.ReceiveNext();
-        }
-    }
-
     private void Update()
     {
         if (pv.IsMine) //자기 자신이라면
@@ -121,7 +101,30 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Bullet")&&!pv.IsMine)
-           other.GetComponent<Bullet>().pv.RPC("DestroyRPC",RpcTarget.AllBuffered);
+        if (other.CompareTag("Bullet") && !pv.IsMine) //적이 자신의 총알과 부딪혔을 때
+            other.GetComponent<Bullet>().pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
+        if (other.CompareTag("Bullet") && !other.GetComponent<Bullet>().pv.IsMine&&pv.IsMine) //총알과 부딪혔고, 그 총알이 적의 총알이고, 자기 자신이라면
+        {
+            hp.value -= 10; //hp감소
+        }
     } 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) //변수동기화
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(hp.value);
+            stream.SendNext(angle);
+            stream.SendNext(MousePositon);
+            stream.SendNext(x);
+        }
+        else
+        {
+            curPos = (Vector3) stream.ReceiveNext();
+            hp.value = (float) stream.ReceiveNext();
+            angle = (float) stream.ReceiveNext();
+            MousePositon = (Vector3) stream.ReceiveNext();
+            x = (float) stream.ReceiveNext();
+        }
+    }
 }
