@@ -83,6 +83,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
 
             angle = Mathf.Atan2(MousePositon.y, MousePositon.x) * Mathf.Rad2Deg;
              x = 0f;
+
+             if (this.hp.value <= 0)
+             {
+                 if (PhotonNetwork.IsConnected) //연결되어 있다면
+                     PhotonNetwork.Disconnect(); //연결 끊기
+             }
         }
         //IsMine이 아닌 것들은 부드럽게 위치 동기화
         else if ((transform.position - curPos).sqrMagnitude >= 100)

@@ -34,14 +34,14 @@ public class Photon_Pun2 :  MonoBehaviourPunCallbacks
     {
         if (Input.GetKeyDown(KeyCode.Return)) //엔터 버튼으로 연결하기
         {
-            if (PhotonNetwork.IsConnected) //연결된 상태라면
-                PhotonNetwork.ConnectUsingSettings();
+            if (!PhotonNetwork.IsConnected) //연결된 상태가 아니라면
+                PhotonNetwork.ConnectUsingSettings(); //연결
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) //ESC버튼으로 연결끊기
         {
-            if (!PhotonNetwork.IsConnected) //연결되어 있지 않다면
-                PhotonNetwork.Disconnect();
+            if (PhotonNetwork.IsConnected) //연결되어 있다면
+                PhotonNetwork.Disconnect(); //연결 끊기
         }
     }
 }
