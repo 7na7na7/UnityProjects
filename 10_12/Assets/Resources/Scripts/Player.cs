@@ -33,7 +33,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
     public float dashtime;
     public float dashdelay;
     private bool candash = true;
-
     private void Awake()
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName; //닉네임 설정, 자기 닉네임이 아니면 상대 닉네임으로
@@ -99,10 +98,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable //변수 동기�
              if (Input.GetKeyDown(KeyCode.LeftShift))
                  StartCoroutine(dash());
 
-                 if (this.hp.value <= 0)
+             if (this.hp.value <= 0) //체력이 0보다 낮아지면
              {
                  if (PhotonNetwork.IsConnected) //연결되어 있다면
+                 { 
                      PhotonNetwork.Disconnect(); //연결 끊기
+                 } 
              }
         }
         //IsMine이 아닌 것들은 부드럽게 위치 동기화

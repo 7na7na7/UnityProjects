@@ -9,13 +9,14 @@ using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    public GameObject minimap;
     public InputField Nickname;
     public GameObject DisconnectPanel;
   void Start()
-    {
-        Screen.SetResolution(960,540,false);
-        PhotonNetwork.SendRate = 30;
-        PhotonNetwork.SerializationRate = 15;
+  {
+      Screen.SetResolution(960,540,false);
+        PhotonNetwork.SendRate = 60;
+        PhotonNetwork.SerializationRate = 30;
         //동기화 빠르게
     }
 
@@ -29,6 +30,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
   public override void OnJoinedRoom() //방에 들어갔을 때
   {
       DisconnectPanel.SetActive(false);//비활성화
+      minimap.SetActive(true);//활성화
       StartCoroutine(DestroyBullet());
       PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);//플레이어 생성
   }
@@ -36,6 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
   public override void OnDisconnected(DisconnectCause cause)//연결이 끊어졌을 때
   {
       DisconnectPanel.SetActive(true);//활성화
+      minimap.SetActive(false);//비활성화
       Debug.Log("연결 끊어짐!");
   }
 
@@ -54,6 +57,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsConnected)//연결된 상태라면
             {
                 PhotonNetwork.Disconnect(); //연결 끊기
+                Debug.Log("연결 끊어짐!");
             }
         }
     }
