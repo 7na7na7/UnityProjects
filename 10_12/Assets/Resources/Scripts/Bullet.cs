@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviourPunCallbacks
     public PhotonView pv;
     void Start()
     {
-        Destroy(gameObject,2.0f);
+        Destroy(gameObject,1.0f);
     }
     
     void Update()

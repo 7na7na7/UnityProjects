@@ -64,7 +64,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
   IEnumerator DestroyBullet() //리스폰할 때 모든 총알 제거
   {
-      yield return new WaitForSeconds(0.1f);
+      yield return new WaitForSeconds(0.05f);
       foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Bullet")) GO.GetComponent<PhotonView>().RPC("DestroyRPC", RpcTarget.All);
   }
 }
