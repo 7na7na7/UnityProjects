@@ -63,21 +63,21 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
                 {
                     if (cat.eventsen[cat.eventvalue].canchoice[sentencevalue]) //canchoice가 true가면
                     {
+                        Scripts.instance.rect();
                         choicepanel.SetActive(true);
                         choice1.text = cat.eventsen[cat.eventvalue].choicesen[0];
                         choice2.text = cat.eventsen[cat.eventvalue].choicesen[1];
                         choice3.text = cat.eventsen[cat.eventvalue].choicesen[2];
                         ischoice = true;
                     }
-
-                    cat.GetComponent<SpriteRenderer>().sprite =
-                        cat.eventsen[cat.eventvalue].spr[sentencevalue]; //스프라이트 교체
+                    cat.GetComponent<SpriteRenderer>().sprite = cat.eventsen[cat.eventvalue].spr[sentencevalue]; //스프라이트 교체
                     audio.PlayOneShot(cat.eventsen[cat.eventvalue].sound[sentencevalue]); //효과음
                 }
                 else
                 {
                     if (cat.sen[cat.i].canchoice[sentencevalue]) //canchoice가 true가면
                     {
+                        Scripts.instance.rect();
                         choicepanel.SetActive(true);
                         choice1.text = cat.sen[cat.i].choicesen[0];
                         choice2.text = cat.sen[cat.i].choicesen[1];
@@ -87,9 +87,9 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
 
                     cat.GetComponent<SpriteRenderer>().sprite = cat.sen[cat.i].spr[sentencevalue]; //스프라이트 교체
                     audio.PlayOneShot(cat.sen[cat.i].sound[sentencevalue]); //효과음
-                }
-
-                StartCoroutine(Typing(currentSentence));
+                } 
+                Typing(currentSentence);///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //StartCoroutine(Typing(currentSentence));
                 sentencevalue++;
             }
             else //큐의 카운트가 0이 되면
@@ -103,13 +103,13 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    IEnumerator Typing(string line) //타이핑하는 듯한 효과
+   void Typing(string line) //타이핑하는 듯한 효과
     {
         dialogueText.text = "";
             foreach (char letter in line.ToCharArray()) //line의 글자 하나하나를 letter에 넣어주면서 반복문
             {
                 dialogueText.text += letter;
-                yield return new WaitForSeconds(typeSpeed);
+                //yield return new WaitForSeconds(typeSpeed);
             }
     }
 

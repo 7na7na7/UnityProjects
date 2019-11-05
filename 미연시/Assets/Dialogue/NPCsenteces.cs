@@ -5,6 +5,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+[System.Serializable]
+public class choicedialogue
+{
+    public string[] choicesentence;
+    public Sprite[] choicespr;
+    public AudioClip[] choicesound;
+}
+[System.Serializable]
+public class dialogue
+{
+    public choicedialogue[] choiceanswer;
+    public bool[] canchoice;
+    public string[] choicesen;
+    public string[] sentences;
+    public Sprite[] spr;
+    public AudioClip[] sound;
+}
+
 public class NPCsenteces : MonoBehaviour
 {
     public bool isevent = false; //이벤트가 발생했는가? 발생했다면 이벤트실행, 아니면 그냥문장실행
@@ -18,25 +36,11 @@ public class NPCsenteces : MonoBehaviour
     public int eventcurrency = 100; //이벤트발생빈도
     public Text heart; //호감도
     public Sprite idlesprite; //기본 스프라이트
-
-    [System.Serializable]
-    public class dialogue
-    {
-        public bool[] canchoice;
-        public string[] choicesen;
-        public string[] sentences;
-        public Sprite[] spr;
-        public AudioClip[] sound;
-    }
-    [System.Serializable]
-    public class choicedialogue
-    {
-        public string[] sentences;
-    }
-
-    public choicedialogue[] choicesen;
+    
+    
     public dialogue[] sen;
     public dialogue[] eventsen;
+
     public int i=0;
     
     private int heartvalue = 0;
