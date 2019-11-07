@@ -745,7 +745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &622114949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -871,7 +871,7 @@ MonoBehaviour:
   heart: {fileID: 620592216}
   idlesprite: {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
   sen:
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -883,7 +883,7 @@ MonoBehaviour:
     sound:
     - {fileID: 0}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -895,25 +895,7 @@ MonoBehaviour:
     sound:
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 0}
-  - choiceanswer:
-    - choicesentence:
-      - "\uC5ED\uC2DC \uACE0\uB4F1\uC5B4\uB2E4\uB0E5! \uC870\uB9BC\uB3C4 \uB9DB\uC788\uC9C0\uB0E5!"
-      choicespr:
-      - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
-      choicesound:
-      - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
-    - choicesentence:
-      - "\uC5ED\uC2DC \uACE0\uB4F1\uC5B4\uB2E4\uB0E5! \uAD6C\uC774\uB3C4 \uB9DB\uC788\uC9C0\uB0E5!"
-      choicespr:
-      - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
-      choicesound:
-      - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
-    - choicesentence:
-      - "\uC5ED\uC2DC \uACE0\uB4F1\uC5B4\uB2E4\uB0E5! \uD68C\uB3C4 \uB9DB\uC788\uC9C0\uB0E5! "
-      choicespr:
-      - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
-      choicesound:
-      - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
+  - choicevalue: 1
     canchoice: 0001
     choicesen:
     - "\uACE0\uB4F1\uC5B4\uC870\uB9BC"
@@ -928,7 +910,7 @@ MonoBehaviour:
     sound:
     - {fileID: 0}
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -940,7 +922,7 @@ MonoBehaviour:
     sound:
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -952,7 +934,7 @@ MonoBehaviour:
     sound:
     - {fileID: 0}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -964,7 +946,7 @@ MonoBehaviour:
     sound:
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00
     choicesen: []
     sentences:
@@ -973,7 +955,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: b72bf2644ccd55943b3a5ea51acee8c6, type: 3}
     sound:
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00
     choicesen: []
     sentences:
@@ -982,7 +964,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
     sound:
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -994,7 +976,7 @@ MonoBehaviour:
     sound:
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1006,7 +988,7 @@ MonoBehaviour:
     sound:
     - {fileID: 8300000, guid: 9a6ff2718f848bc4cbf234b2be8c916b, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 000000
     choicesen: []
     sentences:
@@ -1021,7 +1003,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 0}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1033,7 +1015,7 @@ MonoBehaviour:
     sound:
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 8300000, guid: 3c59f044971db2742a4bc6fb70cc245a, type: 3}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1045,7 +1027,7 @@ MonoBehaviour:
     sound:
     - {fileID: 0}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00
     choicesen: []
     sentences:
@@ -1054,7 +1036,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
     sound:
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00
     choicesen: []
     sentences:
@@ -1063,7 +1045,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
     sound:
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 000000000000
     choicesen: []
     sentences:
@@ -1088,7 +1070,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00
     choicesen: []
     sentences:
@@ -1097,7 +1079,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
     sound:
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 000000
     choicesen: []
     sentences:
@@ -1112,7 +1094,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 0f1889ba0f506944bbf9dd917e70186d, type: 3}
     - {fileID: 8300000, guid: 9a6ff2718f848bc4cbf234b2be8c916b, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000000000
     choicesen: []
     sentences:
@@ -1133,7 +1115,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 8300000, guid: 9a6ff2718f848bc4cbf234b2be8c916b, type: 3}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1146,7 +1128,7 @@ MonoBehaviour:
     sound:
     - {fileID: 0}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 000000
     choicesen: []
     sentences:
@@ -1162,7 +1144,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00000000
     choicesen: []
     sentences:
@@ -1182,7 +1164,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3c59f044971db2742a4bc6fb70cc245a, type: 3}
     - {fileID: 0}
     - {fileID: 8300000, guid: 9a6ff2718f848bc4cbf234b2be8c916b, type: 3}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000000000
     choicesen: []
     sentences:
@@ -1203,7 +1185,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 000000000000
     choicesen: []
     sentences:
@@ -1229,7 +1211,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1242,7 +1224,7 @@ MonoBehaviour:
     sound:
     - {fileID: 0}
     - {fileID: 8300000, guid: 3c59f044971db2742a4bc6fb70cc245a, type: 3}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1254,7 +1236,7 @@ MonoBehaviour:
     sound:
     - {fileID: 0}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00000000
     choicesen: []
     sentences:
@@ -1273,7 +1255,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9a6ff2718f848bc4cbf234b2be8c916b, type: 3}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00
     choicesen: []
     sentences:
@@ -1282,7 +1264,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
     sound:
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1294,7 +1276,7 @@ MonoBehaviour:
     sound:
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 0000
     choicesen: []
     sentences:
@@ -1307,7 +1289,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
   eventsen:
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 000000000000000000000000000000000000000000000000000000000000000000000000
     choicesen: []
     sentences:
@@ -1438,32 +1420,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 8300000, guid: 9a6ff2718f848bc4cbf234b2be8c916b, type: 3}
     - {fileID: 0}
-  - choiceanswer:
-    - choicesentence:
-      - "\uC54C\uC558\uB2E4\uB0E5... \uC798 \uC4F0\uACA0\uB2E4\uB0E5!"
-      choicespr:
-      - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
-      choicesound:
-      - {fileID: 0}
-    - choicesentence:
-      - "\uC54C\uC558\uB2E4\uB0E5! \uC774\uAC70\uBCF4\uB2E4 \uB354 \uC7AC\uBC0C\uAC8C
-        \uB180\uC544\uB2EC\uB77C\uB0E5!"
-      - "[\uACE0\uB0E5\uC774\uC758 \uAE30\uBD84\uC774 \uC88B\uC544 \uBCF4\uC778\uB2E4.]"
-      choicespr:
-      - {fileID: 21300000, guid: 5c9712a053978ed459a7d25202bbd035, type: 3}
-      - {fileID: 21300000, guid: 5c9712a053978ed459a7d25202bbd035, type: 3}
-      choicesound:
-      - {fileID: 0}
-      - {fileID: 0}
-    - choicesentence:
-      - "\uC54C\uC558\uB2E4\uB0E5..."
-      - "\uB0B4\uAC00 \uC560\uB3C4 \uC544\uB2C8\uACE0\uB0E5! \uB098 \uC5B4\uB978\uC774\uB2E4\uB0E5!"
-      choicespr:
-      - {fileID: 21300000, guid: d0fb5167486c1484096cf1a46d267239, type: 3}
-      - {fileID: 21300000, guid: 3e4b8b9262033c145ab6718150ca00f4, type: 3}
-      choicesound:
-      - {fileID: 8300000, guid: 3c59f044971db2742a4bc6fb70cc245a, type: 3}
-      - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
+  - choicevalue: 0
     canchoice: 0000000000000000000000000000000001
     choicesen:
     - "\uB098 \uC5C6\uC5B4\uB3C4 \uC7AC\uBC0C\uAC8C \uC798 \uBCF4\uB0B4!"
@@ -1535,7 +1492,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - choiceanswer: []
+  - choicevalue: 0
     canchoice: 00
     choicesen: []
     sentences:
@@ -1544,6 +1501,63 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
     sound:
     - {fileID: 0}
+  choiceDial:
+  - choiceD:
+    - choicevalue: 0
+      canchoice: 00
+      choicesen: []
+      sentences:
+      - "\uC5ED\uC2DC \uACE0\uB4F1\uC5B4\uB2E4\uB0E5! \uC870\uB9BC\uB3C4 \uB9DB\uC788\uC9C0\uB0E5!"
+      spr:
+      - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
+      sound:
+      - {fileID: 0}
+    - choicevalue: 0
+      canchoice: 00
+      choicesen: []
+      sentences:
+      - "\uC5ED\uC2DC \uACE0\uB4F1\uC5B4\uB2E4\uB0E5! \uAD6C\uC774\uB3C4 \uB9DB\uC788\uC9C0\uB0E5!"
+      spr:
+      - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
+      sound:
+      - {fileID: 0}
+    - choicevalue: 0
+      canchoice: 00
+      choicesen: []
+      sentences:
+      - "\uC5ED\uC2DC \uACE0\uB4F1\uC5B4\uB2E4\uB0E5! \uD68C\uB3C4 \uB9DB\uC788\uC9C0\uB0E5!"
+      spr:
+      - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
+      sound:
+      - {fileID: 0}
+  - choiceD:
+    - choicevalue: 0
+      canchoice: 00
+      choicesen: []
+      sentences:
+      - "\uB450\uBC88\uCA30\uC120\uD0DD\uC9C0\uC758 1!"
+      spr:
+      - {fileID: 0}
+      sound:
+      - {fileID: 0}
+    - choicevalue: 0
+      canchoice: 00
+      choicesen: []
+      sentences:
+      - "\uB450\uBC88\uCA30\uC120\uD0DD\uC9C0\uC758 2!"
+      spr:
+      - {fileID: 0}
+      sound:
+      - {fileID: 0}
+    - choicevalue: 0
+      canchoice: 00
+      choicesen: []
+      sentences:
+      - "\uB450\uBC88\uCA30\uC120\uD0DD\uC9C0\uC758 3!"
+      spr:
+      - {fileID: 0}
+      sound:
+      - {fileID: 0}
   i: 0
 --- !u!61 &651539388
 BoxCollider2D:
@@ -1686,12 +1700,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 72516512}
-        m_MethodName: choice3
-        m_Mode: 1
+        m_MethodName: choiceFunc
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2215,12 +2229,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 72516512}
-        m_MethodName: choice2
-        m_Mode: 1
+        m_MethodName: choiceFunc
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2413,8 +2427,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 72516512}
-        m_MethodName: choice1
-        m_Mode: 1
+        m_MethodName: choiceFunc
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

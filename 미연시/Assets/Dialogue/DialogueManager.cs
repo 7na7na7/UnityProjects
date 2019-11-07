@@ -87,9 +87,8 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
 
                     cat.GetComponent<SpriteRenderer>().sprite = cat.sen[cat.i].spr[sentencevalue]; //스프라이트 교체
                     audio.PlayOneShot(cat.sen[cat.i].sound[sentencevalue]); //효과음
-                } 
-                Typing(currentSentence);///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //StartCoroutine(Typing(currentSentence));
+                }
+                StartCoroutine(Typing(currentSentence));
                 sentencevalue++;
             }
             else //큐의 카운트가 0이 되면
@@ -103,13 +102,13 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
         }
     }
 
-   void Typing(string line) //타이핑하는 듯한 효과
+   IEnumerator Typing(string line) //타이핑하는 듯한 효과
     {
         dialogueText.text = "";
             foreach (char letter in line.ToCharArray()) //line의 글자 하나하나를 letter에 넣어주면서 반복문
             {
                 dialogueText.text += letter;
-                //yield return new WaitForSeconds(typeSpeed);
+                yield return new WaitForSeconds(typeSpeed);
             }
     }
 
