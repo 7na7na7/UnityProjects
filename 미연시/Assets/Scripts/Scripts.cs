@@ -6,6 +6,9 @@ using Random = System.Random;
 
 public class Scripts : MonoBehaviour
 {
+    public int choicevalue;
+    public int choicevalue_2;
+    
     public static Scripts instance;
     public GameObject[] choicewindow;
     public int para1, para2, para3;
@@ -31,20 +34,25 @@ public class Scripts : MonoBehaviour
         Application.Quit();
     }
     
-    public void choiceFunc(int choicevalue)
+    public void choiceFunc(int _choicevalue)
     {
+        choicevalue = _choicevalue;
         choice();
         if (cat.isevent) //이벤트 중에서
         {
+            choicevalue_2 = cat.eventsen[cat.eventvalue].choicevalue - 1;
             if(cat.eventsen[cat.eventvalue].choicevalue - 1>=0) 
                 dialogue.Ondialogue(cat.choiceDial[cat.eventsen[cat.eventvalue].choicevalue - 1].choiceD[choicevalue]
                 .sentences);
         }
         else
         {
+            choicevalue_2 = cat.sen[cat.i].choicevalue - 1;
             if(cat.sen[cat.i].choicevalue - 1>=0) 
                 dialogue.Ondialogue(cat.choiceDial[cat.sen[cat.i].choicevalue - 1].choiceD[choicevalue].sentences);
         }
+
+        cat.choiceing = true;
     }
 
     void choice()
