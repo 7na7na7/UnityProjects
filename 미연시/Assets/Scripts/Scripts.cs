@@ -11,13 +11,15 @@ public class Scripts : MonoBehaviour
     
     public static Scripts instance;
     public GameObject[] choicewindow;
-    public int para1, para2, para3;
+    public int like, hate;
     private NPCsenteces cat;
     private DialogueManager dialogue;
     private int i,j;
     private Vector2 min, max;
     private void Awake()
     {
+        like = 0;
+        hate = 0;
         instance = this;
         cat = FindObjectOfType<NPCsenteces>();
         dialogue = FindObjectOfType<DialogueManager>();
