@@ -6,6 +6,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class DialogueManager : MonoBehaviour, IPointerDownHandler
 {
+    public SpriteRenderer BG;
+    public Sprite living_room;
+    public Sprite amusement_park;
+    
     public GameObject choicepanel; //선택지 창
     public Text choice1;
     public Text choice2;
@@ -25,8 +29,10 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
     private bool istyping = false;
     public CanvasGroup dialoguegroup;
     public static DialogueManager instance;
+    
     void Start()
     {
+        BG.sprite = living_room;
         cat = FindObjectOfType<NPCsenteces>();
      sentences=new Queue<string>();
     }
@@ -59,38 +65,48 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
                 //코루틴
                 istyping = true;
                 nextText.SetActive(false);
-                if (cat.isevent)
+                if (cat.choiceing)
                 {
-                    if (cat.eventsen[cat.eventvalue].canchoice[sentencevalue]) //canchoice가 true가면
-                    {
-                        Scripts.instance.rect();
-                        choicepanel.SetActive(true);
-                        choice1.text = cat.eventsen[cat.eventvalue].choicesen[0];
-                        choice2.text = cat.eventsen[cat.eventvalue].choicesen[1];
-                        choice3.text = cat.eventsen[cat.eventvalue].choicesen[2];
-                        ischoice = true;
-                    }
-                    cat.GetComponent<SpriteRenderer>().sprite = cat.eventsen[cat.eventvalue].spr[sentencevalue]; //스프라이트 교체
-                    audio.PlayOneShot(cat.eventsen[cat.eventvalue].sound[sentencevalue]); //효과음
+                    cat.GetComponent<SpriteRenderer>().sprite = cat.choiceDial[Scripts.instance.choicevalue_2]
+                            .choiceD[Scripts.instance.choicevalue].spr[sentencevalue];
+                        audio.PlayOneShot(cat.choiceDial[Scripts.instance.choicevalue_2]
+                            .choiceD[Scripts.instance.choicevalue].sound[sentencevalue]); //효과음
+
                 }
                 else
                 {
-                    if (cat.sen[cat.i].canchoice[sentencevalue]) //canchoice가 true가면
+                    if (cat.isevent)
                     {
-                        Scripts.instance.rect();
-                        choicepanel.SetActive(true);
-                        choice1.text = cat.sen[cat.i].choicesen[0];
-                        choice2.text = cat.sen[cat.i].choicesen[1];
-                        choice3.text = cat.sen[cat.i].choicesen[2];
-                        ischoice = true;
+                        if (cat.eventsen[cat.eventvalue].canchoice[sentencevalue]) //canchoice가 true가면
+                        {
+                            Scripts.instance.rect();
+                            choicepanel.SetActive(true);
+                            choice1.text = cat.eventsen[cat.eventvalue].choicesen[0];
+                            choice2.text = cat.eventsen[cat.eventvalue].choicesen[1];
+                            choice3.text = cat.eventsen[cat.eventvalue].choicesen[2];
+                            ischoice = true;
+                        }
+                        cat.GetComponent<SpriteRenderer>().sprite = cat.eventsen[cat.eventvalue].spr[sentencevalue]; //스프라이트 교체
+                        audio.PlayOneShot(cat.eventsen[cat.eventvalue].sound[sentencevalue]); //효과음
                     }
+                    else
+                    {
+                        if (cat.sen[cat.i].canchoice[sentencevalue]) //canchoice가 true가면
+                        {
+                            Scripts.instance.rect();
+                            choicepanel.SetActive(true);
+                            choice1.text = cat.sen[cat.i].choicesen[0];
+                            choice2.text = cat.sen[cat.i].choicesen[1];
+                            choice3.text = cat.sen[cat.i].choicesen[2];
+                            ischoice = true;
+                        }
 
-                    cat.GetComponent<SpriteRenderer>().sprite = cat.sen[cat.i].spr[sentencevalue]; //스프라이트 교체
-                    audio.PlayOneShot(cat.sen[cat.i].sound[sentencevalue]); //효과음
-                } 
-                Typing(currentSentence);///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //StartCoroutine(Typing(currentSentence));
-                sentencevalue++;
+                        cat.GetComponent<SpriteRenderer>().sprite = cat.sen[cat.i].spr[sentencevalue]; //스프라이트 교체
+                        audio.PlayOneShot(cat.sen[cat.i].sound[sentencevalue]); //효과음
+                    }
+                }
+                StartCoroutine(Typing(currentSentence));
+                sentencevalue++;   
             }
             else //큐의 카운트가 0이 되면
             {
@@ -99,17 +115,23 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
                 sentencevalue = 0;
                 cat.isend = true;
                 cat.GetComponent<SpriteRenderer>().sprite = cat.idlesprite;
+                cat.choiceing = false;
             }
         }
     }
 
-   void Typing(string line) //타이핑하는 듯한 효과
+   IEnumerator Typing(string line) //타이핑하는 듯한 효과
     {
+        if(line=="여기가 놀이동산이구냥!") //놀이공원으로 전환
+        {
+            Instantiate(cat.fade, cat.parent.transform);
+            BG.sprite = amusement_park;
+        }
         dialogueText.text = "";
             foreach (char letter in line.ToCharArray()) //line의 글자 하나하나를 letter에 넣어주면서 반복문
             {
                 dialogueText.text += letter;
-                //yield return new WaitForSeconds(typeSpeed);
+                yield return new WaitForSeconds(typeSpeed);
             }
     }
 
@@ -121,6 +143,7 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
             istyping = false;
             nextText.SetActive(true);
         }
+        print(cat.isevent);
     }
 
     //OnPointerDown은 해당 오브젝트에 클릭, 터치가 있을 때 호출딤

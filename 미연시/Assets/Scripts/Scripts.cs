@@ -6,9 +6,12 @@ using Random = System.Random;
 
 public class Scripts : MonoBehaviour
 {
+    public int choicevalue;
+    public int choicevalue_2;
+    
     public static Scripts instance;
     public GameObject[] choicewindow;
-    public int para1=0, para2=0, para3=0;
+    public int para1, para2, para3;
     private NPCsenteces cat;
     private DialogueManager dialogue;
     private int i,j;
@@ -30,48 +33,28 @@ public class Scripts : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    public void choiceFunc(int _choicevalue)
+    {
+        choicevalue = _choicevalue;
+        choice();
+        if (cat.isevent) //이벤트 중에서
+        {
+            choicevalue_2 = cat.eventsen[cat.eventvalue].choicevalue - 1;
+            if(cat.eventsen[cat.eventvalue].choicevalue - 1>=0) 
+                dialogue.Ondialogue(cat.choiceDial[cat.eventsen[cat.eventvalue].choicevalue - 1].choiceD[choicevalue]
+                .sentences);
+        }
+        else
+        {
+            choicevalue_2 = cat.sen[cat.i].choicevalue - 1;
+            if(cat.sen[cat.i].choicevalue - 1>=0) 
+                dialogue.Ondialogue(cat.choiceDial[cat.sen[cat.i].choicevalue - 1].choiceD[choicevalue].sentences);
+        }
 
-    public void choice1()
-    {
-        para1++;
-        choice();
-        if (cat.isevent)
-        {
-            dialogue.Ondialogue(cat.eventsen[cat.eventvalue].choiceanswer[0].choicesentence);   
-        }
-        else
-        {
-            dialogue.Ondialogue(cat.sen[cat.i].choiceanswer[0].choicesentence);   
-        }
+        cat.choiceing = true;
     }
-    public void choice2()
-    {
-        para2++;
-        choice();
-        if (cat.isevent)
-        {
-            dialogue.Ondialogue(cat.eventsen[cat.eventvalue].choiceanswer[1].choicesentence);   
-        }
-        else
-        {
-            dialogue.Ondialogue(cat.sen[cat.i].choiceanswer[1].choicesentence);   
-        }
-    }
-    
-    
-    public void choice3()
-    {
-        para3++;
-        choice();
-        if (cat.isevent)
-        {
-            dialogue.Ondialogue(cat.eventsen[cat.eventvalue].choiceanswer[2].choicesentence);   
-        }
-        else
-        {
-            dialogue.Ondialogue(cat.sen[cat.i].choiceanswer[2].choicesentence);   
-        }
-    }
+
     void choice()
     {
         dialogue.choicepanel.SetActive(false);

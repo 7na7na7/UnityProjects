@@ -6,16 +6,9 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 [System.Serializable]
-public class choicedialogue
-{
-    public string[] choicesentence;
-    public Sprite[] choicespr;
-    public AudioClip[] choicesound;
-}
-[System.Serializable]
 public class dialogue
 {
-    public choicedialogue[] choiceanswer;
+    public int choicevalue;
     public bool[] canchoice;
     public string[] choicesen;
     public string[] sentences;
@@ -23,6 +16,11 @@ public class dialogue
     public AudioClip[] sound;
 }
 
+[System.Serializable]
+public class choicedialogue
+{
+    public dialogue[] choiceD;
+}
 public class NPCsenteces : MonoBehaviour
 {
     public bool isevent = false; //이벤트가 발생했는가? 발생했다면 이벤트실행, 아니면 그냥문장실행
@@ -40,7 +38,10 @@ public class NPCsenteces : MonoBehaviour
     
     public dialogue[] sen;
     public dialogue[] eventsen;
+    public choicedialogue[] choiceDial;
 
+    public bool choiceing = false;
+    
     public int i=0;
     
     private int heartvalue = 0;
