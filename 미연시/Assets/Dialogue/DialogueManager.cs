@@ -6,6 +6,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class DialogueManager : MonoBehaviour, IPointerDownHandler
 {
+    public SpriteRenderer BG;
+    public Sprite living_room;
+    public Sprite amusement_park;
+    
     public GameObject choicepanel; //선택지 창
     public Text choice1;
     public Text choice2;
@@ -25,8 +29,10 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
     private bool istyping = false;
     public CanvasGroup dialoguegroup;
     public static DialogueManager instance;
+    
     void Start()
     {
+        BG.sprite = living_room;
         cat = FindObjectOfType<NPCsenteces>();
      sentences=new Queue<string>();
     }
@@ -116,6 +122,11 @@ public class DialogueManager : MonoBehaviour, IPointerDownHandler
 
    IEnumerator Typing(string line) //타이핑하는 듯한 효과
     {
+        if(line=="여기가 놀이동산이구냥!") //놀이공원으로 전환
+        {
+            Instantiate(cat.fade, cat.parent.transform);
+            BG.sprite = amusement_park;
+        }
         dialogueText.text = "";
             foreach (char letter in line.ToCharArray()) //line의 글자 하나하나를 letter에 넣어주면서 반복문
             {

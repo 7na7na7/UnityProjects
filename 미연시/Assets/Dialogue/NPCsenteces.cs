@@ -107,7 +107,7 @@ public class NPCsenteces : MonoBehaviour
                     
                     DialogueManager.instance.Ondialogue(sen[i].sentences);
                     yield return new WaitUntil(()=>isend==true);
-                    heartvalue += sen[i].sentences.Length*22; //호감도증가
+                    heartvalue += sen[i].sentences.Length*2; //호감도증가
                 }
                 heart.text = heartvalue.ToString();
         }
