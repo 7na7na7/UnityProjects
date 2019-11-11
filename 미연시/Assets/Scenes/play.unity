@@ -232,9 +232,9 @@ MonoBehaviour:
   - {fileID: 1698098439}
   - {fileID: 1328421763}
   - {fileID: 661788115}
-  para1: 0
-  para2: 0
-  para3: 0
+  love: 0
+  like: 0
+  hate: 0
 --- !u!1 &255083866
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   sentencevalue: 0
   dialogueText: {fileID: 2025023589}
   nextText: {fileID: 795943584}
-  typeSpeed: 0.01
+  typeSpeed: 0.025
   dialoguegroup: {fileID: 255083871}
 --- !u!114 &255083869
 MonoBehaviour:
@@ -770,7 +770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -67.19984}
+  m_AnchoredPosition: {x: 0, y: -1255}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &651539383
@@ -921,7 +921,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
   - choicevalue: 0
-    canchoice: 0000
+    canchoice: 000000
     choicesen: []
     sentences:
     - "\uACE0\uB9D9\uB2E4\uB0E5."
@@ -1009,18 +1009,19 @@ MonoBehaviour:
     choicesen: []
     sentences:
     - "\uC751? \uC5B4\uB5BB\uAC8C \uB2E4\uCE58\uAC8C \uB410\uB0D0\uACE0\uB0E5?"
-    - "\uC21C\uCC30 \uD55C \uBC88 \uB3CC \uB54C\uB9C8\uB2E4 \uBCF4\uD1B5 7\uC77C \uC815\uB3C4
-      \uB41C\uB2E4\uB0E5."
+    - "\uBB34\uB2E8\uD6A1\uB2E8\uD558\uB2E4\uAC00 \uCE58\uC5EC \uBC84\uB838\uB2E4\uB0E5..."
+    - "\uB370\uD5F7!"
+    - "(\uBB50\uAC00 \uB370\uD5F7\uC774\uB0D0!)"
     spr:
     - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
-    - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
-    - {fileID: 21300000, guid: db7b4e4a0b8dc85449ec4c4352f4a269, type: 3}
+    - {fileID: 21300000, guid: 25c1de0ff5369cb4691ea3be04378e1c, type: 3}
+    - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
     - {fileID: 21300000, guid: a133183bf3256084d87d4d9f144a1914, type: 3}
     sound:
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 0}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
+    - {fileID: 0}
   - choicevalue: 0
     canchoice: 000000
     choicesen: []
@@ -1069,24 +1070,24 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 8300000, guid: cb3d9f94d4ba023459568605753c86d2, type: 3}
     - {fileID: 0}
-  - choicevalue: 0
-    canchoice: 00000000
-    choicesen: []
+  - choicevalue: 1
+    canchoice: 000001
+    choicesen:
+    - "\uB530\uB73B\uD55C \uCC28\uB97C \uC900\uB2E4."
+    - "\uACE0\uB4F1\uC5B4\uB97C \uC900\uB2E4."
+    - "\uAC71\uC815\uD560 \uD544\uC694 \uC5C6\uC744 \uAC83 \uAC19\uB2E4."
     sentences:
     - "\uBAB8\uC740 \uAD1C\uCC2E\uC544?"
-    - "\uC73C\uC74C... \uBAB8\uC774 \uBED0\uADFC\uD558\uB2E4\uB0E5..."
-    - "\uD544\uC694\uD55C \uAC70 \uC788\uC73C\uBA74 \uB9D0\uD574!"
-    - "\uACE0\uB9D9\uB2E4\uB0E5!"
+    - "\uC73C\uC74C... \uBAB8\uC774 \uC880 \uD53C\uACE4\uD558\uB2E4\uB0E5..."
+    - "\uAC71\uC815\uB418\uB124... \uC5B4\uCA4C\uBA74 \uC88B\uC744\uAE4C?"
     spr:
     - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
     - {fileID: 21300000, guid: 25c1de0ff5369cb4691ea3be04378e1c, type: 3}
-    - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
-    - {fileID: 21300000, guid: 5c9712a053978ed459a7d25202bbd035, type: 3}
+    - {fileID: 21300000, guid: 25c1de0ff5369cb4691ea3be04378e1c, type: 3}
     sound:
     - {fileID: 0}
+    - {fileID: 8300000, guid: 3c59f044971db2742a4bc6fb70cc245a, type: 3}
     - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
   eventsen:
   - choicevalue: 0
     canchoice: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -1276,8 +1277,8 @@ MonoBehaviour:
     - "\uADFC\uB370..."
     - '?'
     - "\uC65C \uB098\uD55C\uD14C \uC774\uB807\uAC8C\uAE4C\uC9C0 \uD574 \uC8FC\uB294
-      \uAC70\uB2E4\uB0E5? \uD45C\uB294 \uB2E4\uB978 \uC0AC\uB78C\uC774\uB791\uB3C4
-      \uAC08 \uC218 \uC788\uC796\uB0E5?"
+      \uAC70\uB0E5? \uD45C\uB294 \uB2E4\uB978 \uC0AC\uB78C\uC774\uB791\uB3C4 \uAC08
+      \uC218 \uC788\uC796\uB0E5?"
     - " \uC544, \uBB50, \uB2E4\uB978 \uAC08 \uC0AC\uB78C\uB3C4 \uC5C6\uACE0..."
     - "\uC5B8\uC820\uAC00 \uB3CC\uC544\uAC00\uC796\uC544? \uAC00\uAE30 \uC804\uC5D0,
       \uC5EC\uAE30\uC11C\uC758 \uC7AC\uBC0C\uB294 \uAC83\uB4E4\uC744 \uB9CE\uC774
@@ -1285,7 +1286,7 @@ MonoBehaviour:
     - '...!'
     - "\uACE0\uB9D9\uB2E4\uB0E5... \uC815\uB9D0 \uC7AC\uBC0C\uB294 \uCD94\uC5B5\uC774
       \uB420 \uAC70\uB2E4\uB0E5!"
-    - "\uB0B4\uAC00 \uB354 \uACE0\uB9C8\uC6CC. \uB108 \uB355\uBD84\uC5D0 \uB0B4\uAC00
+    - "\uB0B4\uAC00 \uB354 \uACE0\uB9C8\uC6CC. \uB124 \uB355\uBD84\uC5D0 \uB0B4\uAC00
       \uC0B4 \uC774\uC720\uB97C \uCC3E\uC740 \uAC83 \uAC19\uC740 \uB290\uB08C\uC774
       \uB4E4\uC5B4."
     - "... \uBD80... \uBD80\uB044\uB7EC\uC6B4 \uC18C\uB9AC \uD558\uC9C0 \uB9D0\uB77C\uB0E5!"
@@ -1343,7 +1344,65 @@ MonoBehaviour:
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
     - {fileID: 0}
     - {fileID: 8300000, guid: c0b457fd09b09d64595982f3804a5cab, type: 3}
-  choiceDial: []
+  choiceDial:
+  - choiceD:
+    - choicevalue: 0
+      canchoice: 00000000
+      choicesen: []
+      sentences:
+      - "(\uB2E8\uC21C\uD55C \uACE0\uC591\uC774\uB3C4 \uC544\uB2C8\uB2C8, \uCC28\uB77C\uB3C4
+        \uB9C8\uC2DC\uBA74 \uC880 \uB098\uC544\uC9C0\uC9C0 \uC54A\uC744\uAE4C...?)"
+      - "\uACE0\uB0E5\uC544, \uB530\uB73B\uD55C \uCC28\uB77C\uB3C4 \uB9C8\uC2DC\uACE0
+        \uC880 \uC26C\uC5B4. \uB0B4\uAC00 \uD574 \uC904 \uC218 \uC788\uB294 \uAC74
+        \uC774 \uC815\uB3C4\uBC16\uC5D0 \uC5C6\uC9C0\uB9CC..."
+      - "\uB530\uB73B\uD558\uB2E4\uB0E5..."
+      - "\uAC71\uC815\uD574 \uC918\uC11C \uACE0\uB9D9\uB2E4\uB0E5."
+      spr:
+      - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
+      - {fileID: 21300000, guid: 25c1de0ff5369cb4691ea3be04378e1c, type: 3}
+      - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
+      - {fileID: 21300000, guid: 3ac775ff4878e5144abcc564150613f8, type: 3}
+      sound:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - choicevalue: 0
+      canchoice: 00000000
+      choicesen: []
+      sentences:
+      - "(\uC74C... \uACE0\uC591\uC774\uB2C8\uAE4C, \uC88B\uC544\uD558\uB294 \uACE0\uB4F1\uC5B4\uB97C
+        \uC8FC\uBA74 \uC88B\uC544\uD558\uACA0\uC9C0?)"
+      - "\uACE0\uB0E5\uC544, \uC774\uAC70\uB77C\uB3C4 \uBA39\uACE0 \uD798\uB0B4."
+      - "\uC544, \uACE0\uB9D9\uB2E4\uB0E5... \uC785\uB9DB\uC740 \uBCC4\uB85C \uC5C6\uAE34
+        \uD558\uC9C0\uB9CC\uB0E5..."
+      - "\uACE0\uB9D9\uB2E4\uB0E5!"
+      spr:
+      - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
+      - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
+      - {fileID: 21300000, guid: 25c1de0ff5369cb4691ea3be04378e1c, type: 3}
+      - {fileID: 21300000, guid: 5c9712a053978ed459a7d25202bbd035, type: 3}
+      sound:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+    - choicevalue: 0
+      canchoice: 000000
+      choicesen: []
+      sentences:
+      - "(\uC774 \uC815\uB3C4\uB85C \uAD1C\uD788 \uC2EC\uAC01\uD574\uC9C0\uC9C0 \uC54A\uC544\uB3C4
+        \uB420 \uAC83 \uAC19\uB2E4.)"
+      - "\uACE0\uB0E5\uC544,  \uADF8 \uC815\uB3C4\uB294 \uD479 \uC26C\uBA74 \uB098\uC544."
+      - "\uC54C\uC558\uB2E4\uB0E5..."
+      spr:
+      - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
+      - {fileID: 21300000, guid: 35ff198b8bee2a74cb8c4df17e8a3bce, type: 3}
+      - {fileID: 21300000, guid: a9512ce7a920c14408717278f5c4126b, type: 3}
+      sound:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
   choiceing: 0
   i: 0
 --- !u!61 &651539388

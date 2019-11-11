@@ -11,13 +11,14 @@ public class Scripts : MonoBehaviour
     
     public static Scripts instance;
     public GameObject[] choicewindow;
-    public int like, hate;
+    public int love, like, hate;
     private NPCsenteces cat;
     private DialogueManager dialogue;
     private int i,j;
     private Vector2 min, max;
     private void Awake()
     {
+        love = 0;
         like = 0;
         hate = 0;
         instance = this;
@@ -53,8 +54,13 @@ public class Scripts : MonoBehaviour
             if(cat.sen[cat.i].choicevalue - 1>=0) 
                 dialogue.Ondialogue(cat.choiceDial[cat.sen[cat.i].choicevalue - 1].choiceD[choicevalue].sentences);
         }
-
         cat.choiceing = true;
+        if (_choicevalue == 0)
+            love++;
+        else if (_choicevalue == 1)
+            like++;
+        else
+            hate++;
     }
 
     void choice()
@@ -94,5 +100,11 @@ public class Scripts : MonoBehaviour
         choicewindow[i].GetComponent<RectTransform>().offsetMax = new Vector2(choicewindow[i].GetComponent<RectTransform>().offsetMax.x, choicewindow[i].GetComponent<RectTransform>().offsetMax.y-250); //Top을 250늘림
         choicewindow[j].GetComponent<RectTransform>().offsetMin = new Vector2(choicewindow[j].GetComponent<RectTransform>().offsetMin.x, choicewindow[j].GetComponent<RectTransform>().offsetMax.y+250); //Bottom을 250줄임
         choicewindow[j].GetComponent<RectTransform>().offsetMax = new Vector2(choicewindow[j].GetComponent<RectTransform>().offsetMax.x, choicewindow[j].GetComponent<RectTransform>().offsetMax.y+250); //Top을 250늘림
+    }
+
+
+    private void Update()
+    {
+        print(love+", "+like+", "+hate);
     }
 }
