@@ -39,7 +39,9 @@ public class SandbagScript : MonoBehaviour
     {
         if (!PlayerScript.instance.isdead)
         {
-            if (transform.position.x < -1) //왼쪽에 있으면
+            if (PlayerScript.instance.canpunch)
+            {
+                if (transform.position.x < -1) //왼쪽에 있으면
                 {
                     StartCoroutine(delaymove(2));
                 }
@@ -47,6 +49,7 @@ public class SandbagScript : MonoBehaviour
                 {
                     StartCoroutine(delaymove(-2));
                 }
+            }
         }
     }
 }

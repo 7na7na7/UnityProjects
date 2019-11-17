@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class PlayerScript : MonoBehaviour
 {
+    public bool canpunch = true; //한번에 하나의 펀치만 가능하도록 해서 버그수정
+    
     public AudioSource audio2;
     public AudioSource audio;
     public AudioClip punchSoound;
@@ -78,33 +80,45 @@ public class PlayerScript : MonoBehaviour
     {
         if (!isdead)
         {
-            int r = Random.Range(0, 2);
-
-            Instantiate(sandbag, r == 0 ? left : right);
-
-            if (dir == "left")
+            if (canpunch)
             {
-                Instantiate(punch, leftPunch);
-                anim.SetTrigger("leftpunch");
-                anim.SetBool("isleft", true);
-            }
+                int r = Random.Range(0, 2);
 
-            if (dir == "right")
-            {
-                Instantiate(punch, rightPunch);
-                anim.SetTrigger("rightpunch");
-                anim.SetBool("isleft", false);
-            }
+                Instantiate(sandbag, r == 0 ? left : right);
 
-            SliderScripts.instance.slider.value += 3; //회복
-            SliderScripts.instance.slider.value += plusvalue;
-            
-            StartCoroutine(delaycount());
-if(dontdestroy.instance.effect) 
-    audio2.PlayOneShot(punchSoound,5f);
+                if (dir == "left")
+                {
+                    Instantiate(punch, leftPunch);
+                    anim.SetTrigger("leftpunch");
+                    anim.SetBool("isleft", true);
+                }
+
+                if (dir == "right")
+                {
+                    Instantiate(punch, rightPunch);
+                    anim.SetTrigger("rightpunch");
+                    anim.SetBool("isleft", false);
+                }
+
+                SliderScripts.instance.slider.value += 3; //회복
+                SliderScripts.instance.slider.value += plusvalue;
+
+                StartCoroutine(delaycount());
+                if (dontdestroy.instance.effect)
+                    audio2.PlayOneShot(punchSoound, 5f);
+
+                canpunch = false;
+                StopCoroutine(delayCanPunch());
+                StartCoroutine(delayCanPunch());
+            }
         }
     }
 
+    IEnumerator delayCanPunch()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canpunch = true;
+    }
     IEnumerator delaycount()
     {
         yield return new WaitForSeconds(0.1f);
