@@ -264,14 +264,14 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f3b77e13aa7876f4283bb82f1daeb3a1, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 7.59, y: 5.39}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &464143730
@@ -336,10 +336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -363,7 +363,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -551,6 +551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeForce: 500
   shakeOffset: {x: 10, y: 10, z: 0}
+  originRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1532134755
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +587,7 @@ MonoBehaviour:
   ArrowTr: {fileID: 1532134758}
   ShotTr: {fileID: 1532134758}
   arrowForce: 20
+  cam: {fileID: 0}
 --- !u!212 &1532134757
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -633,7 +635,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1532134758
@@ -715,7 +717,7 @@ SpriteRenderer:
   m_Size: {x: 3.2, y: 1.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1725464114
@@ -750,6 +752,7 @@ MonoBehaviour:
   ArrowTr: {fileID: 1725464114}
   ShotTr: {fileID: 2121856437}
   arrowForce: 10
+  cam: {fileID: 0}
 --- !u!1 &2121856436
 GameObject:
   m_ObjectHideFlags: 0
