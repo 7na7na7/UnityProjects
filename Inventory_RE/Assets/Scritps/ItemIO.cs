@@ -52,6 +52,8 @@ public sealed class ItemIO : MonoBehaviour
       ElementSetting.SetAttribute("Sprite",
         itemInfo.ItemReturn().DefaultImg.ToString()
           .Substring(0, itemInfo.ItemReturn().DefaultImg.ToString().IndexOf(" (")));
+      //아이템 타입
+      ElementSetting.SetAttribute("Type", itemInfo.ItemReturn().type.ToString());
       //ItemDB요소에 위의 셋팅한 요소를 문서에 첨부
       XmlEl.AppendChild(ElementSetting);
     }
@@ -80,10 +82,22 @@ public sealed class ItemIO : MonoBehaviour
       Item item = new Item();
       
       //아이템의 정보를 셋팅한다.
-      string Name = ItemElement.GetAttribute("Name");                              //아이템 이름을 가져옴
-      int MaxCount = System.Convert.ToInt32(ItemElement.GetAttribute("MaxCount")); //겹칠 수 있는 한계
-      item.Init(Name,MaxCount);                                                          //위의 가져온 정보로 아이템의 정보를 초기화
+      string Name = ItemElement.GetAttribute("Name");                                   //아이템 이름을 가져옴
+      int MaxCount = System.Convert.ToInt32(ItemElement.GetAttribute("MaxCount"));      //겹칠 수 있는 한계
+      item.Init(Name,MaxCount);                                                               //위의 가져온 정보로 아이템의 정보를 초기화
       item.DefaultImg=Resources.Load<Sprite>(ItemElement.GetAttribute("Sprite")); //스프라이트 받아오기
+      switch (ItemElement.GetAttribute("Type"))
+      {
+        case "HP":
+          item.type = Item.TYPE.HP;
+          break;
+        case "MP":
+          item.type = Item.TYPE.MP;
+          break;
+        case "SpeedBuff":
+          item.type = Item.TYPE.SpeedBuff;
+          break;
+      }
       int Count = System.Convert.ToInt32(ItemElement.GetAttribute("Count")); //슬롯에 아이템을 n개 집어넣기 위해서 개수를 가져옴
       for (int i = 0; i < Count; i++) 
         slot.SlotAddItem(item);
