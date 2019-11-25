@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04ebbf35-d3af-46dc-a017-29bf16bd4245" name="Default Changelist" comment="" />
@@ -12,12 +12,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scritps/Inventory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scritps/Item.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scritps/ItemIO.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scritps/PlayerMove.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scritps/ItemDrag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scritps/Slot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Inven_System/Scritps/Inventory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Inven_System/Scritps/Item.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Inven_System/Scritps/ItemIO.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -28,6 +25,8 @@
         <option value="$PROJECT_DIR$/Assets/Scritps/Slot.cs" />
         <option value="$PROJECT_DIR$/Assets/Scritps/Item.cs" />
         <option value="$PROJECT_DIR$/Assets/Scritps/ItemIO.cs" />
+        <option value="$PROJECT_DIR$/Assets/Inven_System/Scritps/ItemIO.cs" />
+        <option value="$PROJECT_DIR$/Assets/NewBehaviourScript.cs" />
       </list>
     </option>
   </component>
@@ -87,7 +86,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574127197947</updated>
-      <workItem from="1574127202200" duration="43070000" />
+      <workItem from="1574127202200" duration="45465000" />
+      <workItem from="1574383097509" duration="680000" />
     </task>
     <servers />
   </component>
@@ -101,7 +101,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
