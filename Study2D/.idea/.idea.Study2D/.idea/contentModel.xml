@@ -3,8 +3,17 @@
   <component name="ContentModelStore">
     <e p="C:\Users\user\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\user\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Study2D.-2010560022.00" t="ExcludeRecursive" />
-    <e p="C:\Users\user\Documents\GitHub\UnityProjects\Study2D" t="IncludeFlat">
+    <e p="C:\Users\user\Documents\GitHub\UnityProjects\Study2D" t="IncludeRecursive">
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Plugins" t="Include">
+          <e p="Rotation.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
       <e p="Study2D.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
   </component>
 </project>
