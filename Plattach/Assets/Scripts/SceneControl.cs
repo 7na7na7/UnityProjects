@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SceneControl : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    private BlockRoot block_root = null;
     void Start()
     {
+        //BlockRoot스크립트를 가져온다.
+        block_root = gameObject.GetComponent<BlockRoot>();
         
-    }
+        //BlockRoot스크립트의 initialSetUp()을 호출한다.
+        block_root.initialSetUp();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
