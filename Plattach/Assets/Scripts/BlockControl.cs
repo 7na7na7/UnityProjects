@@ -72,6 +72,10 @@ public class BlockControl : MonoBehaviour
     public float vanish_timer = -1.0f; //블록이 사라질 때까지의 시간
     public Block.DIR4 slide_dir = Block.DIR4.NONE; //슬라이드된 방향
     public float step_timer = 0.0f; //블록이 교체된 때의 이동시간 등
+
+    public Material opague_material; //불투명 메테리얼
+    public Material transparent_material; //반투명 메테리얼
+    
     void Start()
     {
         setColor(color); //색칠을 한다.
@@ -85,6 +89,23 @@ public class BlockControl : MonoBehaviour
         
         //획득한 마우스 위치를 X와 Y만으로 한다.
         Vector2 mouse_position_xy=new Vector2(mouse_position.x, mouse_position.y);
+
+        if (vanish_timer >= 0.0f) //타이머가 0이상이면
+        {
+            vanish_timer -= Time.deltaTime; //타이머의 값을 줄인다.
+            if (vanish_timer < 0.0f) //타이머가 0미만이면,
+            {
+                if (step != Block.STEP.SLIDE) //슬라이드 중이 아니라면,
+                {
+                    vanish_timer = -1.0f;
+                    next_step = Block.STEP.VACANT; //상태를 '소멸 중'으로
+                }
+                else //타이머의 값이 0이상이면,
+                {
+                    vanish_timer = 0.0f;
+                }
+            }
+        }
 
         step_timer += Time.deltaTime;
         float slide_time = 0.2f;
@@ -128,6 +149,7 @@ public class BlockControl : MonoBehaviour
                     break;
                 case Block.STEP.VACANT: //'사라지는' 상태
                     position_offset = Vector3.zero;
+                    setVisible(false);
                     break;
             }
 
@@ -154,6 +176,32 @@ public class BlockControl : MonoBehaviour
         
         //실제 위치를 새로운 위치로 변경한다.
         transform.position = position;
+        
+        setColor(color);
+
+        if (vanish_timer >= 0.0f)
+        {
+            //현재 색과 흰색의 중간 색
+            Color color0 = Color.Lerp(GetComponent<Renderer>().material.color, Color.white, 0.5f);
+            //현재 색과 검은색의 중간 색
+            Color color1 = Color.Lerp(GetComponent<Renderer>().material.color, Color.black, 0.5f);
+            
+            //불붙는 연출 시간이 절반을 지났다면,
+            if (vanish_timer < Block.VANISH_TIME / 2.0f)
+            {
+                //투명도(a)를 설정
+                color0.a = vanish_timer / (Block.VANISH_TIME / 2.0f);
+                color1.a = color0.a;
+                
+                //반투명 메테리얼 적용
+                GetComponent<Renderer>().material = transparent_material;
+            }
+            //vanish_timer가 줄어들수록 1에 가까워진다.
+            float rate = 1.0f - vanish_timer / Block.VANISH_TIME;
+            
+            //서서히 색을 바꾼다.
+            GetComponent<Renderer>().material.color = Color.Lerp(color0, color1, rate);
+        }
     }
 
     //인수 color의 색으로 블록을 칠한다.
@@ -254,13 +302,14 @@ public class BlockControl : MonoBehaviour
                 else
                     dir = Block.DIR4.LEFT;
             }
-        }
-        else
-        {
-            if (v.y > -v.x)
-                dir = Block.DIR4.RIGHT;
             else
-                dir = Block.DIR4.DOWN;
+            {
+
+                if (v.y > -v.x)
+                    dir = Block.DIR4.RIGHT;
+                else
+                    dir = Block.DIR4.DOWN;
+            }
         }
         return(dir);
     }
@@ -290,11 +339,57 @@ public class BlockControl : MonoBehaviour
         return(offset);
     }
 
-    public void beginSlide(Vector3 offset)
+    public void beginSlide(Vector3 offset) //슬라이드 시작할 때 호출
     {
         position_offset_initial = offset;
         position_offset = position_offset_initial;
         //상태를 SLIDE로 변경
         next_step = Block.STEP.SLIDE;
+    }
+
+    public void toVanishing() //블록을 지우기 시작할 때, BlockRoot클래스의 checkConnection()에서 호출
+    {
+        //'사라질 때까지 걸리는 시간'을 규정값으로 리셋
+        vanish_timer = Block.VANISH_TIME;
+    }
+
+    public bool isVanishing() //블록이 지워지는 중이면 true를 반환, BlockRoot클래스의 checkConnection()에서 호출
+    {
+        //vanish_timer가 0보타 크면 true
+        bool is_vanishing = vanish_timer > 0.0f;
+        return (is_vanishing);
+    }
+
+    public void rewindVanishTimer() //사라질 때까지 걸리는 시간을 리셋, BlockRoot클래스의 Update()에서 호출
+    {
+        //'사라질 때까지 걸리는 시간'을 규정값으로 리셋
+        vanish_timer = Block.VANISH_TIME;
+    }
+
+    public bool isVIsible() //블록이 표시되고 있을 때 true를 반환한다. BlockRoot클래스의 fallBlock()에서 호출
+    {
+        //그리기 가능(renderer.enabled가 true)상태라면,
+        //표시되고 있다.
+        bool is_visible = GetComponent<Renderer>().enabled;
+        return (is_visible);
+    }
+
+    public void setVisible(bool is_visible) //visible설정
+    {
+        //그리기 가능 설정에 인수를 대입
+        GetComponent<Renderer>().enabled = is_visible;
+    }
+    //BlockControl의 Update(), BlockRoot의 fallBlock()에서 호출
+    public bool isIdle() //인수에 true를 지정하면 블록이 표시되고 false를 지정하면 블록이 표시되지 않음. 
+    {
+        bool is_idle = false;
+        //현재 블록 상태가 '대기 중'이고
+        //다음 블록 상태가 '없음'이면,
+        if (step == Block.STEP.IDLE && next_step == Block.STEP.NONE)
+        {
+            is_idle = true;
+        }
+
+        return (is_idle);
     }
 }
