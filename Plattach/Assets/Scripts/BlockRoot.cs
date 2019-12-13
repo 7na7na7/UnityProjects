@@ -28,8 +28,9 @@ public class BlockRoot : MonoBehaviour
 
         if (grabbed_block == null) //잡은 블록이 비었다면(잡지 않았다면)
         {
-            //if(!is_has_falling_block()){
-            if (Input.GetMouseButtonDown(0)) //마우스 버튼이 눌렸으면,
+            if(!is_has_falling_block())
+            { 
+                if (Input.GetMouseButtonDown(0)) //마우스 버튼이 눌렸으면,
             {
                 //blocks배열의 모든 요소를 차례로 처리한다.
                 foreach (BlockControl block in blocks)
@@ -51,9 +52,9 @@ public class BlockRoot : MonoBehaviour
                     grabbed_block.beginGrab();
                     break;
                 }
+            } 
             }
         }
-        //}
         else //블록을 잡았을 때
         {
             do
@@ -119,6 +120,63 @@ public class BlockRoot : MonoBehaviour
                 }
             }
         }
+        
+        //하나라도 연소 중인 블록이 있는가?
+        bool is_vanishing = is_has_vanishing_block();
+        //조건이 만족되면 블록을 떨어뜨리고 싶다.
+        
+        do
+        {
+            if (is_vanishing) //연소 중인 블록이 있다면
+                break;
+
+            if (is_has_sliding_block()) //교체 중인 블록이 있다면
+                break;
+
+            for (int x = 0; x < Block.BLOCK_NUM_X; x++)
+            {
+                //열에 교체 중인 블록이 있다면 그 열은 처리하지 않고 다음 열로 진행된다.
+                if (is_has_Sliding_block_in_column(x))
+                    continue;
+
+                //그 열에 있는 블록을 위에서부터 검사한다.
+                for (int y = 0; y < Block.BLOCK_NUM_Y - 1; y++)
+                {
+                    //지정 블록이 비표시라면 다음 블록으로
+                    if (!blocks[x, y].isVacant())
+                        continue;
+
+                    //지정 블록 아래에 있는 블록을 검사
+                    for (int y1 = y + 1; y1 < Block.BLOCK_NUM_Y; y1++)
+                    {
+                        //아래에 있는 블록이 비표시라면 다음 블록으로
+                        if (!blocks[x, y].isVacant())
+                            continue;
+
+                        //블록을 교체한다.
+                        fallBlock(blocks[x, y], Block.DIR4.UP, blocks[x, y1]);
+                        break;
+                    }
+                }
+            }
+            
+            //보충처리
+            for (int x = 0; x < Block.BLOCK_NUM_X; x++)
+            {
+                int fall_start_y = Block.BLOCK_NUM_Y;
+                for (int y = 0; y < Block.BLOCK_NUM_Y; y++)
+                {
+                    //비표시 블록이 아니라면 다음 블록으로
+                    if (!blocks[x, y].isVacant())
+                    {
+                        continue;
+                    }
+
+                    blocks[x, y].beginRespawn(fall_start_y); //블록 부활
+                    fall_start_y++;
+                }
+            }
+        } while (false);
     }
 
     //블록을 만들어 내고 가로 9칸, 세로 9칸에 배치한다.
@@ -479,6 +537,60 @@ public class BlockRoot : MonoBehaviour
             if (block.step == Block.STEP.FALL)
             {
                 ret = true;
+                break;
+            }
+        }
+
+        return (ret);
+    }
+
+
+    public void fallBlock(BlockControl block0, Block.DIR4 dir, BlockControl block1)
+    {
+        //block0과 block1의 색, 크기, 사라질 때까지의 시간, 표시, 비표시, 상태를 기록
+        Block.COLOR color0 = block0.color;
+        Block.COLOR color1 = block1.color;
+
+        Vector3 scale0 = block0.transform.localScale;
+        Vector3 scale1 = block1.transform.localScale;
+
+        float vanish_timer0 = block0.vanish_timer;
+        float vanish_timer1 = block1.vanish_timer;
+
+        bool visible0 = block0.isVIsible();
+        bool visible1 = block1.isVIsible();
+
+        Block.STEP step0 = block0.step;
+        Block.STEP step1 = block1.step;
+        
+        //block0과 block1의 각종 속성을 교체.
+        block0.setColor(color1);
+        block1.setColor(color0);
+
+        block0.transform.localScale = scale1;
+        block1.transform.localScale = scale0;
+
+        block0.vanish_timer = vanish_timer1;
+        block1.vanish_timer = vanish_timer0;
+
+        block0.setVisible(visible1);
+        block1.setVisible(visible0);
+
+        block0.step = step1;
+        block1.step = step0;
+        
+        block0.beginFall(block1); //떨어지기시작
+    }
+
+    private bool is_has_Sliding_block_in_column(int x)
+    {
+        bool ret = false;
+
+        for (int y = 0; y < Block.BLOCK_NUM_Y; y++)
+        {
+            if (blocks[x, y].isSliding()) //슬라이드 중인 블록이 있으면,
+            {
+                ret = true; //true를 반환
                 break;
             }
         }

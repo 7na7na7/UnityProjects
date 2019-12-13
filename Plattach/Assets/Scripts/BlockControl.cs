@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Block
 {
@@ -60,6 +61,12 @@ public class Block
 
 public class BlockControl : MonoBehaviour
 {
+    public struct StetpFall
+    {
+        public float velocity; //낙하 속도
+    }
+    private StetpFall fall;
+    
     public Block.COLOR color = (Block.COLOR) 0; //블록 색
     public BlockRoot block_root = null; //블록의 신
     public Block.iPosition i_Pos; //블록 좌표
@@ -119,10 +126,22 @@ public class BlockControl : MonoBehaviour
                     {
                         //슬라이드 중인 블록이 소멸되면 VACANT(사라짐) 상태로 이행
                         if (vanish_timer == 0.0f)
+                        {
                             next_step = Block.STEP.VACANT;
+                        }
                         //vanish_timer가 0이 아니면 IDLE(대기) 상태로 이행
                         else
                             next_step = Block.STEP.IDLE;
+                    }
+                    break;
+                case Block.STEP.IDLE:
+                    GetComponent<Renderer>().enabled = true; //보이도록
+                    break;
+                case Block.STEP.FALL:
+                    if (position_offset.y <= 0.0f)
+                    {
+                        next_step = Block.STEP.IDLE;
+                        position_offset.y = 0.0f;
                     }
                     break;
             }
@@ -134,6 +153,8 @@ public class BlockControl : MonoBehaviour
             step = next_step;
             next_step = Block.STEP.NONE;
 
+            int color_index;
+            
             switch (step)
             {
                 case Block.STEP.IDLE: //'대기' 상태
@@ -151,8 +172,23 @@ public class BlockControl : MonoBehaviour
                     position_offset = Vector3.zero;
                     setVisible(false);
                     break;
+                case Block.STEP.RESPAWN:
+                    //색을 랜덤하게 설정하여 블록을 그 색으로 설정
+                    color_index = Random.Range(0, (int) Block.COLOR.NORMAL_COLOR_NUM);
+                    setColor((Block.COLOR)color_index);
+                    next_step = Block.STEP.IDLE;
+                    break;
+                case Block.STEP.FALL:
+                    if (isVIsible() == false)
+                    {
+                        setVisible(true); //블록을 보이게 표시
+                        color_index = Random.Range(0, (int) Block.COLOR.NORMAL_COLOR_NUM);
+                        setColor((Block.COLOR)color_index);
+                    }
+                    fall.velocity = 0.0f; //낙하 속도 리셋
+                    break;
             }
-
+            
             step_timer = 0.0f;
         }
 
@@ -168,6 +204,14 @@ public class BlockControl : MonoBehaviour
                 rate = Mathf.Min(rate, 1.0f); //rate최솟값 1로 제한
                 rate = Mathf.Sin(rate * Mathf.PI / 2.0f); //???
                 position_offset = Vector3.Lerp(position_offset_initial, Vector3.zero, rate);
+                break;
+            case Block.STEP.FALL: //떨어지는 중
+                //속도에 중력의 영향을 부여한다.
+                fall.velocity += Physics.gravity.y * Time.deltaTime * 0.3f;
+                //세로방향 위치를 계산
+                position_offset.y += fall.velocity * Time.deltaTime;
+                if (position_offset.y < 0.0f) //다 내려왔다면,
+                    position_offset.y = 0.0f; //그 자리에 머무른다.
                 break;
         }
         //그리드 좌표를 실제 좌표(씬의 좌표)로 변환하고,
@@ -391,5 +435,37 @@ public class BlockControl : MonoBehaviour
         }
 
         return (is_idle);
+    }
+
+    public void beginFall(BlockControl start) //낙하 시작 처리
+    {
+        next_step = Block.STEP.FALL;
+        //지정된 블록에서 좌표를 계산해 낸다.
+        position_offset.y = (float) (start.i_Pos.y - i_Pos.y) * Block.COLLISION_SIZE;
+    }
+
+    public void beginRespawn(int start_iPos_y) //색을 바꿔 낙하 처리를 하고 지정한 위치에 재배치한다.
+    {
+        //지정 위치까지 y좌표를 이동한다.
+        position_offset.y = (float) (start_iPos_y - i_Pos.y) * Block.COLLISION_SIZE;
+
+        next_step = Block.STEP.FALL;
+        int color_index = Random.Range((int) Block.COLOR.FIRST, (int) Block.COLOR.LAST + 1);
+        setColor((Block.COLOR)color_index);
+    }
+
+    public bool isVacant() //블록이 비표시(그리드상의 위치가 비어 있을 때)로 되어 있다면 true를 반환한다.
+    {
+        bool is_vacant = false;
+        if (step == Block.STEP.VACANT && next_step == Block.STEP.NONE)
+            is_vacant = true;
+
+        return (is_vacant);
+    }
+
+    public bool isSliding() //교체 중(슬라이드 중)이면 true를 반환한다.
+    {
+        bool is_sliding = position_offset.x != 0.0f;
+        return(is_sliding);
     }
 }
