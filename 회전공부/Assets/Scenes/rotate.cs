@@ -20,7 +20,7 @@ public class rotate : MonoBehaviour
         //transform.RotateAround(point:Vector3, axis:Vector3, angle:float)
         //RotateAround() 함수는 현재 자신이 있는 위치(axis)와 특정 점(point)과의 거리를 반지름으로 하는 원을 그리면서 회전하는 공전과 축을 기준으로하는 자전을 동시에 수행한다.
         if (Input.GetKey(KeyCode.C))
-            transform.RotateAround(Vector3.zero, Vector3.forward, 20);
+            transform.RotateAround(Vector3.zero, Vector3.forward*100, 20);
         //Quaternion.eaulerAngles사용
         if (Input.GetKey(KeyCode.Q))
             transform.rotation = Quaternion.Slerp(transform.rotation, left, 2*Time.deltaTime); //왼쪽으로 서서히 회전하게 함

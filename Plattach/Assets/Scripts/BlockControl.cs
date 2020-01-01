@@ -107,15 +107,14 @@ public class BlockControl : MonoBehaviour
                     vanish_timer = -1.0f;
                     next_step = Block.STEP.VACANT; //상태를 '소멸 중'으로
                 }
-                else //타이머의 값이 0이상이면,
+                else //슬라이드 중이면,
                 {
                     vanish_timer = 0.0f;
                 }
             }
         }
-
         step_timer += Time.deltaTime;
-        float slide_time = 0.2f;
+        float slide_time = 0.2f; //교체하는 데에 걸리는 시간
 
         if (next_step == Block.STEP.NONE) //'상태 정보 없음' 의 경우
         {
@@ -147,7 +146,7 @@ public class BlockControl : MonoBehaviour
             }
         }
         //'다음 븝록' 상태가 '정보 없음' 이외인 동안,
-        //='다음 블록' 상태가 변경된 경우,
+        //='다음 블록' 상태로 변경될 때까지,
         while (next_step!=Block.STEP.NONE)
         {
             step = next_step;
