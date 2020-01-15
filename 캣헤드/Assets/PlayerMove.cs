@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
         screenRation = (float)Screen.width / (float)Screen.height;
         wSize = Camera.main.orthographicSize * screenRation;
         StartCoroutine(stopCor());
-        StartCoroutine(cool());
+        coolTime = DashCool;
     }
 
     void FixedUpdate()
@@ -247,12 +247,32 @@ public class PlayerMove : MonoBehaviour
 
         if (Input.GetKeyDown(dash))
         {
+            print("쿨 : "+coolTime);
+            print("대쉬쿨 : " + DashCool);
             if (coolTime >= DashCool)
             {
                 StartCoroutine(Dash());
-                DashCool = 0;
+                coolTime = 0;
             }
         }
+
+        if (hp.value <= 0)
+        {
+            if (gameObject.name.Substring(0, 7) == "Player1")
+            {
+                FindObjectOfType<GameManager>().p1Dead = true;
+                FindObjectOfType<GameManager>().Dead1();
+                Destroy(gameObject);
+            }
+            if (gameObject.name.Substring(0, 7) == "Player2")
+            {
+                FindObjectOfType<GameManager>().p2Dead = true;
+                FindObjectOfType<GameManager>().Dead2();
+                Destroy(gameObject);
+            }
+        }
+
+        coolTime += Time.deltaTime;
     }
 
     IEnumerator stopCor()
@@ -277,7 +297,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.name.Substring(0, 7) == "Bullet1")
         {
-            if (gameObject.name == "Player2")
+            if (gameObject.name.Substring(0, 7) == "Player2")
             {
                 if(!isSuper) 
                     hp.value -= 10;
@@ -286,7 +306,7 @@ public class PlayerMove : MonoBehaviour
 
         if (other.name.Substring(0, 7) == "Bullet2")
         {
-            if (gameObject.name == "Player1")
+            if (gameObject.name.Substring(0, 7) == "Player1")
             { 
                 if(!isSuper) 
                     hp.value -= 10;
@@ -301,14 +321,5 @@ public class PlayerMove : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         speed /= dashSpeed;
         isSuper = false;
-    }
-
-    IEnumerator cool()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.1f);
-            coolTime += 0.1f;
-        }
     }
 }

@@ -13,21 +13,24 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        while (true)
+        if(other.CompareTag("Wall"))
+           Destroy(gameObject);
+        else
         {
-            if ((other.name == "Player1" && gameObject.name.Substring(0, 7) == "Bullet1")||(other.name == "Player2" && gameObject.name.Substring(0, 7) == "Bullet2"))
+            if ((other.name.Substring(0, 7) == "Player1" && gameObject.name.Substring(0, 7) == "Bullet2"))
             {
-                break;
+                if (!other.GetComponent<PlayerMove>().isSuper)
+                {
+                    Destroy(gameObject);   
+                }
             }
-            else
+            if(other.name.Substring(0, 7) == "Player2" && gameObject.name.Substring(0, 7) == "Bullet1")
             {
-                if (other.GetComponent<PlayerMove>().isSuper)
-                    break;
-                
-                Destroy(gameObject);
-                break;
+                if (!other.GetComponent<PlayerMove>().isSuper)
+                {
+                    Destroy(gameObject);   
+                }
             }
         }
     }
-
 }
