@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 559962185217980166}
   - component: {fileID: 559962185217980168}
   - component: {fileID: 559962185217980167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 559962185233744605}
   - component: {fileID: 559962185233744604}
   - component: {fileID: 559962185233744610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,13 +171,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb5016e3e71e8c4fa82768e81421aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpSpeed: 2
+  GunCool: 0.5
   DashCool: 1.5
   dashTime: 0.15
   dashSpeed: 7
   hp: {fileID: 559962185511866754}
   audio: {fileID: 559962185233744610}
-  attackSound: {fileID: 8300000, guid: 6c8fc4b58c5834845ab29669c79e610c, type: 3}
-  bullet: {fileID: 7875728290687331518, guid: 356e89b7f76d3614f86059a46ad22957, type: 3}
+  attackSound: {fileID: 8300000, guid: eedf2c13b347aaf4586227bafb0a71d1, type: 3}
+  bullet: {fileID: 7945451341405790133, guid: 38f18706d5f3e964b921ed3804b59850, type: 3}
   isup: 0
   isright: 0
   isleft: 0
@@ -190,6 +192,7 @@ MonoBehaviour:
   down: 274
   attack: 257
   dash: 258
+  invisibleTime: 0.1
   tr: {fileID: 559962185233744609}
   offset: 0.35
   isSuper: 0
@@ -230,8 +233,8 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &559962185233744604
 CapsuleCollider2D:
@@ -261,7 +264,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -354,7 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 559962185316670117}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +395,7 @@ GameObject:
   - component: {fileID: 559962185344932773}
   - component: {fileID: 559962185344932775}
   - component: {fileID: 559962185344932774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559962185511866753}
   - component: {fileID: 559962185511866754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +557,7 @@ GameObject:
   - component: {fileID: 559962186439314758}
   - component: {fileID: 559962186439314757}
   - component: {fileID: 559962186439314756}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HpCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +603,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &559962186439314757
 MonoBehaviour:

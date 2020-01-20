@@ -5,30 +5,35 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public bool isCollide = false;
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * 15);
-        Destroy(gameObject,5f);
+        //transform.Translate(Vector3.right * Time.deltaTime * 15);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Wall"))
-           Destroy(gameObject);
+        if (other.CompareTag("Wall") || other.CompareTag("Slime"))
+        {
+            GetComponent<longBullet>().canLong = false;
+            Destroy(gameObject,0.05f);
+        }
         else
         {
             if ((other.name.Substring(0, 7) == "Player1" && gameObject.name.Substring(0, 7) == "Bullet2"))
             {
                 if (!other.GetComponent<PlayerMove>().isSuper)
                 {
-                    Destroy(gameObject);   
+                    GetComponent<longBullet>().canLong = false;
+                    Destroy(gameObject,0.05f);
                 }
             }
             if(other.name.Substring(0, 7) == "Player2" && gameObject.name.Substring(0, 7) == "Bullet1")
             {
                 if (!other.GetComponent<PlayerMove>().isSuper)
                 {
-                    Destroy(gameObject);   
+                    GetComponent<longBullet>().canLong = false; 
+                    Destroy(gameObject,0.05f);
                 }
             }
         }

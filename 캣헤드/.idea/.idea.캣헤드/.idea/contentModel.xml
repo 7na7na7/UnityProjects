@@ -6,8 +6,6 @@
     <e p="C:\Users\mingu\Documents\GitHub\UnityProjects\캣헤드" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Bullet.cs" t="Include" />
-        <e p="GameManager.cs" t="Include" />
         <e p="NYAN_dots" t="Include">
           <e p="Readme.txt" t="Include" />
           <e p="Readme_jp.txt" t="Include" />
@@ -15,7 +13,15 @@
             <e p="Animator_Test.cs" t="Include" />
           </e>
         </e>
-        <e p="PlayerMove.cs" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="BloodScript.cs" t="Include" />
+          <e p="Bullet.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="longBullet.cs" t="Include" />
+          <e p="PlayerMove.cs" t="Include" />
+          <e p="SlimeScript.cs" t="Include" />
+          <e p="Spawner.cs" t="Include" />
+        </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
