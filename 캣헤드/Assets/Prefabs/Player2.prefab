@@ -171,13 +171,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb5016e3e71e8c4fa82768e81421aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloods:
+  - {fileID: 5178661259320917261, guid: 5f4e2429c3a33f2449ea341fac8eaaa0, type: 3}
+  - {fileID: 637117140425968562, guid: 1a9d3c888fb08904fadfb4421907039f, type: 3}
+  - {fileID: 8717826135350814575, guid: 6432f7d604c7a734889d638296c4e5d8, type: 3}
+  - {fileID: 3499399669853851251, guid: 6bcd656e860d34642ac3555a037d4c83, type: 3}
+  canMove: 1
+  nuckBackPower: 3.5
   hpSpeed: 2
   GunCool: 0.5
   DashCool: 1.5
   dashTime: 0.15
   dashSpeed: 7
   hp: {fileID: 559962185511866754}
-  audio: {fileID: 559962185233744610}
   attackSound: {fileID: 8300000, guid: eedf2c13b347aaf4586227bafb0a71d1, type: 3}
   bullet: {fileID: 7945451341405790133, guid: 38f18706d5f3e964b921ed3804b59850, type: 3}
   isup: 0

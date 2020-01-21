@@ -7,6 +7,10 @@ using Random = UnityEngine.Random;
 
 public class PlayerMove : MonoBehaviour
 {
+    public GameObject[] bloods;
+    private bool canMove = true;
+    private bool canAttack = true;
+    public float nuckBackPower;
     public float hpSpeed;
     public float GunCool;
     public float DashCool;
@@ -44,7 +48,8 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-       Move();
+        if(canMove) 
+            Move();
     }
 
     void Move()
@@ -231,36 +236,15 @@ public class PlayerMove : MonoBehaviour
             tr.position = new Vector3(-wSize + offset, tr.position.y, 0);//왼쪽
         }
     }
-    
+
+   
     private void Update()
-    {
-        if (Input.GetKey(attack))
-        {
-            if (gunCooltime > GunCool)
-            {
-                if (isleft && isup)
-                    Instantiate(bullet, transform.position + new Vector3(-0.1f, 0.1f, 0), Quaternion.Euler(0, 0, 135));
-                if (isleft && isdown)
-                    Instantiate(bullet, transform.position + new Vector3(-0.1f, -0.1f, 0), Quaternion.Euler(0, 0, 225));
-                if (isright && isup)
-                    Instantiate(bullet, transform.position + new Vector3(0.1f, 0.1f, 0), Quaternion.Euler(0, 0, 45));
-                if (isright && isdown)
-                    Instantiate(bullet, transform.position + new Vector3(0.1f, -0.1f, 0), Quaternion.Euler(0, 0, 315));
-                if (isright && !isdown && !isup)
-                    Instantiate(bullet, transform.position + new Vector3(0.1f, 0, 0), Quaternion.Euler(0, 0, 0));
-                if (isleft && !isdown && !isup)
-                    Instantiate(bullet, transform.position + new Vector3(-0.1f, 0, 0), Quaternion.Euler(0, 0, 180));
-                if (isup && !isright && !isleft)
-                    Instantiate(bullet, transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 0, 90));
-                if (isdown && !isright && !isleft)
-                    Instantiate(bullet, transform.position + new Vector3(0, -0.1f, 0), Quaternion.Euler(0, 0, 270));
+    { 
+        if(canAttack)
+         attackFunc();
 
-                audio.PlayOneShot(attackSound, 0.5f);
-                gunCooltime = 0;
-            }
-        }
-
-        if (Input.GetKeyDown(dash))
+        if(canMove) 
+            if (Input.GetKeyDown(dash))
         {
             if (dashCooltime  >= DashCool)
             {
@@ -271,6 +255,14 @@ public class PlayerMove : MonoBehaviour
 
         if (hp.value <= 0)
         {
+            for (int i = 0; i < 4; i++)
+            {
+                int quarter = Random.Range(0, 4);
+                Instantiate(bloods[quarter],
+                    transform.position + new Vector3(Random.Range(-.5f, .5f), Random.Range(-.5f, .5f), 0),
+                    Quaternion.EulerAngles(new Vector3(0, 0, Random.Range(0, 360))));
+            }
+
             if (gameObject.name.Substring(0, 7) == "Player1")
             {
                 FindObjectOfType<GameManager>().p1Dead = true;
@@ -285,15 +277,75 @@ public class PlayerMove : MonoBehaviour
             }
         }
         else
-        {
             hp.value += hpSpeed * Time.deltaTime;
-        }
+        
         if(dashCooltime<DashCool)
             dashCooltime  += Time.deltaTime;
         if(gunCooltime<GunCool)
             gunCooltime += Time.deltaTime;
     }
 
+    private void attackFunc()
+    {
+           if (Input.GetKey(attack))
+                {
+                    if (gunCooltime > GunCool)
+                    {
+                        if (isleft && isup)
+                        {
+                            GameObject b=Instantiate(bullet, transform.position + new Vector3(-0.1f, 0.1f, 0),
+                                Quaternion.Euler(0, 0, 135)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 8;
+                        }
+                        if (isleft && isdown)
+                        {
+                            GameObject b=Instantiate(bullet, transform.position + new Vector3(-0.1f, -0.1f, 0),
+                                Quaternion.Euler(0, 0, 225)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 6;
+                        }
+                        if (isright && isup)
+                        {
+                            GameObject b= Instantiate(bullet, transform.position + new Vector3(0.1f, 0.1f, 0),
+                                Quaternion.Euler(0, 0, 45)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 2;
+                        }
+
+                        if (isright && isdown)
+                        {
+                            GameObject b=  Instantiate(bullet, transform.position + new Vector3(0.1f, -0.1f, 0),
+                                Quaternion.Euler(0, 0, 315)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 4;
+                        }
+                        if (isright && !isdown && !isup)
+                        {
+                            GameObject b=  Instantiate(bullet, transform.position + new Vector3(0.1f, 0, 0),
+                                Quaternion.Euler(0, 0, 0)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 3;
+                        }
+                        if (isleft && !isdown && !isup)
+                        {
+                            GameObject b=     Instantiate(bullet, transform.position + new Vector3(-0.1f, 0, 0),
+                                Quaternion.Euler(0, 0, 180)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 7;
+                        }
+                        if (isup && !isright && !isleft)
+                        {
+                            GameObject b=   Instantiate(bullet, transform.position + new Vector3(0, 0.1f, 0),
+                                Quaternion.Euler(0, 0, 90)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 1;
+                        }
+                        if (isdown && !isright && !isleft)
+                        {
+                            GameObject b= Instantiate(bullet, transform.position + new Vector3(0, -0.1f, 0),
+                                Quaternion.Euler(0, 0, 270)) as GameObject;
+                            b.GetComponent<Bullet>().dir = 5;
+                        }
+                        
+                        audio.PlayOneShot(attackSound, 0.5f);
+                        gunCooltime = 0;
+                    }
+                }
+    }
     IEnumerator stopCor()
     {
         while (true)
@@ -311,15 +363,115 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
+    IEnumerator nuckBack(bool isRandom = false, int dir = 3)
+    {
+        //피
+        int half = Random.Range(0, 2);
+        int quarter = Random.Range(0,4);
+        if (half == 0)
+        {
+            Instantiate(bloods[quarter], transform.position, Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
+        }
 
+        canAttack = false;
+        canMove = false;
+        float x=0, y=0;
+        if (isRandom)
+        {
+            int r = -1 * Random.Range(0, 2);
+            int r2 = -1 * Random.Range(0, 2);
+            x = nuckBackPower * r;
+            y = nuckBackPower * r2;
+        }
+        else
+        {
+            if (dir == 0)
+            {
+                if (isup)
+                    y = nuckBackPower * -1;
+                if (isdown)
+                    y = nuckBackPower;
+                if (isright)
+                    x = nuckBackPower * -1;
+                if (isleft)
+                    x = nuckBackPower;
+            }
+            else
+            {
+                switch (dir)
+                {
+                    //위부터 1, 시계방향
+                    case 1: 
+                        y = nuckBackPower;
+                        break;
+                    case 2:
+                        y = nuckBackPower;
+                        x = nuckBackPower;
+                        break;
+                    case 3:
+                        x = nuckBackPower;
+                        break;
+                    case 4:
+                        y = nuckBackPower * -1;
+                        x = nuckBackPower;
+                        break;
+                    case 5:
+                        y = nuckBackPower * -1;
+                        break;
+                    case 6:
+                        y = nuckBackPower * -1;
+                        x = nuckBackPower * -1;
+                        break;
+                    case 7:
+                        x = nuckBackPower * -1;
+                        break;
+                    case 8:
+                        y = nuckBackPower;
+                        x = nuckBackPower * -1;
+                        break;
+                }   
+            }
+        }
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Vector2 V = new Vector2(x,y); 
+        GetComponent<Rigidbody2D>().AddForce(V, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<Rigidbody2D>().velocity=Vector2.zero;
+        canMove = true;
+        canAttack = true;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Slime"))
+        {
+            if (!isSuper)
+            {
+                StartCoroutine(invisibleOnce());
+                StartCoroutine(nuckBack(false,0));
+                hp.value -= 5;
+            }
+        }
+
+        if (other.CompareTag("BossBullet"))
+        {
+            if (!isSuper)
+            {
+                hp.value -= 10f;
+                StartCoroutine(nuckBack(false, 0));
+            }
+        }
+
+        if (other.CompareTag("Item"))
+        {
+            Destroy(other.gameObject);
+        }
         if (other.name.Substring(0, 7) == "Bullet1")
         {
             if (gameObject.name.Substring(0, 7) == "Player2")
             {
                 if (!isSuper)
                 {
+                    StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                     StartCoroutine(invisibleOnce());
                     hp.value -= 10;
                 }
@@ -332,12 +484,13 @@ public class PlayerMove : MonoBehaviour
             {
                 if (!isSuper)
                 {
+                    print(bullet.GetComponent<Bullet>().dir);
+                    StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                     StartCoroutine(invisibleOnce());
                     hp.value -= 10;
                 }
             }
         }
-        
         /*
         if (other.CompareTag("Slime"))
         {
@@ -391,8 +544,9 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isSuper)
             {
+                hp.value -= 1.5f;
+                StartCoroutine(nuckBack(true));
                 StartCoroutine(invisibleOnce());
-                hp.value -= 5;
             }
         }
     }

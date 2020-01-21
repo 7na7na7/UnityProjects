@@ -117,7 +117,7 @@ public class SlimeScript : MonoBehaviour
                 break;
         }
         int r = Random.Range(0, 4);
-        Instantiate(bloods[r],transform.position,Quaternion.identity);
+        Instantiate(bloods[r],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
         gm.zombieDead();
         Destroy(gameObject);
     }
@@ -128,7 +128,7 @@ public class SlimeScript : MonoBehaviour
         if (r == 0)
         {
             int r2 = Random.Range(0, 4);
-            Instantiate(bloods[r2],transform.position,Quaternion.identity);
+            Instantiate(bloods[r2],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
         }
     }
 }

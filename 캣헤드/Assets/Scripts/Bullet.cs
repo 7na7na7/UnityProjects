@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int dir;
     public bool isCollide = false;
     void Update()
     {
@@ -13,7 +14,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall") || other.CompareTag("Slime"))
+        if (other.CompareTag("Wall") || other.CompareTag("Slime")|| other.CompareTag("BossSlime"))
         {
             GetComponent<longBullet>().canLong = false;
             Destroy(gameObject,0.05f);

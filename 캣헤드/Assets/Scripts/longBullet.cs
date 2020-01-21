@@ -10,6 +10,7 @@ public class longBullet : MonoBehaviour
     {
         float r = Random.Range(-2.5f,2.5f);
         transform.eulerAngles=new Vector3(transform.eulerAngles.x,transform.eulerAngles.y,transform.eulerAngles.z+r);
+        transform.Translate(0.5f,0,0);
     }
     
     void FixedUpdate()
