@@ -7,11 +7,7 @@ public class Bullet : MonoBehaviour
 {
     public int dir;
     public bool isCollide = false;
-    void Update()
-    {
-        //transform.Translate(Vector3.right * Time.deltaTime * 15);
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Wall") || other.CompareTag("Slime")|| other.CompareTag("BossSlime"))
@@ -21,7 +17,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            if ((other.name.Substring(0, 7) == "Player1" && gameObject.name.Substring(0, 7) == "Bullet2"))
+            if ((other.name.Substring(0, 7) == "Player1" && name.Substring(0, 7) == "Bullet2"))
             {
                 if (!other.GetComponent<PlayerMove>().isSuper)
                 {
@@ -29,7 +25,7 @@ public class Bullet : MonoBehaviour
                     Destroy(gameObject,0.05f);
                 }
             }
-            if(other.name.Substring(0, 7) == "Player2" && gameObject.name.Substring(0, 7) == "Bullet1")
+            else if(other.name.Substring(0, 7) == "Player2" && name.Substring(0, 7) == "Bullet1")
             {
                 if (!other.GetComponent<PlayerMove>().isSuper)
                 {

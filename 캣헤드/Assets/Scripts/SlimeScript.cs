@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class SlimeScript : MonoBehaviour
 {
+    public float nuckBackPower;
     public GameObject[] bloods;
     private bool canMove = true;
     private GameManager gm;
@@ -29,7 +30,7 @@ public class SlimeScript : MonoBehaviour
 
         for (int i = 0; i < 150; i++)
         {
-            radius[i] = i * 0.1f;
+            radius[i] = i * 0.2f;
         }
     }
 
@@ -39,8 +40,12 @@ public class SlimeScript : MonoBehaviour
         {
             if (!other.GetComponent<Bullet>().isCollide)
             {
+                StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                 other.GetComponent<Bullet>().isCollide = true;
-                hp.value -= 35;
+                if(other.CompareTag("Bullet")) 
+                    hp.value -= 35;
+                else if (other.CompareTag("UZI"))
+                    hp.value -= 20;
             }
         }
     }
@@ -130,5 +135,56 @@ public class SlimeScript : MonoBehaviour
             int r2 = Random.Range(0, 4);
             Instantiate(bloods[r2],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
         }
+    }
+     IEnumerator nuckBack(bool isRandom = false, int dir = 3)
+    {
+        canMove = false;
+        float x=0, y=0;
+        if (isRandom)
+        {
+            int r = -1 * Random.Range(0, 2);
+            int r2 = -1 * Random.Range(0, 2);
+            x = nuckBackPower * r;
+            y = nuckBackPower * r2;
+        }
+        else
+        {
+            switch (dir)
+                {
+                    //위부터 1, 시계방향
+                    case 1: 
+                        y = nuckBackPower;
+                        break;
+                    case 2:
+                        y = nuckBackPower;
+                        x = nuckBackPower;
+                        break;
+                    case 3:
+                        x = nuckBackPower;
+                        break;
+                    case 4:
+                        y = nuckBackPower * -1;
+                        x = nuckBackPower;
+                        break;
+                    case 5:
+                        y = nuckBackPower * -1;
+                        break;
+                    case 6:
+                        y = nuckBackPower * -1;
+                        x = nuckBackPower * -1;
+                        break;
+                    case 7:
+                        x = nuckBackPower * -1;
+                        break;
+                    case 8:
+                        y = nuckBackPower;
+                        x = nuckBackPower * -1;
+                        break;
+                }
+        }
+        Vector3 V = new Vector3(x,y,0);
+        transform.position += V;
+        yield return new WaitForSeconds(0.1f);
+        canMove = true;
     }
 }

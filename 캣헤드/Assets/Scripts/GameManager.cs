@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public int currentzombie = 0;
     public int i = 0; //for문용 변수
-    private int wave = 1;
+    public int wave = 1;
     private bool waveClear = false;
     private void Start()
     {
