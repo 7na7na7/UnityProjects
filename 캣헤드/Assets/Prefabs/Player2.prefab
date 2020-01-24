@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29411766, g: 1, b: 0.29411766, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.29411766, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb5016e3e71e8c4fa82768e81421aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpColor: {fileID: 559962185217980167}
   tang: {fileID: 5776994361382431129, guid: bd56835e1e7d12f42a362a2ee942b2d7, type: 3}
   BulletValues: 00000000640000006400000032000000
   MaxBulletValues: 00000000000000000000000000000000
@@ -196,7 +197,10 @@ MonoBehaviour:
   dashSpeed: 7
   hp: {fileID: 559962185511866754}
   attackSound: {fileID: 8300000, guid: eedf2c13b347aaf4586227bafb0a71d1, type: 3}
+  noBullet: {fileID: 8300000, guid: ea1cd077d98bf2b4089ad24f2c5ca0a8, type: 3}
   UZISound: {fileID: 8300000, guid: f1ee8d2ee256d1a41863aebde6b0486f, type: 3}
+  healSound: {fileID: 8300000, guid: 7bed178d72c4f74458bb15e85dccfede, type: 3}
+  reLoadSound: {fileID: 8300000, guid: 5f37b79242a761e4abe49ad1c1769e23, type: 3}
   bullet: {fileID: 7945451341405790133, guid: 38f18706d5f3e964b921ed3804b59850, type: 3}
   UZIBullet: {fileID: 1219657475218621499, guid: 1f1e4f0cf5d90d441be9de6011354e5e,
     type: 3}
@@ -206,10 +210,10 @@ MonoBehaviour:
   isdown: 0
   speed: 3
   anim: {fileID: 559962185233744606}
-  right: 46
-  left: 109
-  up: 107
-  down: 44
+  right: 275
+  left: 276
+  up: 273
+  down: 274
   attack: 260
   dash: 261
   invisibleTime: 0.1

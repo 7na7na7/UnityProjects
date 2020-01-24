@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class PlayerMove : MonoBehaviour
 {
+    public Image hpColor;
     public GameObject tang;
     public int[] BulletValues;
     public int[] MaxBulletValues;
@@ -29,6 +30,9 @@ public class PlayerMove : MonoBehaviour
     public AudioClip attackSound;
     public AudioClip noBullet;
     public AudioClip UZISound;
+    public AudioClip healSound;
+    public AudioClip reLoadSound;
+    public AudioClip earnGun;
     public GameObject bullet;
     public GameObject UZIBullet;
     public bool isup, isright, isleft, isdown;
@@ -46,6 +50,7 @@ public class PlayerMove : MonoBehaviour
     public bool isSuper = false;
     private float gunCooltime = 0;
     private float dashCooltime = 0;
+    private float fix= 1f / 255f;
     private void Start()
     {
         size = Camera.main.orthographicSize;
@@ -359,6 +364,21 @@ public class PlayerMove : MonoBehaviour
             weaponText.text = weaponNames[currentWeapon];
             if (currentWeapon != 0)
                 weaponText.text = weaponText.text + " : " + BulletValues[currentWeapon];
+
+            
+            Color color=hpColor.color;
+            if (75 * fix + ((hp.maxValue - hp.value) * 2.2f)*fix <= 1)
+            {
+                color.r = 75 * fix + ((hp.maxValue - hp.value) * 2.2f)*fix;
+                color.g = 1;
+            }
+            else
+            {
+                color.g = 1 - (75 * fix + ((hp.maxValue - hp.value) * 2.2f) * fix);
+            }
+                
+            color.b = 75*fix;
+            hpColor.color = color;
     }
 
     private void attackFunc()
@@ -664,7 +684,6 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(nuckBack(false, 0));
             }
         }
-
         if (other.CompareTag("Item"))
         {
             bool canGo = true;
@@ -674,6 +693,8 @@ public class PlayerMove : MonoBehaviour
                 {
                     if (canWeaponUse[1] != true)
                     {
+                        //UZI unlocked
+                        audio.PlayOneShot(earnGun,0.5f);
                         canWeaponUse[1] = true;
                         canGo = false;
                     }
@@ -684,6 +705,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     if (canWeaponUse[2] != true)
                     {
+                        audio.PlayOneShot(earnGun,0.5f);
                         canWeaponUse[2] = true;
                         canGo = false;
                     }
@@ -694,6 +716,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     if (canWeaponUse[3] != true)
                     {
+                        audio.PlayOneShot(earnGun,0.5f);
                         canWeaponUse[3] = true;
                         canGo = false;
                     }
@@ -715,34 +738,26 @@ public class PlayerMove : MonoBehaviour
                 }
                 if (r == 0)
                 {
+                    audio.PlayOneShot(healSound,0.25f);
                     hp.value = 100;
                 }
                 else
-                { 
-                    if (BulletValues[r] != MaxBulletValues[r]) 
-                        BulletValues[r] = MaxBulletValues[r];
-                    else
-                        hp.value = 100;
-                } 
-                Destroy(other.gameObject); 
-            }
-            if (other.name.Substring(0, 7) == "Bullet1")
-            {
-                if (gameObject.name.Substring(0, 7) == "Player2")
                 {
-                    if (!isSuper)
+                    if (BulletValues[r] != MaxBulletValues[r])
                     {
-                        StartCoroutine(nuckBack(false, other.GetComponent<Bullet>().dir));
-                        StartCoroutine(invisibleOnce());
-                        if (other.CompareTag("Bullet"))
-                            hp.value -= 10;
-                        else if (other.CompareTag("UZI"))
-                            hp.value -= 5;
+                        audio.PlayOneShot(reLoadSound,0.4f);
+                        BulletValues[r] = MaxBulletValues[r];
+                        //UZI Reloaded
+                    }
+                    else
+                    {
+                        audio.PlayOneShot(healSound,0.25f);
+                        hp.value = 100;
                     }
                 }
             }
+            Destroy(other.gameObject); 
         }
-
         if (other.name.Substring(0, 7) == "Bullet2")
         {
             if (gameObject.name.Substring(0, 7) == "Player1")
@@ -773,51 +788,7 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
-        /*
-        if (other.CompareTag("Slime"))
-        {
-            if (!isSuper)
-            {
-                StartCoroutine(invisibleOnce());
-                hp.value -= 5;
-                
-                Vector2 dir = Vector2.zero;
-                int r = Random.Range(0, 7);
-                switch (r)
-                {
-                    case 0:
-                        dir = Vector2.up;
-                        break;
-                    case 1:
-                        dir = Vector2.up+Vector2.right;
-                        dir.Normalize();
-                        break;
-                    case 2:
-                        dir = Vector2.right;
-                        break;
-                    case 3:
-                        dir = Vector2.right + Vector2.down;
-                        dir.Normalize();
-                        break;
-                    case 4:
-                        dir = Vector2.down;
-                        break;
-                    case 5:
-                        dir = Vector2.down * Vector2.left;
-                        dir.Normalize();
-                        break;
-                    case 6:
-                        dir = Vector2.left;
-                        break;
-                    case 7:
-                        dir = Vector2.left+Vector2.up;
-                        dir.Normalize();
-                        break;
-                }
-                GetComponent<Rigidbody2D>().AddForce(dir*10,ForceMode2D.Impulse);
-                print("A");
-            }
-        }*/
+        
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -950,4 +921,5 @@ public class PlayerMove : MonoBehaviour
         sprite.color = color;
         isSuper = false;
     }
+    
 }
