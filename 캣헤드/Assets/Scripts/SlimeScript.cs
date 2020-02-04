@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 public class SlimeScript : MonoBehaviour
 {
+    public float bulletDMG;
+    public float UZIDMG;
+    private float guard = 0f;
     public float nuckBackPower;
     public GameObject[] bloods;
     private bool canMove = true;
@@ -32,6 +35,8 @@ public class SlimeScript : MonoBehaviour
         {
             radius[i] = i * 0.2f;
         }
+
+        guardUp();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,10 +47,13 @@ public class SlimeScript : MonoBehaviour
             {
                 StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                 other.GetComponent<Bullet>().isCollide = true;
-                if(other.CompareTag("Bullet")) 
-                    hp.value -= 35;
-                else if (other.CompareTag("UZI"))
-                    hp.value -= 20;
+                if (other.name.Substring(0, 11) == "Bullet1_UZI" || other.name.Substring(0, 11) == "Bullet2_UZI")
+                {
+                    print("AFAS");
+                    hp.value -= UZIDMG - UZIDMG * guard;
+                }
+                else if(other.name.Substring(0, 7) == "Bullet1"||other.name.Substring(0, 7) == "Bullet2") 
+                    hp.value -= bulletDMG-bulletDMG*guard;
             }
         }
     }
@@ -108,6 +116,7 @@ public class SlimeScript : MonoBehaviour
 
     IEnumerator die()
     {
+        Destroy(hp.gameObject);
         canMove = false;
         float a = 1f;
         SpriteRenderer spr = GetComponent<SpriteRenderer>();
@@ -187,4 +196,11 @@ public class SlimeScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         canMove = true;
     }
+     public void guardUp()
+     {
+         for (int i = 0; i < gm.wave; i++)
+         {
+             guard += 0.01f;
+         }
+     }
 }

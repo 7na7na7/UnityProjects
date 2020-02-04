@@ -497,6 +497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8b85fc9db35e24795d3c9d07670da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDMG: 7
+  UZIDMG: 4
   nuckBackPower: 0.05
   bloods:
   - {fileID: 5178661259320917261, guid: 5f4e2429c3a33f2449ea341fac8eaaa0, type: 3}
@@ -508,7 +510,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   speed: 1
-  shotRadius: 3
+  shotRadius: 5
   shotCool: 0.5
   bullet: {fileID: 1623142025631416937, guid: db3fc34756c7394489253cd17ba81194, type: 3}
 --- !u!50 &799526981

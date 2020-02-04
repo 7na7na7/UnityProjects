@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
 {
     public Image hpColor;
     public GameObject tang;
+    public GameObject popUp;
     public int[] BulletValues;
     public int[] MaxBulletValues;
     public string[] weaponNames;
@@ -26,13 +27,17 @@ public class PlayerMove : MonoBehaviour
     public float dashTime;
     public float dashSpeed;
     public Slider hp;
-    private AudioSource audio;
+    
+    [Header("효과음 / 음악")]
     public AudioClip attackSound;
     public AudioClip noBullet;
     public AudioClip UZISound;
     public AudioClip healSound;
     public AudioClip reLoadSound;
     public AudioClip earnGun;
+    public AudioClip hitSound;
+    public AudioClip weaponChangeSound;
+    [Space]
     public GameObject bullet;
     public GameObject UZIBullet;
     public bool isup, isright, isleft, isdown;
@@ -47,10 +52,12 @@ public class PlayerMove : MonoBehaviour
     public Transform tr;
     public float offset = 0.4f;
     private float size, screenRation, wSize;
+    private AudioSource audio;
     public bool isSuper = false;
     private float gunCooltime = 0;
     private float dashCooltime = 0;
     private float fix= 1f / 255f;
+    private Transform CanVasTr;
     private void Start()
     {
         size = Camera.main.orthographicSize;
@@ -61,6 +68,7 @@ public class PlayerMove : MonoBehaviour
         StartCoroutine(invisible());
         audio = GameObject.Find("AudioSource").GetComponent<AudioSource>();
         canWeaponUse[0] = true;
+        CanVasTr = GameObject.Find("Canvas").GetComponent<Transform>();
         for (int i = 0; i < MaxBulletValues.Length; i++)
         {
             MaxBulletValues[i] = BulletValues[i];
@@ -273,27 +281,35 @@ public class PlayerMove : MonoBehaviour
     }
     void ChangeWeapon(bool isRight)
     {
-        if (isRight)
+        if (currentWeapon == 0 && currentWeapon == ReturnLastWeapon() - 1)
         {
-            if (currentWeapon == ReturnLastWeapon()-1) //무기 배열의 끝인가?
-            {
-                currentWeapon = 0;
-            }
-            else
-            {
-                currentWeapon++;
-            }
+            //무기가 기본무기 피스톨뿐이므로 아무것도 하면 안댐
         }
         else
         {
-            if (currentWeapon == 0)
+            if (isRight)
             {
-                currentWeapon = ReturnLastWeapon() - 1;
+                if (currentWeapon == ReturnLastWeapon()-1) //무기 배열의 끝인가?
+                {
+                    currentWeapon = 0;
+                }
+                else
+                {
+                    currentWeapon++;
+                }
             }
             else
             {
-                currentWeapon--;
+                if (currentWeapon == 0)
+                {
+                    currentWeapon = ReturnLastWeapon() - 1;
+                }
+                else
+                {
+                    currentWeapon--;
+                }
             }
+            audio.PlayOneShot(weaponChangeSound,1f);
         }
     }
    
@@ -473,7 +489,7 @@ public class PlayerMove : MonoBehaviour
                             {
                                 if (isleft && isup)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position,
+                                    GameObject b = Instantiate(UZIBullet, transform.position,
                                         Quaternion.Euler(0, 0, 135)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 8;
                                     Instantiate(tang, transform.position + new Vector3(-0.6f, 0.6f, 0),
@@ -482,7 +498,7 @@ public class PlayerMove : MonoBehaviour
 
                                 if (isleft && isdown)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position,
+                                    GameObject b = Instantiate(UZIBullet, transform.position,
                                         Quaternion.Euler(0, 0, 225)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 6;
                                     Instantiate(tang, transform.position + new Vector3(-0.5f, -0.5f, 0),
@@ -491,7 +507,7 @@ public class PlayerMove : MonoBehaviour
 
                                 if (isright && isup)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position,
+                                    GameObject b = Instantiate(UZIBullet, transform.position,
                                         Quaternion.Euler(0, 0, 45)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 2;
                                     Instantiate(tang, transform.position + new Vector3(0.6f, 0.6f, 0),
@@ -500,7 +516,7 @@ public class PlayerMove : MonoBehaviour
 
                                 if (isright && isdown)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position + new Vector3(0.1f, -0.1f, 0),
+                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0.1f, -0.1f, 0),
                                         Quaternion.Euler(0, 0, 315)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 4;
                                     Instantiate(tang, transform.position + new Vector3(0.5f, -0.5f, 0),
@@ -509,7 +525,7 @@ public class PlayerMove : MonoBehaviour
 
                                 if (isright && !isdown && !isup)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position + new Vector3(0.1f, 0, 0),
+                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0.1f, 0, 0),
                                         Quaternion.Euler(0, 0, 0)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 3;
                                     Instantiate(tang, transform.position + new Vector3(0.75f, 0, 0),
@@ -518,7 +534,7 @@ public class PlayerMove : MonoBehaviour
 
                                 if (isleft && !isdown && !isup)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position + new Vector3(-0.1f, 0, 0),
+                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(-0.1f, 0, 0),
                                         Quaternion.Euler(0, 0, 180)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 7;
                                     Instantiate(tang, transform.position + new Vector3(-0.75f, 0, 0),
@@ -527,7 +543,7 @@ public class PlayerMove : MonoBehaviour
 
                                 if (isup && !isright && !isleft)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position + new Vector3(0, 0.1f, 0),
+                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0, 0.1f, 0),
                                         Quaternion.Euler(0, 0, 90)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 1;
                                     Instantiate(tang, transform.position + new Vector3(0, 0.75f, 0),
@@ -536,7 +552,7 @@ public class PlayerMove : MonoBehaviour
 
                                 if (isdown && !isright && !isleft)
                                 {
-                                    GameObject b = Instantiate(bullet, transform.position + new Vector3(0, -0.1f, 0),
+                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0, -0.1f, 0),
                                         Quaternion.Euler(0, 0, 270)) as GameObject;
                                     b.GetComponent<Bullet>().dir = 5;
                                     Instantiate(tang, transform.position + new Vector3(0, -0.75f, 0),
@@ -651,10 +667,11 @@ public class PlayerMove : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Vector2 V = new Vector2(x,y); 
         GetComponent<Rigidbody2D>().AddForce(V, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.05f);
+        canAttack = true;
         yield return new WaitForSeconds(0.1f);
         GetComponent<Rigidbody2D>().velocity=Vector2.zero;
         canMove = true;
-        canAttack = true;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -662,6 +679,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isSuper)
             {
+                audio.PlayOneShot(hitSound,0.2f);
                 StartCoroutine(invisibleOnce());
                 StartCoroutine(nuckBack(false,0));
                 hp.value -= 5;
@@ -671,6 +689,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isSuper)
             {
+                audio.PlayOneShot(hitSound,0.2f);
                 StartCoroutine(invisibleOnce());
                 StartCoroutine(nuckBack(false,0));
                 hp.value -= 15;
@@ -680,6 +699,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isSuper)
             {
+                audio.PlayOneShot(hitSound,0.2f);
                 hp.value -= 10f;
                 StartCoroutine(nuckBack(false, 0));
             }
@@ -693,7 +713,9 @@ public class PlayerMove : MonoBehaviour
                 {
                     if (canWeaponUse[1] != true)
                     {
-                        //UZI unlocked
+                        //UZI 잠금해제 팝업 띄움
+                        GameObject pop =Instantiate(popUp, CanVasTr);
+                        pop.GetComponent<Text>().text = "picked uzi";
                         audio.PlayOneShot(earnGun,0.5f);
                         canWeaponUse[1] = true;
                         canGo = false;
@@ -747,12 +769,15 @@ public class PlayerMove : MonoBehaviour
                     {
                         audio.PlayOneShot(reLoadSound,0.4f);
                         BulletValues[r] = MaxBulletValues[r];
-                        //UZI Reloaded
+                        GameObject pop =Instantiate(popUp, CanVasTr);
+                        pop.GetComponent<Text>().text = "UZI Reloaded";
                     }
                     else
                     {
                         audio.PlayOneShot(healSound,0.25f);
                         hp.value = 100;
+                        GameObject pop =Instantiate(popUp, CanVasTr);
+                        pop.GetComponent<Text>().text = "HP Healed";
                     }
                 }
             }
@@ -766,10 +791,13 @@ public class PlayerMove : MonoBehaviour
                 {
                     StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                     StartCoroutine(invisibleOnce());
-                    if(other.CompareTag("Bullet")) 
-                        hp.value -= 10;
-                    else if (other.CompareTag("UZI"))
+                    
+                    if (other.name.Substring(0, 11) == "Bullet2_UZI")
                         hp.value -= 5;
+                    else if (other.name.Substring(0, 7) == "Bullet2")
+                        hp.value -= 10;
+                    
+                    audio.PlayOneShot(hitSound,0.2f);
                 }
             }
         }
@@ -781,10 +809,13 @@ public class PlayerMove : MonoBehaviour
                 {
                     StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                     StartCoroutine(invisibleOnce());
-                    if(other.CompareTag("Bullet")) 
-                        hp.value -= 10;
-                    else if (other.CompareTag("UZI"))
+                    
+                    if (other.name.Substring(0, 11) == "Bullet1_UZI")
                         hp.value -= 5;
+                    else if (other.name.Substring(0, 7) == "Bullet1")
+                        hp.value -= 10;
+                    
+                    audio.PlayOneShot(hitSound,0.2f);
                 }
             }
         }

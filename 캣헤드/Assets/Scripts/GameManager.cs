@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioSource audio;
+    public AudioClip koung;
+    
+    public GameObject popUp;
+    private Transform CanvasTr;
     public bool isGameOver = false;
     public GameObject GameOverpanel;
     public GameObject p1, p2;
@@ -19,11 +24,14 @@ public class GameManager : MonoBehaviour
 
     public int currentzombie = 0;
     public int i = 0; //for문용 변수
-    public int wave = 1;
+    public int wave = 0;
     private bool waveClear = false;
+    private bool isonce = true;
     private void Start()
     {
         StartCoroutine(spawn());
+        StartCoroutine(PopUPCor());
+        CanvasTr = GameObject.Find("Canvas").GetComponent<Transform>();
     }
 
     private void Update()
@@ -87,6 +95,13 @@ public class GameManager : MonoBehaviour
     {
         for (i = 0; i < zombiecount.Length; i++) //끝나고 i++
         {
+            if (isonce)
+            {
+                yield return new WaitUntil(() => wave == 1);
+                isonce = false;
+            }
+
+            audio.PlayOneShot(koung,1f);
             yield return new WaitUntil(() => zombiecount[i] <= 0); //zombiecount[i]가 0이 될 때까지 기다림(현재 웨이브의 좀비가 다 죽을 때까지)
             waveClear = true;
             yield return new WaitForSeconds(5f); //기다림...
@@ -104,5 +119,18 @@ public class GameManager : MonoBehaviour
     public void zombieCreate()
     {
         currentzombie++;
+    }
+
+    IEnumerator PopUPCor()
+    {
+        yield return new WaitUntil(()=>wave==1);
+        GameObject pop0 =Instantiate(popUp, CanvasTr);
+        pop0.GetComponent<Text>().text = "-Wave 1-";
+        yield return new WaitUntil(()=>wave==2);
+        GameObject pop =Instantiate(popUp, CanvasTr);
+        pop.GetComponent<Text>().text = "-Wave 2-";
+        yield return new WaitForSeconds(1f);
+        GameObject pop2 =Instantiate(popUp, CanvasTr);
+        pop2.GetComponent<Text>().text = "new weapon : uzi";
     }
 }

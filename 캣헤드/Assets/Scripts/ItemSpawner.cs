@@ -13,10 +13,11 @@ public class ItemSpawner : MonoBehaviour
 
     IEnumerator ItemSpawn()
     {
+        Instantiate(item,transform.position,Quaternion.identity);
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            Instantiate(item,transform.position+new Vector3(Random.Range(-8f,8f),Random.Range(-3f,3f),0),Quaternion.identity);
+            Instantiate(item,transform.position,Quaternion.identity);
         }
     }
 }

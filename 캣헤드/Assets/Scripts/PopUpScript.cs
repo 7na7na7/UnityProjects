@@ -9,21 +9,45 @@ public class PopUpScript : MonoBehaviour
     public Text text;
     public float textFadeSpeed;
     public float fadeSpeed;
-    private void OnEnable()
+    public float goUpSpeed;
+    public float canGoDelay;
+    private bool canGo = false;
+    private void Start()
     {
-      StopAllCoroutines();
-      StartCoroutine(fade());
+        StartCoroutine(fade());
+        StartCoroutine(delayGo());
     }
 
     IEnumerator fade()
     {
         Color color;
-        color =text.color;
-        while (color.a <= 0)
+        color = text.color;
+
+        color.a = 1;
+        text.color = color;
+
+        while (true)
         {
-            color.a -= textFadeSpeed;
-            text.color = color;
+            if (canGo)
+            {
+                if (color.a > 0)
+                {
+                    color.a -= textFadeSpeed;
+                    text.color = color;
+                }
+                else
+                    break;
+            }
+            GetComponent<RectTransform>().anchoredPosition+=new Vector2(0,goUpSpeed);
             yield return new WaitForSeconds(fadeSpeed);
         }
+        Destroy(gameObject);
+        yield return null;
+    }
+
+    IEnumerator delayGo()
+    {
+        yield return new WaitForSeconds(canGoDelay);
+        canGo = true;
     }
 }
