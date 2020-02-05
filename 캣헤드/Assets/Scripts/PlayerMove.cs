@@ -42,6 +42,7 @@ public class PlayerMove : MonoBehaviour
     public AudioClip attackSound;
     public AudioClip noBullet;
     public AudioClip UZISound;
+    public AudioClip GrenadeSound;
     public AudioClip ShotGunSound;
     public AudioClip healSound;
     public AudioClip reLoadSound;
@@ -72,6 +73,7 @@ public class PlayerMove : MonoBehaviour
     private bool canAttack = true;
     private bool isStop = true;
     public bool isup, isright, isleft, isdown;
+    private float BeanForce = 0;
     
     private void Start()
     {
@@ -461,8 +463,7 @@ public class PlayerMove : MonoBehaviour
                         {
                             if (gunCooltime > BeanBulletCool)
                             {
-                                //BeanBullet();
-                                Pistol();
+                                BeanForce += Time.deltaTime;
                             }
                         }
                         else
@@ -472,6 +473,14 @@ public class PlayerMove : MonoBehaviour
                         }
                     }
                 }
+           if (Input.GetKeyUp(attack))
+           {
+               if (BeanForce != 0)
+               {
+                   BeanBullet(BeanForce);
+                   BeanForce = 0;
+               }
+           }
     }
     IEnumerator stopCor()
     {
@@ -720,7 +729,17 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
-        
+
+        if (other.name.Contains("Explosion") == true)
+        {
+            if (!isSuper)
+            {
+                StartCoroutine(nuckBack(false, 0));
+                StartCoroutine(invisibleOnce());
+                hp.value -=slimeData.ExplosionDMG*0.4f;           
+                audio.PlayOneShot(hitSound,0.2f);
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -1107,8 +1126,60 @@ public class PlayerMove : MonoBehaviour
          gunCooltime = 0;
     }
 
-    void BeanBullet()
+    void BeanBullet(float force)
     {
-        
+        float bulletZ = 0;
+        int dir=0;
+        if (isleft && isup)
+        {
+            bulletZ = 135;
+            dir = 8;
+        }
+        if (isleft && isdown) 
+        {
+            bulletZ = 225;
+            dir = 6;
+        }
+        if (isright && isup)
+        { 
+            bulletZ = 45;
+            dir = 2;
+        }
+        if (isright && isdown) 
+        {
+            bulletZ = 315;
+            dir = 4;
+        }
+        if (isright && !isdown && !isup)
+        {
+            bulletZ = 0;
+            dir = 3;
+        }
+        if (isleft && !isdown && !isup) {
+            bulletZ =180;
+            dir = 7;
+        }
+        if (isup && !isright && !isleft) {
+            bulletZ = 90;
+            dir = 1;
+        }
+        if (isdown && !isright && !isleft) {
+            bulletZ = 270;
+            dir = 5;
+        }
+
+        for (int i = 0; i < ShotGunBulletCount; i++)
+        {
+            GameObject b = Instantiate(BeanBulletObj, transform.position,
+                Quaternion.Euler(0, 0, bulletZ)) as GameObject;
+            if (force > 2f)
+                force = 2f;
+            b.GetComponent<BeanBulletScript>().speed=force*5;
+        }
+
+
+        BulletValues[currentWeapon]--;
+         audio.PlayOneShot(GrenadeSound, 0.5f);
+         gunCooltime = 0;  
     }
 }

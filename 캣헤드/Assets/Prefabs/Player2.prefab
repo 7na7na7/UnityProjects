@@ -193,14 +193,15 @@ MonoBehaviour:
   - GRENADE
   weaponText: {fileID: 8560956686257067365}
   currentWeapon: 0
-  canWeaponUse: 01000000
+  canWeaponUse: 01010101
   bullet: {fileID: 7945451341405790133, guid: 38f18706d5f3e964b921ed3804b59850, type: 3}
   UZIBullet: {fileID: 1219657475218621499, guid: 1f1e4f0cf5d90d441be9de6011354e5e,
     type: 3}
   ShotGunBullet: {fileID: 8195906369356774792, guid: ecb9cee4f0fac5748b9ad971dd23c22a,
     type: 3}
   ShotGunBulletCount: 6
-  BeanBulletObj: {fileID: 0}
+  BeanBulletObj: {fileID: 1241823592885497643, guid: 52b91d806e1f79a45b3852fc9d9b8a36,
+    type: 3}
   GunCool: 0.5
   UZICooltime: 0.15
   ShotGunCool: 0.75
@@ -208,6 +209,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: eedf2c13b347aaf4586227bafb0a71d1, type: 3}
   noBullet: {fileID: 8300000, guid: ea1cd077d98bf2b4089ad24f2c5ca0a8, type: 3}
   UZISound: {fileID: 8300000, guid: f1ee8d2ee256d1a41863aebde6b0486f, type: 3}
+  GrenadeSound: {fileID: 8300000, guid: c31c375dc53e64647a4b1894e02369e4, type: 3}
   ShotGunSound: {fileID: 8300000, guid: 181e017e2c2612f47bdf719d7485802b, type: 3}
   healSound: {fileID: 8300000, guid: 7bed178d72c4f74458bb15e85dccfede, type: 3}
   reLoadSound: {fileID: 8300000, guid: 5f37b79242a761e4abe49ad1c1769e23, type: 3}

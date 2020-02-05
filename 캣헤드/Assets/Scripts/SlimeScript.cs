@@ -7,10 +7,12 @@ using Random = UnityEngine.Random;
 
 public class SlimeScript : MonoBehaviour
 {
+    private bool isSuper = false;
     public GameObject hpCanvas;
     public float bulletDMG;
     public float UZIDMG;
     public float ShotGunDMG;
+    public float ExplosionDMG;
     private float guard = 0f;
     public float nuckBackPower;
     public GameObject[] bloods;
@@ -59,14 +61,24 @@ public class SlimeScript : MonoBehaviour
                     else if (other.name.Contains("ShotGun") == true)
                         hp.value -= ShotGunDMG -ShotGunDMG* guard;
                     else
-                    {
                         hp.value -= bulletDMG -bulletDMG* guard;
-                    }
                 }
+                StartCoroutine(super());
+            }
+
+            if (other.CompareTag("Grenade"))
+            {
+                hp.value -= ExplosionDMG - ExplosionDMG* guard;   
+                StartCoroutine(super());
             }
         }
     }
-
+    IEnumerator super()
+    {
+        isSuper = true;
+        yield return new WaitForSeconds(0.1f);
+        isSuper = false;
+    }
     private void Update()
     {
         if (gameObject.name != "SlimeData")

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BossScript : MonoBehaviour
 {
+    private bool isSuper = false;
     public GameObject hpCanvas;
     private float guard = 0f;
     public float nuckBackPower;
@@ -41,23 +42,39 @@ public class BossScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
+        if (!isSuper)
         {
-            if (!other.GetComponent<Bullet>().isCollide)
+            if (other.CompareTag("Bullet"))
             {
-                StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
-                other.GetComponent<Bullet>().isCollide = true;
-                
-                if (other.name.Contains("UZI") == true)
-                    hp.value -= slimeData.UZIDMG*0.2f-slimeData.UZIDMG*guard;
-                else if (other.name.Contains("ShotGun") == true)
-                    hp.value -= slimeData.ShotGunDMG*0.2f-slimeData.ShotGunDMG*guard;
-                else
-                    hp.value -= slimeData.bulletDMG*0.2f-slimeData.bulletDMG*guard;
+                if (!other.GetComponent<Bullet>().isCollide)
+                {
+                    StartCoroutine(nuckBack(false, other.GetComponent<Bullet>().dir));
+                    other.GetComponent<Bullet>().isCollide = true;
+
+                    if (other.name.Contains("UZI") == true)
+                        hp.value -= slimeData.UZIDMG * 0.2f - slimeData.UZIDMG * 0.2f * guard;
+                    else if (other.name.Contains("ShotGun") == true)
+                        hp.value -= slimeData.ShotGunDMG * 0.2f - slimeData.ShotGunDMG * 0.2f * guard;
+                    else
+                        hp.value -= slimeData.bulletDMG * 0.2f - slimeData.bulletDMG * 0.2f * guard;
+                }
+                StartCoroutine(super());
+            }
+
+            if (other.CompareTag("Grenade"))
+            {
+                hp.value -= slimeData.ExplosionDMG * 0.2f - slimeData.ExplosionDMG * 0.2f * guard;
+                StartCoroutine(super());
             }
         }
     }
 
+    IEnumerator super()
+    {
+        isSuper = true;
+        yield return new WaitForSeconds(0.1f);
+        isSuper = false;
+    }
     private void Update()
     {
         if(coolTime<shotCool) 
