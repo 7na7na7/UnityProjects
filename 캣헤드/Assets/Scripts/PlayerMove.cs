@@ -7,49 +7,59 @@ using Random = UnityEngine.Random;
 
 public class PlayerMove : MonoBehaviour
 {
-    public Image hpColor;
+    [Header("이동관련")]
+    public float nuckBackPower;
+    public float DashCool;
+    public float dashTime;
+    public float dashSpeed;
+    public float speed;
+    public Animator anim;
+    public KeyCode right, left, up, down;
+    public KeyCode attack;
+    public KeyCode dash;
+    [Space]
+    [Header("무기관련")]
     public GameObject tang;
-    public GameObject popUp;
     public int[] BulletValues;
     public int[] MaxBulletValues;
     public string[] weaponNames;
     public Text weaponText;
     public int currentWeapon = 0;
     public bool[] canWeaponUse;
-    public GameObject[] bloods;
-    private bool canMove = true;
-    private bool canAttack = true;
-    public float nuckBackPower;
-    public float hpSpeed;
+    public GameObject bullet;
+    public GameObject UZIBullet;
+    public GameObject ShotGunBullet;
+    public int ShotGunBulletCount;
+    public GameObject BeanBulletObj;
+    [Space]
+    [Header("쿨타임")]
     public float GunCool;
     public float UZICooltime;
-    public float DashCool;
-    public float dashTime;
-    public float dashSpeed;
-    public Slider hp;
-    
+    public float ShotGunCool;
+    public float BeanBulletCool;
+    [Space]
     [Header("효과음 / 음악")]
     public AudioClip attackSound;
     public AudioClip noBullet;
     public AudioClip UZISound;
+    public AudioClip ShotGunSound;
     public AudioClip healSound;
     public AudioClip reLoadSound;
     public AudioClip earnGun;
     public AudioClip hitSound;
     public AudioClip weaponChangeSound;
     [Space]
-    public GameObject bullet;
-    public GameObject UZIBullet;
-    public bool isup, isright, isleft, isdown;
-    public float speed;
-    public Animator anim;
-    private bool isStop = true;
-    public KeyCode right, left, up, down;
-    public KeyCode attack;
-    public KeyCode dash;
+    [Header("-기타-")]
+    public Image hpColor;
+    public Slider hp;
+    public GameObject popUp;
+    public GameObject[] bloods;
+    public float hpSpeed;
     public float invisibleTime;
-    
-    public Transform tr;
+    [Space]
+    [Header("신경쓸필요 없어★")]
+    private Transform tr;
+    private SlimeScript slimeData;
     public float offset = 0.4f;
     private float size, screenRation, wSize;
     private AudioSource audio;
@@ -58,8 +68,15 @@ public class PlayerMove : MonoBehaviour
     private float dashCooltime = 0;
     private float fix= 1f / 255f;
     private Transform CanVasTr;
+    private bool canMove = true;
+    private bool canAttack = true;
+    private bool isStop = true;
+    public bool isup, isright, isleft, isdown;
+    
     private void Start()
     {
+        slimeData = FindObjectOfType<SlimeScript>();
+        tr = GetComponent<Transform>();
         size = Camera.main.orthographicSize;
         screenRation = (float)Screen.width / (float)Screen.height;
         wSize = Camera.main.orthographicSize * screenRation;
@@ -405,80 +422,7 @@ public class PlayerMove : MonoBehaviour
                     {
                         if (gunCooltime > GunCool)
                         {
-                            if (isleft && isup)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position,
-                                    Quaternion.Euler(0, 0, 135)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 8;
-                                Instantiate(tang, transform.position + new Vector3(-0.6f, 0.6f, 0),
-                                    Quaternion.Euler(0, 0, -45));
-                            }
-
-                            if (isleft && isdown)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position,
-                                    Quaternion.Euler(0, 0, 225)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 6;
-                                Instantiate(tang, transform.position + new Vector3(-0.5f, -0.5f, 0),
-                                    Quaternion.Euler(0, 0, 45));
-                            }
-
-                            if (isright && isup)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position,
-                                    Quaternion.Euler(0, 0, 45)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 2;
-                                Instantiate(tang, transform.position + new Vector3(0.6f, 0.6f, 0),
-                                    Quaternion.Euler(0, 0, 225));
-                            }
-
-                            if (isright && isdown)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position + new Vector3(0.1f, -0.1f, 0),
-                                    Quaternion.Euler(0, 0, 315)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 4;
-                                Instantiate(tang, transform.position + new Vector3(0.5f, -0.5f, 0),
-                                    Quaternion.Euler(0, 0, 135));
-                            }
-
-                            if (isright && !isdown && !isup)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position + new Vector3(0.1f, 0, 0),
-                                    Quaternion.Euler(0, 0, 0)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 3;
-                                Instantiate(tang, transform.position + new Vector3(0.75f, 0, 0),
-                                    Quaternion.Euler(0, 0, 180));
-                            }
-
-                            if (isleft && !isdown && !isup)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position + new Vector3(-0.1f, 0, 0),
-                                    Quaternion.Euler(0, 0, 180)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 7;
-                                Instantiate(tang, transform.position + new Vector3(-0.75f, 0, 0),
-                                    Quaternion.identity);
-                            }
-
-                            if (isup && !isright && !isleft)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position + new Vector3(0, 0.1f, 0),
-                                    Quaternion.Euler(0, 0, 90)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 1;
-                                Instantiate(tang, transform.position + new Vector3(0, 0.75f, 0),
-                                    Quaternion.Euler(0, 0, 270));
-                            }
-
-                            if (isdown && !isright && !isleft)
-                            {
-                                GameObject b = Instantiate(bullet, transform.position + new Vector3(0, -0.1f, 0),
-                                    Quaternion.Euler(0, 0, 270)) as GameObject;
-                                b.GetComponent<Bullet>().dir = 5;
-                                Instantiate(tang, transform.position + new Vector3(0, -0.75f, 0),
-                                    Quaternion.Euler(0, 0, 90));
-                            }
-
-                            audio.PlayOneShot(attackSound, 0.5f);
-                            gunCooltime = 0;
+                            Pistol();
                         }
                     }
                     else if (currentWeapon == 1)
@@ -487,81 +431,7 @@ public class PlayerMove : MonoBehaviour
                         {
                             if (gunCooltime > UZICooltime)
                             {
-                                if (isleft && isup)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position,
-                                        Quaternion.Euler(0, 0, 135)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 8;
-                                    Instantiate(tang, transform.position + new Vector3(-0.6f, 0.6f, 0),
-                                        Quaternion.Euler(0, 0, -45));
-                                }
-
-                                if (isleft && isdown)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position,
-                                        Quaternion.Euler(0, 0, 225)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 6;
-                                    Instantiate(tang, transform.position + new Vector3(-0.5f, -0.5f, 0),
-                                        Quaternion.Euler(0, 0, 45));
-                                }
-
-                                if (isright && isup)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position,
-                                        Quaternion.Euler(0, 0, 45)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 2;
-                                    Instantiate(tang, transform.position + new Vector3(0.6f, 0.6f, 0),
-                                        Quaternion.Euler(0, 0, 225));
-                                }
-
-                                if (isright && isdown)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0.1f, -0.1f, 0),
-                                        Quaternion.Euler(0, 0, 315)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 4;
-                                    Instantiate(tang, transform.position + new Vector3(0.5f, -0.5f, 0),
-                                        Quaternion.Euler(0, 0, 135));
-                                }
-
-                                if (isright && !isdown && !isup)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0.1f, 0, 0),
-                                        Quaternion.Euler(0, 0, 0)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 3;
-                                    Instantiate(tang, transform.position + new Vector3(0.75f, 0, 0),
-                                        Quaternion.Euler(0, 0, 180));
-                                }
-
-                                if (isleft && !isdown && !isup)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(-0.1f, 0, 0),
-                                        Quaternion.Euler(0, 0, 180)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 7;
-                                    Instantiate(tang, transform.position + new Vector3(-0.75f, 0, 0),
-                                        Quaternion.identity);
-                                }
-
-                                if (isup && !isright && !isleft)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0, 0.1f, 0),
-                                        Quaternion.Euler(0, 0, 90)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 1;
-                                    Instantiate(tang, transform.position + new Vector3(0, 0.75f, 0),
-                                        Quaternion.Euler(0, 0, 270));
-                                }
-
-                                if (isdown && !isright && !isleft)
-                                {
-                                    GameObject b = Instantiate(UZIBullet, transform.position + new Vector3(0, -0.1f, 0),
-                                        Quaternion.Euler(0, 0, 270)) as GameObject;
-                                    b.GetComponent<Bullet>().dir = 5;
-                                    Instantiate(tang, transform.position + new Vector3(0, -0.75f, 0),
-                                        Quaternion.Euler(0, 0, 90));
-                                }
-
-                                BulletValues[currentWeapon]--;
-                                audio.PlayOneShot(UZISound, 0.75f);
-                                gunCooltime = 0;
+                               UZI();
                             }
                         }
                         else
@@ -572,9 +442,34 @@ public class PlayerMove : MonoBehaviour
                     }
                     else if (currentWeapon == 2)
                     {
+                        if (BulletValues[currentWeapon] >= 1)
+                        {
+                            if (gunCooltime > ShotGunCool)
+                            {
+                                ShotGun();
+                            }
+                        }
+                        else
+                        {
+                            if(Input.GetKeyDown(attack)) 
+                                audio.PlayOneShot(noBullet, 1f);
+                        }
                     }
                     else if (currentWeapon == 3)
                     {
+                        if (BulletValues[currentWeapon] >= 1)
+                        {
+                            if (gunCooltime > BeanBulletCool)
+                            {
+                                //BeanBullet();
+                                Pistol();
+                            }
+                        }
+                        else
+                        {
+                            if(Input.GetKeyDown(attack)) 
+                                audio.PlayOneShot(noBullet, 1f);
+                        }
                     }
                 }
     }
@@ -719,31 +614,34 @@ public class PlayerMove : MonoBehaviour
                         audio.PlayOneShot(earnGun,0.5f);
                         canWeaponUse[1] = true;
                         canGo = false;
-                    }
-                    else
                         break;
-                }
-                else if (FindObjectOfType<GameManager>().wave >= 4)
-                {
-                    if (canWeaponUse[2] != true)
+                    }
+                   if (FindObjectOfType<GameManager>().wave >= 3)
                     {
-                        audio.PlayOneShot(earnGun,0.5f);
-                        canWeaponUse[2] = true;
-                        canGo = false;
-                    }
-                    else
-                        break;
-                }
-                else if (FindObjectOfType<GameManager>().wave >= 6)
-                {
-                    if (canWeaponUse[3] != true)
-                    {
-                        audio.PlayOneShot(earnGun,0.5f);
-                        canWeaponUse[3] = true;
-                        canGo = false;
-                    }
-                    else
-                        break;
+                        if (canWeaponUse[2] != true)
+                        {
+                            //샷건 잠금해제 팝업 띄움
+                            GameObject pop =Instantiate(popUp, CanVasTr);
+                            pop.GetComponent<Text>().text = "picked Shotgun";
+                            audio.PlayOneShot(earnGun,0.5f);
+                            canWeaponUse[2] = true;
+                            canGo = false;
+                            break;
+                        }
+                        if (FindObjectOfType<GameManager>().wave >= 4) 
+                        { 
+                            if (canWeaponUse[3] != true)
+                            { 
+                                //콩알탄 잠금해제 팝업 띄움
+                                GameObject pop =Instantiate(popUp, CanVasTr);
+                                pop.GetComponent<Text>().text = "picked Grenade";
+                                audio.PlayOneShot(earnGun,0.5f); 
+                                canWeaponUse[3] = true; 
+                                canGo = false;
+                                break;
+                            }
+                        }
+                    } 
                 }
                 break;
             }
@@ -791,11 +689,12 @@ public class PlayerMove : MonoBehaviour
                 {
                     StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                     StartCoroutine(invisibleOnce());
-                    
-                    if (other.name.Substring(0, 11) == "Bullet2_UZI")
-                        hp.value -= 5;
-                    else if (other.name.Substring(0, 7) == "Bullet2")
-                        hp.value -= 10;
+                    if (other.name.Contains("UZI") == true)
+                        hp.value -= slimeData.UZIDMG*0.4f;
+                    else if (other.name.Contains("ShotGun") == true)
+                        hp.value -= slimeData.ShotGunDMG*0.4f;
+                    else
+                        hp.value -= slimeData.bulletDMG*0.4f;
                     
                     audio.PlayOneShot(hitSound,0.2f);
                 }
@@ -810,10 +709,12 @@ public class PlayerMove : MonoBehaviour
                     StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                     StartCoroutine(invisibleOnce());
                     
-                    if (other.name.Substring(0, 11) == "Bullet1_UZI")
-                        hp.value -= 5;
-                    else if (other.name.Substring(0, 7) == "Bullet1")
-                        hp.value -= 10;
+                    if (other.name.Contains("UZI") == true)
+                        hp.value -= slimeData.UZIDMG*0.4f;
+                    else if (other.name.Contains("ShotGun") == true)
+                        hp.value -= slimeData.ShotGunDMG*0.4f;
+                    else
+                        hp.value -= slimeData.bulletDMG*0.4f;
                     
                     audio.PlayOneShot(hitSound,0.2f);
                 }
@@ -952,5 +853,262 @@ public class PlayerMove : MonoBehaviour
         sprite.color = color;
         isSuper = false;
     }
-    
+
+    private void Pistol()
+    { 
+        float bulletZ=0, x=0, y=0, z=0;
+        int dir=0;
+        Vector3 reviseValue=new Vector3(0,0,0);
+        if (isleft && isup)
+        {
+            bulletZ = 135;
+            dir = 8;
+            x = -0.6f;
+            y = 0.6f;
+            z = -45;
+        }
+        if (isleft && isdown) 
+        {
+            bulletZ = 225;
+            dir = 6;
+            x = -0.5f;
+            y = -0.5f;
+            z = 45;
+        }
+        if (isright && isup)
+        { 
+            bulletZ = 45;
+            dir = 2;
+            x = 0.6f;
+            y = 0.6f;
+            z = 225; 
+        }
+        if (isright && isdown) 
+        { 
+            reviseValue.x = 0.1f;
+            reviseValue.y = -0.1f;
+            bulletZ = 315;
+            dir = 4;
+            x = 0.5f;
+            y = -0.5f;
+            z = 135; 
+        }
+        if (isright && !isdown && !isup)
+        {
+            reviseValue.x = 0.1f;
+            bulletZ = 0;
+            dir = 3;
+            x = 0.75f;
+            y = 0; 
+            z = 180; 
+        }
+        if (isleft && !isdown && !isup) {
+            reviseValue.x = -0.1f;
+            bulletZ =180;
+            dir = 7;
+            x = -0.75f;
+            y = 0;
+            z = 0;
+        }
+        if (isup && !isright && !isleft) {
+            reviseValue.y = 0.1f;
+            bulletZ = 90;
+            dir = 1;
+            x = 0;
+            y = 0.75f;
+            z = 270;
+        }
+        if (isdown && !isright && !isleft) {
+            reviseValue.y = -0.1f;
+            bulletZ = 270;
+            dir = 5;
+            x = 0;
+            y = -0.75f;
+            z = 90;
+        }
+         
+         GameObject b = Instantiate(bullet, transform.position+reviseValue,
+             Quaternion.Euler(0, 0, bulletZ)) as GameObject;
+         b.GetComponent<Bullet>().dir = dir;
+         Instantiate(tang, transform.position + new Vector3(x, y, 0),
+             Quaternion.Euler(0, 0, z));
+
+        audio.PlayOneShot(attackSound, 0.5f);
+        gunCooltime = 0;
+    }
+
+    void UZI()
+    {
+        float bulletZ=0, x=0, y=0, z=0;
+        int dir=0;
+        Vector3 reviseValue=new Vector3(0,0,0);
+        if (isleft && isup)
+        {
+            bulletZ = 135;
+            dir = 8;
+            x = -0.6f;
+            y = 0.6f;
+            z = -45;
+        }
+        if (isleft && isdown) 
+         {
+             bulletZ = 225;
+             dir = 6;
+             x = -0.5f;
+             y = -0.5f;
+             z = 45;
+         }
+        if (isright && isup)
+        { 
+            bulletZ = 45;
+            dir = 2;
+            x = 0.6f;
+            y = 0.6f;
+            z = 225; 
+        }
+        if (isright && isdown) 
+        { 
+            reviseValue.x = 0.1f;
+            reviseValue.y = -0.1f;
+            bulletZ = 315;
+            dir = 4;
+            x = 0.5f;
+            y = -0.5f;
+            z = 135; 
+        }
+        if (isright && !isdown && !isup)
+         {
+             reviseValue.x = 0.1f;
+             bulletZ = 0;
+             dir = 3;
+             x = 0.75f;
+             y = 0; 
+             z = 180; 
+         }
+        if (isleft && !isdown && !isup) {
+            reviseValue.x = -0.1f;
+            bulletZ =180;
+            dir = 7;
+            x = -0.75f;
+            y = 0;
+            z = 0;
+        }
+        if (isup && !isright && !isleft) {
+            reviseValue.y = 0.1f;
+            bulletZ = 90;
+            dir = 1;
+            x = 0;
+            y = 0.75f;
+            z = 270;
+        }
+        if (isdown && !isright && !isleft) {
+            reviseValue.y = -0.1f;
+            bulletZ = 270;
+            dir = 5;
+            x = 0;
+            y = -0.75f;
+            z = 90;
+        }
+        GameObject b = Instantiate(UZIBullet, transform.position+reviseValue,
+            Quaternion.Euler(0, 0, bulletZ)) as GameObject;
+        b.GetComponent<Bullet>().dir = dir;
+        Instantiate(tang, transform.position + new Vector3(x, y, 0),
+            Quaternion.Euler(0, 0, z));
+        BulletValues[currentWeapon]--;
+        audio.PlayOneShot(UZISound, 0.75f);
+        gunCooltime = 0;
+    }
+
+    void ShotGun()
+    {
+        float bulletZ=0, x=0, y=0, z=0;
+        int dir=0;
+        Vector3 reviseValue=new Vector3(0,0,0);
+        if (isleft && isup)
+        {
+            bulletZ = 135;
+            dir = 8;
+            x = -0.6f;
+            y = 0.6f;
+            z = -45;
+        }
+        if (isleft && isdown) 
+        {
+            bulletZ = 225;
+            dir = 6;
+            x = -0.5f;
+            y = -0.5f;
+            z = 45;
+        }
+        if (isright && isup)
+        { 
+            bulletZ = 45;
+            dir = 2;
+            x = 0.6f;
+            y = 0.6f;
+            z = 225; 
+        }
+        if (isright && isdown) 
+        { 
+            reviseValue.x = 0.1f;
+            reviseValue.y = -0.1f;
+            bulletZ = 315;
+            dir = 4;
+            x = 0.5f;
+            y = -0.5f;
+            z = 135; 
+        }
+        if (isright && !isdown && !isup)
+        {
+            reviseValue.x = 0.1f;
+            bulletZ = 0;
+            dir = 3;
+            x = 0.75f;
+            y = 0; 
+            z = 180; 
+        }
+        if (isleft && !isdown && !isup) {
+            reviseValue.x = -0.1f;
+            bulletZ =180;
+            dir = 7;
+            x = -0.75f;
+            y = 0;
+            z = 0;
+        }
+        if (isup && !isright && !isleft) {
+            reviseValue.y = 0.1f;
+            bulletZ = 90;
+            dir = 1;
+            x = 0;
+            y = 0.75f;
+            z = 270;
+        }
+        if (isdown && !isright && !isleft) {
+            reviseValue.y = -0.1f;
+            bulletZ = 270;
+            dir = 5;
+            x = 0;
+            y = -0.75f;
+            z = 90;
+        }
+
+        for (int i = 0; i < ShotGunBulletCount; i++)
+        {
+            GameObject b = Instantiate(ShotGunBullet, transform.position+reviseValue,
+                Quaternion.Euler(0, 0, bulletZ)) as GameObject;
+            b.GetComponent<Bullet>().dir = dir;
+        }
+        Instantiate(tang, transform.position + new Vector3(x, y, 0),
+             Quaternion.Euler(0, 0, z));
+         
+         
+         BulletValues[currentWeapon]--;
+         audio.PlayOneShot(ShotGunSound, 0.5f);
+         gunCooltime = 0;
+    }
+
+    void BeanBullet()
+    {
+        
+    }
 }

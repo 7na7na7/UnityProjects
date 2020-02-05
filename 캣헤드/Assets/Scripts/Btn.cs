@@ -9,6 +9,10 @@ using Random = UnityEngine.Random;
 
 public class Btn : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerDownHandler
 {
+    private bool isonce = true;
+    public AudioSource audio;
+    public AudioClip ready;
+    public AudioClip start;
     private bool isBtnDown = false;
     public string goSceneName;
     private Vector2 firstPos;
@@ -36,6 +40,7 @@ public class Btn : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoint
     public void OnPointerEnter(PointerEventData eventData)
     {
         isBtnDown = true;
+        audio.PlayOneShot(ready,1f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -45,11 +50,23 @@ public class Btn : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoint
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        SceneManager.LoadScene(goSceneName);
+        if (isonce)
+        {
+            isonce = false;
+            StartCoroutine(delayChange());
+        }
+
     }
 
     public void youtuub()
     {
         Application.OpenURL("https://www.youtube.com/watch?v=KA3KUaeyDbw");
+    }
+
+    IEnumerator delayChange()
+    {
+        audio.PlayOneShot(start,1f);
+            yield return new WaitForSeconds(0.5f);
+            SceneManager.LoadScene(goSceneName);
     }
 }

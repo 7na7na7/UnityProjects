@@ -17,7 +17,20 @@ public class ItemSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            Instantiate(item,transform.position,Quaternion.identity);
+            GameObject[] obs = GameObject.FindGameObjectsWithTag("Item");
+            if (obs.Length < 2)
+            {
+                if (obs.Length == 1)
+                {
+                    if (obs[0].transform.position == transform.position)
+                        Instantiate(item, new Vector2(transform.position.x*-1, transform.position.y * -1 - 1),
+                            Quaternion.identity);
+                    else
+                        Instantiate(item, transform.position, Quaternion.identity);
+                }
+                else
+                    Instantiate(item, transform.position, Quaternion.identity);
+            }
         }
     }
 }

@@ -7,8 +7,10 @@ using Random = UnityEngine.Random;
 
 public class SlimeScript : MonoBehaviour
 {
+    public GameObject hpCanvas;
     public float bulletDMG;
     public float UZIDMG;
+    public float ShotGunDMG;
     private float guard = 0f;
     public float nuckBackPower;
     public GameObject[] bloods;
@@ -23,78 +25,88 @@ public class SlimeScript : MonoBehaviour
 
     private void Start()
     {
-        gm = FindObjectOfType<GameManager>();
-        gm.zombieCreate();
-        if (gm.currentzombie > gm.zombiecount[gm.i])
+        if (gameObject.name != "SlimeData")
         {
-            gm.currentzombie--;
-            Destroy(gameObject);
-        }
+            gm = FindObjectOfType<GameManager>();
+            gm.zombieCreate();
+            if (gm.currentzombie > gm.zombiecount[gm.i])
+            {
+                gm.currentzombie--;
+                Destroy(gameObject);
+            }
 
-        for (int i = 0; i < 150; i++)
-        {
-            radius[i] = i * 0.2f;
-        }
+            for (int i = 0; i < 150; i++)
+            {
+                radius[i] = i * 0.2f;
+            }
 
-        guardUp();
+            guardUp();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
+        if (gameObject.name != "SlimeData")
         {
-            if (!other.GetComponent<Bullet>().isCollide)
+            if (other.CompareTag("Bullet"))
             {
-                StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
-                other.GetComponent<Bullet>().isCollide = true;
-                if (other.name.Substring(0, 11) == "Bullet1_UZI" || other.name.Substring(0, 11) == "Bullet2_UZI")
+                if (!other.GetComponent<Bullet>().isCollide)
                 {
-                    print("AFAS");
-                    hp.value -= UZIDMG - UZIDMG * guard;
+                    StartCoroutine(nuckBack(false, other.GetComponent<Bullet>().dir));
+                    other.GetComponent<Bullet>().isCollide = true;
+                    if (other.name.Contains("UZI") == true)
+                        hp.value -= UZIDMG-UZIDMG* guard;
+                    else if (other.name.Contains("ShotGun") == true)
+                        hp.value -= ShotGunDMG -ShotGunDMG* guard;
+                    else
+                    {
+                        hp.value -= bulletDMG -bulletDMG* guard;
+                    }
                 }
-                else if(other.name.Substring(0, 7) == "Bullet1"||other.name.Substring(0, 7) == "Bullet2") 
-                    hp.value -= bulletDMG-bulletDMG*guard;
             }
         }
     }
 
     private void Update()
     {
-        if (canMove)
+        if (gameObject.name != "SlimeData")
         {
-            if (isUp)
+            if (canMove)
             {
-                transform.Translate(Vector2.down * Time.deltaTime * speed);
-            }
-            else if (isDown)
-            {
-                transform.Translate(Vector2.up * Time.deltaTime * speed);
-            }
-            else
-            {
-                int i = 0;
-                while (true)
+                if (isUp)
                 {
-                    Collider2D col = Physics2D.OverlapCircle(transform.position, radius[i], layer);
-                    if (col != null) //플레이어가 비지 않았다면
+                    transform.Translate(Vector2.down * Time.deltaTime * speed);
+                }
+                else if (isDown)
+                {
+                    transform.Translate(Vector2.up * Time.deltaTime * speed);
+                }
+                else
+                {
+                    int i = 0;
+                    while (true)
                     {
-                        //부드럽게 플레이어를 따라감
-                        Vector2 dir = col.transform.position - transform.position;
-                        dir.Normalize();
-                        transform.Translate(dir * Time.deltaTime * speed);
-                        transform.position = new Vector3(transform.position.x, transform.position.y, 0); //Z축 고정
-                        break;
-                    }
-                    else
-                    {
-                        i++;
+                        Collider2D col = Physics2D.OverlapCircle(transform.position, radius[i], layer);
+                        if (col != null) //플레이어가 비지 않았다면
+                        {
+                            //부드럽게 플레이어를 따라감
+                            Vector2 dir = col.transform.position - transform.position;
+                            dir.Normalize();
+                            transform.Translate(dir * Time.deltaTime * speed);
+                            transform.position = new Vector3(transform.position.x, transform.position.y, 0); //Z축 고정
+                            break;
+                        }
+                        else
+                        {
+                            i++;
+                        }
                     }
                 }
-            }
 
-            if (hp.value <= 0)
-            {
-                StartCoroutine(die());
+                if (hp.value <= 0)
+                {
+                    StartCoroutine(die());
+                }
             }
         }
     }
@@ -116,7 +128,7 @@ public class SlimeScript : MonoBehaviour
 
     IEnumerator die()
     {
-        Destroy(hp.gameObject);
+        hpCanvas.SetActive(false);
         canMove = false;
         float a = 1f;
         SpriteRenderer spr = GetComponent<SpriteRenderer>();
@@ -200,7 +212,7 @@ public class SlimeScript : MonoBehaviour
      {
          for (int i = 0; i < gm.wave; i++)
          {
-             guard += 0.01f;
+             guard += 0.03f;
          }
      }
 }

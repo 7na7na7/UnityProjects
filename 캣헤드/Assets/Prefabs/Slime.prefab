@@ -496,8 +496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d2c3b0f4fabba49bae84ccf9c658ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDMG: 35
-  UZIDMG: 20
+  hpCanvas: {fileID: 5110186823241810643}
+  bulletDMG: 40
+  UZIDMG: 30
+  ShotGunDMG: 25
   nuckBackPower: 0.05
   bloods:
   - {fileID: 5178661259320917261, guid: 5f4e2429c3a33f2449ea341fac8eaaa0, type: 3}

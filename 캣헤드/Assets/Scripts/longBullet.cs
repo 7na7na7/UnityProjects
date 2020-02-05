@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class longBullet : MonoBehaviour
 {
+    public float clusterRate = 2.5f;
     public bool canLong = true;
     public float bulletSpeed;
     void Start()
     {
-        float r = Random.Range(-2.5f,2.5f);
+        float r = Random.Range(clusterRate*-1f,clusterRate);
         transform.eulerAngles=new Vector3(transform.eulerAngles.x,transform.eulerAngles.y,transform.eulerAngles.z+r);
         transform.Translate(0.5f,0,0);
     }

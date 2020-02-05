@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class BossScript : MonoBehaviour
 {
-    public float bulletDMG;
-    public float UZIDMG;
+    public GameObject hpCanvas;
     private float guard = 0f;
     public float nuckBackPower;
     public GameObject[] bloods;
@@ -22,8 +21,10 @@ public class BossScript : MonoBehaviour
     private float coolTime=0;
     public float shotCool = 0.5f;
     public GameObject bullet;
+    private SlimeScript slimeData;
     private void Start()
     {
+        slimeData = FindObjectOfType<SlimeScript>();
         gm = FindObjectOfType<GameManager>();
         gm.zombieCreate();
         if (gm.currentzombie > gm.zombiecount[gm.i])
@@ -46,10 +47,13 @@ public class BossScript : MonoBehaviour
             {
                 StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
                 other.GetComponent<Bullet>().isCollide = true;
-                if(other.name.Substring(0, 7) == "Bullet1"||other.name.Substring(0, 7) == "Bullet2") 
-                    hp.value -= bulletDMG-bulletDMG*guard;
-                else if (other.name.Substring(0, 11) == "Bullet1_UZI"||other.name.Substring(0, 11) == "Bullet2_UZI")
-                    hp.value -= UZIDMG-UZIDMG*guard;
+                
+                if (other.name.Contains("UZI") == true)
+                    hp.value -= slimeData.UZIDMG*0.2f-slimeData.UZIDMG*guard;
+                else if (other.name.Contains("ShotGun") == true)
+                    hp.value -= slimeData.ShotGunDMG*0.2f-slimeData.ShotGunDMG*guard;
+                else
+                    hp.value -= slimeData.bulletDMG*0.2f-slimeData.bulletDMG*guard;
             }
         }
     }
@@ -212,7 +216,7 @@ public class BossScript : MonoBehaviour
 
     IEnumerator die()
     {
-        Destroy(hp.gameObject);
+        hpCanvas.SetActive(false);
         canMove = false;
         float a = 1f;
         SpriteRenderer spr = GetComponent<SpriteRenderer>();
@@ -246,7 +250,7 @@ public class BossScript : MonoBehaviour
     {
         for (int i = 0; i < gm.wave; i++)
         {
-            guard += 0.01f;
+            guard += 0.04f;
         }
     }
 }

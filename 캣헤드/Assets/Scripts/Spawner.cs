@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    public int doubleBossWave;
     public float SpawnDelayUpValue;
     private bool canBossSpawn = true;
     public GameObject BossMonster;
@@ -18,7 +19,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        if (gameObject.name == "LSpawner" || gameObject.name == "RSpawner" || gameObject.name == "LRSpawner"|| gameObject.name == "RSpawner2" || gameObject.name == "LSpawner2"
+        if (gameObject.name == "LSpawner" || gameObject.name == "RSpawner" || gameObject.name == "BossSpawner"|| gameObject.name == "RSpawner2" || gameObject.name == "LSpawner2"
             || gameObject.name == "RSpawner3" || gameObject.name == "LSpawner3"|| gameObject.name == "UpSpawner2" || gameObject.name == "DownSpawner2"
             || gameObject.name == "UpSpawner3" || gameObject.name == "DownSpawner3" || gameObject.name == "UpSpawner4" || gameObject.name == "DownSpawner4")
         {
@@ -34,27 +35,23 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.name == "LRSpawner")
+        if (gameObject.name == "BossSpawner")
         {
-            if (gm.wave >= 1)
+            if (gm.wave >= doubleBossWave)
             {
                 if (gm.currentzombie == gm.zombiecount[gm.i] - 2)
                 {
                     if (canBossSpawn)
                     {
-                        Instantiate(BossMonster, transform.position, Quaternion.identity);
-                    if (gm.currentzombie == gm.zombiecount[gm.i] - 1)
-                    {
-                        if (canBossSpawn)
-                            {
-                                Instantiate(BossMonster, transform.position, Quaternion.identity);
-                                canBossSpawn = false;
-                                samlldelay -= samlldelay * SpawnDelayUpValue;
-                                bigdelay -= bigdelay * SpawnDelayUpValue;
-                                StartCoroutine(delaySet());
-                            }
-                        }
-                    } 
+
+                        Instantiate(BossMonster, transform.position+new Vector3(9,0,0), Quaternion.identity);
+                        Instantiate(BossMonster, transform.position+new Vector3(-9,0,0), Quaternion.identity);
+                        
+                        canBossSpawn = false;
+                        samlldelay -= samlldelay*SpawnDelayUpValue;
+                        bigdelay -= bigdelay*SpawnDelayUpValue;
+                        StartCoroutine(delaySet());
+                    }
                 } 
             }
             else
@@ -63,7 +60,11 @@ public class Spawner : MonoBehaviour
                 {
                     if (canBossSpawn)
                     {
-                        Instantiate(BossMonster, transform.position, Quaternion.identity);
+                        int r = Random.Range(0, 2);
+                        if(r==0) 
+                            Instantiate(BossMonster, transform.position+new Vector3(9,0,0), Quaternion.identity);
+                        else
+                            Instantiate(BossMonster, transform.position+new Vector3(-9,0,0), Quaternion.identity);
                         canBossSpawn = false;
                         samlldelay -= samlldelay*SpawnDelayUpValue;
                         bigdelay -= bigdelay*SpawnDelayUpValue;

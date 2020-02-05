@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawn());
         StartCoroutine(PopUPCor());
         CanvasTr = GameObject.Find("Canvas").GetComponent<Transform>();
+        currentzombie--;
     }
-
     private void Update()
     {
         if(p1Dead&&p2Dead)
