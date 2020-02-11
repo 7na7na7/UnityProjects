@@ -11,6 +11,7 @@ public class BeanBulletScript : MonoBehaviour
     public float speed;
     public float force;
     public GameObject explosion;
+    public bool canCluster = true;
     void Start()
     {
         audio = Camera.main.GetComponent<AudioSource>();
@@ -28,9 +29,40 @@ public class BeanBulletScript : MonoBehaviour
         speed = 0;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         yield return new WaitForSeconds(0.75f);
-        Instantiate(explosion, transform.position, Quaternion.identity);
-        audio.PlayOneShot(explosionSound,1f);
-        Destroy(gameObject);
+        if (FindObjectOfType<GameManager>().GrenadeUp)
+        {
+            if (canCluster)
+            {
+                Instantiate(explosion, transform.position, Quaternion.identity);
+                audio.PlayOneShot(explosionSound,1f);
+                
+                GameObject b = Instantiate(gameObject, transform.position,
+                    Quaternion.Euler(0, 0, 45)) as GameObject;
+                b.GetComponent<BeanBulletScript>().speed = 1.3f;
+                b.GetComponent<BeanBulletScript>().canCluster = false;
+                GameObject db = Instantiate(gameObject, transform.position,
+                    Quaternion.Euler(0, 0, 135)) as GameObject;
+                db.GetComponent<BeanBulletScript>().speed = 1.3f;
+                db.GetComponent<BeanBulletScript>().canCluster = false;
+                GameObject cb = Instantiate(gameObject, transform.position,
+                    Quaternion.Euler(0, 0, 225)) as GameObject;
+                cb.GetComponent<BeanBulletScript>().speed = 1.3f;
+                cb.GetComponent<BeanBulletScript>().canCluster = false;
+                GameObject scb = Instantiate(gameObject, transform.position,
+                    Quaternion.Euler(0, 0, 315)) as GameObject;
+                scb.GetComponent<BeanBulletScript>().speed = 1.3f;
+                scb.GetComponent<BeanBulletScript>().canCluster = false;
+                
+                
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instantiate(explosion, transform.position, Quaternion.identity);
+                audio.PlayOneShot(explosionSound,1f);
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void Update()

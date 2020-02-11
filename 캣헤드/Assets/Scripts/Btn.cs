@@ -25,13 +25,11 @@ public class Btn : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoint
     private void Update()
     {
         if (isBtnDown) {
-            print("A"); 
             GetComponent<Text>().color = Color.black;
             transform.Translate(Random.Range(-0.025f,0.025f),Random.Range(-0.025f,0.025f),0);
         }
         else
         {
-            print("B");
             GetComponent<Text>().color = new Color(0.6f, 0.6f, 0.6f);
             transform.position = firstPos;
         }
@@ -58,15 +56,21 @@ public class Btn : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoint
 
     }
 
-    public void youtuub()
-    {
-        Application.OpenURL("https://www.youtube.com/watch?v=KA3KUaeyDbw");
-    }
+   
 
     IEnumerator delayChange()
     {
-        audio.PlayOneShot(start,1f);
+        if (goSceneName == "Exit")
+        {
+            Application.Quit();
+        }
+        else
+        {
+            audio.PlayOneShot(start, 1f);
             yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene(goSceneName);
+        }
     }
+
+  
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +10,23 @@ public class DelayDestroy : MonoBehaviour
     void Start()
     {
         Destroy(gameObject,delay);
+        try
+        {
+            if (transform.GetChild(0).gameObject.name == "Explosion")
+            {
+                FindObjectOfType<GameManager>().flash();
+                Destroy(transform.GetChild(0).gameObject.GetComponent<CircleCollider2D>(), 0.5f);
+            }
+        }
+        catch (Exception e)
+        {
+        }
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator delaydelete()
     {
+        yield return new WaitForSeconds(0.5f);
         
     }
 }

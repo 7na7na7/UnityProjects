@@ -14,9 +14,10 @@ public class PlayerMove : MonoBehaviour
     public float dashSpeed;
     public float speed;
     public Animator anim;
-    public KeyCode right, left, up, down;
-    public KeyCode attack;
-    public KeyCode dash;
+    private KeyCode right, left, up, down;
+    private KeyCode attack;
+    private KeyCode dash;
+    private KeyCode change1, change2;
     [Space]
     [Header("무기관련")]
     public GameObject tang;
@@ -31,12 +32,15 @@ public class PlayerMove : MonoBehaviour
     public GameObject ShotGunBullet;
     public int ShotGunBulletCount;
     public GameObject BeanBulletObj;
+    public GameObject ContainerObj;
+    public GameObject WallObj;
     [Space]
     [Header("쿨타임")]
     public float GunCool;
     public float UZICooltime;
     public float ShotGunCool;
     public float BeanBulletCool;
+    public float ContainerCool;
     [Space]
     [Header("효과음 / 음악")]
     public AudioClip attackSound;
@@ -49,6 +53,8 @@ public class PlayerMove : MonoBehaviour
     public AudioClip earnGun;
     public AudioClip hitSound;
     public AudioClip weaponChangeSound;
+    public AudioClip ContainerSound;
+    public AudioClip WallSound;
     [Space]
     [Header("-기타-")]
     public Image hpColor;
@@ -74,7 +80,6 @@ public class PlayerMove : MonoBehaviour
     private bool isStop = true;
     public bool isup, isright, isleft, isdown;
     private float BeanForce = 0;
-    
     private void Start()
     {
         slimeData = FindObjectOfType<SlimeScript>();
@@ -91,6 +96,30 @@ public class PlayerMove : MonoBehaviour
         for (int i = 0; i < MaxBulletValues.Length; i++)
         {
             MaxBulletValues[i] = BulletValues[i];
+        }
+
+        if (gameObject.name.Substring(0, 7) == "Player1")
+        {
+            right = KeySetting.instance.right1;
+            left = KeySetting.instance.left1;
+            up = KeySetting.instance.up1;
+            down = KeySetting.instance.down1;
+            attack = KeySetting.instance.shot1;
+            dash = KeySetting.instance.dash1;
+            change1 = KeySetting.instance.change11;
+            change2 = KeySetting.instance.change12;
+        }
+        else
+        {
+            right = KeySetting.instance.right2;
+            left = KeySetting.instance.left2;
+            up = KeySetting.instance.up2;
+            down = KeySetting.instance.down2;
+            attack = KeySetting.instance.shot2;
+            dash = KeySetting.instance.dash2;
+            change1 = KeySetting.instance.change21;
+            change2 = KeySetting.instance.change22;
+
         }
     }
 
@@ -334,18 +363,54 @@ public class PlayerMove : MonoBehaviour
    
     private void Update()
     {
+        if (FindObjectOfType<GameManager>().wave >= 3)
+        {
+            if (GunCool== 0.5f)
+                GunCool *= 0.5f;
+        }
+        
+        if (FindObjectOfType<GameManager>().wave >= 5)
+        {
+            if (UZICooltime == 0.15f)
+            {
+                UZICooltime *= 0.75f;
+                BulletValues[1] =200;
+                for (int i = 0; i < MaxBulletValues.Length; i++)
+                {
+                    MaxBulletValues[i] = BulletValues[i];
+                }
+            }
+        }
+        if (FindObjectOfType<GameManager>().wave >= 7)
+        {
+            if (ShotGunCool == 0.75f)
+            {
+                ShotGunCool *= 0.75f;
+                BulletValues[2] =100;
+                for (int i = 0; i < MaxBulletValues.Length; i++)
+                {
+                    MaxBulletValues[i] = BulletValues[i];
+                }
+            }
+        }
+        if (FindObjectOfType<GameManager>().wave >= 9)
+        {
+           //GameManager에서 수류탄업글됨
+        }
+
+
         if (gameObject.name.Substring(0, 7) == "Player1")
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(change1))
                 ChangeWeapon(false);
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetKeyDown(change2))
                 ChangeWeapon(true);
         }
         else if (gameObject.name.Substring(0, 7) == "Player2")
         {
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetKeyDown(change1))
                 ChangeWeapon(false);
-            if (Input.GetKeyDown(KeyCode.Keypad2))
+            if (Input.GetKeyDown(change2))
                 ChangeWeapon(true);
         }
         
@@ -420,14 +485,14 @@ public class PlayerMove : MonoBehaviour
     {
            if (Input.GetKey(attack))
                 {
-                    if (currentWeapon == 0)
+                    if (currentWeapon == 0) //PISTOL
                     {
                         if (gunCooltime > GunCool)
                         {
                             Pistol();
                         }
                     }
-                    else if (currentWeapon == 1)
+                    else if (currentWeapon == 1) //UZI
                     {
                         if (BulletValues[currentWeapon] >= 1)
                         {
@@ -442,7 +507,7 @@ public class PlayerMove : MonoBehaviour
                                 audio.PlayOneShot(noBullet, 1f);
                         }
                     }
-                    else if (currentWeapon == 2)
+                    else if (currentWeapon == 2) //SHOTGUN
                     {
                         if (BulletValues[currentWeapon] >= 1)
                         {
@@ -457,13 +522,28 @@ public class PlayerMove : MonoBehaviour
                                 audio.PlayOneShot(noBullet, 1f);
                         }
                     }
-                    else if (currentWeapon == 3)
+                    else if (currentWeapon == 3)//GRENADE
                     {
                         if (BulletValues[currentWeapon] >= 1)
                         {
                             if (gunCooltime > BeanBulletCool)
                             {
                                 BeanForce += Time.deltaTime;
+                            }
+                        }
+                        else
+                        {
+                            if(Input.GetKeyDown(attack)) 
+                                audio.PlayOneShot(noBullet, 1f);
+                        }
+                    }
+                    else if (currentWeapon == 4)//CONTAINER
+                    {
+                        if (BulletValues[currentWeapon] >= 1)
+                        {
+                            if (gunCooltime > ContainerCool)
+                            {
+                                Container();
                             }
                         }
                         else
@@ -579,26 +659,6 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Slime"))
-        {
-            if (!isSuper)
-            {
-                audio.PlayOneShot(hitSound,0.2f);
-                StartCoroutine(invisibleOnce());
-                StartCoroutine(nuckBack(false,0));
-                hp.value -= 5;
-            }
-        }
-        if (other.CompareTag("BossSlime"))
-        {
-            if (!isSuper)
-            {
-                audio.PlayOneShot(hitSound,0.2f);
-                StartCoroutine(invisibleOnce());
-                StartCoroutine(nuckBack(false,0));
-                hp.value -= 15;
-            }
-        }
         if (other.CompareTag("BossBullet"))
         {
             if (!isSuper)
@@ -625,7 +685,7 @@ public class PlayerMove : MonoBehaviour
                         canGo = false;
                         break;
                     }
-                   if (FindObjectOfType<GameManager>().wave >= 3)
+                   if (FindObjectOfType<GameManager>().wave >= 4)
                     {
                         if (canWeaponUse[2] != true)
                         {
@@ -637,7 +697,7 @@ public class PlayerMove : MonoBehaviour
                             canGo = false;
                             break;
                         }
-                        if (FindObjectOfType<GameManager>().wave >= 4) 
+                        if (FindObjectOfType<GameManager>().wave >= 6) 
                         { 
                             if (canWeaponUse[3] != true)
                             { 
@@ -648,6 +708,19 @@ public class PlayerMove : MonoBehaviour
                                 canWeaponUse[3] = true; 
                                 canGo = false;
                                 break;
+                            }
+                            if (FindObjectOfType<GameManager>().wave >= 8) 
+                            { 
+                                if (canWeaponUse[4] != true)
+                                { 
+                                    //콩알탄 잠금해제 팝업 띄움
+                                    GameObject pop =Instantiate(popUp, CanVasTr);
+                                    pop.GetComponent<Text>().text = "picked Container";
+                                    audio.PlayOneShot(earnGun,0.5f); 
+                                    canWeaponUse[4] = true; 
+                                    canGo = false;
+                                    break;
+                                }
                             }
                         }
                     } 
@@ -669,6 +742,8 @@ public class PlayerMove : MonoBehaviour
                 {
                     audio.PlayOneShot(healSound,0.25f);
                     hp.value = 100;
+                    GameObject pop =Instantiate(popUp, CanVasTr);
+                    pop.GetComponent<Text>().text = "HP Healed";
                 }
                 else
                 {
@@ -677,7 +752,8 @@ public class PlayerMove : MonoBehaviour
                         audio.PlayOneShot(reLoadSound,0.4f);
                         BulletValues[r] = MaxBulletValues[r];
                         GameObject pop =Instantiate(popUp, CanVasTr);
-                        pop.GetComponent<Text>().text = "UZI Reloaded";
+                        
+                        pop.GetComponent<Text>().text = weaponNames[r]+" Reloaded";
                     }
                     else
                     {
@@ -697,7 +773,6 @@ public class PlayerMove : MonoBehaviour
                 if (!isSuper)
                 {
                     StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
-                    StartCoroutine(invisibleOnce());
                     if (other.name.Contains("UZI") == true)
                         hp.value -= slimeData.UZIDMG*0.4f;
                     else if (other.name.Contains("ShotGun") == true)
@@ -705,6 +780,8 @@ public class PlayerMove : MonoBehaviour
                     else
                         hp.value -= slimeData.bulletDMG*0.4f;
                     
+                    if (other.name.Contains("ShotGun") != true)
+                        StartCoroutine(invisibleOnce());
                     audio.PlayOneShot(hitSound,0.2f);
                 }
             }
@@ -716,8 +793,7 @@ public class PlayerMove : MonoBehaviour
                 if (!isSuper)
                 {
                     StartCoroutine(nuckBack(false,other.GetComponent<Bullet>().dir));
-                    StartCoroutine(invisibleOnce());
-                    
+
                     if (other.name.Contains("UZI") == true)
                         hp.value -= slimeData.UZIDMG*0.4f;
                     else if (other.name.Contains("ShotGun") == true)
@@ -725,11 +801,12 @@ public class PlayerMove : MonoBehaviour
                     else
                         hp.value -= slimeData.bulletDMG*0.4f;
                     
+                    if (other.name.Contains("ShotGun") != true)
+                        StartCoroutine(invisibleOnce());
                     audio.PlayOneShot(hitSound,0.2f);
                 }
             }
         }
-
         if (other.name.Contains("Explosion") == true)
         {
             if (!isSuper)
@@ -742,35 +819,39 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Slime"))
+        if (other.gameObject.CompareTag("Slime"))
         {
             if (!isSuper)
             {
-                hp.value -= 1.5f;
-                StartCoroutine(nuckBack(true));
+                audio.PlayOneShot(hitSound,0.2f);
                 StartCoroutine(invisibleOnce());
+                StartCoroutine(nuckBack(false,0));
+                hp.value -= 5;
             }
         }
-        if (other.CompareTag("BossSlime"))
+        if (other.gameObject.CompareTag("BossSlime"))
         {
             if (!isSuper)
             {
-                hp.value -= 3f;
-                StartCoroutine(nuckBack(true));
+                audio.PlayOneShot(hitSound,0.2f);
                 StartCoroutine(invisibleOnce());
+                StartCoroutine(nuckBack(false,0));
+                hp.value -= 15;
             }
         }
     }
 
     IEnumerator Dash()
     {
+        GetComponent<Collider2D>().enabled = false;
         isSuper = true;
         speed *= dashSpeed;
         yield return new WaitForSeconds(dashTime);
         speed /= dashSpeed;
         isSuper = false;
+        GetComponent<Collider2D>().enabled = true;
     }
    
     IEnumerator invisible()
@@ -873,7 +954,7 @@ public class PlayerMove : MonoBehaviour
         isSuper = false;
     }
 
-    private void Pistol()
+    void Pistol()
     { 
         float bulletZ=0, x=0, y=0, z=0;
         int dir=0;
@@ -1168,18 +1249,25 @@ public class PlayerMove : MonoBehaviour
             dir = 5;
         }
 
-        for (int i = 0; i < ShotGunBulletCount; i++)
-        {
+      
             GameObject b = Instantiate(BeanBulletObj, transform.position,
                 Quaternion.Euler(0, 0, bulletZ)) as GameObject;
-            if (force > 2f)
-                force = 2f;
+            force += 0.3f;
+            if (force > 2)
+                force = 2;
             b.GetComponent<BeanBulletScript>().speed=force*5;
-        }
 
 
         BulletValues[currentWeapon]--;
          audio.PlayOneShot(GrenadeSound, 0.5f);
          gunCooltime = 0;  
+    }
+
+    void Container()
+    {
+        Instantiate(ContainerObj, transform.position, Quaternion.identity);
+        BulletValues[currentWeapon]--;
+         audio.PlayOneShot(ContainerSound, 1f);
+         gunCooltime = 0;
     }
 }

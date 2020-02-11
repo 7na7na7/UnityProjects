@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BossScript : MonoBehaviour
 {
-    private bool isSuper = false;
     public GameObject hpCanvas;
     private float guard = 0f;
     public float nuckBackPower;
@@ -42,9 +41,7 @@ public class BossScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isSuper)
-        {
-            if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet"))
             {
                 if (!other.GetComponent<Bullet>().isCollide)
                 {
@@ -58,23 +55,14 @@ public class BossScript : MonoBehaviour
                     else
                         hp.value -= slimeData.bulletDMG * 0.2f - slimeData.bulletDMG * 0.2f * guard;
                 }
-                StartCoroutine(super());
             }
 
             if (other.CompareTag("Grenade"))
             {
                 hp.value -= slimeData.ExplosionDMG * 0.2f - slimeData.ExplosionDMG * 0.2f * guard;
-                StartCoroutine(super());
             }
-        }
     }
-
-    IEnumerator super()
-    {
-        isSuper = true;
-        yield return new WaitForSeconds(0.1f);
-        isSuper = false;
-    }
+    
     private void Update()
     {
         if(coolTime<shotCool) 
@@ -89,10 +77,10 @@ public class BossScript : MonoBehaviour
             {
                 transform.Translate(Vector2.up * Time.deltaTime * speed);
             }
-            if (hp.value <= 0)
-            {
-                StartCoroutine(die());
-            }
+        }
+        if (hp.value <= 0)
+        {
+            StartCoroutine(die());
         }
                         //감지시
                 Collider2D col = Physics2D.OverlapCircle(transform.position, shotRadius, layer);
@@ -102,9 +90,14 @@ public class BossScript : MonoBehaviour
                     {
                         if (coolTime > shotCool)
                         {
-                            GameObject b = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
-                            b.GetComponent<BossBullet>().Set(col.gameObject);
-                            coolTime = 0;
+                            if (canMove)
+                            {
+                                GameObject b =
+                                    Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
+                                b.GetComponent<BossBullet>().Set(col.gameObject);
+                                coolTime = 0;
+                            }
+
                             StartCoroutine(stop());
                         }
                     }
@@ -249,25 +242,21 @@ public class BossScript : MonoBehaviour
         }
         int r = Random.Range(0, 4);
         Instantiate(bloods[r],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
-        gm.zombieDead();
+        gm.zombieDead(6000);
         Destroy(gameObject);
     }
 
     public void onHit()
     {
-        int r = Random.Range(0, 5);
-        if (r == 0)
-        {
-            int r2 = Random.Range(0, 4);
+        int r2 = Random.Range(0, 4);
             Instantiate(bloods[r2],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
-        }
     }
 
     public void guardUp()
     {
         for (int i = 0; i < gm.wave; i++)
         {
-            guard += 0.04f;
+            guard += 0.05f;
         }
     }
 }

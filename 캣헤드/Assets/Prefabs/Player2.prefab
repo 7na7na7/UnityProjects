@@ -177,35 +177,33 @@ MonoBehaviour:
   dashSpeed: 7
   speed: 3
   anim: {fileID: 559962185233744606}
-  right: 275
-  left: 276
-  up: 273
-  down: 274
-  attack: 260
-  dash: 261
   tang: {fileID: 5776994361382431129, guid: bd56835e1e7d12f42a362a2ee942b2d7, type: 3}
-  BulletValues: 00000000640000006400000032000000
-  MaxBulletValues: 00000000000000000000000000000000
+  BulletValues: 0000000064000000320000001900000014000000
+  MaxBulletValues: 0000000000000000000000000000000000000000
   weaponNames:
   - PISTOL
   - UZI
   - SHOTGUN
   - GRENADE
+  - CONTAINER
   weaponText: {fileID: 8560956686257067365}
   currentWeapon: 0
-  canWeaponUse: 01010101
+  canWeaponUse: 0100000000
   bullet: {fileID: 7945451341405790133, guid: 38f18706d5f3e964b921ed3804b59850, type: 3}
   UZIBullet: {fileID: 1219657475218621499, guid: 1f1e4f0cf5d90d441be9de6011354e5e,
     type: 3}
   ShotGunBullet: {fileID: 8195906369356774792, guid: ecb9cee4f0fac5748b9ad971dd23c22a,
     type: 3}
   ShotGunBulletCount: 6
-  BeanBulletObj: {fileID: 1241823592885497643, guid: 52b91d806e1f79a45b3852fc9d9b8a36,
+  BeanBulletObj: {fileID: 2417151086075020442, guid: f98444745d6177444b0c7dce3448b72f,
+    type: 3}
+  ContainerObj: {fileID: 656205292691457051, guid: 48a1614ca53877345aa44dcddcb2eddb,
     type: 3}
   GunCool: 0.5
   UZICooltime: 0.15
   ShotGunCool: 0.75
-  BeanBulletCool: 1
+  BeanBulletCool: 0.5
+  ContainerCool: 0.25
   attackSound: {fileID: 8300000, guid: eedf2c13b347aaf4586227bafb0a71d1, type: 3}
   noBullet: {fileID: 8300000, guid: ea1cd077d98bf2b4089ad24f2c5ca0a8, type: 3}
   UZISound: {fileID: 8300000, guid: f1ee8d2ee256d1a41863aebde6b0486f, type: 3}
@@ -216,6 +214,7 @@ MonoBehaviour:
   earnGun: {fileID: 8300000, guid: a83be7a65f2f10d4b98eaf734079d5cb, type: 3}
   hitSound: {fileID: 8300000, guid: 367a9e0ed71cad34e9ba5a678fcdf372, type: 3}
   weaponChangeSound: {fileID: 8300000, guid: e78b12a1a11830e4aa060064287e85b4, type: 3}
+  ContainerSound: {fileID: 8300000, guid: 4d92cc802209d6346b979d633025ae9c, type: 3}
   hpColor: {fileID: 559962185217980167}
   hp: {fileID: 559962185511866754}
   popUp: {fileID: 5407440352985928674, guid: febbdeefe5e3de646be1edbc758b48d1, type: 3}
@@ -640,7 +639,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &559962186439314757
 MonoBehaviour:

@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public AudioSource audio;
     public AudioClip koung;
-    
+
+    public GameObject pausedPanel;
     public GameObject popUp;
     private Transform CanvasTr;
     public bool isGameOver = false;
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     public int wave = 0;
     private bool waveClear = false;
     private bool isonce = true;
+    public bool GrenadeUp = false;
+    public GameObject flashPanel;
     private void Start()
     {
         StartCoroutine(spawn());
@@ -36,15 +39,31 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if(p1Dead&&p2Dead)
-        { 
-            if (!isGameOver) 
-            { 
-                StopAllCoroutines(); 
-                isGameOver = true; 
-                Time.timeScale = 0; 
-                GameOverpanel.SetActive(true); 
-            } 
+        if (SceneManager.GetActiveScene().name == "double")
+        {
+            if (p1Dead && p2Dead)
+            {
+                if (!isGameOver)
+                {
+                    StopAllCoroutines(); 
+                    isGameOver = true;
+                    Time.timeScale = 0;
+                    GameOverpanel.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            if (p1Dead)
+            {
+                if (!isGameOver)
+                {
+                    StopAllCoroutines(); 
+                    isGameOver = true;
+                    Time.timeScale = 0;
+                    GameOverpanel.SetActive(true);
+                }
+            }
         }
 
         if (isGameOver)
@@ -53,6 +72,7 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 1;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                FindObjectOfType<KeySetting>().currentScore = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.T))
@@ -67,6 +87,26 @@ public class GameManager : MonoBehaviour
                 wave_left.text = wave + " Wave - " + currentzombie + " Left";
             else
                 wave_left.text = "  Wave Clear!";
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                if (Time.timeScale != 0)
+                {
+                    Time.timeScale = 0;
+                    pausedPanel.SetActive(true);
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    pausedPanel.SetActive(false);
+                }
+            }
+        }
+
+        if (wave >= 1)
+        {
+            if (!GrenadeUp)
+                GrenadeUp = true;
         }
     }
 
@@ -93,28 +133,29 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator spawn()
     {
+        yield return new WaitForSeconds(5f);
+        wave++;
+        audio.PlayOneShot(koung,0.5f);
         for (i = 0; i < zombiecount.Length; i++) //끝나고 i++
         {
-            if (isonce)
-            {
-                yield return new WaitUntil(() => wave == 1);
-                isonce = false;
-            }
-
-            audio.PlayOneShot(koung,1f);
             yield return new WaitUntil(() => zombiecount[i] <= 0); //zombiecount[i]가 0이 될 때까지 기다림(현재 웨이브의 좀비가 다 죽을 때까지)
             waveClear = true;
             yield return new WaitForSeconds(5f); //기다림...
+            wave++;
+            audio.PlayOneShot(koung,1f);
+            yield return new WaitForSeconds(3f); //기다림...
             waveClear = false;
             currentzombie = 0; //현재좀비수 초기화
-            wave++;
+            FindObjectOfType<KeySetting>().currentScore += 1000*wave;
+            Time.timeScale += 0.03f;
         }
     }
     
-    public void zombieDead()
+    public void zombieDead(int point)
     {
         currentzombie--;
         zombiecount[i]--;
+        FindObjectOfType<KeySetting>().currentScore += point;
     }
     public void zombieCreate()
     {
@@ -123,14 +164,68 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PopUPCor()
     {
-        yield return new WaitUntil(()=>wave==1);
-        GameObject pop0 =Instantiate(popUp, CanvasTr);
-        pop0.GetComponent<Text>().text = "-Wave 1-";
-        yield return new WaitUntil(()=>wave==2);
-        GameObject pop =Instantiate(popUp, CanvasTr);
-        pop.GetComponent<Text>().text = "-Wave 2-";
-        yield return new WaitForSeconds(1f);
-        GameObject pop2 =Instantiate(popUp, CanvasTr);
-        pop2.GetComponent<Text>().text = "new weapon : uzi";
+        int i = 1;
+        while (true)
+        {
+            yield return new WaitUntil(()=>wave==i);
+            GameObject pop7 =Instantiate(popUp, CanvasTr);
+            pop7.GetComponent<Text>().text = "-Wave "+i+"-";
+            if (wave == 2)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject pop2 =Instantiate(popUp, CanvasTr);
+                pop2.GetComponent<Text>().text = "new weapon : uzi";
+            }
+            else if (wave == 3)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject popa11 =Instantiate(popUp, CanvasTr);
+                popa11.GetComponent<Text>().text = "pistol upgrade";
+            }
+            else if (wave == 4)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject pop11 =Instantiate(popUp, CanvasTr);
+                pop11.GetComponent<Text>().text = "new weapon : ShotGun";
+            }
+            else if (wave == 5)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject popa1a1 =Instantiate(popUp, CanvasTr);
+                popa1a1.GetComponent<Text>().text = "uzi upgrade";
+            }
+            else if (wave == 6)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject pop4 =Instantiate(popUp, CanvasTr);
+                pop4.GetComponent<Text>().text = "new weapon : grenade";
+            }
+            else if (wave == 7)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject pop4a =Instantiate(popUp, CanvasTr);
+                pop4a.GetComponent<Text>().text = "shotgun upgrade";
+            }
+            else if (wave == 8)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject pop4a =Instantiate(popUp, CanvasTr);
+                pop4a.GetComponent<Text>().text = "new weapon : container";
+            }
+            else if (wave == 9)
+            {
+                yield return new WaitForSeconds(1f);
+                GameObject pop4a =Instantiate(popUp, CanvasTr);
+                pop4a.GetComponent<Text>().text = "grenade upgrade";
+            }
+            i++;
+        }
+    }
+
+    public void flash()
+    {
+        Color color = flashPanel.GetComponent<Image>().color;
+        color.a = 1;
+        flashPanel.GetComponent<Image>().color = color;
     }
 }

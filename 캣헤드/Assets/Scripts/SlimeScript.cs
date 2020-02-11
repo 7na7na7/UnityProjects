@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class SlimeScript : MonoBehaviour
 {
-    private bool isSuper = false;
     public GameObject hpCanvas;
     public float bulletDMG;
     public float UZIDMG;
@@ -63,21 +62,13 @@ public class SlimeScript : MonoBehaviour
                     else
                         hp.value -= bulletDMG -bulletDMG* guard;
                 }
-                StartCoroutine(super());
             }
 
             if (other.CompareTag("Grenade"))
             {
-                hp.value -= ExplosionDMG - ExplosionDMG* guard;   
-                StartCoroutine(super());
+                hp.value -= ExplosionDMG - ExplosionDMG* guard;
             }
         }
-    }
-    IEnumerator super()
-    {
-        isSuper = true;
-        yield return new WaitForSeconds(0.1f);
-        isSuper = false;
     }
     private void Update()
     {
@@ -98,15 +89,27 @@ public class SlimeScript : MonoBehaviour
                     int i = 0;
                     while (true)
                     {
-                        Collider2D col = Physics2D.OverlapCircle(transform.position, radius[i], layer);
+                        Collider2D col;
+                        try
+                        {
+                            col = Physics2D.OverlapCircle(transform.position, radius[i], layer);
+                        }
+                        catch (Exception e)
+                        {
+                            break;
+                        }
+                        
                         if (col != null) //플레이어가 비지 않았다면
                         {
-                            //부드럽게 플레이어를 따라감
-                            Vector2 dir = col.transform.position - transform.position;
-                            dir.Normalize();
-                            transform.Translate(dir * Time.deltaTime * speed);
-                            transform.position = new Vector3(transform.position.x, transform.position.y, 0); //Z축 고정
-                            break;
+                            
+                                //부드럽게 플레이어를 따라감
+                                Vector2 dir = col.transform.position - transform.position;
+                                dir.Normalize();
+                                //transform.Translate(dir * Time.deltaTime * speed);
+                                GetComponent<Rigidbody2D>().velocity = dir * speed;
+                                transform.position = new Vector3(transform.position.x, transform.position.y, 0); //Z축 고정
+                                break;
+                            
                         }
                         else
                         {
@@ -115,10 +118,21 @@ public class SlimeScript : MonoBehaviour
                     }
                 }
 
-                if (hp.value <= 0)
+                try
                 {
-                    StartCoroutine(die());
+                    if (hp.value <= 0)
+                    {
+                        StartCoroutine(die());
+                    }
                 }
+                catch (Exception e)
+                {
+                }
+                
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity=Vector2.zero;
             }
         }
     }
@@ -156,18 +170,14 @@ public class SlimeScript : MonoBehaviour
         }
         int r = Random.Range(0, 4);
         Instantiate(bloods[r],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
-        gm.zombieDead();
+        gm.zombieDead(1200);
         Destroy(gameObject);
     }
 
     public void onHit()
     {
-        int r = Random.Range(0, 5);
-        if (r == 0)
-        {
-            int r2 = Random.Range(0, 4);
+        int r2 = Random.Range(0, 4);
             Instantiate(bloods[r2],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
-        }
     }
      IEnumerator nuckBack(bool isRandom = false, int dir = 3)
     {
@@ -224,7 +234,7 @@ public class SlimeScript : MonoBehaviour
      {
          for (int i = 0; i < gm.wave; i++)
          {
-             guard += 0.03f;
+             guard += 0.05f;
          }
      }
 }

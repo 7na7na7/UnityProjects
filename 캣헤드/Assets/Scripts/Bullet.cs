@@ -10,10 +10,10 @@ public class Bullet : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall") || other.CompareTag("Slime")|| other.CompareTag("BossSlime"))
+        if (other.CompareTag("Wall") || other.CompareTag("Slime")|| other.CompareTag("BossSlime")||other.CompareTag("wallsu")||other.CompareTag("Container"))
         {
             GetComponent<longBullet>().canLong = false;
-            Destroy(gameObject,0.05f);
+            Destroy(gameObject,0.01f);
         }
         else
         {
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
                 if (!other.GetComponent<PlayerMove>().isSuper)
                 {
                     GetComponent<longBullet>().canLong = false;
-                    Destroy(gameObject,0.05f);
+                    Destroy(gameObject,0.01f);
                 }
             }
             else if(other.name.Substring(0, 7) == "Player2" && name.Substring(0, 7) == "Bullet1")
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
                 if (!other.GetComponent<PlayerMove>().isSuper)
                 {
                     GetComponent<longBullet>().canLong = false; 
-                    Destroy(gameObject,0.05f);
+                    Destroy(gameObject,0.01f);
                 }
             }
         }
