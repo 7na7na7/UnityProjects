@@ -77,62 +77,7 @@ public class Spawner : MonoBehaviour
         {
             if (!btn)
             {
-                if (gm.wave >= 5)
-                {
-                    StartCoroutine(spawn());
-                    btn = true;
-                }
-            }
-        }
-        else if (gameObject.name == "LSpawner2" || gameObject.name == "RSpawner2")
-        {
-            if (!btn)
-            {
-                if (gm.wave >= 10)
-                {
-                    StartCoroutine(spawn());
-                    btn = true;
-                }
-            }
-        }
-        else if (gameObject.name == "LSpawner3" || gameObject.name == "RSpawner3")
-        {
-            if (!btn)
-            {
-                if (gm.wave >= 15)
-                {
-                    StartCoroutine(spawn());
-                    btn = true;
-                }
-            }
-        }
-        else if (gameObject.name == "UpSpawner2" || gameObject.name == "DownSpawner2")
-        {
-            if (!btn)
-            {
-                if (gm.wave >= 5)
-                {
-                    StartCoroutine(spawn());
-                    btn = true;
-                }
-            }
-        }
-        else if (gameObject.name == "UpSpawner3" || gameObject.name == "DownSpawner3")
-        {
-            if (!btn)
-            {
-                if (gm.wave >= 10)
-                {
-                    StartCoroutine(spawn());
-                    btn = true;
-                }
-            }
-        }
-        else if (gameObject.name == "UpSpawner4" || gameObject.name == "DownSpawner4")
-        {
-            if (!btn)
-            {
-                if (gm.wave >= 15)
+                if (gm.wave >= 7)
                 {
                     StartCoroutine(spawn());
                     btn = true;
@@ -152,7 +97,13 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(samlldelay, bigdelay));
-            if (gm.currentzombie < gm.zombiecount[gm.i] && gm.currentzombie - 1 != gm.zombiecount[gm.i])
+            if (gm.currentzombie < gm.zombiecount[gm.i])
+            {
+                if (gm.wave == 20)
+                {
+                    Instantiate(BossMonster, transform.position, Quaternion.identity);
+                }
+                else
                 {
                     if (gameObject.name == "UpSpawner")
                     {
@@ -169,6 +120,7 @@ public class Spawner : MonoBehaviour
                         Instantiate(monster, transform.position, Quaternion.identity);
                     }
                 }
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ public class BossScript : MonoBehaviour
     public float shotCool = 0.5f;
     public GameObject bullet;
     private SlimeScript slimeData;
+    private bool isdead = false;
     private void Start()
     {
         slimeData = FindObjectOfType<SlimeScript>();
@@ -32,9 +33,9 @@ public class BossScript : MonoBehaviour
             gm.currentzombie--;
             Destroy(gameObject);
         }
-        for (int i = 0; i < 150; i++)
+        for (int i = 0; i < 200; i++)
         {
-            radius[i] = i * 0.2f;
+            radius[i] = i * 0.5f;
         }
         guardUp();
     }
@@ -200,7 +201,7 @@ public class BossScript : MonoBehaviour
         }
         Vector3 V = new Vector3(x,y,0);
         transform.position += V;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         canMove = true;
     }
     IEnumerator stop()
@@ -226,24 +227,29 @@ public class BossScript : MonoBehaviour
 
     IEnumerator die()
     {
-        hpCanvas.SetActive(false);
-        canMove = false;
-        float a = 1f;
-        SpriteRenderer spr = GetComponent<SpriteRenderer>();
-        Color color = spr.color;
-        Destroy(GetComponent<CapsuleCollider2D>());
-        while (true)
+        if (!isdead)
         {
-            color.a -= 0.1f;
-            spr.color = color;
-            yield return new WaitForSeconds(Time.deltaTime);
-            if (color.a < 0.1f)
-                break;
+            isdead = true;
+            hpCanvas.SetActive(false);
+            canMove = false;
+            float a = 1f;
+            SpriteRenderer spr = GetComponent<SpriteRenderer>();
+            Color color = spr.color;
+            Destroy(GetComponent<CapsuleCollider2D>());
+            while (true)
+            {
+                color.a -= 0.1f;
+                spr.color = color;
+                yield return new WaitForSeconds(Time.deltaTime);
+                if (color.a < 0.1f)
+                    break;
+            }
+
+            int r = Random.Range(0, 4);
+            Instantiate(bloods[r], transform.position, Quaternion.EulerAngles(new Vector3(0, 0, Random.Range(0, 360))));
+            gm.zombieDead(6000);
+            Destroy(gameObject);
         }
-        int r = Random.Range(0, 4);
-        Instantiate(bloods[r],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
-        gm.zombieDead(6000);
-        Destroy(gameObject);
     }
 
     public void onHit()

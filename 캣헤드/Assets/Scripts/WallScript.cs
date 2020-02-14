@@ -10,9 +10,11 @@ public class WallScript : MonoBehaviour
     public AudioClip breakSound;
     private SpriteRenderer spr;
     public Sprite wall1, wall2, wall3, wall4;
-
+    private bool canGo = true;
+    private GameManager gm;
     private void Awake()
     {
+        gm = FindObjectOfType<GameManager>();
         spr = GetComponent<SpriteRenderer>();
         transform.position=new Vector3(Mathf.RoundToInt(transform.position.x),Mathf.RoundToInt(transform.position.y),0);
     }
@@ -20,8 +22,15 @@ public class WallScript : MonoBehaviour
     void Start()
     {
         audio = Camera.main.GetComponent<AudioSource>();
+        StartCoroutine(super());
     }
 
+    IEnumerator super()
+    {
+        GetComponent<Collider2D>().isTrigger = true;
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Collider2D>().isTrigger = false;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
@@ -30,6 +39,24 @@ public class WallScript : MonoBehaviour
             damage += 50;
         if (other.CompareTag("BossBullet"))
             damage += 30;
+
+        if (other.gameObject.CompareTag("mine"))
+        {
+            if (canGo)
+            {
+                canGo = false;
+                if (other.gameObject.transform.position.x < transform.position.x)
+                    transform.Translate(1, 0, 0);
+                else
+                    transform.Translate(-1, 0, 0);
+                if (other.gameObject.transform.position.y < transform.position.y)
+                    transform.Translate(0, 1, 0);
+                else
+                    transform.Translate(0, -1, 0);
+            }
+            else
+                Destroy(gameObject);
+        }
     }
 
     private void Update()
@@ -42,29 +69,29 @@ public class WallScript : MonoBehaviour
         }
         else
         {
-            if (0 <= damage && damage <= 50)
+            if (0 <= damage && damage <= gm.wallHard)
                 spr.sprite = wall1;
-            else if (50 < damage && damage <= 100)
+            else if (gm.wallHard < damage && damage <= gm.wallHard*2)
                 spr.sprite = wall2;
-            else if (100 < damage && damage <= 150)
+            else if (gm.wallHard*2 < damage && damage <= gm.wallHard*3)
                 spr.sprite = wall3;
-            else if (150 < damage && damage <= 200)
+            else if (gm.wallHard*3 < damage && damage <= gm.wallHard*4)
                 spr.sprite = wall4; 
         }
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Container")||other.gameObject.CompareTag("wallsu"))
+        if (other.gameObject.CompareTag("Container") || other.gameObject.CompareTag("wallsu"))
         {
-            if(other.gameObject.transform.position.x<transform.position.x)
-                transform.Translate(1,0,0);
-            else
-                transform.Translate(-1,0,0);
-            if(other.gameObject.transform.position.y<transform.position.y)
-                transform.Translate(0,1,0);
-            else
-                transform.Translate(0,-1,0);
-            
-        }
+            if (other.gameObject.transform.position.x < transform.position.x)
+                    transform.Translate(1, 0, 0);
+                else
+                    transform.Translate(-1, 0, 0);
+                if (other.gameObject.transform.position.y < transform.position.y)
+                    transform.Translate(0, 1, 0);
+                else
+                    transform.Translate(0, -1, 0);
+
+            }
     }
 }

@@ -178,17 +178,20 @@ MonoBehaviour:
   speed: 3
   anim: {fileID: 559962185233744606}
   tang: {fileID: 5776994361382431129, guid: bd56835e1e7d12f42a362a2ee942b2d7, type: 3}
-  BulletValues: 0000000064000000320000001900000014000000
-  MaxBulletValues: 0000000000000000000000000000000000000000
+  BulletValues: 00000000640000003200000019000000140000000f0000001400000019000000
+  MaxBulletValues: 0000000000000000000000000000000000000000000000000000000000000000
   weaponNames:
   - PISTOL
   - UZI
   - SHOTGUN
   - GRENADE
   - CONTAINER
+  - WALL
+  - MINE
+  - MISSILE
   weaponText: {fileID: 8560956686257067365}
   currentWeapon: 0
-  canWeaponUse: 0100000000
+  canWeaponUse: 0100000000000000
   bullet: {fileID: 7945451341405790133, guid: 38f18706d5f3e964b921ed3804b59850, type: 3}
   UZIBullet: {fileID: 1219657475218621499, guid: 1f1e4f0cf5d90d441be9de6011354e5e,
     type: 3}
@@ -199,14 +202,19 @@ MonoBehaviour:
     type: 3}
   ContainerObj: {fileID: 656205292691457051, guid: 48a1614ca53877345aa44dcddcb2eddb,
     type: 3}
-  GunCool: 0.5
+  WallObj: {fileID: 3964880963769620704, guid: 080ec5ab0b82c1a4780a7bdf3e8cbd3b, type: 3}
+  MineObj: {fileID: 5833936891078114543, guid: 0930164fecd5f8c44a1f0ff0696eb410, type: 3}
+  Missileobj: {fileID: 8055671614844180102, guid: c9cf6e34eec27d64289417635032ef9a,
+    type: 3}
+  GunCool: 0.4
   UZICooltime: 0.15
   ShotGunCool: 0.75
   BeanBulletCool: 0.5
   ContainerCool: 0.25
+  MissileCool: 0.75
   attackSound: {fileID: 8300000, guid: eedf2c13b347aaf4586227bafb0a71d1, type: 3}
   noBullet: {fileID: 8300000, guid: ea1cd077d98bf2b4089ad24f2c5ca0a8, type: 3}
-  UZISound: {fileID: 8300000, guid: f1ee8d2ee256d1a41863aebde6b0486f, type: 3}
+  UZISound: {fileID: 8300000, guid: 3b1f56afd617fae4294ab8603010890a, type: 3}
   GrenadeSound: {fileID: 8300000, guid: c31c375dc53e64647a4b1894e02369e4, type: 3}
   ShotGunSound: {fileID: 8300000, guid: 181e017e2c2612f47bdf719d7485802b, type: 3}
   healSound: {fileID: 8300000, guid: 7bed178d72c4f74458bb15e85dccfede, type: 3}
@@ -215,6 +223,9 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 367a9e0ed71cad34e9ba5a678fcdf372, type: 3}
   weaponChangeSound: {fileID: 8300000, guid: e78b12a1a11830e4aa060064287e85b4, type: 3}
   ContainerSound: {fileID: 8300000, guid: 4d92cc802209d6346b979d633025ae9c, type: 3}
+  WallSound: {fileID: 8300000, guid: 9bb64133cc2bd5e44bd96b8641a52a30, type: 3}
+  MineSound: {fileID: 8300000, guid: a89c3e66aed74db45b3bef782a12bf29, type: 3}
+  MissileSound: {fileID: 8300000, guid: 1b81238c2429dd94ba56e161b041e6d7, type: 3}
   hpColor: {fileID: 559962185217980167}
   hp: {fileID: 559962185511866754}
   popUp: {fileID: 5407440352985928674, guid: febbdeefe5e3de646be1edbc758b48d1, type: 3}
@@ -225,6 +236,7 @@ MonoBehaviour:
   - {fileID: 3499399669853851251, guid: 6bcd656e860d34642ac3555a037d4c83, type: 3}
   hpSpeed: 2
   invisibleTime: 0.1
+  item: {fileID: 0}
   offset: 0.35
   isSuper: 0
   isup: 0

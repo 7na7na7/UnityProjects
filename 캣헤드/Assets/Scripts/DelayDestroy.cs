@@ -15,7 +15,9 @@ public class DelayDestroy : MonoBehaviour
             if (transform.GetChild(0).gameObject.name == "Explosion")
             {
                 FindObjectOfType<GameManager>().flash();
-                Destroy(transform.GetChild(0).gameObject.GetComponent<CircleCollider2D>(), 0.5f);
+                if(FindObjectOfType<GameManager>().isBig)
+                    transform.localScale=new Vector3(transform.localScale.x+2,transform.localScale.y+2,transform.localScale.z);
+                Destroy(transform.GetChild(0).gameObject.GetComponent<CircleCollider2D>(), 0.3f);
             }
         }
         catch (Exception e)

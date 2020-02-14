@@ -23,7 +23,7 @@ public class SlimeScript : MonoBehaviour
     private float[] radius=new float[150];
     private bool isUp = false;
     private bool isDown = false;
-
+    private bool isdead = false;
     private void Start()
     {
         if (gameObject.name != "SlimeData")
@@ -74,6 +74,11 @@ public class SlimeScript : MonoBehaviour
     {
         if (gameObject.name != "SlimeData")
         {
+            if (hp.value <= 0)
+                {
+                    StartCoroutine(die());
+                }
+
             if (canMove)
             {
                 if (isUp)
@@ -117,18 +122,6 @@ public class SlimeScript : MonoBehaviour
                         }
                     }
                 }
-
-                try
-                {
-                    if (hp.value <= 0)
-                    {
-                        StartCoroutine(die());
-                    }
-                }
-                catch (Exception e)
-                {
-                }
-                
             }
             else
             {
@@ -154,24 +147,29 @@ public class SlimeScript : MonoBehaviour
 
     IEnumerator die()
     {
-        hpCanvas.SetActive(false);
-        canMove = false;
-        float a = 1f;
-        SpriteRenderer spr = GetComponent<SpriteRenderer>();
-        Color color = spr.color;
-        Destroy(GetComponent<CapsuleCollider2D>());
-        while (true)
+        if (!isdead)
         {
-            color.a -= 0.1f;
-            spr.color = color;
-            yield return new WaitForSeconds(Time.deltaTime);
-            if (color.a < 0.1f)
-                break;
+            isdead = true;
+            hpCanvas.SetActive(false);
+            canMove = false;
+            float a = 1f;
+            SpriteRenderer spr = GetComponent<SpriteRenderer>();
+            Color color = spr.color;
+            Destroy(GetComponent<CapsuleCollider2D>());
+            while (true)
+            {
+                color.a -= 0.1f;
+                spr.color = color;
+                yield return new WaitForSeconds(Time.deltaTime);
+                if (color.a < 0.1f)
+                    break;
+            }
+
+            int r = Random.Range(0, 4);
+            Instantiate(bloods[r], transform.position, Quaternion.EulerAngles(new Vector3(0, 0, Random.Range(0, 360))));
+            gm.zombieDead(1200);
+            Destroy(gameObject);
         }
-        int r = Random.Range(0, 4);
-        Instantiate(bloods[r],transform.position,Quaternion.EulerAngles(new Vector3(0,0,Random.Range(0,360))));
-        gm.zombieDead(1200);
-        Destroy(gameObject);
     }
 
     public void onHit()

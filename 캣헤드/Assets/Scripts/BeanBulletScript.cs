@@ -63,6 +63,12 @@ public class BeanBulletScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            audio.PlayOneShot(explosionSound,1.2f);
+            Destroy(gameObject);
+        }
     }
 
     private void Update()

@@ -25,13 +25,12 @@ public class BossBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Slime")&&!other.CompareTag("BossSlime"))
-        {
-            if (other.CompareTag("Player"))
+        if(other.CompareTag("Wall")||other.CompareTag("wallsu")||other.CompareTag("Container"))
+            Destroy(gameObject);
+        if (other.CompareTag("Player"))
             {
                 if (!other.GetComponent<PlayerMove>().isSuper)
                     Destroy(gameObject);
             }
-        }
     }
 }

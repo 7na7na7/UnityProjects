@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpCanvas: {fileID: 121224097}
-  nuckBackPower: 0.05
+  nuckBackPower: 0.15
   bloods:
   - {fileID: 5178661259320917261, guid: 5f4e2429c3a33f2449ea341fac8eaaa0, type: 3}
   - {fileID: 637117140425968562, guid: 1a9d3c888fb08904fadfb4421907039f, type: 3}
@@ -508,9 +508,9 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
-  speed: 1
+  speed: 0.55
   shotRadius: 4
-  shotCool: 0.5
+  shotCool: 0.55
   bullet: {fileID: 1623142025631416937, guid: db3fc34756c7394489253cd17ba81194, type: 3}
 --- !u!50 &799526981
 Rigidbody2D:

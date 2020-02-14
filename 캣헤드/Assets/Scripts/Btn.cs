@@ -26,14 +26,14 @@ public class Btn : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPoint
     {
         if (isBtnDown) {
             GetComponent<Text>().color = Color.black;
-            transform.Translate(Random.Range(-0.025f,0.025f),Random.Range(-0.025f,0.025f),0);
+            transform.Translate(Random.Range(-0.025f,0.025f),Random.Range(-0.01f,0.01f),0);
         }
         else
         {
             GetComponent<Text>().color = new Color(0.6f, 0.6f, 0.6f);
             transform.position = firstPos;
         }
-        transform.position=new Vector2(Mathf.Clamp(transform.position.x,firstPos.x-0.1f,firstPos.x+0.1f),Mathf.Clamp(transform.position.y,firstPos.y-0.1f,firstPos.y+0.1f));
+        transform.position=new Vector2(Mathf.Clamp(transform.position.x,firstPos.x-0.05f,firstPos.x+0.05f),Mathf.Clamp(transform.position.y,firstPos.y-0.1f,firstPos.y+0.1f));
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
