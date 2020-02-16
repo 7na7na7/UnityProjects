@@ -69,6 +69,7 @@ public class KeySetting : MonoBehaviour
                 PlayerPrefs.SetString("a2","Keypad6");
                 PlayerPrefs.SetString("c21","Keypad2");
                 PlayerPrefs.SetString("c22","Keypad3");
+                highScore = 0;
             }
 
 

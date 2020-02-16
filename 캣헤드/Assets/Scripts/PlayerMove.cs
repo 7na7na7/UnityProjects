@@ -928,20 +928,27 @@ public class PlayerMove : MonoBehaviour
                 }
                 else
                 {
-                    while (true)
+                    if (canWeaponUse[1] == false)
                     {
-                        if (BulletValues[r] != MaxBulletValues[r])
-                        {
-                            audio.PlayOneShot(reLoadSound,0.4f);
-                            BulletValues[r] = MaxBulletValues[r];
-                            GameObject pop =Instantiate(popUp, CanVasTr);
-                        
-                            pop.GetComponent<Text>().text = weaponNames[r]+" Reloaded";
-                            break;
-                        }
-                        else
+                        audio.PlayOneShot(healSound,0.25f);
+                        hp.value = 100;
+                        GameObject pop =Instantiate(popUp, CanVasTr);
+                        pop.GetComponent<Text>().text = "HP Healed";
+                    }
+                    else
+                    {
+                        while (true)
                         {
                             r = Random.Range(1, ReturnLastWeapon());
+                            if (BulletValues[r] != MaxBulletValues[r])
+                            {
+                                audio.PlayOneShot(reLoadSound,0.4f);
+                                BulletValues[r] = MaxBulletValues[r];
+                                GameObject pop =Instantiate(popUp, CanVasTr);
+                        
+                                pop.GetComponent<Text>().text = weaponNames[r]+" Reloaded";
+                                break;
+                            }
                         }
                     }
                 }
