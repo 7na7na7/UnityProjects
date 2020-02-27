@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening; //에셋 불러옴
 
 public class Node
 {
@@ -24,6 +22,7 @@ public class AStar_PathFinding : MonoBehaviour
     public List<Node> FinalNodeList;
     public bool allowDiagonal, dontCrossCorner;
     public float speed = 5;
+    public float gayspeed = 7;
     
     int sizeX, sizeY;
     Node[,] NodeArray;
@@ -32,7 +31,6 @@ public class AStar_PathFinding : MonoBehaviour
 
 
     public Vector3 dir = Vector3.zero;
-    private bool canGo = false;
     public void PathFinding(Vector2Int _bottomLeft, Vector2Int _topRight, Vector2Int _startPos, Vector2Int _targetPos)
     {
         bottomLeft = _bottomLeft;
@@ -141,12 +139,7 @@ public class AStar_PathFinding : MonoBehaviour
             }
         }
     }
-
-    void OnDrawGizmos()
-    {
-        if(FinalNodeList.Count != 0) for (int i = 0; i < FinalNodeList.Count - 1; i++)
-                Gizmos.DrawLine(new Vector2(FinalNodeList[i].x, FinalNodeList[i].y), new Vector2(FinalNodeList[i + 1].x, FinalNodeList[i + 1].y));
-    }
+    
 
     IEnumerator Move(int count)
     {
@@ -165,12 +158,24 @@ public class AStar_PathFinding : MonoBehaviour
     {
         if (dir != Vector3.zero)
         {
-            if(Mathf.Abs(Mathf.Abs(dir.x)-Mathf.Abs(dir.y))<0.1f)
-                Charactor.transform.position += dir * Time.deltaTime *speed*0.7f;
-            else if (dir.y >=1f || dir.y<=-1f)
-                Charactor.transform.position += dir * Time.deltaTime * speed * 0.7f;
-            else
-                Charactor.transform.position += dir * Time.deltaTime *speed;
+            if (Charactor.CompareTag("Player"))
+            {
+                if (Mathf.Abs(Mathf.Abs(dir.x) - Mathf.Abs(dir.y)) < 0.1f)
+                    Charactor.transform.position += dir * Time.deltaTime * speed * 0.7f;
+                else if (dir.y >= 1f || dir.y <= -1f)
+                    Charactor.transform.position += dir * Time.deltaTime * speed * 0.7f;
+                else
+                    Charactor.transform.position += dir * Time.deltaTime * speed;
+            }
+            else if (Charactor.CompareTag("Gay"))
+            {
+                if (Mathf.Abs(Mathf.Abs(dir.x) - Mathf.Abs(dir.y)) < 0.1f)
+                    Charactor.transform.position += dir * Time.deltaTime * gayspeed * 0.7f;
+                else if (dir.y >= 1f || dir.y <= -1f)
+                    Charactor.transform.position += dir * Time.deltaTime * gayspeed * 0.7f;
+                else
+                    Charactor.transform.position += dir * Time.deltaTime * gayspeed;
+            }
         }
     }
 }

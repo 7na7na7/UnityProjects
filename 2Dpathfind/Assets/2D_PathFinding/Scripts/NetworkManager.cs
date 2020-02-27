@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Photon.Pun.Demo.PunBasics;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    public int coronaIndex = 0;
     public InputField Nickname;
     public GameObject DisconnectPanel;
+    public GameObject score;
     void Start()
   {
       Screen.SetResolution(960,540,false);
@@ -28,12 +28,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
   
   public override void OnJoinedRoom() //방에 들어갔을 때
   {
+      score.SetActive(true);
       DisconnectPanel.SetActive(false);//비활성화
-      PhotonNetwork.Instantiate("Gay", Vector3.zero, Quaternion.identity);//플레이어 생성
+      //StartCoroutine(DestroyBullet());
+      PhotonNetwork.Instantiate("Player"+coronaIndex.ToString(), Vector3.zero, Quaternion.identity);//플레이어 생성
   }
 
   public override void OnDisconnected(DisconnectCause cause)//연결이 끊어졌을 때
   {
+      score.SetActive(false);
       DisconnectPanel.SetActive(true);//활성화
       Debug.Log("연결 끊어짐!");
   }
@@ -65,5 +68,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
           PhotonNetwork.ConnectUsingSettings(); //연결하기
           Debug.Log("연결됨!");
       }
+  }
+  
+  IEnumerator DestroyBullet() //리스폰할 때 모든 총알 제거
+  {
+      yield return new WaitForSeconds(0.05f);
+      foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Bullet")) GO.GetComponent<PhotonView>().RPC("DestroyRPC", RpcTarget.All);
   }
 }
