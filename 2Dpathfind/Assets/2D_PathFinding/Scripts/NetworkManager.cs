@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    public Sprite connecting;
+    private Sprite go;
+    public GameObject text;
+    public GameObject btn;
+    public GameObject textNull;
     public int coronaIndex = 0;
     public InputField Nickname;
     public GameObject DisconnectPanel;
     public GameObject score;
     void Start()
-  {
-      Screen.SetResolution(960,540,false);
-        PhotonNetwork.SendRate = 60;
+    {
+        go = btn.GetComponent<Image>().sprite;
+      Screen.SetResolution(1600,900,false);
+      PhotonNetwork.SendRate = 60;
         PhotonNetwork.SerializationRate = 30;
         //동기화 빠르게
     }
@@ -36,27 +43,31 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
   public override void OnDisconnected(DisconnectCause cause)//연결이 끊어졌을 때
   {
+      btn.SetActive(true);
       score.SetActive(false);
       DisconnectPanel.SetActive(true);//활성화
+      btn.GetComponent<Image>().sprite = go;
       Debug.Log("연결 끊어짐!");
   }
 
   void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) //연결
+        if (Application.internetReachability == NetworkReachability.NotReachable)
         {
-            if (!PhotonNetwork.IsConnected) //연결된 상태가 아니라면
-            {
-                PhotonNetwork.ConnectUsingSettings(); //연결하기
-                Debug.Log("연결됨!");
-            }
+            btn.SetActive(false);
+                text.SetActive(true);
+        }
+        else
+        {
+            btn.SetActive(true);
+                text.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Escape)) //연결끊기
         {
             if (PhotonNetwork.IsConnected)//연결된 상태라면
             {
                 PhotonNetwork.Disconnect(); //연결 끊기
-                Debug.Log("연결 끊어짐!");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
@@ -65,8 +76,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
   {
       if (!PhotonNetwork.IsConnected) //연결된 상태가 아니라면
       {
-          PhotonNetwork.ConnectUsingSettings(); //연결하기
-          Debug.Log("연결됨!");
+          if (Nickname.text== null || Nickname.text == "")
+          {
+              Instantiate(textNull, GameObject.Find("Canvas").transform);
+          }
+          else
+          {
+              btn.SetActive(false);
+              btn.GetComponent<Image>().sprite = connecting;
+              PhotonNetwork.ConnectUsingSettings(); //연결하기
+              btn.SetActive(false);
+              Debug.Log("연결됨1!");
+          }
       }
   }
   

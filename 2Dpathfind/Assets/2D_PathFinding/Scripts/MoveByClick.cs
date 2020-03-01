@@ -7,6 +7,10 @@ using Cinemachine; //2D카메라 Cinemachine 사용
 
 public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 동기화를 위해 IPunObservable상속받음
 {
+    public AudioClip arrowSound;
+    public AudioClip zombieSound;
+    private AudioSource audio;
+    public AudioClip manSound;
     public int score = 0;
     private int Cx, Cy, Tx, Ty;
     private AStar_PathFinding pf;
@@ -24,6 +28,7 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
     private Transform min, max;
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         min = GameObject.Find("Min").transform;
         max = GameObject.Find("Max").transform;
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName; //닉네임 설정, 자기 닉네임이 아니면 상대 닉네임으로
@@ -175,7 +180,7 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
         if (other.CompareTag("Gay") && gameObject.CompareTag("Player")) //게이한테 닿으면
         {
             pv.RPC("scorezero", RpcTarget.AllBuffered);
-            pv.RPC("gayRPC", RpcTarget.AllBuffered);
+            pv.RPC("gayRPC2", RpcTarget.AllBuffered);
             for(int i=0;i<30;i++) 
                 other.GetComponent<MoveByClick>().pv.RPC("scoreUp", RpcTarget.AllBuffered);
         }
@@ -202,10 +207,18 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
         gameObject.tag = "Gay";
     }
     [PunRPC]
+    public void gayRPC2()
+    {
+        GetComponent<Animator>().runtimeAnimatorController = coronaAnim;
+        gameObject.tag = "Gay";
+        audio.PlayOneShot(zombieSound,1f);
+    }
+    [PunRPC]
     public void manRPC()
     {
         GetComponent<Animator>().runtimeAnimatorController = playerAnim;
         gameObject.tag = "Player";
+        audio.PlayOneShot(manSound,1f);
     }
 
     [PunRPC]
@@ -238,6 +251,7 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
             }
 
             GameObject b = PhotonNetwork.Instantiate("bullet", transform.position,  Quaternion.Euler(0, 0,135 + plus));
+            audio.PlayOneShot(arrowSound,0.5f);
             cool = 0;
         }
     }
