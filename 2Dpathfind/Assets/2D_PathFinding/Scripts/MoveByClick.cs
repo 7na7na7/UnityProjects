@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun; //Pun네트워크 사용
 using UnityEngine;
 using UnityEngine.UI; //UI사용
@@ -7,6 +9,9 @@ using Cinemachine; //2D카메라 Cinemachine 사용
 
 public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 동기화를 위해 IPunObservable상속받음
 {
+    private MoveByClick[] players;
+    public ArrayList textlist = new ArrayList();
+    public GameObject[] texts;
     public AudioClip arrowSound;
     public AudioClip zombieSound;
     private AudioSource audio;
@@ -76,36 +81,48 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
             if(cool<shotCool) 
                 cool += Time.deltaTime;
             //print(pf.dir);
+            if (!FindObjectOfType<NetworkManager>().chatInput.isFocused)
+            {
+                if (gameObject.CompareTag("Player"))
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        pv.RPC("bulletRPC",RpcTarget.AllBuffered);
+                    }
+                }    
+            }
             if (pf.dir == Vector3.zero)
             {
-                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W))
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
+                    Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) ||
+                    Input.GetKey(KeyCode.DownArrow))
                 {
                     Cx = Mathf.RoundToInt(pf.Charactor.transform.position.x);
                     Cy = Mathf.RoundToInt(pf.Charactor.transform.position.y);
                     Tx = Mathf.RoundToInt(pf.Charactor.transform.position.x);
                     Ty = Mathf.RoundToInt(pf.Charactor.transform.position.y);
-                    if (Input.GetKey(KeyCode.A))
+                    if (Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow))
                     {
                         Tx -= 1;
                         isright = 2;
                         isup = 0;
                     }
 
-                    else if (Input.GetKey(KeyCode.S))
+                    else if (Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow))
                     {
                         Ty -= 1;
                         isright = 0;
                         isup = 2;
                     }
 
-                   else if (Input.GetKey(KeyCode.D))
+                   else if (Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow))
                     {
                         Tx += 1;
                         isright = 1;
                         isup = 0;
                     }
 
-                    else if (Input.GetKey(KeyCode.W))
+                    else if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow))
                     {
                         Ty += 1;
                         isup = 1;
@@ -135,17 +152,11 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
                     }
                 }
             }
-
-            if (gameObject.CompareTag("Player"))
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    pv.RPC("bulletRPC",RpcTarget.AllBuffered);
-                }
-            }
+            
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||
-                Input.GetKey(KeyCode.W))
+                Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) ||
+                Input.GetKey(KeyCode.DownArrow))
             {
                 count = true;
             }
@@ -158,6 +169,25 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
                 GetComponent<Animator>().SetBool("iswalk",true);
             else
                 GetComponent<Animator>().SetBool("iswalk",false);
+            
+            
+            
+            //채팅기능
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (FindObjectOfType<NetworkManager>().chatInput.text == "" || FindObjectOfType<NetworkManager>().chatInput.text == null)
+                {
+                    
+                }
+                else
+                {
+                    pv.RPC("ChatRPC", RpcTarget.AllBuffered,
+                            nickname.text + " : " + FindObjectOfType<NetworkManager>().chatInput.text);
+                }
+                FindObjectOfType<NetworkManager>().chatInput.Select();
+                FindObjectOfType<NetworkManager>().chatInput.text = "";
+            }
         }
         else if ((transform.position - curPos).sqrMagnitude >= 10)
         {
@@ -220,7 +250,24 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
         gameObject.tag = "Player";
         audio.PlayOneShot(manSound,1f);
     }
-
+    [PunRPC]
+    public void ChatRPC(string msg)
+    {
+        players = FindObjectsOfType<MoveByClick>();
+        texts = GameObject.FindGameObjectsWithTag("log");
+        foreach (MoveByClick m in players)
+        {
+            m.textlist.Add(msg);
+        }
+        int i = textlist.Count;
+        foreach (var v in textlist)
+        {
+            print(v);
+            if(i<=4) 
+                texts[i].GetComponent<Text>().text = v.ToString();
+            i--;
+        }
+    }
     [PunRPC]
     public void bulletRPC()
     {
@@ -261,6 +308,7 @@ public class MoveByClick : MonoBehaviourPunCallbacks, IPunObservable //변수 �
         GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
+   
     public IEnumerator invisible()
     {
         Color color;

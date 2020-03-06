@@ -63,9 +63,9 @@ public class StackScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (GetComponent<MoveByClick>().pv.IsMine)
         {
-            FindObjectOfType<AStar_PathFinding>().gayspeed *= 0.5f;
+            FindObjectOfType<AStar_PathFinding>().gayspeed *= 0.7f;
             yield return new WaitForSeconds(0.5f);
-            FindObjectOfType<AStar_PathFinding>().gayspeed *= (1 / 0.5f);
+            FindObjectOfType<AStar_PathFinding>().gayspeed *= (1 / 0.7f);
         }
     }
 
