@@ -19,7 +19,11 @@ public class ComboManager : MonoBehaviour
         comboCount++;
         yield return new WaitForSeconds(comboDelay);
         canCombo = false;
-        Time.timeScale = 1; 
+        Time.timeScale = 1;
+        if (comboCount >= 2)
+        {
+            ScoreMgr.instance.scoreUp(100*comboCount,true);
+        }
         comboCount = 0;
     }
 }

@@ -14,13 +14,24 @@ public class AnimCtrl : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (rigid.velocity.y < -0.1f && !GetComponent<Player>().isattack) //떨어지고 있고, 공격 중이 아니라면
+        {
+            Player.instance.flipY(false);
+            transform.eulerAngles=new Vector3(0,0,0);
+            GetComponent<Player>().trail.SetActive(false);
+            anim.Play("fallAnim");
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Ground"))
         {
             if (!GetComponent<Player>().isattack)
             {
-                GetComponent<SpriteRenderer>().flipY = false;
+                Player.instance.flipY(false);
                 transform.eulerAngles=new Vector3(0,0,0);
                 anim.Play("IdleAnim");
             }

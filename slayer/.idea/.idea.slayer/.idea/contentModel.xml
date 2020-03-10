@@ -22,16 +22,22 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AnimCtrl.cs" t="Include" />
+          <e p="bonusText.cs" t="Include" />
           <e p="CameraManager.cs" t="Include" />
           <e p="ComboManager.cs" t="Include" />
           <e p="comboText.cs" t="Include" />
           <e p="DelayDestroy.cs" t="Include" />
           <e p="fade.cs" t="Include" />
           <e p="girl.cs" t="Include" />
-          <e p="invisible.cs" t="Include" />
+          <e p="girlChat.cs" t="Include" />
+          <e p="girlText.cs" t="Include" />
           <e p="oniMove.cs" t="Include" />
           <e p="Player.cs" t="Include" />
+          <e p="PlayerHit.cs" t="Include" />
+          <e p="ScoreMgr.cs" t="Include" />
+          <e p="ScoreText.cs" t="Include" />
           <e p="Spawner.cs" t="Include" />
+          <e p="touchEffect.cs" t="Include" />
         </e>
         <e p="trail_echo" t="Include">
           <e p="ecoeffect.cs" t="Include" />

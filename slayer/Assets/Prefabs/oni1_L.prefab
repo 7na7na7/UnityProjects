@@ -94,7 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48fd4f62c29d04a4391b92433e604371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 1960116329575868053, guid: 2951e48fd24c3474e88cb23689fb3e62, type: 3}
+  minX: -8.73
+  maxX: -4.22
+  effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   speed: -1.5
 --- !u!95 &3870606486702478207
 Animator:

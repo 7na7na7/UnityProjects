@@ -9,11 +9,15 @@ public class Player : MonoBehaviour
     public int force; //움직이는 속도
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
+    public GameObject touchEffect;
+    public float touchDelay;
     [Header("신경쓸필요없음")] 
     public GameObject comboPop;
     public GameObject worldCanvas;
     private Animator anim;
-    private SpriteRenderer spr;
+    private float touchTime = 0;
+    public static Player instance;
+    private float unRotY, RotY;
     private Vector2 currentV;
     public bool isattack = false; //공격중인지 판단
     private bool canMove = true;
@@ -24,27 +28,65 @@ public class Player : MonoBehaviour
     public Transform min, max; //터치할수있는 최소, 최대 역역
     private Rigidbody2D rigid; //리지드바디얻어옴
     public GameObject particle;//전기이펙트
-    public TrailRenderer trail; //뒤따라오는트레일이펙트
+    public GameObject trail; //뒤따라오는트레일이펙트
    
     private void Start()
     {
-        spr = GetComponent<SpriteRenderer>();
+        if (instance == null)
+            instance = this;
+
         anim = GetComponent<Animator>();
         combomgr = GetComponent<ComboManager>();
         rigid = GetComponent<Rigidbody2D>();
         panel = FindObjectOfType<fade>();
         camera = Camera.main.GetComponent<CameraManager>();
+
+        unRotY = transform.localScale.y;
+        RotY = transform.localScale.y * -1;
     }
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (touchTime>=touchDelay)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
+            if (Input.touchCount > 0)
             {
-                Vector2 pos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                    if (Vector2.Distance(transform.position, pos) > 1)
+                    {
+                        StopAllCoroutines();
+                        if (pos.x < min.position.x)
+                        {
+                            pos.x = min.position.x;
+                        }
+
+                        if (pos.x > max.position.x)
+                        {
+                            pos.x = max.position.x;
+                        }
+
+                        if (pos.y < min.position.y)
+                        {
+                            pos.y = min.position.y;
+                        }
+
+                        if (pos.y > max.position.y)
+                        {
+                            pos.y = max.position.y;
+                        }
+
+                        StartCoroutine(go(pos, true));
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 if (Vector2.Distance(transform.position, pos) > 1)
                 {
                     StopAllCoroutines();
@@ -52,67 +94,50 @@ public class Player : MonoBehaviour
                     {
                         pos.x = min.position.x;
                     }
+
                     if (pos.x > max.position.x)
                     {
                         pos.x = max.position.x;
-                    } 
+                    }
+
                     if (pos.y < min.position.y)
                     {
                         pos.y = min.position.y;
                     }
+
                     if (pos.y > max.position.y)
                     {
                         pos.y = max.position.y;
                     }
-                    StartCoroutine(go(pos));
+
+                    StartCoroutine(go(pos, true));
                 }
             }
         }
 
-
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 pos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (Vector2.Distance(transform.position, pos) > 1)
-            {
-                StopAllCoroutines();
-                if (pos.x < min.position.x)
-                {
-                    pos.x = min.position.x;
-                }
-                if (pos.x > max.position.x)
-                {
-                    pos.x = max.position.x;
-                } 
-                if (pos.y < min.position.y)
-                {
-                    pos.y = min.position.y;
-                }
-                if (pos.y > max.position.y)
-                {
-                    pos.y = max.position.y;
-                }
-                StartCoroutine(go(pos));
-            }
-        }
+        if(touchTime<touchDelay) 
+            touchTime += Time.deltaTime;
     }
 
-    IEnumerator go(Vector2 to)
+    public IEnumerator go(Vector2 to, bool isEffect)
     {
+        touchTime = 0;
+        if(isEffect)
+            Instantiate(touchEffect, to, Quaternion.identity);
         if (to.x > transform.position.x)
         {
-            spr.flipY = false;
+            flipY(false);
             transform.eulerAngles = new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y)+60); //y2값에 180더하거나 말거나 ㅋ
         }
         else
         {
-            spr.flipY = true;
+            flipY(true);
             transform.eulerAngles = new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y)+120); //y2값에 180더하거나 말거나 ㅋ
         }
 
         anim.Play("attack_ready");
         isattack = true;
+        trail.SetActive(true);
         rigid.velocity = Vector2.zero;
         rigid.bodyType = RigidbodyType2D.Kinematic;
         canMove = true;
@@ -120,12 +145,12 @@ public class Player : MonoBehaviour
         {
             camera.sizeup();
             StartCoroutine(panel.fadeIn());
-            trail.startColor=Color.yellow;
+            trail.GetComponent<TrailRenderer>().startColor=Color.yellow;
             particle.SetActive(true);
             //int currentcount = comboCount;
             if(Time.timeScale==1) 
                 Time.timeScale = 0.7f;
-            while (Vector2.Distance(transform.position, to) >= 0.3f)
+            while (Vector2.Distance(transform.position, to) >= 0.5f)
             {
                 if (!canMove)
                     break;
@@ -149,10 +174,10 @@ public class Player : MonoBehaviour
         else //첫번째
         {
             particle.SetActive(false);
-            trail.startColor=Color.white;
+            trail.GetComponent<TrailRenderer>().startColor=Color.white;
             camera.sizedown();
             StartCoroutine(panel.fadeout());
-            while (Vector2.Distance(transform.position, to) >= 0.3f) 
+            while (Vector2.Distance(transform.position, to) >= 0.5f) 
             {
                 if (!canMove)
                     break;
@@ -169,11 +194,18 @@ public class Player : MonoBehaviour
         rigid.bodyType = RigidbodyType2D.Dynamic;
         yield return new WaitForSeconds(combomgr.comboDelay);
         particle.SetActive(false);
-        trail.startColor=Color.white;
+        trail.GetComponent<TrailRenderer>().startColor=Color.white;
         camera.sizedown();
         StartCoroutine(panel.fadeout());
     }
-    
+
+    public void flipY(bool flip)
+    {
+        if(flip)
+            transform.localScale=new Vector3(transform.localScale.x,RotY,1);
+        else
+            transform.localScale=new Vector3(transform.localScale.x,unRotY,1);
+    }
     private void OnTriggerEnter2D(Collider2D hit)
     {
         if (hit.CompareTag("oni"))
@@ -182,29 +214,30 @@ public class Player : MonoBehaviour
             {
                 Instantiate(slashEffect, transform.position, Quaternion.identity);
                 anim.Play("attackAnim");
+                combomgr.comboIniitailize();
+                ComboText();
                 canMove = false;
-                hit.GetComponent<oniMove>().die();
                 Vector2 dir = transform.position - hit.transform.position;
                 dir.Normalize();
                 rigid.velocity = Vector2.zero;
                 rigid.bodyType = RigidbodyType2D.Dynamic;
                 rigid.velocity = dir * nuckbackforce;
-                ComboText();
-                combomgr.comboIniitailize();
+                /*
+                 콤보중 넉백없앤코드
+                if (combomgr.comboCount < 2)
+                {
+                    canMove = false;
+                    Vector2 dir = transform.position - hit.transform.position;
+                    dir.Normalize();
+                    rigid.velocity = Vector2.zero;
+                    rigid.bodyType = RigidbodyType2D.Dynamic;
+                    rigid.velocity = dir * nuckbackforce;
+                }
+                */
             }
         }
     }
-
-    private void OnTriggerStay2D(Collider2D hit)
-    {
-        if (hit.CompareTag("oni"))
-        {
-            if (isattack)
-            {
-                hit.GetComponent<oniMove>().die();
-            }
-        }
-    }
+    
 
     public void ComboText()
     {

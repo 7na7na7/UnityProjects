@@ -13,7 +13,7 @@ public class comboText : MonoBehaviour
     {
         text = GetComponent<Text>();
         
-        if(FindObjectOfType<ComboManager>().comboCount>0) 
+        if(FindObjectOfType<ComboManager>().comboCount>=2) 
             GetComponent<Text>().text = FindObjectOfType<ComboManager>().comboCount + " Combo";
         
         color.r = 255;

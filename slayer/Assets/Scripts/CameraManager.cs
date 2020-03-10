@@ -28,9 +28,14 @@ public class CameraManager : MonoBehaviour
         
             targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
 //transform.position = targetPosition;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+           
 
-            halfHeight = theCamera.orthographicSize;
+            if(speed==0) 
+                transform.position = targetPosition;
+            else
+                transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+
+                halfHeight = theCamera.orthographicSize;
             halfWidth = halfHeight * Screen.width / Screen.height; //카메라 반너비 공식
             float clampedX = Mathf.Clamp(this.transform.position.x, minBound.x + halfWidth, maxBound.x - halfWidth);   
             
