@@ -27,7 +27,7 @@ public class fade : MonoBehaviour
             fadecolor.a += 0.1f;
             yield return new WaitForSeconds(speed);
             img.color = fadecolor;
-            if (img.color.a >= 0.3f)
+            if (img.color.a >= 0.5f)
                break;
          }
       }

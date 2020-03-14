@@ -17,6 +17,7 @@ public class girlChat : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(minDelay,maxDelay));
             Instantiate(chatBalloon, canvas.transform);
+            GetComponent<Animator>().Play("girlAnim");
         }
     }
 }

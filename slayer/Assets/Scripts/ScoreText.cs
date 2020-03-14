@@ -6,28 +6,30 @@ using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
 {
-    private Text text;
+    private Text Txt;
     public float delay;
     private void Start()
     {
-        text = GetComponent<Text>();
+        Txt = GetComponent<Text>();
     }
 
-    void Update()
+    private void Update()
     {
-       text.text ="Score : "+ ScoreMgr.instance.score.ToString();
+        Txt.text ="Score : "+ ScoreMgr.instance.score.ToString();
     }
-
+    
     public IEnumerator size()
     {
-        while (text.fontSize<=175)
+        while (Txt.fontSize<280)
         {
-            text.fontSize += 3;
+            Txt.fontSize += 2;
+            
             yield return new WaitForSeconds(delay);
         }
-        while (text.fontSize>=150)
+        while (Txt.fontSize>250)
         {
-            text.fontSize -= 3;
+            Txt.fontSize -= 2;
+            
             yield return new WaitForSeconds(delay);
         }
     }

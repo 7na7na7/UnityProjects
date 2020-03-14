@@ -7,19 +7,30 @@ using Random = UnityEngine.Random;
 
 public class comboText : MonoBehaviour
 {
+    public bool isHeadShot = false;
     private Text text;
     Color color;
     private void Start()
     {
         text = GetComponent<Text>();
-        
-        if(FindObjectOfType<ComboManager>().comboCount>=2) 
-            GetComponent<Text>().text = FindObjectOfType<ComboManager>().comboCount + " Combo";
-        
-        color.r = 255;
-        color.g = 255;
-        color.b = 0;
-        color.a = 1;
+
+        if (!isHeadShot)
+        {
+            if (FindObjectOfType<ComboManager>().comboCount >= 2)
+                GetComponent<Text>().text = FindObjectOfType<ComboManager>().comboCount + " Combo";
+            
+            color.r = 255;
+            color.g = 255;
+            color.b = 0;
+            color.a = 1;
+        }
+        else
+        {
+            color.r = 255;
+            color.g = 0;
+            color.b = 0;
+            color.a = 1;
+        }
     }
 
     public void initialize()

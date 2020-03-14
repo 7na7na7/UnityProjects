@@ -20,7 +20,8 @@ public class AnimCtrl : MonoBehaviour
         {
             Player.instance.flipY(false);
             transform.eulerAngles=new Vector3(0,0,0);
-            GetComponent<Player>().trail.SetActive(false);
+            GetComponent<Player>().trail.GetComponent<TrailRenderer>().emitting = false;
+            GetComponent<Player>().trail2.GetComponent<TrailRenderer>().emitting = false;
             anim.Play("fallAnim");
         }
     }

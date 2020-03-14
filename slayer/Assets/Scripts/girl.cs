@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class girl : MonoBehaviour
 {
     public static girl instance;
-    public float invisibleTime;
+    //public float invisibleTime;
     public Slider hp;
     private Animator anim;
     void Start()
@@ -18,6 +18,7 @@ public class girl : MonoBehaviour
     }
     
 
+    /*
     public IEnumerator invisibleCor()
     {
         Color color;
@@ -50,13 +51,15 @@ public class girl : MonoBehaviour
         sprite.color = color;
         yield return new WaitForSeconds(invisibleTime);
     }
+    */
 
     public IEnumerator hitted(int damage)
     {
-        StopAllCoroutines();
-        hp.value -= damage;
-        FindObjectOfType<girlText>().text.text = "아얏!";
         anim.Play("girlhit");
+        SoundManager.instance.girl();
+        hp.value -= damage;
+        if(FindObjectOfType<girlText>()!=null)
+            FindObjectOfType<girlText>().text.text = "아얏!";
         yield return new WaitForSeconds(1);
         anim.Play("girlAnim");
     }

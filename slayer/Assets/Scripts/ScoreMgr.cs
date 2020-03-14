@@ -13,15 +13,7 @@ public class ScoreMgr : MonoBehaviour
 
     private void Start()
     {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
     public void scoreUp(int point, bool isCombo)

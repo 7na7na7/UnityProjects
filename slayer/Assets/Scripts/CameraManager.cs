@@ -20,14 +20,14 @@ public class CameraManager : MonoBehaviour
         maxBound = bound.bounds.max;
         //theCamera.orthographicSize *= 2;
     }
-
+    
     void Update()
     {
         if (target.gameObject != null)
         { 
         
-            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
-//transform.position = targetPosition;
+            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z); 
+            //transform.position = targetPosition;
            
 
             if(speed==0) 
