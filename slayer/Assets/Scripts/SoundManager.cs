@@ -9,6 +9,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip bodySound;
     public AudioClip headSound;
     public AudioClip girlSound;
+    public AudioClip selectSound;
+    public AudioClip comboSound;
     public static SoundManager instance;
     private AudioSource audio;
     void Start()
@@ -40,5 +42,15 @@ public class SoundManager : MonoBehaviour
     public void girl()
     {
         audio.PlayOneShot(girlSound,1f);
+    }
+
+    public void combo()
+    {
+        audio.PlayOneShot(comboSound,1f);
+    }
+
+    public void select()
+    {
+        audio.PlayOneShot(selectSound,1f);
     }
 }

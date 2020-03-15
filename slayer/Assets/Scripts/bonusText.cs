@@ -10,12 +10,13 @@ public class bonusText : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.instance.combo();
         text = GetComponent<Text>();
         color.r = 255;
         color.g = 255;
         color.b = 0;
         color.a = 1;
-        GetComponent<RectTransform>().position=new Vector3( GetComponent<RectTransform>().position.x+100, GetComponent<RectTransform>().position.y-50, GetComponent<RectTransform>().position.z);
+        GetComponent<RectTransform>().position=new Vector3( GetComponent<RectTransform>().position.x+300, GetComponent<RectTransform>().position.y-50, GetComponent<RectTransform>().position.z);
     }
     
     void Update()

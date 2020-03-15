@@ -64,7 +64,11 @@ public class CameraManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(sizedownCor());
     }
-    
+    public void gameOver()
+    {
+        StopAllCoroutines();
+        StartCoroutine(gameoverCor());
+    }
 
     public IEnumerator sizeupCor()
     {
@@ -83,6 +87,37 @@ public class CameraManager : MonoBehaviour
             theCamera.orthographicSize -= 0.1f;
             yield return new WaitForSeconds(delay);
         }
+        yield return null;
+    }
+    public IEnumerator gameoverCor()
+    {
+        GameObject.Find("BGM").GetComponent<AudioSource>().Stop();
+        Vector3 p = Player.instance.transform.position;
+        while (theCamera.orthographicSize>4)
+        {
+            theCamera.orthographicSize -= 0.2f;
+            targetPosition.Set(p.x, p.y, this.transform.position.z); 
+            //transform.position = targetPosition;
+           
+
+            if(speed==0) 
+                transform.position = targetPosition;
+            else
+                transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+
+            halfHeight = theCamera.orthographicSize;
+            halfWidth = halfHeight * Screen.width / Screen.height; //카메라 반너비 공식
+            float clampedX = Mathf.Clamp(this.transform.position.x, minBound.x + halfWidth, maxBound.x - halfWidth);   
+            
+            float clampedY = Mathf.Clamp(this.transform.position.y, minBound.y + halfHeight, maxBound.y - halfHeight);
+//Mathf.Clamp(10,0,100) 일 경우 값은 10,
+//Mathf.Clamp(-10,0,100)일 경우 값은 0이다.
+            this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
+            yield return new WaitForSeconds(delay);
+        }
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(1f);
+        FindObjectOfType<GameOverManager>().canGo = true;
         yield return null;
     }
 }

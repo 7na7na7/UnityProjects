@@ -30,7 +30,8 @@ public class ComboManager : MonoBehaviour
         Time.timeScale = 1;
         if (comboCount >= 2)
         {
-            ScoreMgr.instance.scoreUp(100*comboCount,true);
+            ScoreMgr.instance.comboInitialize(comboCount);
+            ScoreMgr.instance.scoreUp(50*comboCount,true);
         }
         comboCount = 0;
     }

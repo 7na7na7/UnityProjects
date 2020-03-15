@@ -17,22 +17,38 @@ public class fade : MonoBehaviour
    }
 
    public IEnumerator fadeIn()
+       {
+          StopAllCoroutines();
+          if (img.color.a < 0.5f)
+          {
+             while (true)
+             {
+                fadecolor = img.color;
+                fadecolor.a += 0.1f;
+                yield return new WaitForSeconds(speed);
+                img.color = fadecolor;
+                if (img.color.a >= 0.5f)
+                   break;
+             }
+          }
+       }
+   public IEnumerator fadeInRealTime()
    {
       StopAllCoroutines();
-      if (img.color.a < 0.3f)
+      if (img.color.a < 0.5f)
       {
          while (true)
          {
             fadecolor = img.color;
             fadecolor.a += 0.1f;
-            yield return new WaitForSeconds(speed);
+            yield return new WaitForSecondsRealtime(speed);
             img.color = fadecolor;
             if (img.color.a >= 0.5f)
                break;
          }
+         FindObjectOfType<GameOverManager>().panel.SetActive(true);
       }
    }
-
    public IEnumerator fadeout()
    {
       StopAllCoroutines();
@@ -43,6 +59,22 @@ public class fade : MonoBehaviour
             fadecolor = img.color;
             fadecolor.a -= 0.1f;
             yield return new WaitForSeconds(speed);
+            img.color = fadecolor;
+            if (img.color.a <= 0)
+               break;
+         }
+      }
+   }
+   public IEnumerator fadeoutRealTime()
+   {
+      StopAllCoroutines();
+      if (img.color.a > 0)
+      {
+         while (true)
+         {
+            fadecolor = img.color;
+            fadecolor.a -= 0.1f;
+            yield return new WaitForSecondsRealtime(speed);
             img.color = fadecolor;
             if (img.color.a <= 0)
                break;

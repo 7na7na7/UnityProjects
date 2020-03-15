@@ -86,10 +86,12 @@ public class oniMove : MonoBehaviour
         {
             if (isHead)
             {
+                ScoreMgr.instance.headshot++;
                 SoundManager.instance.head();
                 if (oniIndex == 1)
                 {
-                    ScoreMgr.instance.scoreUp(150, false);
+                    ScoreMgr.instance.killedOni++;
+                    ScoreMgr.instance.scoreUp(100, false);
                     Instantiate(headEffect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
@@ -98,7 +100,8 @@ public class oniMove : MonoBehaviour
                     hp -= 2;
                     if (hp <= 0)
                     {
-                        ScoreMgr.instance.scoreUp(300, false);
+                        ScoreMgr.instance.killedOni++;
+                        ScoreMgr.instance.scoreUp(200, false);
                         Instantiate(headEffect, transform.position, Quaternion.identity);
                         Destroy(gameObject);
                     }
@@ -109,6 +112,7 @@ public class oniMove : MonoBehaviour
                 SoundManager.instance.body();
                 if (oniIndex == 1)
                 {
+                    ScoreMgr.instance.killedOni++;
                     ScoreMgr.instance.scoreUp(100, false);
                     Instantiate(effect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
@@ -118,6 +122,7 @@ public class oniMove : MonoBehaviour
                     hp--;
                     if (hp <= 0)
                     {
+                        ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(200, false);
                         Instantiate(effect, transform.position, Quaternion.identity);
                         Destroy(gameObject);

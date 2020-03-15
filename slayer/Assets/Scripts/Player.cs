@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public float touchDelay;
     public GameObject dieEffect;
     [Header("신경쓸필요없음")] 
+    public fade panel;//콤보중 화면 어둡게 만들어줌
     public bool isGameOver = false;
     public GameObject comboPop;
     public GameObject headPop;
@@ -25,7 +26,6 @@ public class Player : MonoBehaviour
     public bool isattack = false; //공격중인지 판단
     private bool canMove = true;
     private CameraManager camera; //카메라스크립트
-    private fade panel;//콤보중 화면 어둡게 만들어줌
     public Transform min, max; //터치할수있는 최소, 최대 역역
     private Rigidbody2D rigid; //리지드바디얻어옴
     public GameObject particle;//전기이펙트
@@ -40,7 +40,6 @@ public class Player : MonoBehaviour
 
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
-        panel = FindObjectOfType<fade>();
         camera = Camera.main.GetComponent<CameraManager>();
 
         unRotY = transform.localScale.y;
@@ -85,7 +84,12 @@ public class Player : MonoBehaviour
             
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    print(Input.mousePosition);
+                    if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758&&Input.mousePosition.x<=211&&Input.mousePosition.y<=841)
+                    { }
+                    else
+                    {
+                        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                   
                         StopAllCoroutines();
                         if (pos.x < min.position.x)
@@ -108,7 +112,8 @@ public class Player : MonoBehaviour
                             pos.y = max.position.y;
                         }
 
-                        StartCoroutine(go2(pos));
+                        StartCoroutine(go2(pos));    
+                    }
                 }
 
         }
@@ -344,11 +349,11 @@ public class Player : MonoBehaviour
     {
         if (!isGameOver)
         {
-            print("게임오버!");
             Instantiate(dieEffect, transform.position, Quaternion.identity);
             StopAllCoroutines();
             SoundManager.instance.hit();
             isGameOver = true;
+            FindObjectOfType<GameManager>().isGameOver = true;
           FindObjectOfType<GameOverManager>().GameoverFunc();
             Destroy(gameObject);
         }
