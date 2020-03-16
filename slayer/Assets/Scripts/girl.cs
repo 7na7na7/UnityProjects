@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class girl : MonoBehaviour
 {
+    public GameObject dieEffect;
     public static girl instance;
     //public float invisibleTime;
     public Slider hp;
@@ -58,6 +59,13 @@ public class girl : MonoBehaviour
         anim.Play("girlhit");
         SoundManager.instance.girl();
         hp.value -= damage;
+        if (hp.value <= 0)
+        {
+            Player.instance.isGameOver = true;
+            FindObjectOfType<GameManager>().isGameOver = true;
+            FindObjectOfType<GameOverManager>().GameoverFunc();
+            Destroy(gameObject);
+        }
         if(FindObjectOfType<girlText>()!=null)
             FindObjectOfType<girlText>().text.text = "아얏!";
         yield return new WaitForSeconds(1);

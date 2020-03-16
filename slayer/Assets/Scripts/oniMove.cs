@@ -90,6 +90,7 @@ public class oniMove : MonoBehaviour
                 SoundManager.instance.head();
                 if (oniIndex == 1)
                 {
+                    ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     ScoreMgr.instance.scoreUp(100, false);
                     Instantiate(headEffect, transform.position, Quaternion.identity);
@@ -100,6 +101,7 @@ public class oniMove : MonoBehaviour
                     hp -= 2;
                     if (hp <= 0)
                     {
+                        ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(200, false);
                         Instantiate(headEffect, transform.position, Quaternion.identity);
@@ -112,6 +114,7 @@ public class oniMove : MonoBehaviour
                 SoundManager.instance.body();
                 if (oniIndex == 1)
                 {
+                    ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     ScoreMgr.instance.scoreUp(100, false);
                     Instantiate(effect, transform.position, Quaternion.identity);
@@ -122,6 +125,7 @@ public class oniMove : MonoBehaviour
                     hp--;
                     if (hp <= 0)
                     {
+                        ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(200, false);
                         Instantiate(effect, transform.position, Quaternion.identity);
@@ -129,8 +133,6 @@ public class oniMove : MonoBehaviour
                     }
                 }
             }
-
-            ComboManager.instance.comboIniitailize();
             Player.instance.ComboText(isHead);
             dmgDelay = 0;
         }

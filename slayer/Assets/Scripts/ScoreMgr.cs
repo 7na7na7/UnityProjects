@@ -28,7 +28,8 @@ public class ScoreMgr : MonoBehaviour
            go.GetComponent<Text>().text = (point * 0.02) + "콤보 +" + point;
         }
         score += point;
-        StartCoroutine(FindObjectOfType<ScoreText>().size());
+        if(FindObjectOfType<ScoreText>()!=null) 
+            StartCoroutine(FindObjectOfType<ScoreText>().size());
     }
 
     public void scoreDown(int point)

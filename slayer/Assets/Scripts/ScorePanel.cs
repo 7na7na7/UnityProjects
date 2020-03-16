@@ -34,36 +34,54 @@ public class ScorePanel : MonoBehaviour
                 killedOni.text = "죽인 오니 : " + killedOnic + "마리";
         }
         yield return new WaitForSecondsRealtime(0.3f);
-        while (headc<headv)
+        if (headv > 0)
         {
-            yield return new WaitForSecondsRealtime(textDelay);
-            headc ++;
-            head.text = "급소 공격 횟수 : " + headc + "번";
+            while (headc < headv)
+            {
+                yield return new WaitForSecondsRealtime(textDelay);
+                headc++;
+                head.text = "급소 공격 횟수 : " + headc + "번";
+            }
+
+            yield return new WaitForSecondsRealtime(0.3f);
         }
-        yield return new WaitForSecondsRealtime(0.3f);
-        while (maxcomboc<maxcombov)
+        if (maxcombov > 1)
         {
-            yield return new WaitForSecondsRealtime(textDelay);
-            maxcomboc ++;
-            maxCombo.text = "최대 콤보 횟수 : " + maxcomboc + "번";
-        }
-        yield return new WaitForSecondsRealtime(0.3f);
-        bonusText.text="급소 보너스 + " + headv * headScore;
-        while (scorec<ScoreMgr.instance.score+(headv*headScore))
-        {
-            yield return new WaitForSecondsRealtime(textDelay);
-            scorec += 50;
-            score.text = scorec.ToString(); 
-        }
-        yield return new WaitForSecondsRealtime(0.3f);
-        bonusText.text = "최대콤보 보너스 + " + maxcombov * maxComboScore;
-        while (scorec < ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore))
-        {
-            yield return new WaitForSecondsRealtime(textDelay);
-            scorec += 50;
-            score.text = scorec.ToString();
+            while (maxcomboc < maxcombov)
+            {
+                yield return new WaitForSecondsRealtime(textDelay);
+                maxcomboc++;
+                maxCombo.text = "최대 콤보 횟수 : " + maxcomboc + "번";
+            }
+
+            yield return new WaitForSecondsRealtime(0.3f);
         }
 
-        //bonusText.text = "";
+        if (headv > 0)
+        {
+            bonusText.text = "급소 보너스 + " + headv * headScore;
+            while (scorec < ScoreMgr.instance.score + (headv * headScore))
+            {
+                yield return new WaitForSecondsRealtime(textDelay);
+                scorec += 50;
+                score.text = scorec.ToString();
+            }
+
+            yield return new WaitForSecondsRealtime(0.3f);
+        }
+
+        if (maxcombov > 1)
+        {
+            bonusText.text = "최대콤보 보너스 + " + maxcombov * maxComboScore;
+            while (scorec < ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore))
+            {
+                yield return new WaitForSecondsRealtime(textDelay);
+                scorec += 50;
+                score.text = scorec.ToString();
+            }
+
+            yield return new WaitForSecondsRealtime(0.3f);
+        }
+        bonusText.text = "";
     }
 }

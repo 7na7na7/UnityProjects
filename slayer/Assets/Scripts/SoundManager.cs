@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
+    public AudioClip tsuzumiL, tsuzumiM, tsuzumiR;
     public AudioClip hitSound;
     public AudioClip swingSound;
     public AudioClip bodySound;
@@ -19,6 +22,15 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void tsuzumi(int v)
+    {
+        if(v==0)
+            audio.PlayOneShot(tsuzumiL);
+        else if(v==1)
+            audio.PlayOneShot(tsuzumiM);
+        else if(v==2)
+            audio.PlayOneShot(tsuzumiR);
+    }
     public void swing()
     {
         audio.PlayOneShot(swingSound);

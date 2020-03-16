@@ -6,14 +6,12 @@ using UnityEngine.Experimental.UIElements;
 
 public class Player : MonoBehaviour
 {
-    [Header("설정해줘야하는값")]
-    public int force; //움직이는 속도
+    [Header("설정해줘야하는값")] public int force; //움직이는 속도
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
     public float touchDelay;
     public GameObject dieEffect;
-    [Header("신경쓸필요없음")] 
-    public fade panel;//콤보중 화면 어둡게 만들어줌
+    [Header("신경쓸필요없음")] public fade panel; //콤보중 화면 어둡게 만들어줌
     public bool isGameOver = false;
     public GameObject comboPop;
     public GameObject headPop;
@@ -28,11 +26,11 @@ public class Player : MonoBehaviour
     private CameraManager camera; //카메라스크립트
     public Transform min, max; //터치할수있는 최소, 최대 역역
     private Rigidbody2D rigid; //리지드바디얻어옴
-    public GameObject particle;//전기이펙트
+    public GameObject particle; //전기이펙트
     public GameObject trail; //뒤따라오는트레일이펙트
     public GameObject trail2;
     public GameObject jumpEffect; //점프시 이펙트
-    private float killDelay = 0;
+
     private void Start()
     {
         if (instance == null)
@@ -48,16 +46,22 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (touchTime>=touchDelay&&mpSlider.instance.mp.value>=1&&!isGameOver) //터치타임이 터치딜레이 이상이고, 기력이 1이상이고, 게임오버가 아니라면
+        if (touchTime >= touchDelay && mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0) //터치타임이 터치딜레이 이상이고, 기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
         {
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
                 {
-                    Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    //if (Vector2.Distance(transform.position, pos) > 1)같은곳 터치안되게하는코드
-                    StopAllCoroutines();
+                    if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758 && Input.mousePosition.x <= 211 &&
+                        Input.mousePosition.y <= 841)
+                    {
+                    }
+                    else
+                    {
+                        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        //if (Vector2.Distance(transform.position, pos) > 1)같은곳 터치안되게하는코드
+                        StopAllCoroutines();
                         if (pos.x < min.position.x)
                         {
                             pos.x = min.position.x;
@@ -79,12 +83,11 @@ public class Player : MonoBehaviour
                         }
 
                         StartCoroutine(go2(pos));
+                    }
                 }
             }
-            
-                if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
                 {
-                    print(Input.mousePosition);
                     if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758&&Input.mousePosition.x<=211&&Input.mousePosition.y<=841)
                     { }
                     else
@@ -117,10 +120,9 @@ public class Player : MonoBehaviour
                 }
 
         }
+        
         if(touchTime<touchDelay) 
             touchTime += Time.deltaTime;
-        if (killDelay < 0.05f)
-            killDelay += Time.deltaTime;
     }
 
     /*예전 go함수
@@ -205,7 +207,7 @@ public class Player : MonoBehaviour
              StartCoroutine(panel.fadeout());
          }
          */
-    
+
     public IEnumerator go2(Vector2 to)
     {
         SoundManager.instance.swing();
@@ -216,14 +218,18 @@ public class Player : MonoBehaviour
         if (to.x > transform.position.x)
         {
             flipY(false);
-            transform.eulerAngles = new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y)+60);
+            transform.eulerAngles =
+                new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 60);
         }
         else
         {
             flipY(true);
-            transform.eulerAngles = new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y)+120);
+            transform.eulerAngles =
+                new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 120);
         }
-        Instantiate(jumpEffect, transform.position,Quaternion.Euler(0,0,-getAngle(transform.position.x, transform.position.y, to.x, to.y)+90));
+
+        Instantiate(jumpEffect, transform.position,
+            Quaternion.Euler(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 90));
         anim.Play("attack_ready");
         isattack = true;
         trail.SetActive(true);
@@ -234,67 +240,70 @@ public class Player : MonoBehaviour
         {
             camera.sizeup();
             StartCoroutine(panel.fadeIn());
-            trail.GetComponent<TrailRenderer>().startColor=Color.yellow;
+            trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
             particle.SetActive(true);
             //int currentcount = comboCount;
             if (Time.timeScale == 1)
                 Time.timeScale = 0.7f;
 
-                Vector2 dir = to - (Vector2) transform.position;
-                dir.Normalize();
-                if (Time.timeScale == 0.7f)
-                {
-                    rigid.velocity = dir * force*2;
-                }
-                else
-                {
-                    rigid.velocity = dir * force;
-                }
+            Vector2 dir = to - (Vector2) transform.position;
+            dir.Normalize();
+            if (Time.timeScale == 0.7f)
+            {
+                rigid.velocity = dir * force * 2;
+            }
+            else
+            {
+                rigid.velocity = dir * force;
+            }
         }
         else //첫번째
         {
             particle.SetActive(false);
-            trail.GetComponent<TrailRenderer>().startColor=Color.white;
+            trail.GetComponent<TrailRenderer>().startColor = Color.white;
             camera.sizedown();
             StartCoroutine(panel.fadeout());
-          
-                Vector2 dir = to - (Vector2) transform.position;
-                dir.Normalize();
-                if (Time.timeScale == 0.7f)
-                {
-                    rigid.velocity = dir * force*50;
-                }
-                else
-                {
-                    rigid.velocity = dir * force;
-                }
+
+            Vector2 dir = to - (Vector2) transform.position;
+            dir.Normalize();
+            if (Time.timeScale == 0.7f)
+            {
+                rigid.velocity = dir * force * 50;
+            }
+            else
+            {
+                rigid.velocity = dir * force;
+            }
         }
-        if(ComboManager.instance.canCombo) 
-            yield return new WaitUntil(()=>Vector2.Distance(transform.position, to) <= 0.5f);
+
+        if (ComboManager.instance.canCombo)
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.4f);
         else
-            yield return new WaitUntil(()=>Vector2.Distance(transform.position, to) <= 0.3f);
-        
-       
-        rigid.velocity *= 0.3f; 
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.2f);
+
+
+        rigid.velocity *= 0.3f;
         rigid.bodyType = RigidbodyType2D.Dynamic;
         yield return new WaitForSeconds(0.2f);
         isattack = false;
         yield return new WaitForSeconds(ComboManager.instance.comboDelay);
         particle.SetActive(false);
-        trail.GetComponent<TrailRenderer>().startColor=Color.white;
+        trail.GetComponent<TrailRenderer>().startColor = Color.white;
         camera.sizedown();
         StartCoroutine(panel.fadeout());
     }
+
     public void flipY(bool flip)
     {
-        if(flip)
-            transform.localScale=new Vector3(transform.localScale.x,RotY,1);
+        if (flip)
+            transform.localScale = new Vector3(transform.localScale.x, RotY, 1);
         else
-            transform.localScale=new Vector3(transform.localScale.x,unRotY,1);
+            transform.localScale = new Vector3(transform.localScale.x, unRotY, 1);
     }
+
     private void OnTriggerEnter2D(Collider2D hit)
     {
-        if (killDelay >= 0.05f)
+        if (!isGameOver)
         {
             if (hit.CompareTag("oni"))
             {
@@ -317,7 +326,6 @@ public class Player : MonoBehaviour
                     die();
                 }
 
-                killDelay = 0;
             }
             else if (hit.CompareTag("oniHead"))
             {
@@ -337,11 +345,12 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                  die();
+                    die();
                 }
 
-                killDelay = 0;
             }
+            else if (hit.CompareTag("damage"))
+                die();
         }
     }
 
@@ -349,10 +358,10 @@ public class Player : MonoBehaviour
     {
         if (!isGameOver)
         {
+            isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);
             StopAllCoroutines();
             SoundManager.instance.hit();
-            isGameOver = true;
             FindObjectOfType<GameManager>().isGameOver = true;
           FindObjectOfType<GameOverManager>().GameoverFunc();
             Destroy(gameObject);
@@ -384,7 +393,7 @@ public class Player : MonoBehaviour
 
     IEnumerator atkCor()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         isattack = false;
     }
 }
