@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Globalization;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 
@@ -53,10 +54,8 @@ public class Player : MonoBehaviour
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
                 {
-                    if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758 && Input.mousePosition.x <= 211 &&
-                        Input.mousePosition.y <= 841)
-                    {
-                    }
+                    if (Input.mousePosition.x >= 170 && Input.mousePosition.y >= 938&&Input.mousePosition.x<=272&&Input.mousePosition.y<=1046)
+                    { }
                     else
                     {
                         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -86,6 +85,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+            /*
             if (Input.GetMouseButtonDown(0))
                 {
                     if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758&&Input.mousePosition.x<=211&&Input.mousePosition.y<=841)
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
 
                         StartCoroutine(go2(pos));    
                     }
-                }
+                }*/
 
         }
         
@@ -230,7 +230,6 @@ public class Player : MonoBehaviour
 
         Instantiate(jumpEffect, transform.position,
             Quaternion.Euler(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 90));
-        anim.Play("attack_ready");
         isattack = true;
         trail.SetActive(true);
         rigid.velocity = Vector2.zero;
@@ -238,6 +237,7 @@ public class Player : MonoBehaviour
         canMove = true;
         if (ComboManager.instance.canCombo) //콤보중
         {
+            anim.Play("attack_ready");
             camera.sizeup();
             StartCoroutine(panel.fadeIn());
             trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
@@ -259,6 +259,7 @@ public class Player : MonoBehaviour
         }
         else //첫번째
         {
+            anim.Play("attack_ready2");
             particle.SetActive(false);
             trail.GetComponent<TrailRenderer>().startColor = Color.white;
             camera.sizedown();
@@ -311,7 +312,10 @@ public class Player : MonoBehaviour
                 {
                     StartCoroutine(atkCor());
                     Instantiate(slashEffect, transform.position, Quaternion.identity);
-                    anim.Play("attackAnim");
+                    if(ComboManager.instance.comboCount<=1) 
+                        anim.Play("attackAnim2");
+                    else
+                        anim.Play("attackAnim");
                     canMove = false;
                     Vector2 dir = transform.position - hit.transform.position;
                     dir.Normalize();
@@ -333,7 +337,10 @@ public class Player : MonoBehaviour
                 {
                     StartCoroutine(atkCor());
                     Instantiate(slashEffect, transform.position, Quaternion.identity);
-                    anim.Play("attackAnim");
+                    if(ComboManager.instance.comboCount<=1) 
+                        anim.Play("attackAnim2");
+                    else
+                        anim.Play("attackAnim");
                     canMove = false;
                     Vector2 dir = transform.position - hit.transform.position;
                     dir.Normalize();
@@ -363,7 +370,7 @@ public class Player : MonoBehaviour
             StopAllCoroutines();
             SoundManager.instance.hit();
             FindObjectOfType<GameManager>().isGameOver = true;
-          FindObjectOfType<GameOverManager>().GameoverFunc();
+          FindObjectOfType<GameOverManager>().GameoverFunc(gameObject);
             Destroy(gameObject);
         }
     }
@@ -395,5 +402,11 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         isattack = false;
+        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(ComboManager.instance.comboDelay);
+        particle.SetActive(false);
+        trail.GetComponent<TrailRenderer>().startColor = Color.white;
+        camera.sizedown();
+        StartCoroutine(panel.fadeout());
     }
 }

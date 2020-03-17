@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
     public float delay;
     public float speed = 2f;
     public GameObject target; //카메라가 따라갈 대상
+    public GameObject savedTarget;
     public BoxCollider2D bound; //카메라가 나가지 못하는 영역을 박스 콜라이더로 받음
 
     private Vector3 targetPosition; //대상의 현재 값
@@ -93,10 +94,10 @@ public class CameraManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(sizedownCor());
     }
-    public void gameOver()
+    public void gameOver(GameObject g)
     {
         StopAllCoroutines();
-        StartCoroutine(gameoverCor());
+        StartCoroutine(gameoverCor(g));
     }
 
     public IEnumerator sizeupCor()
@@ -118,36 +119,69 @@ public class CameraManager : MonoBehaviour
         }
         yield return null;
     }
-    public IEnumerator gameoverCor()
+
+    public IEnumerator gameoverCor(GameObject g)
     {
         targetPosition = target.transform.position;
         GameObject.Find("BGM").GetComponent<AudioSource>().Stop();
-        Vector3 p = Player.instance.transform.position;
-        while (theCamera.orthographicSize>4)
+        Vector3 p = g.transform.position;
+        while (theCamera.orthographicSize > 4)
         {
             theCamera.orthographicSize -= 0.2f;
-            targetPosition.Set(p.x, p.y, this.transform.position.z); 
+            targetPosition.Set(p.x, p.y, this.transform.position.z);
             //transform.position = targetPosition;
-           
 
-            if(speed==0) 
+
+            if (speed == 0)
                 transform.position = targetPosition;
             else
                 transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
 
             halfHeight = theCamera.orthographicSize;
             halfWidth = halfHeight * Screen.width / Screen.height; //카메라 반너비 공식
-            float clampedX = Mathf.Clamp(this.transform.position.x, minBound.x + halfWidth, maxBound.x - halfWidth);   
-            
+            float clampedX = Mathf.Clamp(this.transform.position.x, minBound.x + halfWidth, maxBound.x - halfWidth);
+
             float clampedY = Mathf.Clamp(this.transform.position.y, minBound.y + halfHeight, maxBound.y - halfHeight);
 //Mathf.Clamp(10,0,100) 일 경우 값은 10,
 //Mathf.Clamp(-10,0,100)일 경우 값은 0이다.
             this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
             yield return new WaitForSeconds(delay);
         }
+
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(1f);
         FindObjectOfType<GameOverManager>().canGo = true;
         yield return null;
+    }
+
+    public IEnumerator targetChange(GameObject g)
+    {
+        Time.timeScale = 0.1f;
+        target = g;
+        while (theCamera.orthographicSize > 4)
+        {
+            theCamera.orthographicSize -= 0.2f;
+            targetPosition.Set(g.transform.position.x, g.transform.position.y, this.transform.position.z);
+            //transform.position = targetPosition;
+
+
+            if (speed == 0)
+                transform.position = targetPosition;
+            else
+                transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+
+            halfHeight = theCamera.orthographicSize;
+            halfWidth = halfHeight * Screen.width / Screen.height; //카메라 반너비 공식
+            float clampedX = Mathf.Clamp(this.transform.position.x, minBound.x + halfWidth, maxBound.x - halfWidth);
+
+            float clampedY = Mathf.Clamp(this.transform.position.y, minBound.y + halfHeight, maxBound.y - halfHeight);
+//Mathf.Clamp(10,0,100) 일 경우 값은 10,
+//Mathf.Clamp(-10,0,100)일 경우 값은 0이다.
+            this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
+            yield return new WaitForSeconds(delay);
+        }
+        target = savedTarget;
+        Time.timeScale = 1;
+        sizeup();
     }
 }

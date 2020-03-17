@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip girlSound;
     public AudioClip selectSound;
     public AudioClip comboSound;
+    public AudioClip scoreCountSound;
     public static SoundManager instance;
     private AudioSource audio;
     void Start()
@@ -22,6 +23,10 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void scoreCount()
+    {
+        audio.PlayOneShot(scoreCountSound);
+    }
     public void tsuzumi(int v)
     {
         if(v==0)

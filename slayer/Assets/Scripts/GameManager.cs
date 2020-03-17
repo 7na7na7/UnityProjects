@@ -10,13 +10,16 @@ public class GameManager : MonoBehaviour
 {
   public GameObject boss;
   public int bossTime;
+  public int jumpingTIme;
+  public int fallingTime;
   public GameObject pausePanel;
   public Sprite pauseSprite, goSprite;
   public Button pauseBtn;
   public bool isGameOver=false;
+  public bool bossDead = false;
   private Spawner[] spawners;
   private Fire[] fires;
-
+  public GameObject txt;
   private void Awake()
   {
     Time.timeScale = 1;
@@ -30,21 +33,39 @@ public class GameManager : MonoBehaviour
   }
 
   IEnumerator Game()
-  {
+  { yield return new WaitForSeconds(jumpingTIme);
+    foreach (Fire f in fires)
+    {
+      f.canSpawn = true;
+    }
+    yield return new WaitForSeconds(fallingTime);
+    foreach (Spawner s in spawners)
+    {
+      if (s.isFalling)
+        s.canSpawn = true;
+    }
     yield return new WaitForSeconds(bossTime);
-    /*
     foreach (Spawner s in spawners)
     {
       s.canSpawn = false;
     }
     foreach (Fire f in fires)
-    {
+    { 
       f.canSpawn = false;
     }
-    */
 
+    GameObject t=Instantiate(txt, GameObject.Find("Screen").transform);
+    yield return new WaitForSeconds(5);
     GameObject bossObj=Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x,GameObject.Find("Max").transform.position.x),transform.position.y,0),Quaternion.identity);
-    //yield return new WaitUntil(()=>bossObj.GetComponent<>())
+    yield return new WaitUntil(() => bossDead);
+    foreach (Spawner s in spawners)
+    {
+      s.canSpawn = true;
+    }
+    foreach (Fire f in fires)
+    { 
+      f.canSpawn = true;
+    }
   }
 
   public void pause()

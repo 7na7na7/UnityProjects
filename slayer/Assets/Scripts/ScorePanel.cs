@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScorePanel : MonoBehaviour
 {
-    public Text bonusText;
+    public Text bonusText1,bonusText2;
     public float textDelay;
     public int headScore,maxComboScore;
     public Text head, killedOni, maxCombo, score;
@@ -31,6 +31,9 @@ public class ScorePanel : MonoBehaviour
                 killedOnic += 2;
             else
                 killedOnic++;
+            
+            if (killedOnic% 3 == 0)
+                SoundManager.instance.scoreCount();
                 killedOni.text = "죽인 오니 : " + killedOnic + "마리";
         }
         yield return new WaitForSecondsRealtime(0.3f);
@@ -40,6 +43,8 @@ public class ScorePanel : MonoBehaviour
             {
                 yield return new WaitForSecondsRealtime(textDelay);
                 headc++;
+                if (headc% 3 == 0)
+                    SoundManager.instance.scoreCount();
                 head.text = "급소 공격 횟수 : " + headc + "번";
             }
 
@@ -51,6 +56,8 @@ public class ScorePanel : MonoBehaviour
             {
                 yield return new WaitForSecondsRealtime(textDelay);
                 maxcomboc++;
+                if (maxcomboc % 3 == 0)
+                    SoundManager.instance.scoreCount();
                 maxCombo.text = "최대 콤보 횟수 : " + maxcomboc + "번";
             }
 
@@ -59,11 +66,13 @@ public class ScorePanel : MonoBehaviour
 
         if (headv > 0)
         {
-            bonusText.text = "급소 보너스 + " + headv * headScore;
+            bonusText1.text = "급소 보너스 + " + headv * headScore;
             while (scorec < ScoreMgr.instance.score + (headv * headScore))
             {
                 yield return new WaitForSecondsRealtime(textDelay);
                 scorec += 50;
+                if (scorec % 150 == 0)
+                    SoundManager.instance.scoreCount();
                 score.text = scorec.ToString();
             }
 
@@ -72,16 +81,17 @@ public class ScorePanel : MonoBehaviour
 
         if (maxcombov > 1)
         {
-            bonusText.text = "최대콤보 보너스 + " + maxcombov * maxComboScore;
+            bonusText2.text = "최대콤보 보너스 + " + maxcombov * maxComboScore;
             while (scorec < ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore))
             {
                 yield return new WaitForSecondsRealtime(textDelay);
                 scorec += 50;
+                if (scorec % 150 == 0)
+                    SoundManager.instance.scoreCount();
                 score.text = scorec.ToString();
             }
 
             yield return new WaitForSecondsRealtime(0.3f);
         }
-        bonusText.text = "";
     }
 }

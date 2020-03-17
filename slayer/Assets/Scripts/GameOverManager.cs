@@ -11,11 +11,11 @@ public class GameOverManager : MonoBehaviour
     public bool canGo = false;
     public fade Screenfade;
     public fade Worldfade;
-    public void GameoverFunc()
+    public void GameoverFunc(GameObject g)
     {
-        StartCoroutine(GameOver());
+        StartCoroutine(GameOver(g));
     }
-    public IEnumerator GameOver()
+    public IEnumerator GameOver(GameObject g)
     {
         delete.SetActive(false);
         //콤보 마무리해줌
@@ -26,7 +26,7 @@ public class GameOverManager : MonoBehaviour
         }
         ComboManager.instance.comboCount = 0;
         Time.timeScale = 0.1f;
-        CameraManager.instance.gameOver();
+        CameraManager.instance.gameOver(g);
         yield return new WaitUntil(()=>canGo==true);
         StartCoroutine(Screenfade.fadeInRealTime());
         StartCoroutine(Worldfade.fadeoutRealTime());

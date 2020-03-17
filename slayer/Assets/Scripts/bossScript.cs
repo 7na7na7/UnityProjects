@@ -105,6 +105,8 @@ public class bossScript : MonoBehaviour
     {
         if (dmgDelay < 0.1f)
             dmgDelay += Time.deltaTime;
+        if(FindObjectOfType<GameManager>().isGameOver)
+            transform.GetChild(0).gameObject.SetActive(false);
     }
     
     public void die(bool isHead)
@@ -124,6 +126,9 @@ public class bossScript : MonoBehaviour
                         ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(2000, false);
                         Instantiate(headEffect, transform.position, Quaternion.identity);
+                        StartCoroutine(CameraManager.instance.targetChange(gameObject));
+                        FindObjectOfType<GameManager>().bossDead=true;
+                        CameraManager.instance.rot = 1;
                         Destroy(gameObject);
                     }
             }
@@ -138,6 +143,9 @@ public class bossScript : MonoBehaviour
                         ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(2000, false);
                         Instantiate(effect, transform.position, Quaternion.identity);
+                        StartCoroutine(CameraManager.instance.targetChange(gameObject));
+                        FindObjectOfType<GameManager>().bossDead=true;
+                        CameraManager.instance.rot = 1;
                         Destroy(gameObject);
                     }
             }

@@ -63,8 +63,8 @@ public class girl : MonoBehaviour
         {
             Player.instance.isGameOver = true;
             FindObjectOfType<GameManager>().isGameOver = true;
-            FindObjectOfType<GameOverManager>().GameoverFunc();
-            Destroy(gameObject);
+            FindObjectOfType<GameOverManager>().GameoverFunc(gameObject);
+            yield break;
         }
         if(FindObjectOfType<girlText>()!=null)
             FindObjectOfType<girlText>().text.text = "아얏!";

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 5606277874480119228, guid: 072b5ac2044df7a4c9e6503e0f564482, type: 3}
+  delay: 5
 --- !u!212 &8413693056172056093
 SpriteRenderer:
   m_ObjectHideFlags: 0
