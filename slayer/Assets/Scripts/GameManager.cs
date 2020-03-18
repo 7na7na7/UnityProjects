@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
   private Spawner[] spawners;
   private Fire[] fires;
   public GameObject txt;
+  public bool isPause = false;
   private void Awake()
   {
     Time.timeScale = 1;
@@ -72,22 +73,30 @@ public class GameManager : MonoBehaviour
   {
     if (!isGameOver)
     {
-      if (Time.timeScale == 0) //재개
+      if (isPause)
       {
-        GameObject.Find("BGM").GetComponent<AudioSource>().UnPause();
-        pausePanel.SetActive(false);
-        if (ComboManager.instance.comboCount >= 2)
-          Time.timeScale = 0.7f;
-        else
-          Time.timeScale = 1;
-        pauseBtn.GetComponent<Image>().sprite = goSprite;
+        if (Time.timeScale == 0)
+        {
+          GameObject.Find("BGM").GetComponent<AudioSource>().UnPause();
+          pausePanel.SetActive(false);
+          if (ComboManager.instance.comboCount >= 2)
+            Time.timeScale = 0.7f;
+          else
+            Time.timeScale = 1;
+          pauseBtn.GetComponent<Image>().sprite = goSprite;
+          isPause = false;
+        }
       }
       else //일시정지
       {
-        GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
-        pausePanel.SetActive(true);
-        Time.timeScale = 0;
-        pauseBtn.GetComponent<Image>().sprite = pauseSprite;
+        if (Time.timeScale == 1)
+        {
+          GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
+          pausePanel.SetActive(true);
+          Time.timeScale = 0;
+          pauseBtn.GetComponent<Image>().sprite = pauseSprite;
+          isPause = true;
+        }
       }
     }
   }

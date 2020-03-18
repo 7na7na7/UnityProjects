@@ -64,11 +64,15 @@ public class girl : MonoBehaviour
             Player.instance.isGameOver = true;
             FindObjectOfType<GameManager>().isGameOver = true;
             FindObjectOfType<GameOverManager>().GameoverFunc(gameObject);
+            StopAllCoroutines();
             yield break;
         }
-        if(FindObjectOfType<girlText>()!=null)
-            FindObjectOfType<girlText>().text.text = "아얏!";
-        yield return new WaitForSeconds(1);
-        anim.Play("girlAnim");
+        else
+        {
+            if(FindObjectOfType<girlText>()!=null)
+                FindObjectOfType<girlText>().text.text = "아얏!";
+            yield return new WaitForSeconds(1);
+            anim.Play("girlAnim");
+        }
     }
 }

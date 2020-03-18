@@ -14,6 +14,8 @@ public class bossScript : MonoBehaviour
     public float patternDelay;
     private bool canGo = false;
     private int previous = 10;
+    private bool canMove = false;
+    private int attackCount = 0;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -22,19 +24,42 @@ public class bossScript : MonoBehaviour
 
     IEnumerator Go()
     {
+        int t = (int)Time.timeScale;
+        Time.timeScale = 0;
+        while (slider.value<slider.maxValue)
+        {
+            slider.value += 0.2f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
+        Time.timeScale = t;
+        canMove = true;
         while (true)
         {
             if(slider.value<=10)
-                yield return new WaitForSeconds(patternDelay*0.5f);
+                yield return new WaitForSeconds(patternDelay*0.7f);
             else
                 yield return new WaitForSeconds(patternDelay);
             int r = 0;
-            while (r==previous)
+            if (attackCount >= 3)
             {
-                r = Random.Range(0, 4);
+                r = 1;
+                attackCount = 0;
             }
-            if(r!=1) 
+            else
+            {
+                while (r==previous)
+                {
+                    r = Random.Range(0, 4);
+                }   
+            }
+
+            if (r != 1)
+            {
                 previous = r;
+                attackCount++;
+            }
+
             if (r == 3)
                 StartCoroutine(move());
             else
@@ -68,7 +93,7 @@ public class bossScript : MonoBehaviour
         else if (r == 1)
         {
             anim.Play("tsuzumi_M");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.6f);
             if (slider.value <= 10)
             {
                 Instantiate(crew, Player.instance.transform.position + new Vector3(5, 5, 0),
@@ -111,46 +136,49 @@ public class bossScript : MonoBehaviour
     
     public void die(bool isHead)
     {
-        if (dmgDelay >= 0.1f)
+        if (canMove)
         {
-            if (isHead)
+            if (dmgDelay >= 0.1f)
             {
-                ScoreMgr.instance.headshot++;
-                SoundManager.instance.head();
+                if (isHead)
+                {
+                    ScoreMgr.instance.headshot++;
+                    SoundManager.instance.head();
 
-                slider.value -= 2;
+                    slider.value -= 2;
                     if (slider.value <= 0)
                     {
+                        dmgDelay = 0;
                         CameraManager.instance.rot = 1;
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(2000, false);
                         Instantiate(headEffect, transform.position, Quaternion.identity);
-                        StartCoroutine(CameraManager.instance.targetChange(gameObject));
-                        FindObjectOfType<GameManager>().bossDead=true;
-                        CameraManager.instance.rot = 1;
+                        CameraManager.instance.targetChangeFunc(gameObject);
+                        FindObjectOfType<GameManager>().bossDead = true;
                         Destroy(gameObject);
                     }
-            }
-            else
-            {
-                SoundManager.instance.body();
-                slider.value--;
+                }
+                else
+                {
+                    SoundManager.instance.body();
+                    slider.value--;
                     if (slider.value <= 0)
                     {
+                        dmgDelay = 0;
                         CameraManager.instance.rot = 1;
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(2000, false);
                         Instantiate(effect, transform.position, Quaternion.identity);
-                        StartCoroutine(CameraManager.instance.targetChange(gameObject));
-                        FindObjectOfType<GameManager>().bossDead=true;
-                        CameraManager.instance.rot = 1;
+                        CameraManager.instance.targetChangeFunc(gameObject);
+                        FindObjectOfType<GameManager>().bossDead = true;
                         Destroy(gameObject);
                     }
+                }
+                dmgDelay = 0;
+                Player.instance.ComboText(isHead);
             }
-            Player.instance.ComboText(isHead);
-            dmgDelay = 0;
         }
     }
 

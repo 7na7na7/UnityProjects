@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour
     private float halfWidth, halfHeight; //카메라의 반너비, 반높이 값을 지닐 변수
     private Camera theCamera; //카메라의 반높이값을 구할 속성을 이용하기 위한 변수
     public static CameraManager instance;
-
+    public GameObject posGO;
     private void Start()
     {
         instance = this;
@@ -102,7 +102,7 @@ public class CameraManager : MonoBehaviour
 
     public IEnumerator sizeupCor()
     {
-        while (theCamera.orthographicSize<8)
+        while (theCamera.orthographicSize<7)
         {
             theCamera.orthographicSize += 0.1f;
             yield return new WaitForSeconds(delay);
@@ -112,7 +112,7 @@ public class CameraManager : MonoBehaviour
     
     public IEnumerator sizedownCor()
     {
-        while (theCamera.orthographicSize>6)
+        while (theCamera.orthographicSize>5)
         {
             theCamera.orthographicSize -= 0.1f;
             yield return new WaitForSeconds(delay);
@@ -125,7 +125,7 @@ public class CameraManager : MonoBehaviour
         targetPosition = target.transform.position;
         GameObject.Find("BGM").GetComponent<AudioSource>().Stop();
         Vector3 p = g.transform.position;
-        while (theCamera.orthographicSize > 4)
+        while (theCamera.orthographicSize > 3.5f)
         {
             theCamera.orthographicSize -= 0.2f;
             targetPosition.Set(p.x, p.y, this.transform.position.z);
@@ -154,14 +154,25 @@ public class CameraManager : MonoBehaviour
         yield return null;
     }
 
+    public void targetChangeFunc(GameObject g)
+    {
+        StopAllCoroutines();
+        Player.instance.StopAllCoroutines();
+        
+        StartCoroutine(targetChange(g));
+    }
     public IEnumerator targetChange(GameObject g)
     {
+        Player.instance.canTouch = false;
+        theCamera.orthographicSize = 5;
+        rotSpeed *= 10;
+        posGO.transform.position = g.transform.position;
+        target = posGO;
         Time.timeScale = 0.1f;
-        target = g;
-        while (theCamera.orthographicSize > 4)
+        while (theCamera.orthographicSize > 3.5f)
         {
-            theCamera.orthographicSize -= 0.2f;
-            targetPosition.Set(g.transform.position.x, g.transform.position.y, this.transform.position.z);
+            theCamera.orthographicSize -= 0.1f;
+            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
             //transform.position = targetPosition;
 
 
@@ -183,5 +194,6 @@ public class CameraManager : MonoBehaviour
         target = savedTarget;
         Time.timeScale = 1;
         sizeup();
+        Player.instance.canTouch = true;
     }
 }

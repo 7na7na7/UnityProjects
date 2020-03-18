@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     public GameObject trail; //뒤따라오는트레일이펙트
     public GameObject trail2;
     public GameObject jumpEffect; //점프시 이펙트
-
+    public bool canTouch = true;
     private void Start()
     {
         if (instance == null)
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (touchTime >= touchDelay && mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0) //터치타임이 터치딜레이 이상이고, 기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
+        if (touchTime >= touchDelay && mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch) //터치타임이 터치딜레이 이상이고, 기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
         {
             if (Input.touchCount > 0)
             {
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            /*
+            
             if (Input.GetMouseButtonDown(0))
                 {
                     if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758&&Input.mousePosition.x<=211&&Input.mousePosition.y<=841)
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
 
                         StartCoroutine(go2(pos));    
                     }
-                }*/
+                }
 
         }
         
