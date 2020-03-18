@@ -259,7 +259,7 @@ public class Player : MonoBehaviour
         }
         else //첫번째
         {
-            anim.Play("attack_ready2");
+            anim.Play("attack_ready");
             particle.SetActive(false);
             trail.GetComponent<TrailRenderer>().startColor = Color.white;
             camera.sizedown();
@@ -313,7 +313,7 @@ public class Player : MonoBehaviour
                     StartCoroutine(atkCor());
                     Instantiate(slashEffect, transform.position, Quaternion.identity);
                     if(ComboManager.instance.comboCount<=1) 
-                        anim.Play("attackAnim2");
+                        anim.Play("attackAnim");
                     else
                         anim.Play("attackAnim");
                     canMove = false;

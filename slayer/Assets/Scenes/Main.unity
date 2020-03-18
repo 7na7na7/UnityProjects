@@ -5132,7 +5132,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -11
-  m_Sprite: {fileID: 21300000, guid: e11010eca9bfc574c96c8a50a21d6ac1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9d3449fd0a109f4c86680e57f8ebd0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -10370,8 +10370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 1
-  delayMinusValue: 0
-  delayMinusDuration: 0
+  delayMinusValue: 0.04
+  delayMinusDuration: 10
   isFalling: 0
   minDelay: 2
   maxDelay: 3
@@ -10646,7 +10646,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: e11010eca9bfc574c96c8a50a21d6ac1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9d3449fd0a109f4c86680e57f8ebd0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10831,7 +10831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &475458276
 Transform:
   m_ObjectHideFlags: 0
@@ -11101,8 +11101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 0
-  delayMinusValue: 0
-  delayMinusDuration: 0
+  delayMinusValue: 0.04
+  delayMinusDuration: 10
   isRight: 0
   minDelay: 3
   maxDelay: 5
@@ -12170,8 +12170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 1
-  delayMinusValue: 0
-  delayMinusDuration: 0
+  delayMinusValue: 0.04
+  delayMinusDuration: 10
   isFalling: 0
   minDelay: 2
   maxDelay: 3
@@ -12407,8 +12407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 8413693056172056092, guid: 878943c292bc8f24f832386c31823db8, type: 3}
-  bossTime: 25
-  jumpingTIme: 25
+  bossTime: 40
+  jumpingTIme: 20
   fallingTime: 20
   pausePanel: {fileID: 1992018347}
   pauseSprite: {fileID: 21300000, guid: 1d0f98903363712418330219fd1bb30a, type: 3}
@@ -23971,8 +23971,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 0
-  delayMinusValue: 0
-  delayMinusDuration: 0
+  delayMinusValue: 0.04
+  delayMinusDuration: 10
   isFalling: 1
   minDelay: 3
   maxDelay: 5
@@ -29157,8 +29157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 0
-  delayMinusValue: 0
-  delayMinusDuration: 0
+  delayMinusValue: 0.04
+  delayMinusDuration: 10
   isRight: 1
   minDelay: 3
   maxDelay: 5
@@ -29723,7 +29723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067755793}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37, y: -4.35, z: 1.2265625}
+  m_LocalPosition: {x: -37, y: -4.3, z: 1.2265625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1091975043}
