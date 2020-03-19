@@ -11872,7 +11872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9a0069e13df514689949e443706f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mp: {fileID: 0}
+  mp: {fileID: 790190207}
+  duration: 0.4
 --- !u!1 &795311215
 GameObject:
   m_ObjectHideFlags: 0
@@ -12407,9 +12408,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 8413693056172056092, guid: 878943c292bc8f24f832386c31823db8, type: 3}
-  bossTime: 40
+  bossTime: 30
   jumpingTIme: 20
   fallingTime: 20
+  beforeBossTime: 10
   pausePanel: {fileID: 1992018347}
   pauseSprite: {fileID: 21300000, guid: 1d0f98903363712418330219fd1bb30a, type: 3}
   goSprite: {fileID: 21300000, guid: aa64e06469fb2774fbbd070d9f685f1d, type: 3}
@@ -17534,7 +17536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59961, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033945275
@@ -23094,6 +23096,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rot: 1
   rotSpeed: 10
+  fastrotSpeed: 100
+  savedrotSpeed: 0
   delay: 0.01
   speed: 0
   target: {fileID: 1641358375}
@@ -24066,8 +24070,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1641358378
-BoxCollider2D:
+--- !u!70 &1641358378
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -24079,19 +24083,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.19716358, y: -0.092009425}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 6.4}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.7459145, y: 6.0582504}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.29196024, y: -0.11229217}
+  m_Size: {x: 2.8964663, y: 6.175417}
+  m_Direction: 0
 --- !u!95 &1641358379
 Animator:
   serializedVersion: 3
@@ -24148,7 +24142,6 @@ MonoBehaviour:
   nuckbackforce: 15
   slashEffect: {fileID: 8965390975934003351, guid: 77aff2c622b9b724b8e84f66b2630ce8,
     type: 3}
-  touchDelay: 0.1
   dieEffect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8,
     type: 3}
   panel: {fileID: 795311217}
@@ -29517,7 +29510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59961, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1992018349

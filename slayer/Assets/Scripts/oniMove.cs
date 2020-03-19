@@ -18,7 +18,7 @@ public class oniMove : MonoBehaviour
     public float speed;
     
     private Animator anim;
-    private float dmgDelay = 0;
+    public float dmgDelay = 0;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -46,7 +46,7 @@ public class oniMove : MonoBehaviour
             }
         }
 
-        if (dmgDelay < 0.1f)
+        if (dmgDelay < Time.deltaTime*10)
             dmgDelay += Time.deltaTime;
     }
 
@@ -83,13 +83,15 @@ public class oniMove : MonoBehaviour
     public void die(bool isHead)
     {
         if (dmgDelay >= 0.1f)
-        {
+        { 
+            Player.instance.AttackCor();
             if (isHead)
             {
                 ScoreMgr.instance.headshot++;
                 SoundManager.instance.head();
                 if (oniIndex == 1)
                 {
+                    
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     ScoreMgr.instance.scoreUp(100, false);

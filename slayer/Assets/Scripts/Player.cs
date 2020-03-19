@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     [Header("설정해줘야하는값")] public int force; //움직이는 속도
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
-    public float touchDelay;
     public GameObject dieEffect;
     [Header("신경쓸필요없음")] public fade panel; //콤보중 화면 어둡게 만들어줌
     public bool isGameOver = false;
@@ -18,7 +17,6 @@ public class Player : MonoBehaviour
     public GameObject headPop;
     public GameObject worldCanvas;
     private Animator anim;
-    private float touchTime = 0;
     public static Player instance;
     private float unRotY, RotY;
     private Vector2 currentV;
@@ -47,7 +45,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (touchTime >= touchDelay && mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch) //터치타임이 터치딜레이 이상이고, 기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
+        if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
         {
             if (Input.touchCount > 0)
             {
@@ -85,7 +83,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            
+            /*
             if (Input.GetMouseButtonDown(0))
                 {
                     if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758&&Input.mousePosition.x<=211&&Input.mousePosition.y<=841)
@@ -118,11 +116,9 @@ public class Player : MonoBehaviour
                         StartCoroutine(go2(pos));    
                     }
                 }
+                */
 
         }
-        
-        if(touchTime<touchDelay) 
-            touchTime += Time.deltaTime;
     }
 
     /*예전 go함수
@@ -214,7 +210,6 @@ public class Player : MonoBehaviour
         mpSlider.instance.mpDown(1);
         GetComponent<Player>().trail.GetComponent<TrailRenderer>().emitting = true;
         GetComponent<Player>().trail2.GetComponent<TrailRenderer>().emitting = true;
-        touchTime = 0;
         if (to.x > transform.position.x)
         {
             flipY(false);
@@ -306,58 +301,65 @@ public class Player : MonoBehaviour
     {
         if (!isGameOver)
         {
-            if (hit.CompareTag("oni"))
-            {
-                if (isattack)
-                {
-                    StartCoroutine(atkCor());
-                    Instantiate(slashEffect, transform.position, Quaternion.identity);
-                    if(ComboManager.instance.comboCount<=1) 
-                        anim.Play("attackAnim");
-                    else
-                        anim.Play("attackAnim");
-                    canMove = false;
-                    Vector2 dir = transform.position - hit.transform.position;
-                    dir.Normalize();
-                    if (dir.y <= 0.5f)
-                        dir.y = 0;
-                    rigid.velocity = Vector2.zero;
-                    rigid.bodyType = RigidbodyType2D.Dynamic;
-                    rigid.velocity = dir * nuckbackforce;
-                }
-                else
-                {
-                    die();
-                }
-
-            }
-            else if (hit.CompareTag("oniHead"))
-            {
-                if (isattack)
-                {
-                    StartCoroutine(atkCor());
-                    Instantiate(slashEffect, transform.position, Quaternion.identity);
-                    if(ComboManager.instance.comboCount<=1) 
-                        anim.Play("attackAnim2");
-                    else
-                        anim.Play("attackAnim");
-                    canMove = false;
-                    Vector2 dir = transform.position - hit.transform.position;
-                    dir.Normalize();
-                    if (dir.y <= 0.5f)
-                        dir.y = 0;
-                    rigid.velocity = Vector2.zero;
-                    rigid.bodyType = RigidbodyType2D.Dynamic;
-                    rigid.velocity = dir * nuckbackforce;
-                }
-                else
-                {
-                    die();
-                }
-
-            }
-            else if (hit.CompareTag("damage"))
+            if (hit.CompareTag("damage"))
                 die();
+        }
+    }
+
+    public void oniBody(GameObject hit)
+    {
+        if (!isGameOver)
+        {
+            Vector2 dir = transform.position - hit.transform.position;
+        dir.Normalize();
+        if (dir.x <= 0.3f && dir.x >= -0.3f)
+        {
+            if (dir.x < 0)
+                dir = new Vector2(-0.3f, dir.y);
+            else
+                dir = new Vector2(0.3f, dir.y);
+        }
+        if (dir.y < 0.3f)
+                dir = new Vector2(dir.x, 0.3f);
+
+            rigid.velocity = Vector2.zero;
+        rigid.bodyType = RigidbodyType2D.Dynamic;
+        rigid.velocity = dir * nuckbackforce;
+        
+        Instantiate(slashEffect, transform.position, Quaternion.identity);
+        if (ComboManager.instance.comboCount <= 1)
+            anim.Play("attackAnim");
+        else
+            anim.Play("attackAnim");
+        canMove = false;
+    }
+}
+
+    public void oniHead(GameObject hit)
+    {
+        if (!isGameOver)
+        {
+            Vector2 dir = transform.position - hit.transform.position;
+            dir.Normalize();
+            if (dir.x <= 0.3f && dir.x >= -0.3f)
+            {
+                if (dir.x < 0)
+                    dir = new Vector2(-0.3f, dir.y);
+                else
+                    dir = new Vector2(0.3f, dir.y);
+            }
+            if (dir.y < 0.3f)
+                dir = new Vector2(dir.x, 0.3f);
+            rigid.velocity = Vector2.zero;
+            rigid.bodyType = RigidbodyType2D.Dynamic;
+            rigid.velocity = dir * nuckbackforce;
+            
+            Instantiate(slashEffect, transform.position, Quaternion.identity);
+            if (ComboManager.instance.comboCount <= 1)
+                anim.Play("attackAnim2");
+            else
+                anim.Play("attackAnim");
+            canMove = false;
         }
     }
 
@@ -398,11 +400,15 @@ public class Player : MonoBehaviour
         return degree;
     }
 
+    public void AttackCor()
+    {
+        StopAllCoroutines();
+        StartCoroutine(atkCor());
+    }
     IEnumerator atkCor()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         isattack = false;
-        yield return new WaitForSeconds(0.1f);
         yield return new WaitForSeconds(ComboManager.instance.comboDelay);
         particle.SetActive(false);
         trail.GetComponent<TrailRenderer>().startColor = Color.white;

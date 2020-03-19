@@ -12,10 +12,20 @@ public class BossCol : MonoBehaviour
         {
             if (Player.instance.isattack)
             {
-                if(isHead)
+                if (isHead)
+                {
                     boss.die(true);
+                    Player.instance.oniHead(gameObject);
+                }
                 else
+                {
                     boss.die(false);
+                    Player.instance.oniBody(gameObject);
+                }
+            }
+            else
+            {
+                Player.instance.die();
             }
         }
     }

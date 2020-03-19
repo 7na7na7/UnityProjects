@@ -10,12 +10,25 @@ public class oniCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (Player.instance.isattack)
+            if (oni.dmgDelay>=0.1f)
             {
-                if(isHead)
-                    oni.die(true);
+                if (Player.instance.isattack)
+                {
+                    if (isHead)
+                    {
+                        oni.die(true);
+                        Player.instance.oniHead(gameObject);
+                    }
+                    else
+                    {
+                        oni.die(false);
+                        Player.instance.oniBody(gameObject);
+                    }
+                }
                 else
-                    oni.die(false);
+                {
+                    Player.instance.die();
+                }
             }
         }
     }

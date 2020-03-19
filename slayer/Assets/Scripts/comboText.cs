@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class comboText : MonoBehaviour
 {
+    public float speed;
     public bool isHeadShot = false;
     private Text text;
     Color color;
@@ -44,7 +45,7 @@ public class comboText : MonoBehaviour
 
         if (color.a > 0)
         {
-            color.a -= 0.01f;
+            color.a -= speed;
             text.color = color;
         }
         else

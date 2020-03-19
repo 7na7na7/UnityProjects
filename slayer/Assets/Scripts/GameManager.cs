@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
   public int bossTime;
   public int jumpingTIme;
   public int fallingTime;
+  public int beforeBossTime;
   public GameObject pausePanel;
   public Sprite pauseSprite, goSprite;
   public Button pauseBtn;
@@ -56,9 +57,10 @@ public class GameManager : MonoBehaviour
     }
 
     GameObject t=Instantiate(txt, GameObject.Find("Screen").transform);
-    yield return new WaitForSeconds(5);
+    yield return new WaitForSeconds(beforeBossTime);
     GameObject bossObj=Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x,GameObject.Find("Max").transform.position.x),transform.position.y,0),Quaternion.identity);
     yield return new WaitUntil(() => bossDead);
+    bossDead = false;
     foreach (Spawner s in spawners)
     {
       s.canSpawn = true;

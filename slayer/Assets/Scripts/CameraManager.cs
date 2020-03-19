@@ -5,6 +5,8 @@ public class CameraManager : MonoBehaviour
 {
     public int rot=1;
     public float rotSpeed;
+    public float fastrotSpeed;
+    public float savedrotSpeed;
     public float delay;
     public float speed = 2f;
     public GameObject target; //카메라가 따라갈 대상
@@ -23,6 +25,7 @@ public class CameraManager : MonoBehaviour
         theCamera = GetComponent<Camera>();
         minBound = bound.bounds.min; //minbound에 box콜라이더의 영역 최솟값 대입
         maxBound = bound.bounds.max;
+        savedrotSpeed=rotSpeed;
         //theCamera.orthographicSize *= 2;
     }
 
@@ -165,7 +168,6 @@ public class CameraManager : MonoBehaviour
     {
         Player.instance.canTouch = false;
         theCamera.orthographicSize = 5;
-        rotSpeed *= 10;
         posGO.transform.position = g.transform.position;
         target = posGO;
         Time.timeScale = 0.1f;

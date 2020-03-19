@@ -24,8 +24,10 @@ public class bossScript : MonoBehaviour
 
     IEnumerator Go()
     {
+        CameraManager.instance.rotSpeed = CameraManager.instance.savedrotSpeed;
         int t = (int)Time.timeScale;
         Time.timeScale = 0;
+        CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,CameraManager.instance.transform.position.z);
         while (slider.value<slider.maxValue)
         {
             slider.value += 0.2f;
@@ -149,6 +151,7 @@ public class bossScript : MonoBehaviour
                     if (slider.value <= 0)
                     {
                         dmgDelay = 0;
+                        CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
                         CameraManager.instance.rot = 1;
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
@@ -166,6 +169,7 @@ public class bossScript : MonoBehaviour
                     if (slider.value <= 0)
                     {
                         dmgDelay = 0;
+                        CameraManager.instance.rotSpeed =  CameraManager.instance.fastrotSpeed;
                         CameraManager.instance.rot = 1;
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
