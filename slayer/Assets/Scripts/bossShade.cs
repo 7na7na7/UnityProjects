@@ -10,6 +10,7 @@ public class bossShade : MonoBehaviour
     private SpriteRenderer spr;
     private void Start()
     {
+        CameraManager.instance.canFollow = false;
         Player.instance.StopAllCoroutines();
         StartCoroutine(CameraManager.instance.targetChange(gameObject));
         spr = GetComponent<SpriteRenderer>();

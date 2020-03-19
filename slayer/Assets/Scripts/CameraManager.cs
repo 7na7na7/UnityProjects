@@ -16,9 +16,10 @@ public class CameraManager : MonoBehaviour
     private Vector3 targetPosition; //대상의 현재 값
     private Vector3 minBound, maxBound; //박스 콜라이더 영역의 최소/최대 xyz값을 지님
     private float halfWidth, halfHeight; //카메라의 반너비, 반높이 값을 지닐 변수
-    private Camera theCamera; //카메라의 반높이값을 구할 속성을 이용하기 위한 변수
+   public Camera theCamera; //카메라의 반높이값을 구할 속성을 이용하기 위한 변수
     public static CameraManager instance;
     public GameObject posGO;
+    public bool canFollow = true;
     private void Start()
     {
         instance = this;
@@ -31,11 +32,9 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        if (target.gameObject != null)
+        if (target.gameObject != null&&!FindObjectOfType<GameManager>().isGameOver&&canFollow)
         {
-            if (!FindObjectOfType<GameManager>().isGameOver)
-            {
-                targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
+            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
                 //transform.position = targetPosition;
 
 
@@ -74,7 +73,6 @@ public class CameraManager : MonoBehaviour
                 {
                     transform.eulerAngles=new Vector3(0,0,transform.eulerAngles.z+Time.deltaTime*rotSpeed);
                 }
-            }
         }
         
     }

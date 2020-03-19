@@ -27,13 +27,15 @@ public class bossScript : MonoBehaviour
         CameraManager.instance.rotSpeed = CameraManager.instance.savedrotSpeed;
         int t = (int)Time.timeScale;
         Time.timeScale = 0;
-        CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,CameraManager.instance.transform.position.z);
+        CameraManager.instance.theCamera.orthographicSize = 5;
+        CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,-10);
         while (slider.value<slider.maxValue)
         {
             slider.value += 0.2f;
             yield return new WaitForSecondsRealtime(0.01f);
         }
-
+        CameraManager.instance.canFollow = true;
+        Player.instance.isattack = false;
         Time.timeScale = t;
         canMove = true;
         while (true)

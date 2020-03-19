@@ -23103,7 +23103,9 @@ MonoBehaviour:
   target: {fileID: 1641358375}
   savedTarget: {fileID: 1641358375}
   bound: {fileID: 1232292340}
+  theCamera: {fileID: 0}
   posGO: {fileID: 5369214370403361580}
+  canFollow: 1
 --- !u!1 &1437458982
 GameObject:
   m_ObjectHideFlags: 0
@@ -24138,6 +24140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe4e2b2f8ecaa4ca4f81a1572128cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDesktop: 0
   force: 20
   nuckbackforce: 15
   slashEffect: {fileID: 8965390975934003351, guid: 77aff2c622b9b724b8e84f66b2630ce8,

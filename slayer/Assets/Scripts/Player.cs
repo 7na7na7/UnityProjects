@@ -7,7 +7,9 @@ using UnityEngine.Experimental.UIElements;
 
 public class Player : MonoBehaviour
 {
-    [Header("설정해줘야하는값")] public int force; //움직이는 속도
+    [Header("설정해줘야하는값")] 
+    public bool isDesktop;
+    public int force; //움직이는 속도
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
     public GameObject dieEffect;
@@ -47,44 +49,9 @@ public class Player : MonoBehaviour
     {
         if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
         {
-            if (Input.touchCount > 0)
+            if (isDesktop)
             {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    if (Input.mousePosition.x >= 170 && Input.mousePosition.y >= 938&&Input.mousePosition.x<=272&&Input.mousePosition.y<=1046)
-                    { }
-                    else
-                    {
-                        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                        //if (Vector2.Distance(transform.position, pos) > 1)같은곳 터치안되게하는코드
-                        StopAllCoroutines();
-                        if (pos.x < min.position.x)
-                        {
-                            pos.x = min.position.x;
-                        }
-
-                        if (pos.x > max.position.x)
-                        {
-                            pos.x = max.position.x;
-                        }
-
-                        if (pos.y < min.position.y)
-                        {
-                            pos.y = min.position.y;
-                        }
-
-                        if (pos.y > max.position.y)
-                        {
-                            pos.y = max.position.y;
-                        }
-
-                        StartCoroutine(go2(pos));
-                    }
-                }
-            }
-            /*
-            if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     if (Input.mousePosition.x >= 118 && Input.mousePosition.y >= 758&&Input.mousePosition.x<=211&&Input.mousePosition.y<=841)
                     { }
@@ -116,8 +83,46 @@ public class Player : MonoBehaviour
                         StartCoroutine(go2(pos));    
                     }
                 }
-                */
+            }
+            else
+            { 
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        if (Input.mousePosition.x >= 170 && Input.mousePosition.y >= 938&&Input.mousePosition.x<=272&&Input.mousePosition.y<=1046)
+                        { }
+                        else
+                        {
+                            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                            //if (Vector2.Distance(transform.position, pos) > 1)같은곳 터치안되게하는코드
+                            StopAllCoroutines();
+                            if (pos.x < min.position.x)
+                            {
+                                pos.x = min.position.x;
+                            }
 
+                            if (pos.x > max.position.x)
+                            {
+                                pos.x = max.position.x;
+                            }
+
+                            if (pos.y < min.position.y)
+                            {
+                                pos.y = min.position.y;
+                            }
+
+                            if (pos.y > max.position.y)
+                            {
+                                pos.y = max.position.y;
+                            }
+
+                            StartCoroutine(go2(pos));
+                        }
+                    }
+                }
+            }
         }
     }
 
