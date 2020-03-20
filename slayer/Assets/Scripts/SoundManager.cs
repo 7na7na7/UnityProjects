@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip selectSound;
     public AudioClip comboSound;
     public AudioClip scoreCountSound;
+    public AudioClip healSound;
     public static SoundManager instance;
     private AudioSource audio;
     void Start()
@@ -23,6 +24,10 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void heal()
+    {
+        audio.PlayOneShot(healSound);
+    }
     public void scoreCount()
     {
         audio.PlayOneShot(scoreCountSound);

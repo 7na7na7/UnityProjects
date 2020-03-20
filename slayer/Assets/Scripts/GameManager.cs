@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+  public int bossCount = 0;
   public GameObject boss;
   public int bossTime;
   public int jumpingTIme;
@@ -22,8 +23,10 @@ public class GameManager : MonoBehaviour
   private Fire[] fires;
   public GameObject txt;
   public bool isPause = false;
+  public static GameManager instance;
   private void Awake()
   {
+    instance = this;
     Time.timeScale = 1;
   }
 
@@ -56,9 +59,9 @@ public class GameManager : MonoBehaviour
       f.canSpawn = false;
     }
 
-    GameObject t=Instantiate(txt, GameObject.Find("Screen").transform);
+    GameObject t=Instantiate(txt, GameObject.Find("bossTextTr").transform);
     yield return new WaitForSeconds(beforeBossTime);
-    GameObject bossObj=Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x,GameObject.Find("Max").transform.position.x),transform.position.y,0),Quaternion.identity);
+    GameObject bossObj=Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x+10,GameObject.Find("Max").transform.position.x-10),transform.position.y,0),Quaternion.identity);
     yield return new WaitUntil(() => bossDead);
     bossDead = false;
     foreach (Spawner s in spawners)

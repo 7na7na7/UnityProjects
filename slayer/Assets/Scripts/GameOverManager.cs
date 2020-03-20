@@ -19,11 +19,7 @@ public class GameOverManager : MonoBehaviour
     {
         delete.SetActive(false);
         //콤보 마무리해줌
-        if (ComboManager.instance.comboCount >= 2)
-        {
-            ScoreMgr.instance.comboInitialize(ComboManager.instance.comboCount);
-            ScoreMgr.instance.scoreUp(100*ComboManager.instance.comboCount,true);
-        }
+        ComboManager.instance.ComboEnd();
         ComboManager.instance.comboCount = 0;
         Time.timeScale = 0.1f;
         CameraManager.instance.gameOver(g);

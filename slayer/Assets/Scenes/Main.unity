@@ -5233,6 +5233,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1033757720}
   - {fileID: 1033945274}
   - {fileID: 1992018348}
   - {fileID: 487947883}
@@ -10373,8 +10374,8 @@ MonoBehaviour:
   delayMinusValue: 0.04
   delayMinusDuration: 10
   isFalling: 0
-  minDelay: 2
-  maxDelay: 3
+  minDelay: 3
+  maxDelay: 4
   onis:
   - {fileID: 3870606486702478192, guid: fb848114033a49e44b27daa64f7abe3f, type: 3}
   - {fileID: 1577170261059121660, guid: edc120fcacbed03499ed2052cf6912a3, type: 3}
@@ -11029,7 +11030,7 @@ RectTransform:
   - {fileID: 689087010}
   - {fileID: 2108282104}
   m_Father: {fileID: 249236666}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11051,8 +11052,8 @@ MonoBehaviour:
   bonusText1: {fileID: 2119136006}
   bonusText2: {fileID: 586777411}
   textDelay: 0.03
-  headScore: 50
-  maxComboScore: 200
+  headScore: 25
+  maxComboScore: 300
   head: {fileID: 1946657300}
   killedOni: {fileID: 387330265}
   maxCombo: {fileID: 1030647336}
@@ -11104,8 +11105,8 @@ MonoBehaviour:
   delayMinusValue: 0.04
   delayMinusDuration: 10
   isRight: 0
-  minDelay: 3
-  maxDelay: 5
+  minDelay: 4
+  maxDelay: 6
   goPrefab: {fileID: 5551452906894720759, guid: d543fce3e2beaa14fb360a87f104bc19,
     type: 3}
   ShotTr: {fileID: 532030476}
@@ -12174,8 +12175,8 @@ MonoBehaviour:
   delayMinusValue: 0.04
   delayMinusDuration: 10
   isFalling: 0
-  minDelay: 2
-  maxDelay: 3
+  minDelay: 3
+  maxDelay: 4
   onis:
   - {fileID: 3870606486702478192, guid: 3adec5ab387844541842d012d31207d9, type: 3}
   - {fileID: 1577170261059121660, guid: ea24bd756a27cd1489372f2417022f21, type: 3}
@@ -12407,6 +12408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79874a6799eb2c24fae733b8760765b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossCount: 0
   boss: {fileID: 8413693056172056092, guid: 878943c292bc8f24f832386c31823db8, type: 3}
   bossTime: 30
   jumpingTIme: 20
@@ -17501,6 +17503,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030647332}
   m_CullTransparentMesh: 0
+--- !u!1 &1033757719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1033757720}
+  m_Layer: 5
+  m_Name: bossTextTr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1033757720
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033757719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 249236666}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1033945273
 GameObject:
   m_ObjectHideFlags: 0
@@ -17532,11 +17569,11 @@ RectTransform:
   m_LocalScale: {x: 2.8050516, y: 2.8050516, z: 2.8050516}
   m_Children: []
   m_Father: {fileID: 249236666}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59912, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033945275
@@ -22691,6 +22728,7 @@ MonoBehaviour:
   selectSound: {fileID: 8300000, guid: aa133822d2734f84284a5db2c22bb39a, type: 3}
   comboSound: {fileID: 8300000, guid: f4cc8b88ad5fde548ae086f2ee73d99f, type: 3}
   scoreCountSound: {fileID: 8300000, guid: b70180e88ec55c244937f7fab9ba5b87, type: 3}
+  healSound: {fileID: 8300000, guid: be63cccdc83d8264693efd7c21c90f5d, type: 3}
 --- !u!4 &1268003305
 Transform:
   m_ObjectHideFlags: 0
@@ -23636,8 +23674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9aed4edce9519c409bd2dd1950f8c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieEffect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8,
-    type: 3}
   hp: {fileID: 689389187}
 --- !u!70 &1551013075
 CapsuleCollider2D:
@@ -23980,8 +24016,8 @@ MonoBehaviour:
   delayMinusValue: 0.04
   delayMinusDuration: 10
   isFalling: 1
-  minDelay: 3
-  maxDelay: 5
+  minDelay: 4
+  maxDelay: 6
   onis:
   - {fileID: 3469529808288473591, guid: 9c4c2c5d752f7204da887c85d8996b09, type: 3}
   - {fileID: 6088213968027057274, guid: 51a92c4af333e6e4d921a32a25ddbbcb, type: 3}
@@ -24140,7 +24176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe4e2b2f8ecaa4ca4f81a1572128cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDesktop: 0
+  isDesktop: 1
   force: 20
   nuckbackforce: 15
   slashEffect: {fileID: 8965390975934003351, guid: 77aff2c622b9b724b8e84f66b2630ce8,
@@ -29156,8 +29192,8 @@ MonoBehaviour:
   delayMinusValue: 0.04
   delayMinusDuration: 10
   isRight: 1
-  minDelay: 3
-  maxDelay: 5
+  minDelay: 4
+  maxDelay: 6
   goPrefab: {fileID: 4995652743223643570, guid: 5e6c7caea70005a489a6c8acae3aa74c,
     type: 3}
   ShotTr: {fileID: 1750403229}
@@ -29357,7 +29393,7 @@ RectTransform:
   - {fileID: 814471413}
   - {fileID: 681113764}
   m_Father: {fileID: 249236666}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -29509,11 +29545,11 @@ RectTransform:
   - {fileID: 1652845584}
   - {fileID: 1597885676}
   m_Father: {fileID: 249236666}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59912, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1992018349

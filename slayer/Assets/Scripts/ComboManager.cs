@@ -31,7 +31,21 @@ public class ComboManager : MonoBehaviour
         if (comboCount >= 2)
         {
             ScoreMgr.instance.comboInitialize(comboCount);
-            ScoreMgr.instance.scoreUp(50*comboCount,true);
+            int value = 25;
+            value += comboCount / 5 * 25;
+            ScoreMgr.instance.scoreUp(comboCount,value*comboCount,true);
+        }
+        comboCount = 0;
+    }
+
+    public void ComboEnd()
+    {
+        if (comboCount >= 2)
+        {
+            ScoreMgr.instance.comboInitialize(comboCount);
+            int value = 25;
+            value += comboCount / 5 * 25;
+            ScoreMgr.instance.scoreUp(comboCount,value*comboCount,true);
         }
         comboCount = 0;
     }

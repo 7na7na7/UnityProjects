@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Globalization;
-using UnityEditor;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 
 public class Player : MonoBehaviour
 {
     [Header("설정해줘야하는값")] 
     public bool isDesktop;
+    //public float comboTimeScale;
     public int force; //움직이는 속도
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
@@ -242,20 +239,13 @@ public class Player : MonoBehaviour
             StartCoroutine(panel.fadeIn());
             trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
             particle.SetActive(true);
-            //int currentcount = comboCount;
-            if (Time.timeScale == 1)
-                Time.timeScale = 0.7f;
+
+            //if (Time.timeScale == 1)
+              //  Time.timeScale = comboTimeScale;
 
             Vector2 dir = to - (Vector2) transform.position;
             dir.Normalize();
-            if (Time.timeScale == 0.7f)
-            {
-                rigid.velocity = dir * force * 2;
-            }
-            else
-            {
-                rigid.velocity = dir * force;
-            }
+            rigid.velocity = dir * force * 2;
         }
         else //첫번째
         {
@@ -267,14 +257,7 @@ public class Player : MonoBehaviour
 
             Vector2 dir = to - (Vector2) transform.position;
             dir.Normalize();
-            if (Time.timeScale == 0.7f)
-            {
-                rigid.velocity = dir * force * 50;
-            }
-            else
-            {
-                rigid.velocity = dir * force;
-            }
+            rigid.velocity = dir * force;
         }
 
         if (ComboManager.instance.canCombo)
@@ -412,7 +395,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator atkCor()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         isattack = false;
         yield return new WaitForSeconds(ComboManager.instance.comboDelay);
         particle.SetActive(false);

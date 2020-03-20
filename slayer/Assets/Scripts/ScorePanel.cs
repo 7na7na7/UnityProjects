@@ -70,8 +70,8 @@ public class ScorePanel : MonoBehaviour
             while (scorec < ScoreMgr.instance.score + (headv * headScore))
             {
                 yield return new WaitForSecondsRealtime(textDelay);
-                scorec += 50;
-                if (scorec % 150 == 0)
+                scorec += 25;
+                if (scorec % 75 == 0)
                     SoundManager.instance.scoreCount();
                 score.text = scorec.ToString();
             }
@@ -85,8 +85,8 @@ public class ScorePanel : MonoBehaviour
             while (scorec < ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore))
             {
                 yield return new WaitForSecondsRealtime(textDelay);
-                scorec += 50;
-                if (scorec % 150 == 0)
+                scorec += 25;
+                if (scorec % 75 == 0)
                     SoundManager.instance.scoreCount();
                 score.text = scorec.ToString();
             }

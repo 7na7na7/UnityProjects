@@ -19,9 +19,14 @@ public class oniMove : MonoBehaviour
     
     private Animator anim;
     public float dmgDelay = 0;
+    public float speedUpValue = 1.1f;
+    public int hpUpValue = 1;
     private void Start()
     {
         anim = GetComponent<Animator>();
+        for (int i = 0; i < GameManager.instance.bossCount; i++)
+            speed *= speedUpValue;
+        hp += hpUpValue * (int)(GameManager.instance.bossCount / 2);
     }
 
     void Update()
@@ -89,50 +94,38 @@ public class oniMove : MonoBehaviour
             {
                 ScoreMgr.instance.headshot++;
                 SoundManager.instance.head();
-                if (oniIndex == 1)
+
+                hp -= 2;
+                if (hp <= 0)
                 {
-                    
+                    if (oniIndex == 1)
+                        ScoreMgr.instance.scoreUp(0,100, false);
+                    else if (oniIndex == 2)
+                        ScoreMgr.instance.scoreUp(0,150, false);
+
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
-                    ScoreMgr.instance.scoreUp(100, false);
+                    CameraManager.instance.closeUp();
                     Instantiate(headEffect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
-                }
-                else if (oniIndex == 2)
-                {
-                    hp -= 2;
-                    if (hp <= 0)
-                    {
-                        ComboManager.instance.comboIniitailize();
-                        ScoreMgr.instance.killedOni++;
-                        ScoreMgr.instance.scoreUp(200, false);
-                        Instantiate(headEffect, transform.position, Quaternion.identity);
-                        Destroy(gameObject);
-                    }
                 }
             }
             else
             {
                 SoundManager.instance.body();
-                if (oniIndex == 1)
+                hp--;
+                if (hp <= 0)
                 {
+                    if (oniIndex == 1)
+                        ScoreMgr.instance.scoreUp(0,100, false);
+                    else if (oniIndex == 2)
+                        ScoreMgr.instance.scoreUp(0,150, false);
+                    
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
-                    ScoreMgr.instance.scoreUp(100, false);
+                    CameraManager.instance.closeUp();
                     Instantiate(effect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
-                }
-                else if (oniIndex == 2)
-                {
-                    hp--;
-                    if (hp <= 0)
-                    {
-                        ComboManager.instance.comboIniitailize();
-                        ScoreMgr.instance.killedOni++;
-                        ScoreMgr.instance.scoreUp(200, false);
-                        Instantiate(effect, transform.position, Quaternion.identity);
-                        Destroy(gameObject);
-                    }
                 }
             }
             Player.instance.ComboText(isHead);

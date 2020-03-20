@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class girl : MonoBehaviour
 {
-    public GameObject dieEffect;
     public static girl instance;
     //public float invisibleTime;
     public Slider hp;

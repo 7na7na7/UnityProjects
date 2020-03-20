@@ -121,6 +121,64 @@ public class CameraManager : MonoBehaviour
         yield return null;
     }
 
+    public void closeUp()
+    {
+        StopAllCoroutines();
+        StartCoroutine(closeUpCor());
+    }
+    public void closeUpSlow()
+    {
+        StopAllCoroutines();
+        StartCoroutine(closeUpSlowCor());
+    }
+    IEnumerator closeUpSlowCor()
+    {
+        Time.timeScale = 0.1f;
+        while (theCamera.orthographicSize>3f)
+            {
+                theCamera.orthographicSize -= 0.15f;
+                yield return new WaitForSeconds(delay*0.1f);
+            }
+            while (theCamera.orthographicSize <= 5)
+            {
+                theCamera.orthographicSize += 0.1f;
+                yield return new WaitForSeconds(delay);
+            }
+
+            Time.timeScale = 1;
+            yield return null;
+    }
+    IEnumerator closeUpCor()
+    {
+        if (ComboManager.instance.comboCount >= 2)
+        {
+            while (theCamera.orthographicSize>6f)
+            {
+                theCamera.orthographicSize -= 0.15f;
+                yield return new WaitForSeconds(delay*0.1f);
+            }
+            while (theCamera.orthographicSize <= 7)
+            {
+                theCamera.orthographicSize += 0.1f;
+                yield return new WaitForSeconds(delay);
+            }
+        }
+        else
+        {
+            while (theCamera.orthographicSize>4f)
+            {
+                theCamera.orthographicSize -= 0.15f;
+                yield return new WaitForSeconds(delay*0.1f);
+            }
+            while (theCamera.orthographicSize <= 5)
+            {
+                theCamera.orthographicSize += 0.1f;
+                yield return new WaitForSeconds(delay);
+            }
+        }
+
+        yield return null;
+    }
     public IEnumerator gameoverCor(GameObject g)
     {
         targetPosition = target.transform.position;
@@ -159,14 +217,13 @@ public class CameraManager : MonoBehaviour
     {
         StopAllCoroutines();
         Player.instance.StopAllCoroutines();
-        
         StartCoroutine(targetChange(g));
     }
     public IEnumerator targetChange(GameObject g)
     {
+        posGO.transform.position = g.transform.position;
         Player.instance.canTouch = false;
         theCamera.orthographicSize = 5;
-        posGO.transform.position = g.transform.position;
         target = posGO;
         Time.timeScale = 0.1f;
         while (theCamera.orthographicSize > 3.5f)
@@ -195,5 +252,17 @@ public class CameraManager : MonoBehaviour
         Time.timeScale = 1;
         sizeup();
         Player.instance.canTouch = true;
+    }
+
+    public void OnBound()
+    {
+        halfHeight = theCamera.orthographicSize;
+        halfWidth = halfHeight * Screen.width / Screen.height; //카메라 반너비 공식
+        float clampedX = Mathf.Clamp(this.transform.position.x, minBound.x + halfWidth, maxBound.x - halfWidth);
+
+        float clampedY = Mathf.Clamp(this.transform.position.y, minBound.y + halfHeight, maxBound.y - halfHeight);
+//Mathf.Clamp(10,0,100) 일 경우 값은 10,
+//Mathf.Clamp(-10,0,100)일 경우 값은 0이다.
+        this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
     }
 }

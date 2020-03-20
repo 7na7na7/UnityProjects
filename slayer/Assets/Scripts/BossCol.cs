@@ -10,22 +10,25 @@ public class BossCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (Player.instance.isattack)
+            if (boss.dmgDelay >= 0.1f)
             {
-                if (isHead)
+                if (Player.instance.isattack)
                 {
-                    boss.die(true);
-                    Player.instance.oniHead(gameObject);
+                    if (isHead)
+                    {
+                        boss.die(true);
+                        Player.instance.oniHead(gameObject);
+                    }
+                    else
+                    {
+                        boss.die(false);
+                        Player.instance.oniBody(gameObject);
+                    }
                 }
                 else
                 {
-                    boss.die(false);
-                    Player.instance.oniBody(gameObject);
+                    Player.instance.die();
                 }
-            }
-            else
-            {
-                Player.instance.die();
             }
         }
     }

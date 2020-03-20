@@ -20,12 +20,12 @@ public class ScoreMgr : MonoBehaviour
         instance = this;
     }
 
-    public void scoreUp(int point, bool isCombo)
+    public void scoreUp(int count,int point, bool isCombo)
     {
         if (isCombo)
         {
            GameObject go=Instantiate(comboText,Canvas.transform);
-           go.GetComponent<Text>().text = (point * 0.02) + "콤보 +" + point;
+           go.GetComponent<Text>().text = count+ "콤보 +" + point;
         }
         score += point;
         if(FindObjectOfType<ScoreText>()!=null) 
