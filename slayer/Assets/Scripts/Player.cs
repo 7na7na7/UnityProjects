@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [Header("설정해줘야하는값")] 
     public bool isDesktop;
     //public float comboTimeScale;
+    public float nuckBackCantTouchTime; //넉백시에 터치못하게되는 시간
     public int force; //움직이는 속도
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     public GameObject trail2;
     public GameObject jumpEffect; //점프시 이펙트
     public bool canTouch = true;
+    private float canTouchTime = 0;
     private void Start()
     {
         if (instance == null)
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
+        if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch&&canTouchTime>=nuckBackCantTouchTime) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
         {
             if (isDesktop)
             {
@@ -121,6 +123,9 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        if (canTouchTime < nuckBackCantTouchTime)
+            canTouchTime += Time.deltaTime;
     }
 
     /*예전 go함수
@@ -298,6 +303,7 @@ public class Player : MonoBehaviour
     {
         if (!isGameOver)
         {
+            canTouchTime = 0;
             Vector2 dir = transform.position - hit.transform.position;
         dir.Normalize();
         if (dir.x <= 0.3f && dir.x >= -0.3f)
@@ -327,6 +333,7 @@ public class Player : MonoBehaviour
     {
         if (!isGameOver)
         {
+            canTouchTime = 0;
             Vector2 dir = transform.position - hit.transform.position;
             dir.Normalize();
             if (dir.x <= 0.3f && dir.x >= -0.3f)
@@ -350,7 +357,7 @@ public class Player : MonoBehaviour
             canMove = false;
         }
     }
-
+    
     public void die()
     {
         if (!isGameOver)

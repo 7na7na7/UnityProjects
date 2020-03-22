@@ -152,9 +152,9 @@ public class CameraManager : MonoBehaviour
     {
         if (ComboManager.instance.comboCount >= 2)
         {
-            while (theCamera.orthographicSize>6f)
+            while (theCamera.orthographicSize>6.3f)
             {
-                theCamera.orthographicSize -= 0.15f;
+                theCamera.orthographicSize -= 0.1f;
                 yield return new WaitForSeconds(delay*0.1f);
             }
             while (theCamera.orthographicSize <= 7)
@@ -162,12 +162,13 @@ public class CameraManager : MonoBehaviour
                 theCamera.orthographicSize += 0.1f;
                 yield return new WaitForSeconds(delay);
             }
+            theCamera.orthographicSize = 7;
         }
         else
         {
-            while (theCamera.orthographicSize>4f)
+            while (theCamera.orthographicSize>4.3f)
             {
-                theCamera.orthographicSize -= 0.15f;
+                theCamera.orthographicSize -= 0.1f;
                 yield return new WaitForSeconds(delay*0.1f);
             }
             while (theCamera.orthographicSize <= 5)
@@ -175,10 +176,12 @@ public class CameraManager : MonoBehaviour
                 theCamera.orthographicSize += 0.1f;
                 yield return new WaitForSeconds(delay);
             }
+            theCamera.orthographicSize = 5;
         }
 
         yield return null;
     }
+    
     public IEnumerator gameoverCor(GameObject g)
     {
         targetPosition = target.transform.position;

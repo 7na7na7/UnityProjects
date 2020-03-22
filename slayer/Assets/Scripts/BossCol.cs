@@ -27,7 +27,8 @@ public class BossCol : MonoBehaviour
                 }
                 else
                 {
-                    Player.instance.die();
+                    //Player.instance.die();
+                    GameManager.instance.pause();
                 }
             }
         }

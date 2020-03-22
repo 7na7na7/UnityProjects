@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,14 +17,28 @@ public class SoundManager : MonoBehaviour
     public AudioClip comboSound;
     public AudioClip scoreCountSound;
     public AudioClip healSound;
+    public AudioClip knifeCoverSound;
     public static SoundManager instance;
     private AudioSource audio;
     void Start()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+       
         audio = GetComponent<AudioSource>();
     }
 
+    public void knifeCover()
+    {
+        audio.PlayOneShot(knifeCoverSound);
+    }
     public void heal()
     {
         audio.PlayOneShot(healSound);
