@@ -17,7 +17,33 @@ public class girl : MonoBehaviour
         anim = GetComponent<Animator>();
     }
     
+    public IEnumerator hitted(int damage)
+    {
+        anim.Play("girlhit");
+        SoundManager.instance.girl();
+        hp.value -= damage;
+        if (hp.value <= 0)
+        {
+            Player.instance.isGameOver = true;
+            FindObjectOfType<GameManager>().isGameOver = true;
+            FindObjectOfType<GameOverManager>().GameoverFunc(gameObject);
+            StopAllCoroutines();
+            yield break;
+        }
+        else
+        {
+            if(FindObjectOfType<girlText>()!=null)
+                FindObjectOfType<girlText>().text.text = "아얏!";
+            yield return new WaitForSeconds(1);
+            anim.Play("girlAnim");
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("damage"))
+            StartCoroutine(hitted(20));
+    }
     /*
     public IEnumerator invisibleCor()
     {
@@ -52,26 +78,5 @@ public class girl : MonoBehaviour
         yield return new WaitForSeconds(invisibleTime);
     }
     */
-
-    public IEnumerator hitted(int damage)
-    {
-        anim.Play("girlhit");
-        SoundManager.instance.girl();
-        hp.value -= damage;
-        if (hp.value <= 0)
-        {
-            Player.instance.isGameOver = true;
-            FindObjectOfType<GameManager>().isGameOver = true;
-            FindObjectOfType<GameOverManager>().GameoverFunc(gameObject);
-            StopAllCoroutines();
-            yield break;
-        }
-        else
-        {
-            if(FindObjectOfType<girlText>()!=null)
-                FindObjectOfType<girlText>().text.text = "아얏!";
-            yield return new WaitForSeconds(1);
-            anim.Play("girlAnim");
-        }
-    }
+    
 }

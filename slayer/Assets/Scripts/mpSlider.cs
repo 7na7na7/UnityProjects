@@ -33,4 +33,9 @@ public class mpSlider : MonoBehaviour
     {
         mp.value += v;
     }
+
+    public void bossCut()
+    {
+        duration *= 0.8f;
+    }
 }

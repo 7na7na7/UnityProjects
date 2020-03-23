@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
   public GameObject txt;
   public bool isPause = false;
   public static GameManager instance;
+  private bool once = false;
   private void Awake()
   {
     instance = this;
@@ -32,7 +33,8 @@ public class GameManager : MonoBehaviour
 
   private void Start()
   {
-    FadePanel.instance.UnFade();
+    if(FindObjectOfType<FadePanel>()) 
+      FadePanel.instance.UnFade();
     spawners = FindObjectsOfType<Spawner>();
     fires = FindObjectsOfType<Fire>();
     StartCoroutine(Game());
@@ -53,7 +55,13 @@ public class GameManager : MonoBehaviour
 
     while (true)
     {
-      yield return new WaitForSeconds(bossTime);
+      if (!once)
+      {
+        yield return new WaitForSeconds(bossTime);
+        once = true;
+      }
+      else
+        yield return new WaitForSeconds(bossTime + jumpingTIme + fallingTime);
       foreach (Spawner s in spawners)
       {
         s.canSpawn = false;

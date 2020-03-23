@@ -295,7 +295,9 @@ public class Player : MonoBehaviour
         if (!isGameOver)
         {
             if (hit.CompareTag("damage"))
-                die();
+            { 
+                //die();
+            }
         }
     }
 

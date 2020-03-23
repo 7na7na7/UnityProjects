@@ -27,10 +27,10 @@ public class ScorePanel : MonoBehaviour
         while (killedOnic<killedOniv)
         {
             yield return new WaitForSecondsRealtime(textDelay);
-            if (killedOnic + 1 != killedOniv)
-                killedOnic += 2;
-            else
+            if (killedOnic + 1 == killedOniv)
                 killedOnic++;
+            else
+                killedOnic+=2;
             
             if (killedOnic% 3 == 0)
                 SoundManager.instance.scoreCount();
@@ -42,7 +42,10 @@ public class ScorePanel : MonoBehaviour
             while (headc < headv)
             {
                 yield return new WaitForSecondsRealtime(textDelay);
-                headc++;
+                if (headc + 1 == headv)
+                    headc++;
+                else
+                    headc+=2;
                 if (headc% 3 == 0)
                     SoundManager.instance.scoreCount();
                 head.text = "급소 공격 횟수 : " + headc + "번";

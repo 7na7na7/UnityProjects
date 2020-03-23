@@ -31,7 +31,6 @@ public class oniCol : MonoBehaviour
                 else
                 {
                     //Player.instance.die();
-                    GameManager.instance.pause();
                 }
             }
         }

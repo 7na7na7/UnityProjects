@@ -59,7 +59,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.6960923, y: 0.16000697}
+  m_Offset: {x: -0.6960923, y: 0.260007}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -70,7 +70,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6256627, y: 0.62841606}
+  m_Size: {x: 0.6256627, y: 0.7284161}
   m_EdgeRadius: 0
 --- !u!1 &603102685516312836
 GameObject:
@@ -323,7 +323,7 @@ MonoBehaviour:
   maxX: -4.22
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
-  speed: -2
+  speed: -1.5
   dmgDelay: 0
   speedUpValue: 1.1
   hpUpValue: 1

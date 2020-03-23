@@ -48,7 +48,7 @@ public class bossScript : MonoBehaviour
         SoundManager.instance.heal();
         while (slider.value<slider.maxValue)
         {
-            slider.value += 0.2f;
+            slider.value += 0.5f;
             yield return new WaitForSecondsRealtime(0.01f);
         }
         CameraManager.instance.canFollow = true;
@@ -58,8 +58,8 @@ public class bossScript : MonoBehaviour
         canMove = true;
         while (true)
         {
-            if(slider.value<=10)
-                yield return new WaitForSeconds(patternDelay*0.7f);
+            if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                yield return new WaitForSeconds(patternDelay*0.5f);
             else
                 yield return new WaitForSeconds(patternDelay);
             int r = 0;

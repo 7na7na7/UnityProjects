@@ -267,7 +267,10 @@ MonoBehaviour:
   maxX: -4.22
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
-  speed: -1.2
+  speed: -1
+  dmgDelay: 0
+  speedUpValue: 1.1
+  hpUpValue: 1
 --- !u!50 &6088213968027057276
 Rigidbody2D:
   serializedVersion: 4
