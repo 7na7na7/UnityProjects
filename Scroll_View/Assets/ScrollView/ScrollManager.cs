@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScrollManager : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
@@ -14,6 +15,7 @@ public class ScrollManager : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndD
     private float distance, curPos, targetPos;
     private bool isDrag;
     private int targetIndex;
+    
     void Start()
     {
         //거리에 따라 0~1인 pos 대입

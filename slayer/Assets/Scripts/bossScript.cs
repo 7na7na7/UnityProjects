@@ -196,6 +196,7 @@ public class bossScript : MonoBehaviour
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
                         Instantiate(headEffect, transform.position, Quaternion.identity);
+                        mpSlider.instance.bossCut();
                         Destroy(gameObject);
                     }
                 }
@@ -222,6 +223,7 @@ public class bossScript : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0, 2000, false);
                         Instantiate(effect, transform.position, Quaternion.identity);
                         FindObjectOfType<GameManager>().bossDead = true;
+                        mpSlider.instance.bossCut();
                         Destroy(gameObject);
                     }
                 }

@@ -39,6 +39,6 @@ public class Title : MonoBehaviour
          yield return new WaitForSeconds(delay);
       }
 yield return new WaitForSeconds(anotherDelay);
-      SceneManager.LoadScene("Main");
+      SceneManager.LoadScene("Stage");
    }
 }
