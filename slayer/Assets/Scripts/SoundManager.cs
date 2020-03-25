@@ -20,12 +20,19 @@ public class SoundManager : MonoBehaviour
     public AudioClip knifeCoverSound;
     public static SoundManager instance;
     private AudioSource audio;
+    
+    private string bgmKey = "bgmKey";
+    private string bgsKey = "bgsKey";
+    public float savedBgm;
+    public float savedBgs;
     void Start()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            savedBgm = PlayerPrefs.GetFloat(bgmKey,1f);
+            savedBgs = PlayerPrefs.GetFloat(bgsKey, 1f);
         }
         else
         {
@@ -35,59 +42,70 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void bgmValue(float v)
+    {
+        savedBgm = v;
+        PlayerPrefs.SetFloat(bgmKey,savedBgm);
+    }
+
+    public void bgsValue(float v)
+    {
+        savedBgs = v;
+        PlayerPrefs.SetFloat(bgsKey,savedBgs);
+    }
     public void knifeCover()
     {
-        audio.PlayOneShot(knifeCoverSound);
+        audio.PlayOneShot(knifeCoverSound,savedBgs);
     }
     public void heal()
     {
-        audio.PlayOneShot(healSound);
+        audio.PlayOneShot(healSound,savedBgs);
     }
     public void scoreCount()
     {
-        audio.PlayOneShot(scoreCountSound);
+        audio.PlayOneShot(scoreCountSound,savedBgs);
     }
     public void tsuzumi(int v)
     {
         if(v==0)
-            audio.PlayOneShot(tsuzumiL);
+            audio.PlayOneShot(tsuzumiL,savedBgs);
         else if(v==1)
-            audio.PlayOneShot(tsuzumiM);
+            audio.PlayOneShot(tsuzumiM,savedBgs);
         else if(v==2)
-            audio.PlayOneShot(tsuzumiR);
+            audio.PlayOneShot(tsuzumiR,savedBgs);
     }
     public void swing()
     {
-        audio.PlayOneShot(swingSound);
+        audio.PlayOneShot(swingSound,savedBgs);
     }
 
     public void body()
     {
-        audio.PlayOneShot(bodySound);
+        audio.PlayOneShot(bodySound,savedBgs);
     }
 
     public void head()
     {
-        audio.PlayOneShot(headSound,0.5f);
+        audio.PlayOneShot(headSound,savedBgs*0.5f);
     }
 
     public void hit()
     {
-        audio.PlayOneShot(hitSound,0.5f);
+        audio.PlayOneShot(hitSound,savedBgs*0.5f);
     }
 
     public void girl()
     {
-        audio.PlayOneShot(girlSound,1f);
+        audio.PlayOneShot(girlSound,savedBgs);
     }
 
     public void combo()
     {
-        audio.PlayOneShot(comboSound,1f);
+        audio.PlayOneShot(comboSound,savedBgs);
     }
 
     public void select()
     {
-        audio.PlayOneShot(selectSound,1f);
+        audio.PlayOneShot(selectSound,savedBgs);
     }
 }

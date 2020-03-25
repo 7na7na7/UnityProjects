@@ -296,7 +296,7 @@ public class Player : MonoBehaviour
         {
             if (hit.CompareTag("damage"))
             { 
-                //die();
+                die();
             }
         }
     }

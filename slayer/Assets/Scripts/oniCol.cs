@@ -30,7 +30,7 @@ public class oniCol : MonoBehaviour
                 }
                 else
                 {
-                    //Player.instance.die();
+                    Player.instance.die();
                 }
             }
         }

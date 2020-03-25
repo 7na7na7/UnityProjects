@@ -49,10 +49,10 @@ public class Spawner : MonoBehaviour
                 float r = Random.Range(GameObject.Find("Min").transform.position.x,
                     GameObject.Find("Max").transform.position.x);
                 if (r <= -6.5f)
-                    oni = Instantiate(onis[0], new Vector3(r - 2.25f, transform.position.y, 0),
+                    oni = Instantiate(onis[0], new Vector3(r - 4f, transform.position.y, 0),
                         Quaternion.identity); // 인덱스 0이 오른쪽으로 가는오니
                 else if (r > -6.5f)
-                    oni = Instantiate(onis[1], new Vector3(r + 2.4f, transform.position.y, 0),
+                    oni = Instantiate(onis[1], new Vector3(r + 4f, transform.position.y, 0),
                         Quaternion.identity); // 인덱스 1이 왼쪽으로 가는오니
 
 

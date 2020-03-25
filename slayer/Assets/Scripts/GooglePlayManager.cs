@@ -67,10 +67,17 @@ public class GooglePlayManager : MonoBehaviour
       Social.ShowLeaderboardUI();
    }
 
-   public void AddScore()
+   public void AddScore(int score)
    {
-      // 1000점을 등록
-      Social.ReportScore(1000, GPGSIds.leaderboard, (bool bSuccess) => { });  
+      Social.ReportScore(score, GPGSIds.leaderboard, (bool bSuccess) =>
+      {
+      });
+   }
+   public void AddCombo(int combo)
+   {
+      Social.ReportScore(combo, GPGSIds.leaderboard_2, (bool bSuccess) =>
+      {
+      });
    }
  
    // 업적보기
@@ -82,12 +89,35 @@ public class GooglePlayManager : MonoBehaviour
    // 업적추가
    public void Achievement1()
    {
+      Social.ReportProgress(GPGSIds.achievement__6, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
+   public void Achievement2()
+   {
+      Social.ReportProgress(GPGSIds.achievement__12, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
+   public void Achievement3()
+   {
+      Social.ReportProgress(GPGSIds.achievement__24, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
+   public void Achievement4()
+   {
       Social.ReportProgress(GPGSIds.achievement, 100.0f, (bool bSuccess) => { }); //업적 달성!
    }
-
+   public void Achievement5()
+   {
+      Social.ReportProgress(GPGSIds.achievement_2, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
+   public void Achievement6()
+   {
+      Social.ReportProgress(GPGSIds.achievement_3, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
    public void ToTitle()
    {
-      FadePanel.instance.Fade();
       SceneManager.LoadScene("Title");
+   }
+
+   public void ToSetting()
+   {
+      SceneManager.LoadScene("Setting");
    }
 }

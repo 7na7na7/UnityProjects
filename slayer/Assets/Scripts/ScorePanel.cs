@@ -12,6 +12,10 @@ public class ScorePanel : MonoBehaviour
     private int headv, killedOniv, scorev, maxcombov;
     private int headc = 0, killedOnic = 0, scorec=0,maxcomboc = 0;
     
+    private string highScoreKey = "highScoreKey";
+    private int highScore;
+    private string highComboKey = "highComboKey";
+    private int highCombo;
     public IEnumerator bonus()
     {
         head.text = "급소 공격 횟수 : 0번";
@@ -23,6 +27,30 @@ public class ScorePanel : MonoBehaviour
         killedOniv=ScoreMgr.instance.killedOni;
         scorev = ScoreMgr.instance.score;
         maxcombov = ScoreMgr.instance.maxCombo;
+        
+        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
+        if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore)
+        {
+            GooglePlayManager.instance.AddScore(ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore)); //리더보드에 점수추가
+            highScore = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
+            PlayerPrefs.SetInt(highScoreKey,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+        }
+
+        highCombo = PlayerPrefs.GetInt(highComboKey, 0);
+        if (maxcombov > highCombo)
+        {
+            GooglePlayManager.instance.AddCombo(maxcombov);
+            highCombo = maxcombov;
+            PlayerPrefs.SetInt(highComboKey,maxcombov);
+        }
+        
+        if(killedOniv>=50)
+            GooglePlayManager.instance.Achievement4();
+        if(killedOniv>=100)
+            GooglePlayManager.instance.Achievement5();
+        if(killedOniv>=300)
+            GooglePlayManager.instance.Achievement6();
+        
         yield return new WaitForSecondsRealtime(0.3f);
         while (killedOnic<killedOniv)
         {

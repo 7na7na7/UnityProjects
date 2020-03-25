@@ -30,6 +30,13 @@ public class ComboManager : MonoBehaviour
         Time.timeScale = 1;
         if (comboCount >= 2)
         {
+            if(comboCount>=6)
+                GooglePlayManager.instance.Achievement1();
+            if(comboCount>=12)
+                GooglePlayManager.instance.Achievement2();
+            if(comboCount>=24)
+                GooglePlayManager.instance.Achievement3();
+            
             ScoreMgr.instance.comboInitialize(comboCount);
             int value = 25;
             value += comboCount / 5 * 25;

@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
   {
     if (!isGameOver)
     {
+      SoundManager.instance.select();
       if (isPause)
       {
         if (Time.timeScale == 0)
@@ -118,12 +119,14 @@ public class GameManager : MonoBehaviour
 
   public void RESTART()
   {
+    SoundManager.instance.select();
     FadePanel.instance.rightFade();
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
   }
 
   public void TITLE()
   {
+    SoundManager.instance.select();
     FadePanel.instance.rightFade();
     SceneManager.LoadScene("Title");
   }

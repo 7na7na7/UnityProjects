@@ -149,6 +149,8 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AnimCtrl.cs" t="Include" />
+          <e p="Bgm_BgsManager.cs" t="Include" />
+          <e p="BgmManager.cs" t="Include" />
           <e p="bonusText.cs" t="Include" />
           <e p="BossCol.cs" t="Include" />
           <e p="bossScript.cs" t="Include" />
@@ -168,6 +170,7 @@
           <e p="girlText.cs" t="Include" />
           <e p="GooglePlayManager.cs" t="Include" />
           <e p="jumpEffect.cs" t="Include" />
+          <e p="LoadScene.cs" t="Include" />
           <e p="mpSlider.cs" t="Include" />
           <e p="oniCol.cs" t="Include" />
           <e p="oniMove.cs" t="Include" />

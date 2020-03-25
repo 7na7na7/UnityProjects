@@ -18,6 +18,7 @@ public class GameOverManager : MonoBehaviour
     public IEnumerator GameOver(GameObject g)
     {
         delete.SetActive(false);
+        Player.instance.StopAllCoroutines();
         //콤보 마무리해줌
         ComboManager.instance.ComboEnd();
         ComboManager.instance.comboCount = 0;
@@ -28,6 +29,4 @@ public class GameOverManager : MonoBehaviour
         StartCoroutine(Worldfade.fadeoutRealTime());
         StartCoroutine(panel.GetComponent<ScorePanel>().bonus());
     }
-
-    
 }
