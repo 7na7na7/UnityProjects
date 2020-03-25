@@ -72,10 +72,18 @@ public class oniMove : MonoBehaviour
                 else if(oniIndex==2)
                 {
                     anim.Play("oni2Attack");
-                    StartCoroutine(girl.instance.hitted(30));
+                    StartCoroutine(girl.instance.hitted(20));
                     yield return new WaitForSeconds(0.5f);
                     anim.Play("oni2Idle");
                     yield return new WaitForSeconds(2f);
+                }
+                else if(oniIndex==3)
+                {
+                    anim.Play("oni3_Attack");
+                    StartCoroutine(girl.instance.hitted(5));
+                    yield return new WaitForSeconds(0.5f);
+                    anim.Play("oni3_Idle");
+                    yield return new WaitForSeconds(1f);
                 }
             }
         }
@@ -139,9 +147,12 @@ public class oniMove : MonoBehaviour
         {
             if (!Player.instance.isattack)
             {
-                if (oniIndex == 1)
+                if (oniIndex == 1||oniIndex==3)
                 {
-                    anim.Play("oni1Attack");
+                    if(oniIndex==1) 
+                        anim.Play("oni1Attack");
+                    else if(oniIndex==3)
+                        anim.Play("oni3_Attack");
                     if (canGo)
                     {
                         if (other.transform.position.x < transform.position.x)
@@ -152,6 +163,7 @@ public class oniMove : MonoBehaviour
                 }
                 else if(oniIndex==2)
                     anim.Play("oni2Attack");
+                
             }
         }
 
@@ -178,6 +190,10 @@ public class oniMove : MonoBehaviour
                 {
                     anim.Play("oni2_walk");
                     //transform.Translate(0,   Random.Range(0.5f,1f), 0);
+                }
+                else if (oniIndex == 3)
+                {
+                    anim.Play("oni3_walk");
                 }
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                

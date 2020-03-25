@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 8064775080635642669}
   - component: {fileID: 8064775080635642656}
   m_Layer: 0
-  m_Name: oni4_L
+  m_Name: oni3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,12 +249,12 @@ MonoBehaviour:
   isJumping: 0
   canGo: 1
   hp: 1
-  oniIndex: 1
+  oniIndex: 3
   minX: -8.73
   maxX: -4.22
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
-  speed: -2
+  speed: -2.5
   dmgDelay: 0
   speedUpValue: 1.1
   hpUpValue: 1
@@ -337,7 +337,7 @@ Animator:
   m_GameObject: {fileID: 8064775080635642671}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c3e263a1b0296b445b02e0a653ea957b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 26ef97ee6fb5f2549a833eaad3f2a523, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
