@@ -96,6 +96,6 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     {
         FadePanel.instance.Fade();
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main2");
     }
 }

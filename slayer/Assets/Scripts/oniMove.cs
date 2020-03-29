@@ -110,7 +110,8 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,100, false);
                     else if (oniIndex == 2)
                         ScoreMgr.instance.scoreUp(0,150, false);
-
+                    else if(oniIndex==3) 
+                        ScoreMgr.instance.scoreUp(0,100,false);
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
@@ -128,7 +129,8 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,100, false);
                     else if (oniIndex == 2)
                         ScoreMgr.instance.scoreUp(0,150, false);
-                    
+                    else if(oniIndex==3) 
+                        ScoreMgr.instance.scoreUp(0,100,false);
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
