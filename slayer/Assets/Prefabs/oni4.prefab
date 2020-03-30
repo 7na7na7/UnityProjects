@@ -342,7 +342,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2e30674f16c904b9eb1c5ab80386a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  web: {fileID: 0}
+  web: {fileID: 7058529880638527011}
+  startDown: 4.6
+  startDownTime: 1
+  minTIme: 1
+  maxTime: 2
+  maxDown: 9
+  ease: 30
+  randomMovingTr:
+  - -2
+  - -1
+  - 1
+  - 2
+  spiderAttack: {fileID: 801778088865783852, guid: 7b542a7dd42175a4a83b2f04b3773d3d,
+    type: 3}
+  attackDelay: 1
 --- !u!1 &5417133682828375982
 GameObject:
   m_ObjectHideFlags: 0
