@@ -67,19 +67,30 @@ public class GooglePlayManager : MonoBehaviour
       Social.ShowLeaderboardUI();
    }
 
-   public void AddScore(int score)
+   public void AddScore1(int score)
    {
-      Social.ReportScore(score, GPGSIds.leaderboard, (bool bSuccess) =>
+      Social.ReportScore(score, GPGSIds.leaderboard______1, (bool bSuccess) =>
       {
       });
    }
-   public void AddCombo(int combo)
+   public void AddScore2(int score)
    {
-      Social.ReportScore(combo, GPGSIds.leaderboard_2, (bool bSuccess) =>
+      Social.ReportScore(score, GPGSIds.leaderboard______2, (bool bSuccess) =>
       {
       });
    }
- 
+   public void AddCombo1(int combo)
+   {
+      Social.ReportScore(combo, GPGSIds.leaderboard______1_2, (bool bSuccess) =>
+      {
+      });
+   }
+   public void AddCombo2(int combo)
+   {
+      Social.ReportScore(combo, GPGSIds.leaderboard______2_2, (bool bSuccess) =>
+      {
+      });
+   }
    // 업적보기
    public void OnShowAchievement()
    {
@@ -101,15 +112,27 @@ public class GooglePlayManager : MonoBehaviour
    }
    public void Achievement4()
    {
-      Social.ReportProgress(GPGSIds.achievement, 100.0f, (bool bSuccess) => { }); //업적 달성!
+      Social.ReportProgress(GPGSIds.achievement____1, 100.0f, (bool bSuccess) => { }); //업적 달성!
    }
    public void Achievement5()
    {
-      Social.ReportProgress(GPGSIds.achievement_2, 100.0f, (bool bSuccess) => { }); //업적 달성!
+      Social.ReportProgress(GPGSIds.achievement____1_2, 100.0f, (bool bSuccess) => { }); //업적 달성!
    }
    public void Achievement6()
    {
-      Social.ReportProgress(GPGSIds.achievement_3, 100.0f, (bool bSuccess) => { }); //업적 달성!
+      Social.ReportProgress(GPGSIds.achievement____1_3, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
+   public void Achievement7()
+   {
+      Social.ReportProgress(GPGSIds.achievement____2, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
+   public void Achievement8()
+   {
+      Social.ReportProgress(GPGSIds.achievement____2_2, 100.0f, (bool bSuccess) => { }); //업적 달성!
+   }
+   public void Achievement9()
+   {
+      Social.ReportProgress(GPGSIds.achievement_____2, 100.0f, (bool bSuccess) => { }); //업적 달성!
    }
    public void ToTitle()
    {

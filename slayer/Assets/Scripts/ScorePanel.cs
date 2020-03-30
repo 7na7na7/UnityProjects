@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScorePanel : MonoBehaviour
@@ -12,10 +13,14 @@ public class ScorePanel : MonoBehaviour
     private int headv, killedOniv, scorev, maxcombov;
     private int headc = 0, killedOnic = 0, scorec=0,maxcomboc = 0;
     
-    private string highScoreKey = "highScoreKey";
-    private int highScore;
-    private string highComboKey = "highComboKey";
-    private int highCombo;
+    private string highScoreKey1 = "highScoreKey1";
+    private string highScoreKey2 = "highScoreKey2";
+    private int highScore1;
+    private int highScore2;
+    private string highComboKey1 = "highComboKey1";
+    private string highComboKey2 = "highComboKey2";
+    private int highCombo1;
+    private int highCombo2;
     public IEnumerator bonus()
     {
         head.text = "급소 공격 횟수 : 0번";
@@ -28,29 +33,75 @@ public class ScorePanel : MonoBehaviour
         scorev = ScoreMgr.instance.score;
         maxcombov = ScoreMgr.instance.maxCombo;
         
-        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
-        if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore)
+        //점수 불러오기
+        highScore1 = PlayerPrefs.GetInt(highScoreKey1, 0);
+        highScore2 = PlayerPrefs.GetInt(highScoreKey2, 0);
+
+       
+        if (SceneManager.GetActiveScene().name == "Main") //스테이지 1
         {
-            GooglePlayManager.instance.AddScore(ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore)); //리더보드에 점수추가
-            highScore = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
-            PlayerPrefs.SetInt(highScoreKey,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+            //점수
+            if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore1)
+            {
+                GooglePlayManager.instance.AddScore1(ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore)); //리더보드에 점수추가
+                highScore1 = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
+                PlayerPrefs.SetInt(highScoreKey1,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+            }
+            //콤보
+            highCombo1 = PlayerPrefs.GetInt(highComboKey1, 0);
+            if (maxcombov > highCombo1)
+            {
+                GooglePlayManager.instance.AddCombo1(maxcombov);
+                highCombo1 = maxcombov;
+                PlayerPrefs.SetInt(highComboKey1,maxcombov);
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Main2") //스테이지 2
+        {
+            //점수
+            if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore2)
+            {
+                GooglePlayManager.instance.AddScore2(ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore)); //리더보드에 점수추가
+                highScore2 = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
+                PlayerPrefs.SetInt(highScoreKey2,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+            }
+            highCombo2 = PlayerPrefs.GetInt(highComboKey2, 0);
+            //콤보
+            if (maxcombov > highCombo2)
+            {
+                GooglePlayManager.instance.AddCombo2(maxcombov);
+                highCombo2 = maxcombov;
+                PlayerPrefs.SetInt(highComboKey2,maxcombov);
+            }
+        }
+       
+
+       
+
+        if (killedOniv >= 50)
+        {
+            if(SceneManager.GetActiveScene().name=="Main") 
+                GooglePlayManager.instance.Achievement4();
+            else if(SceneManager.GetActiveScene().name=="Main2") 
+                GooglePlayManager.instance.Achievement7();
         }
 
-        highCombo = PlayerPrefs.GetInt(highComboKey, 0);
-        if (maxcombov > highCombo)
+        if (killedOniv >= 100)
         {
-            GooglePlayManager.instance.AddCombo(maxcombov);
-            highCombo = maxcombov;
-            PlayerPrefs.SetInt(highComboKey,maxcombov);
+            if(SceneManager.GetActiveScene().name=="Main") 
+                GooglePlayManager.instance.Achievement5();
+            else if(SceneManager.GetActiveScene().name=="Main2") 
+                GooglePlayManager.instance.Achievement8();
         }
-        
-        if(killedOniv>=50)
-            GooglePlayManager.instance.Achievement4();
-        if(killedOniv>=100)
-            GooglePlayManager.instance.Achievement5();
-        if(killedOniv>=300)
-            GooglePlayManager.instance.Achievement6();
-        
+
+        if (killedOniv >= 300)
+        {
+            if(SceneManager.GetActiveScene().name=="Main") 
+                GooglePlayManager.instance.Achievement6();
+            else if(SceneManager.GetActiveScene().name=="Main2") 
+                GooglePlayManager.instance.Achievement9();
+        }
+
         yield return new WaitForSecondsRealtime(0.3f);
         while (killedOnic<killedOniv)
         {

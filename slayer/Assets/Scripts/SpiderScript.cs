@@ -59,6 +59,7 @@ public class SpiderScript : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
             GetComponent<Animator>().Play("oni4_Attack");
             Instantiate(spiderAttack,transform.position,Quaternion.identity);
+            SoundManager.instance.SpiderAttack();
             yield return new WaitForSeconds(0.5f);
             GetComponent<Animator>().Play("oni4_Idle");
         }

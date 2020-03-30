@@ -27,6 +27,8 @@ public class oniMove : MonoBehaviour
         for (int i = 0; i < GameManager.instance.bossCount; i++)
             speed *= speedUpValue;
         hp += hpUpValue * (int)(GameManager.instance.bossCount / 2);
+        if(oniIndex==5)
+            transform.Translate(0,Random.Range(1.5f,1.6f),0);
     }
 
     void Update()
@@ -85,6 +87,22 @@ public class oniMove : MonoBehaviour
                     anim.Play("oni3_Idle");
                     yield return new WaitForSeconds(1f);
                 }
+                else if(oniIndex==5)
+                {
+                    anim.Play("oni5_Attack");
+                    StartCoroutine(girl.instance.hitted(10));
+                    yield return new WaitForSeconds(0.75f);
+                    anim.Play("oni5_Idle");
+                    yield return new WaitForSeconds(1f);
+                }
+                else if(oniIndex==6)
+                {
+                    anim.Play("oni6_Attack");
+                    StartCoroutine(girl.instance.hitted(20));
+                    yield return new WaitForSeconds(1);
+                    anim.Play("oni6_Idle");
+                    yield return new WaitForSeconds(1f);
+                }
             }
         }
         else
@@ -112,6 +130,12 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,150, false);
                     else if(oniIndex==3) 
                         ScoreMgr.instance.scoreUp(0,100,false);
+                    else if(oniIndex==4) 
+                        ScoreMgr.instance.scoreUp(0,300,false);
+                    else if(oniIndex==5) 
+                        ScoreMgr.instance.scoreUp(0,200,false);
+                    else if(oniIndex==6) 
+                        ScoreMgr.instance.scoreUp(0,250,false);
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
@@ -131,6 +155,12 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,150, false);
                     else if(oniIndex==3) 
                         ScoreMgr.instance.scoreUp(0,100,false);
+                    else if(oniIndex==4) 
+                        ScoreMgr.instance.scoreUp(0,300,false);
+                    else if(oniIndex==5) 
+                        ScoreMgr.instance.scoreUp(0,200,false);
+                    else if(oniIndex==6) 
+                        ScoreMgr.instance.scoreUp(0,250,false);
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
@@ -149,22 +179,27 @@ public class oniMove : MonoBehaviour
         {
             if (!Player.instance.isattack)
             {
-                if (oniIndex == 1||oniIndex==3)
+                if (oniIndex == 1||oniIndex==2||oniIndex==3||oniIndex==5)
                 {
                     if(oniIndex==1) 
                         anim.Play("oni1Attack");
+                    else if(oniIndex==2)
+                        anim.Play("oni2Attack");
                     else if(oniIndex==3)
                         anim.Play("oni3_Attack");
+                    else if(oniIndex==5)
+                        anim.Play("oni5_Attack");
+                    else if(oniIndex==6)
+                        anim.Play("oni6_Attack");
                     if (canGo)
                     {
                         if (other.transform.position.x < transform.position.x)
-                            transform.localScale = new Vector3(1, 1, 1);
+                            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y, transform.localScale.z);
                         else if (other.transform.position.x > transform.position.x)
-                            transform.localScale = new Vector3(-1, 1, 1);
+                            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x)*-1, transform.localScale.y, transform.localScale.z);
                     }
                 }
-                else if(oniIndex==2)
-                    anim.Play("oni2Attack");
+              
                 
             }
         }
@@ -179,6 +214,8 @@ public class oniMove : MonoBehaviour
                         transform.localScale = new Vector3(1, 1, 1);
                     else if(oniIndex==2)
                         transform.localScale = new Vector3(5, 5, 1);
+                    else if(oniIndex==3)
+                        transform.localScale = new Vector3(1, 1, 1);
                 }
                 canGo = true;
                 transform.eulerAngles = new Vector3(0, 0, 0);
@@ -196,6 +233,10 @@ public class oniMove : MonoBehaviour
                 else if (oniIndex == 3)
                 {
                     anim.Play("oni3_walk");
+                }
+                else if (oniIndex == 6)
+                {
+                    anim.Play("oni6_Walking");
                 }
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                

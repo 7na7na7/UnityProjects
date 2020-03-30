@@ -209,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492335165434357946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.87, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4407593642995993853}
@@ -356,7 +356,7 @@ MonoBehaviour:
   - 2
   spiderAttack: {fileID: 801778088865783852, guid: 7b542a7dd42175a4a83b2f04b3773d3d,
     type: 3}
-  attackDelay: 1
+  attackDelay: 2
 --- !u!1 &5417133682828375982
 GameObject:
   m_ObjectHideFlags: 0

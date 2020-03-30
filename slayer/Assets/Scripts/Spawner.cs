@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public bool isSpider = false;
     public bool canSpawn = true;
     public float delayMinusValue=0;
     public float delayMinusDuration=0;
@@ -12,7 +13,9 @@ public class Spawner : MonoBehaviour
     public GameObject[] onis;
     void Start()
     {
-        if (isFalling)
+        if(isSpider)
+            StartCoroutine(spawn3());
+        else if (isFalling)
             StartCoroutine(spawn2());
         else
             StartCoroutine(spawn());
@@ -21,7 +24,19 @@ public class Spawner : MonoBehaviour
             StartCoroutine(delayCor());
 
     }
-
+    IEnumerator spawn3()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
+            if (canSpawn)
+            {
+                float r = Random.Range(GameObject.Find("Min").transform.position.x+3,
+                    GameObject.Find("Max").transform.position.x-3);
+                Instantiate(onis[Random.Range(0, onis.Length)], new Vector3(r,13.6f,0), Quaternion.identity);
+            }
+        }
+    }
     IEnumerator spawn()
     {
         while (true)
@@ -46,8 +61,8 @@ public class Spawner : MonoBehaviour
             if (canSpawn)
             {
                 GameObject oni = null;
-                float r = Random.Range(GameObject.Find("Min").transform.position.x,
-                    GameObject.Find("Max").transform.position.x);
+                float r = Random.Range(GameObject.Find("Min").transform.position.x+3,
+                    GameObject.Find("Max").transform.position.x-3);
                 if (r <= -6.5f)
                     oni = Instantiate(onis[0], new Vector3(r - 4f, transform.position.y, 0),
                         Quaternion.identity); // 인덱스 0이 오른쪽으로 가는오니

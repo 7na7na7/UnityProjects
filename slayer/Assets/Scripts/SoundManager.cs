@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip scoreCountSound;
     public AudioClip healSound;
     public AudioClip knifeCoverSound;
+    public AudioClip SpiderAttackSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -42,6 +43,10 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void SpiderAttack()
+    {
+        audio.PlayOneShot(SpiderAttackSound,savedBgs*5);
+    }
     public void bgmValue(float v)
     {
         savedBgm = v;

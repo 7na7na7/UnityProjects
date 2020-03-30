@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
   public int bossTime;
   public int jumpingTIme;
   public int fallingTime;
+  public int spiderTime;
   public int beforeBossTime;
   public GameObject pausePanel;
   public Sprite pauseSprite, goSprite;
@@ -37,17 +38,20 @@ public class GameManager : MonoBehaviour
       FadePanel.instance.UnFade();
     spawners = FindObjectsOfType<Spawner>();
     fires = FindObjectsOfType<Fire>();
-    StartCoroutine(Game());
+    if(SceneManager.GetActiveScene().name=="Main") 
+      StartCoroutine(Game1());
+    else if (SceneManager.GetActiveScene().name == "Main2")
+      StartCoroutine(Game2());
   }
 
-  IEnumerator Game()
+  IEnumerator Game1()
   { yield return new WaitForSeconds(jumpingTIme);
-    foreach (Fire f in fires)
+    foreach (Fire f in fires) //점프 가능
     {
       f.canSpawn = true;
     }
     yield return new WaitForSeconds(fallingTime);
-    foreach (Spawner s in spawners)
+    foreach (Spawner s in spawners) //위에서 내려오는거 가능
     {
       if (s.isFalling)
         s.canSpawn = true;
@@ -71,9 +75,9 @@ public class GameManager : MonoBehaviour
         f.canSpawn = false;
       }
 
-      GameObject t=Instantiate(txt, GameObject.Find("bossTextTr").transform);
+      Instantiate(txt, GameObject.Find("bossTextTr").transform);
       yield return new WaitForSeconds(beforeBossTime);
-      GameObject bossObj=Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x+10,GameObject.Find("Max").transform.position.x-10),transform.position.y,0),Quaternion.identity);
+      Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x+10,GameObject.Find("Max").transform.position.x-10),transform.position.y,0),Quaternion.identity);
       yield return new WaitUntil(() => bossDead);
       bossDead = false;
       foreach (Spawner s in spawners)
@@ -86,7 +90,57 @@ public class GameManager : MonoBehaviour
       } 
     }
   }
+  IEnumerator Game2()
+  { yield return new WaitForSeconds(jumpingTIme);
+    foreach (Fire f in fires) //점프 가능
+    {
+      f.canSpawn = true;
+    }
+    yield return new WaitForSeconds(fallingTime);
+    foreach (Spawner s in spawners) //위에서 내려오는거 가능
+    {
+      if (s.isFalling)
+        s.canSpawn = true;
+    }
+    yield return new WaitForSeconds(spiderTime);
+    foreach (Spawner s in spawners) //거미등장
+    {
+      if (s.isSpider)
+        s.canSpawn = true;
+    }
+    while (true)
+    {
+      if (!once)
+      {
+        yield return new WaitForSeconds(bossTime);
+        once = true;
+      }
+      else
+        yield return new WaitForSeconds(bossTime + jumpingTIme + fallingTime);
+      foreach (Spawner s in spawners)
+      {
+        s.canSpawn = false;
+      }
+      foreach (Fire f in fires)
+      { 
+        f.canSpawn = false;
+      }
 
+      Instantiate(txt, GameObject.Find("bossTextTr").transform);
+      yield return new WaitForSeconds(beforeBossTime);
+      Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x+10,GameObject.Find("Max").transform.position.x-10),transform.position.y,0),Quaternion.identity);
+      yield return new WaitUntil(() => bossDead);
+      bossDead = false;
+      foreach (Spawner s in spawners)
+      {
+        s.canSpawn = true;
+      }
+      foreach (Fire f in fires)
+      { 
+        f.canSpawn = true;
+      } 
+    }
+  }
   public void pause()
   {
     if (!isGameOver)
