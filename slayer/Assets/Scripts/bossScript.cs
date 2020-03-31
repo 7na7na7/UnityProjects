@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class bossScript : MonoBehaviour
@@ -34,7 +35,10 @@ public class bossScript : MonoBehaviour
         GameManager.instance.bossCount++;
         
         anim = GetComponent<Animator>();
-        StartCoroutine(Go());
+        if(SceneManager.GetActiveScene().name=="Main") 
+            StartCoroutine(Go());
+        else if (SceneManager.GetActiveScene().name == "Main2")
+            StartCoroutine(Go2());
     }
 
     IEnumerator Go()
@@ -92,16 +96,70 @@ public class bossScript : MonoBehaviour
             anim.Play("bossIdle");
         }   
     }
-
+    IEnumerator Go2()
+    {
+        int t = (int)Time.timeScale;
+        Time.timeScale = 0;
+        CameraManager.instance.theCamera.orthographicSize = 5;
+        CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,-10);
+        CameraManager.instance.OnBound();
+        SoundManager.instance.heal();
+        while (slider.value<slider.maxValue)
+        {
+            slider.value += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        CameraManager.instance.canFollow = true;
+        Player.instance.isattack = false;
+        Player.instance.canTouch = true;
+        Time.timeScale = t;
+        canMove = true;
+        while (true)
+        {
+            if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                yield return new WaitForSeconds(patternDelay*0.5f);
+            else
+                yield return new WaitForSeconds(patternDelay);
+            int r = 0;
+            StartCoroutine(move2());
+            yield return new WaitUntil(()=>canGo);
+            canGo = false;
+            anim.Play("bossIdle");
+        }   
+    }
+    IEnumerator move2()
+    {
+        Vector3 p = new Vector3(Player.instance.transform.position.x,Player.instance.transform.position.y+0.6f,0);
+        if(Player.instance.transform.position.x>transform.position.x) 
+            anim.Play("RightDash");
+        else
+            anim.Play("LeftDash");
+        
+        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+        {
+            transform.DOMove(p, moveTime * 0.5f).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(moveTime*0.5f);
+        }
+        else
+        {
+            transform.DOMove(p, moveTime).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(moveTime);
+        }
+        canGo = true;
+    }
     IEnumerator move()
     {
-        Vector3 c = transform.position;
-        Vector3 p = new Vector3(Player.instance.transform.position.x,Player.instance.transform.position.y+1.6f,0);
-        if(slider.value<=10) 
-            transform.DOMove(p ,moveTime*0.5f).SetEase(Ease.Linear);
+        Vector3 p = new Vector3(Player.instance.transform.position.x,Player.instance.transform.position.y+0.6f,0);
+        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+        {
+            transform.DOMove(p, moveTime * 0.5f).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(moveTime*0.5f);
+        }
         else
-            transform.DOMove(p ,moveTime).SetEase(Ease.Linear);
-        yield return new WaitUntil(()=>Vector3.Distance(transform.position,c)<0.1f);
+        {
+            transform.DOMove(p, moveTime).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(moveTime);
+        }
         canGo = true;
     }
     IEnumerator tsuzumi(int r)

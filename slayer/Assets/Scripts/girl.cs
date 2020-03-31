@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class girl : MonoBehaviour
 {
+    public string hitText = "아얏!";
     public static girl instance;
     //public float invisibleTime;
     public Slider hp;
@@ -32,8 +33,8 @@ public class girl : MonoBehaviour
         }
         else
         {
-            if(FindObjectOfType<girlText>()!=null)
-                FindObjectOfType<girlText>().text.text = "아얏!";
+            if (FindObjectOfType<girlText>() != null)
+                FindObjectOfType<girlText>().text.text = hitText;
             yield return new WaitForSeconds(1);
             anim.Play("girlAnim");
         }

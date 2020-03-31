@@ -1588,6 +1588,7 @@ MonoBehaviour:
   scoreCountSound: {fileID: 8300000, guid: b70180e88ec55c244937f7fab9ba5b87, type: 3}
   healSound: {fileID: 8300000, guid: be63cccdc83d8264693efd7c21c90f5d, type: 3}
   knifeCoverSound: {fileID: 8300000, guid: b50fa9482dd945f4b8cc9c596652e197, type: 3}
+  SpiderAttackSound: {fileID: 0}
   savedBgm: 0
   savedBgs: 0
 --- !u!4 &766661957
@@ -2512,8 +2513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.006897, y: 204.56}
-  m_SizeDelta: {x: 2036.5, y: 609.1}
+  m_AnchoredPosition: {x: -0.006897, y: -0.0034485}
+  m_SizeDelta: {x: 2036.5, y: 1018.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314401681
 MonoBehaviour:

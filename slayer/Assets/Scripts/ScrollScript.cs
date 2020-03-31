@@ -42,8 +42,11 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             //스크롤이 오른쪽으로 빠르게 이동시 목표가 하나 증가
             else if (eventData.delta.x < -18 && curPos - distance <=1f)
             {
-                ++targetIndex;
-                targetPos = curPos + distance;
+                if (targetIndex + 1 < SIZE)
+                {
+                    ++targetIndex;
+                    targetPos = curPos + distance;
+                }
             }
         }
     }

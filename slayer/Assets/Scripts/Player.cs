@@ -362,7 +362,7 @@ public class Player : MonoBehaviour
     
     public void die()
     {
-        if (!isGameOver)
+        if (isGameOver)
         {
             isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);
