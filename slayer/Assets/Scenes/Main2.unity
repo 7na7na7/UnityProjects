@@ -10379,6 +10379,9 @@ MonoBehaviour:
   maxDelay: 4
   onis:
   - {fileID: 6460461716665487614, guid: f92bc77a831747141a35af0b27b8fca1, type: 3}
+  - {fileID: 6460461716665487614, guid: f92bc77a831747141a35af0b27b8fca1, type: 3}
+  - {fileID: 6460461716665487614, guid: f92bc77a831747141a35af0b27b8fca1, type: 3}
+  - {fileID: 6548240794376286886, guid: 22e7fbf6c435b2d4490136688f0cc0e9, type: 3}
   - {fileID: 6548240794376286886, guid: 22e7fbf6c435b2d4490136688f0cc0e9, type: 3}
 --- !u!1 &386196665
 GameObject:
@@ -12183,6 +12186,9 @@ MonoBehaviour:
   maxDelay: 4
   onis:
   - {fileID: 8064775080635642671, guid: 96134c73a9648684e868836a1c31da04, type: 3}
+  - {fileID: 8064775080635642671, guid: 96134c73a9648684e868836a1c31da04, type: 3}
+  - {fileID: 8064775080635642671, guid: 96134c73a9648684e868836a1c31da04, type: 3}
+  - {fileID: 4944400791761051494, guid: e46aa6118b61acd46b4e8f3990616f13, type: 3}
   - {fileID: 4944400791761051494, guid: e46aa6118b61acd46b4e8f3990616f13, type: 3}
 --- !u!4 &811699934
 Transform:
@@ -12414,7 +12420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossCount: 0
   boss: {fileID: 3373281082922345524, guid: da437ed53c86bf943a21546fca2e8568, type: 3}
-  bossTime: 50
+  bossTime: 60
   jumpingTIme: 20
   fallingTime: 20
   spiderTime: 20
@@ -22642,10 +22648,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSpider: 1
   canSpawn: 0
-  delayMinusValue: 0.03
+  delayMinusValue: 0.05
   delayMinusDuration: 10
   isFalling: 0
-  minDelay: 9
+  minDelay: 8
   maxDelay: 12
   onis:
   - {fileID: 2492335165434357946, guid: aa90ef3471fa26640926d810caea34a8, type: 3}
@@ -24006,7 +24012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSpider: 0
   canSpawn: 0
-  delayMinusValue: 0.03
+  delayMinusValue: 0.05
   delayMinusDuration: 10
   isFalling: 1
   minDelay: 8
@@ -24169,7 +24175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe4e2b2f8ecaa4ca4f81a1572128cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDesktop: 1
+  isDesktop: 0
   nuckBackCantTouchTime: 0.05
   force: 20
   nuckbackforce: 15
@@ -29510,6 +29516,11 @@ MonoBehaviour:
   healSound: {fileID: 8300000, guid: be63cccdc83d8264693efd7c21c90f5d, type: 3}
   knifeCoverSound: {fileID: 8300000, guid: b50fa9482dd945f4b8cc9c596652e197, type: 3}
   SpiderAttackSound: {fileID: 0}
+  DashSound: {fileID: 0}
+  GrassSound: {fileID: 0}
+  Skill1Sound: {fileID: 0}
+  Skill2Sound: {fileID: 0}
+  LockedSound: {fileID: 0}
   savedBgm: 0
   savedBgs: 0
 --- !u!1 &1818758089

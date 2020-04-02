@@ -43,4 +43,10 @@ public class LoadScene : MonoBehaviour
       SoundManager.instance.select();
       GooglePlayManager.instance.LogInOrLogOut();
    }
+
+   public void Tutorial()
+   {
+      SoundManager.instance.select();
+      SceneManager.LoadScene("Tutorial");
+   }
 }

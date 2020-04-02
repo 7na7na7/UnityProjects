@@ -158,7 +158,7 @@ public class ScorePanel : MonoBehaviour
                 score.text = scorec.ToString();
             }
 
-            yield return new WaitForSecondsRealtime(0.3f);
+            yield return new WaitForSecondsRealtime(0.2f);
         }
 
         if (maxcombov > 1)
@@ -173,7 +173,7 @@ public class ScorePanel : MonoBehaviour
                 score.text = scorec.ToString();
             }
 
-            yield return new WaitForSecondsRealtime(0.3f);
+            yield return new WaitForSecondsRealtime(0.2f);
         }
     }
 }

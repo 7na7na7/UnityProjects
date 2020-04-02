@@ -43,7 +43,7 @@ public class girl : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("damage"))
-            StartCoroutine(hitted(20));
+            StartCoroutine(hitted(10));
     }
     /*
     public IEnumerator invisibleCor()

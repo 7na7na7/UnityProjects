@@ -10370,6 +10370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d0b8b4f6faa1740bcc6616aeca31ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpider: 0
   canSpawn: 1
   delayMinusValue: 0.03
   delayMinusDuration: 10
@@ -12172,6 +12173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d0b8b4f6faa1740bcc6616aeca31ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpider: 0
   canSpawn: 1
   delayMinusValue: 0.03
   delayMinusDuration: 10
@@ -12414,6 +12416,7 @@ MonoBehaviour:
   bossTime: 40
   jumpingTIme: 20
   fallingTime: 20
+  spiderTime: 0
   beforeBossTime: 10
   pausePanel: {fileID: 1992018347}
   pauseSprite: {fileID: 21300000, guid: 1d0f98903363712418330219fd1bb30a, type: 3}
@@ -23596,6 +23599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9aed4edce9519c409bd2dd1950f8c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitText: "\uC544\uC58F!"
   hp: {fileID: 689389187}
 --- !u!70 &1551013075
 CapsuleCollider2D:
@@ -23947,6 +23951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d0b8b4f6faa1740bcc6616aeca31ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpider: 0
   canSpawn: 0
   delayMinusValue: 0.03
   delayMinusDuration: 10
@@ -24034,7 +24039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641358375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.29, y: -4.6, z: 0}
+  m_LocalPosition: {x: -4.91, y: -4.53, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 1470140657}
@@ -29451,6 +29456,12 @@ MonoBehaviour:
   scoreCountSound: {fileID: 8300000, guid: b70180e88ec55c244937f7fab9ba5b87, type: 3}
   healSound: {fileID: 8300000, guid: be63cccdc83d8264693efd7c21c90f5d, type: 3}
   knifeCoverSound: {fileID: 8300000, guid: b50fa9482dd945f4b8cc9c596652e197, type: 3}
+  SpiderAttackSound: {fileID: 0}
+  DashSound: {fileID: 0}
+  GrassSound: {fileID: 0}
+  Skill1Sound: {fileID: 0}
+  Skill2Sound: {fileID: 0}
+  LockedSound: {fileID: 0}
   savedBgm: 0
   savedBgs: 0
 --- !u!1 &1818758089

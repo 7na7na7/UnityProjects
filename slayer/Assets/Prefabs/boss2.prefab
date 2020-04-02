@@ -574,7 +574,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d9525c9cb6c72ad4693046e60eca478f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -598,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15757de28d7d8d4418068fe3bbef6f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
   slider: {fileID: 6867786666846837633}
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
@@ -608,6 +609,14 @@ MonoBehaviour:
   patternMinusValue: 0.2
   moveFastValue: -0.05
   dmgDelay: 0
+  webAttack: {fileID: 7577133271063831809, guid: 035a80e27ef822d49af1cefee22a09f2,
+    type: 3}
+  RedwebAttack: {fileID: 5013970040416912315, guid: be9e1c940dd67dc4aa89d83bb8c65831,
+    type: 3}
+  webAttack2: {fileID: 2588625798193936973, guid: 290f51132f97cad4ebc08009ec37f7db,
+    type: 3}
+  RedwebAttack2: {fileID: 8671856767509803817, guid: 8b83fc535c3d0744b85b00c215fb820b,
+    type: 3}
 --- !u!50 &6867786667710119660
 Rigidbody2D:
   serializedVersion: 4

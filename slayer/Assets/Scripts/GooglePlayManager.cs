@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GooglePlayManager : MonoBehaviour
 {
+   public int canStage1 = 0;
+   private string canStage1Key = "canStage1";
+   private int isFirst = 0;
+   private string isFirstKey = "isFirst";
    public static GooglePlayManager instance;
    private void Start()
    {
@@ -16,13 +20,28 @@ public class GooglePlayManager : MonoBehaviour
          PlayGamesPlatform.DebugLogEnabled = true;
          PlayGamesPlatform.Activate();
          LogIn();
+         canStage1 = PlayerPrefs.GetInt(canStage1Key,0);
+         isFirst = PlayerPrefs.GetInt(isFirstKey, 0);
+         if (isFirst == 0)
+         {
+            isFirst = 1;
+            PlayerPrefs.SetInt(isFirstKey, 1);
+            FindObjectOfType<LoadScene>().Tutorial();
+         }
       }
       else
       {
          Destroy(gameObject);
       }
    }
-
+   public void CanStage1()
+   {
+      if (canStage1 != 1)
+      {
+         canStage1 = 1;
+         PlayerPrefs.SetInt(canStage1Key, 1);
+      }
+   }
    public void LogIn()
    {
       if (Social.localUser.authenticated)

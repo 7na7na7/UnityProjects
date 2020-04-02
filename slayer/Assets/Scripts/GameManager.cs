@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     else if (SceneManager.GetActiveScene().name == "Main2")
       StartCoroutine(Game2());
   }
-
   IEnumerator Game1()
   { yield return new WaitForSeconds(jumpingTIme);
     foreach (Fire f in fires) //점프 가능

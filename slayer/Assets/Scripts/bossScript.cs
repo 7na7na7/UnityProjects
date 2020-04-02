@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class bossScript : MonoBehaviour
 {
+    public float moveSpeed;
     public Slider slider;
     public GameObject effect;
     public GameObject headEffect;
@@ -22,9 +23,14 @@ public class bossScript : MonoBehaviour
     public float moveFastValue;
     public float dmgDelay = 0;
     private SpriteRenderer spr;
+    public GameObject webAttack;
+    public GameObject RedwebAttack;
+    public GameObject webAttack2;
+    public GameObject RedwebAttack2;
     private Color color;
     private void Start()
     {
+        Player.instance.StopAllCoroutines();
         slider.maxValue += GameManager.instance.bossCount * hpPlusValue;
         patternDelay -= GameManager.instance.bossCount * patternMinusValue;
         moveTime -= GameManager.instance.bossCount * moveFastValue;
@@ -46,7 +52,6 @@ public class bossScript : MonoBehaviour
         CameraManager.instance.rotSpeed = CameraManager.instance.savedrotSpeed;
         int t = (int)Time.timeScale;
         Time.timeScale = 0;
-        CameraManager.instance.theCamera.orthographicSize = 5;
         CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,-10);
         CameraManager.instance.OnBound();
         SoundManager.instance.heal();
@@ -59,11 +64,13 @@ public class bossScript : MonoBehaviour
         Player.instance.isattack = false;
         Player.instance.canTouch = true;
         Time.timeScale = t;
+        CameraManager.instance.StopAllCoroutines();
+        CameraManager.instance.theCamera.orthographicSize = 5;
         canMove = true;
         while (true)
         {
             if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
-                yield return new WaitForSeconds(patternDelay*0.5f);
+                yield return new WaitForSeconds(patternDelay*0.75f);
             else
                 yield return new WaitForSeconds(patternDelay);
             int r = 0;
@@ -100,7 +107,6 @@ public class bossScript : MonoBehaviour
     {
         int t = (int)Time.timeScale;
         Time.timeScale = 0;
-        CameraManager.instance.theCamera.orthographicSize = 5;
         CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,-10);
         CameraManager.instance.OnBound();
         SoundManager.instance.heal();
@@ -113,19 +119,93 @@ public class bossScript : MonoBehaviour
         Player.instance.isattack = false;
         Player.instance.canTouch = true;
         Time.timeScale = t;
+        CameraManager.instance.StopAllCoroutines();
+        CameraManager.instance.theCamera.orthographicSize = 5;
         canMove = true;
         while (true)
         {
             if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
-                yield return new WaitForSeconds(patternDelay*0.5f);
+                yield return new WaitForSeconds(patternDelay*0.75f);
             else
                 yield return new WaitForSeconds(patternDelay);
-            int r = 0;
-            StartCoroutine(move2());
+            int r = Random.Range(0, 3);
+            if(r==0) 
+                StartCoroutine(move2());
+            else if(r==1)
+                StartCoroutine(webAttackCor());
+            else if(r==2)
+                StartCoroutine(webAttackCor2());
             yield return new WaitUntil(()=>canGo);
             canGo = false;
             anim.Play("bossIdle");
         }   
+    }
+
+    IEnumerator webAttackCor()
+    {
+        SoundManager.instance.Skill1();
+        anim.Play(("bossAttack"));
+        if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.4f))
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                Instantiate(RedwebAttack,
+                    new Vector3(
+                        Random.Range(GameObject.Find("Min").transform.position.x + 1,
+                            GameObject.Find("Max").transform.position.x - 1),
+                        Random.Range(GameObject.Find("Min").transform.position.y,
+                            GameObject.Find("Max").transform.position.y - 2), 0), Quaternion.identity);
+            }
+            yield return new WaitForSeconds(4*0.75f);
+            GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
+            foreach (GameObject web in webs)
+            {
+                Destroy(web);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(webAttack,
+                    new Vector3(
+                        Random.Range(GameObject.Find("Min").transform.position.x + 1,
+                            GameObject.Find("Max").transform.position.x - 1),
+                        Random.Range(GameObject.Find("Min").transform.position.y,
+                            GameObject.Find("Max").transform.position.y - 2), 0), Quaternion.identity);
+            }
+            yield return new WaitForSeconds(4f);
+        }
+        
+        canGo = true;
+    }
+    IEnumerator webAttackCor2()
+    {
+        SoundManager.instance.Skill2();
+        anim.Play(("bossAttack"));
+        if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.4f))
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Instantiate(RedwebAttack2, Vector3.zero, Quaternion.identity);
+            }
+            yield return new WaitForSeconds(4f);
+            GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
+            foreach (GameObject web in webs)
+            {
+                Destroy(web);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                Instantiate(webAttack2, Vector3.zero, Quaternion.identity);
+            }
+            yield return new WaitForSeconds(4f);
+        }
+        
+        canGo = true;
     }
     IEnumerator move2()
     {
@@ -134,32 +214,62 @@ public class bossScript : MonoBehaviour
             anim.Play("RightDash");
         else
             anim.Play("LeftDash");
-        
-        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+        transform.GetChild(1).gameObject.tag = "damage";
+        transform.GetChild(2).gameObject.tag = "damage";
+        SoundManager.instance.Dash();
+        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.4f))
         {
-            transform.DOMove(p, moveTime * 0.5f).SetEase(Ease.Linear);
-            yield return new WaitForSeconds(moveTime*0.5f);
+            Vector2 dir = p - transform.position;
+            dir.Normalize();
+            while (Vector3.Distance(p,transform.position)>1)
+            {
+                transform.Translate(dir * moveSpeed*1.75f * Time.deltaTime);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
         else
         {
-            transform.DOMove(p, moveTime).SetEase(Ease.Linear);
-            yield return new WaitForSeconds(moveTime);
+            Vector2 dir = p - transform.position;
+            dir.Normalize();
+            while (Vector3.Distance(p,transform.position)>1)
+            {
+                transform.Translate(dir * moveSpeed * Time.deltaTime);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
+        transform.GetChild(1).gameObject.tag = "oni";
+        transform.GetChild(2).gameObject.tag = "oniHead";
         canGo = true;
     }
     IEnumerator move()
     {
+        transform.GetChild(1).gameObject.tag = "damage";
+        transform.GetChild(2).gameObject.tag = "damage";
+        SoundManager.instance.Dash();
         Vector3 p = new Vector3(Player.instance.transform.position.x,Player.instance.transform.position.y+0.6f,0);
+        SoundManager.instance.Dash();
         if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
         {
-            transform.DOMove(p, moveTime * 0.5f).SetEase(Ease.Linear);
-            yield return new WaitForSeconds(moveTime*0.5f);
+            Vector2 dir = p - transform.position;
+            dir.Normalize();
+            while (Vector3.Distance(p,transform.position)>1)
+            {
+                transform.Translate(dir * moveSpeed*1.5f * Time.deltaTime);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
         else
         {
-            transform.DOMove(p, moveTime).SetEase(Ease.Linear);
-            yield return new WaitForSeconds(moveTime);
+            Vector2 dir = p - transform.position;
+            dir.Normalize();
+            while (Vector3.Distance(p,transform.position)>1)
+            {
+                transform.Translate(dir * moveSpeed * Time.deltaTime);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
+        transform.GetChild(1).gameObject.tag = "oni";
+        transform.GetChild(2).gameObject.tag = "oniHead";
         canGo = true;
     }
     IEnumerator tsuzumi(int r)
@@ -235,7 +345,8 @@ public class bossScript : MonoBehaviour
                     ScoreMgr.instance.headshot++;
                     SoundManager.instance.head();
                     slider.value -= 2;
-                    if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                    
+                    if (slider.value <= Mathf.RoundToInt(slider.maxValue * (SceneManager.GetActiveScene().name=="Main" ? 0.3f : 0.4f)))
                     {
                         spr = GetComponent<SpriteRenderer>();
                         color.r = 255;
@@ -249,12 +360,22 @@ public class bossScript : MonoBehaviour
                         CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
                         CameraManager.instance.rot = 1;
                         CameraManager.instance.closeUpSlow();
-                        ScoreMgr.instance.scoreUp(0, 2000, false);
+                        ScoreMgr.instance.scoreUp(0, 3000, false);
                         FindObjectOfType<GameManager>().bossDead = true;
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
                         Instantiate(headEffect, transform.position, Quaternion.identity);
                         mpSlider.instance.bossCut();
+                        if (SceneManager.GetActiveScene().name == "Main2")
+                        {
+                            GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
+                            foreach (GameObject web in webs)
+                            {
+                                Destroy(web);
+                            }
+                        }
+                        else if(SceneManager.GetActiveScene().name=="Main") 
+                            GooglePlayManager.instance.CanStage1();
                         Destroy(gameObject);
                     }
                 }
@@ -262,7 +383,7 @@ public class bossScript : MonoBehaviour
                 {
                     SoundManager.instance.body();
                     slider.value--;
-                    if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                    if (slider.value <= Mathf.RoundToInt(slider.maxValue * (SceneManager.GetActiveScene().name=="Main" ? 0.3f : 0.4f)))
                     {
                         spr = GetComponent<SpriteRenderer>();
                         color.r = 255;
@@ -278,10 +399,20 @@ public class bossScript : MonoBehaviour
                         CameraManager.instance.closeUpSlow();
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
-                        ScoreMgr.instance.scoreUp(0, 2000, false);
+                        ScoreMgr.instance.scoreUp(0, 3000, false);
                         Instantiate(effect, transform.position, Quaternion.identity);
                         FindObjectOfType<GameManager>().bossDead = true;
                         mpSlider.instance.bossCut();
+                        if (SceneManager.GetActiveScene().name == "Main2")
+                        {
+                            GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
+                            foreach (GameObject web in webs)
+                            {
+                                Destroy(web);
+                            }
+                        }
+                        else if(SceneManager.GetActiveScene().name=="Main") 
+                            GooglePlayManager.instance.CanStage1();
                         Destroy(gameObject);
                     }
                 }
@@ -292,14 +423,5 @@ public class bossScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (!Player.instance.isattack)
-            {
-                //공격애니메이션재생
-            }
-        }
-    }
+   
 }

@@ -1029,6 +1029,11 @@ MonoBehaviour:
   healSound: {fileID: 8300000, guid: be63cccdc83d8264693efd7c21c90f5d, type: 3}
   knifeCoverSound: {fileID: 8300000, guid: b50fa9482dd945f4b8cc9c596652e197, type: 3}
   SpiderAttackSound: {fileID: 8300000, guid: ff4907729cf72a849a0121f74fb8a546, type: 3}
+  DashSound: {fileID: 8300000, guid: a2bbb8d18032a7544aa8ae8defc96ca9, type: 3}
+  GrassSound: {fileID: 8300000, guid: 8e6ba8c7653a6394ba60078235ca2b69, type: 3}
+  Skill1Sound: {fileID: 8300000, guid: e74908e28e6f3404795b0856447dc628, type: 3}
+  Skill2Sound: {fileID: 8300000, guid: 0fb5a6c323795344b8708f89d35b065d, type: 3}
+  LockedSound: {fileID: 8300000, guid: 8b5a40d008f020e4090cbb0314440248, type: 3}
   savedBgm: 0
   savedBgs: 0
 --- !u!4 &766661957
@@ -2430,6 +2435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9f0847113753140a73f53ce9be139f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canStage1: 0
 --- !u!4 &1414325716
 Transform:
   m_ObjectHideFlags: 0

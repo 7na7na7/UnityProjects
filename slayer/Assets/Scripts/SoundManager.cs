@@ -19,6 +19,11 @@ public class SoundManager : MonoBehaviour
     public AudioClip healSound;
     public AudioClip knifeCoverSound;
     public AudioClip SpiderAttackSound;
+    public AudioClip DashSound;
+    public AudioClip GrassSound;
+    public AudioClip Skill1Sound;
+    public AudioClip Skill2Sound;
+    public AudioClip LockedSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -43,6 +48,26 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void Locked()
+    {
+        audio.PlayOneShot(LockedSound,savedBgs);
+    }
+    public void Skill1()
+    {
+        audio.PlayOneShot(Skill1Sound,savedBgs*3);
+    }
+    public void Skill2()
+    {
+        audio.PlayOneShot(Skill2Sound,savedBgs);
+    }
+    public void Grass()
+    {
+        audio.PlayOneShot(GrassSound,savedBgs*15);
+    }
+    public void Dash()
+    {
+        audio.PlayOneShot(DashSound,savedBgs*2);
+    }
     public void SpiderAttack()
     {
         audio.PlayOneShot(SpiderAttackSound,savedBgs*5);

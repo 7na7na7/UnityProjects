@@ -13,12 +13,38 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     private float distance, curPos, targetPos;
     private bool isDrag;
     private int targetIndex;
+    public GameObject stage2panel;
+    public Text stage2Text;
     void Start()
     {
         FadePanel.instance.UnFade();
         //거리에 따라 0~1인 pos 대입
         distance = 1f / (SIZE - 1);
         for (int i = 0; i < SIZE; i++) pos[i] = distance * i;
+    }
+    void Update()
+    {
+        if (GooglePlayManager.instance.canStage1 == 0)
+        {
+            stage2panel.SetActive(true);
+            stage2Text.text = "[쿄우가이 처치 시 잠금 해제]";
+        }
+        else
+        {
+            stage2panel.SetActive(false);
+            stage2Text.text = "나타구모 산";
+        }
+        if (!isDrag)
+        {
+            scrollbar.value = Mathf.Lerp(scrollbar.value, targetPos, 0.1f);
+            for (int i = 0; i < SIZE; i++)
+            {
+                if(i==targetIndex)
+                    t[i].SetActive(true);
+                else
+                    t[i].SetActive(false);
+            }
+        }
     }
     public void OnBeginDrag(PointerEventData eventData) => curPos = SetPos();
     
@@ -47,20 +73,6 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
                     ++targetIndex;
                     targetPos = curPos + distance;
                 }
-            }
-        }
-    }
-    void Update()
-    {
-        if (!isDrag)
-        {
-            scrollbar.value = Mathf.Lerp(scrollbar.value, targetPos, 0.1f);
-            for (int i = 0; i < SIZE; i++)
-            {
-                if(i==targetIndex)
-                    t[i].SetActive(true);
-                else
-                    t[i].SetActive(false);
             }
         }
     }
@@ -97,8 +109,16 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     }
     IEnumerator delayChange2()
     {
-        FadePanel.instance.Fade();
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Main2");
+        if (GooglePlayManager.instance.canStage1 == 0)
+        {
+            SoundManager.instance.Locked();
+        }
+        else
+        {
+            SoundManager.instance.Grass();
+            FadePanel.instance.Fade();
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Main2");
+        }
     }
 }
