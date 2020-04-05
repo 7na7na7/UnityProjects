@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
         // 페이지에 맞는 리스트 대입
         multiple = (currentPage - 1) * CellBtn.Length; //각 페이지 첫 번째 인자
-        for (int i = 0; i < CellBtn.Length; i++)
+        for (int i = 0; i < CellBtn.Length; i++) //만약 CellBtn이 8개라면, 01234567의 칸이 채워짐
         {
             //multiple + i 를 하면 각각의 인자를 얻을 수 있다.
             CellBtn[i].interactable = (multiple + i < myList.Count) ? true : false; //만약 수가 14까지 있는데 myList는 18까지 있을 경우, 15,16,17,18은 비활성화시켜 주어야 한다.
