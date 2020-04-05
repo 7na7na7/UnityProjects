@@ -206,6 +206,7 @@ public class oniMove : MonoBehaviour
 
         if (other.CompareTag("Ground"))
         {
+            transform.Translate(0,Random.Range(-0.1f,0.1f),0);
             if (!canGo)
             {
                 if (speed < 0)

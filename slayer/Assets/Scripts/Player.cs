@@ -282,6 +282,15 @@ public class Player : MonoBehaviour
         StartCoroutine(panel.fadeout());
     }
 
+    public void Stop()
+    {
+        rigid.bodyType = RigidbodyType2D.Dynamic;
+        isattack = false;
+        particle.SetActive(false);
+        trail.GetComponent<TrailRenderer>().startColor = Color.white;
+        camera.sizedown();
+        StartCoroutine(panel.fadeout());
+    }
     public void flipY(bool flip)
     {
         if (flip)

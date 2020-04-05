@@ -17,7 +17,6 @@ public class bossScript : MonoBehaviour
     private int previous = 10;
     private bool canMove = false;
     private int attackCount = 0;
-    public float moveTime;
     public float hpPlusValue;
     public float patternMinusValue;
     public float moveFastValue;
@@ -30,13 +29,13 @@ public class bossScript : MonoBehaviour
     private Color color;
     private void Start()
     {
-        Player.instance.StopAllCoroutines();
+        Player.instance.Stop();
         slider.maxValue += GameManager.instance.bossCount * hpPlusValue;
         patternDelay -= GameManager.instance.bossCount * patternMinusValue;
-        moveTime -= GameManager.instance.bossCount * moveFastValue;
-        if (moveTime == 0)
-            moveTime = moveFastValue;
-        if (patternDelay == 0)
+        moveSpeed -= GameManager.instance.bossCount * moveFastValue;
+        if ( moveSpeed <= 0)
+            moveSpeed = moveFastValue;
+        if (patternDelay <= 0)
             patternDelay = patternMinusValue;
         GameManager.instance.bossCount++;
         
@@ -61,7 +60,6 @@ public class bossScript : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.01f);
         }
         CameraManager.instance.canFollow = true;
-        Player.instance.isattack = false;
         Player.instance.canTouch = true;
         Time.timeScale = t;
         CameraManager.instance.StopAllCoroutines();

@@ -13,7 +13,7 @@ public class oniCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (oni.dmgDelay >= 0.1f)
+            if (oni.dmgDelay >= 0.05f)
             {
                 if (Player.instance.isattack)
                 {

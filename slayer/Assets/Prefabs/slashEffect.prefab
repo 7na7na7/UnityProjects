@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8965390975934003349}
   - component: {fileID: 8965390975934003348}
   - component: {fileID: 4007933558896523527}
+  - component: {fileID: 6523305307420121716}
   m_Layer: 0
   m_Name: slashEffect
   m_TagString: Untagged
@@ -113,3 +114,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1
+--- !u!114 &6523305307420121716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8965390975934003351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddda4c90f09726c48bd5bdf1954cee34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

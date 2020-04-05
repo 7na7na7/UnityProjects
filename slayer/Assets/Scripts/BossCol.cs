@@ -10,7 +10,7 @@ public class BossCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (boss.dmgDelay >= 0.1f)
+            if (boss.dmgDelay >= 0.05f)
             {
                 if (Player.instance.isattack)
                 {
