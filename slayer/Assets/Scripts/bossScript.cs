@@ -31,8 +31,14 @@ public class bossScript : MonoBehaviour
     {
         Player.instance.Stop();
         slider.maxValue += GameManager.instance.bossCount * hpPlusValue;
-        patternDelay -= GameManager.instance.bossCount * patternMinusValue;
-        moveSpeed -= GameManager.instance.bossCount * moveFastValue;
+        for (int i = 0; i < GameManager.instance.bossCount;i++)
+        {
+            patternDelay *= patternMinusValue;
+        }
+        for (int i = 0; i < GameManager.instance.bossCount;i++)
+        {
+           moveSpeed *= moveFastValue;
+        }
         if ( moveSpeed <= 0)
             moveSpeed = moveFastValue;
         if (patternDelay <= 0)

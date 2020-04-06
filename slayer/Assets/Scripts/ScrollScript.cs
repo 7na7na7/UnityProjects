@@ -3,11 +3,17 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Image = UnityEngine.Experimental.UIElements.Image;
 
 public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
 {
+    public GameObject context;
+    private bool isNormal = true;
+    public Button normal, hard;
  public Scrollbar scrollbar;
  public GameObject[] t;
+ private Color Alpha125;
+ private Color Alpha255;
     private const int SIZE = 2;
     private float[] pos = new float[SIZE];
     private float distance, curPos, targetPos;
@@ -17,10 +23,39 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     public Text stage2Text;
     void Start()
     {
+        Alpha125.r = 255;
+        Alpha125.g = 255;
+        Alpha125.b = 255;
+        Alpha125.a = 0.5f;
+        Alpha255.r = 255;
+        Alpha255.g = 255;
+        Alpha255.b = 255;
+        Alpha255.a = 1f;
         FadePanel.instance.UnFade();
         //거리에 따라 0~1인 pos 대입
         distance = 1f / (SIZE - 1);
         for (int i = 0; i < SIZE; i++) pos[i] = distance * i;
+        normal.GetComponent<UnityEngine.UI.Image>().color = Alpha255;
+        hard.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        context.SetActive(false);
+        isNormal = true;
+    }
+
+    public void normalChange()
+    {
+        context.SetActive(false);
+        SoundManager.instance.select();
+        normal.GetComponent<UnityEngine.UI.Image>().color = Alpha255;
+        hard.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        isNormal = true;
+    }
+    public void hardChange()
+    {
+        context.SetActive(true);
+        SoundManager.instance.select();
+        normal.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        hard.GetComponent<UnityEngine.UI.Image>().color = Alpha255;
+        isNormal = false;
     }
     void Update()
     {
@@ -102,10 +137,20 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
 
     IEnumerator delayChange()
     {
-        SoundManager.instance.tsuzumi(1);
-        FadePanel.instance.Fade();
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Main");
+        if (isNormal)
+        {
+            SoundManager.instance.tsuzumi(1);
+            FadePanel.instance.Fade();
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Main");
+        }
+        else
+        {
+            SoundManager.instance.tsuzumi(1);
+            FadePanel.instance.Fade();
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Main_H");
+        }
     }
     IEnumerator delayChange2()
     {
@@ -115,10 +160,20 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         }
         else
         {
-            SoundManager.instance.Grass();
-            FadePanel.instance.Fade();
-            yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("Main2");
+            if (isNormal)
+            {
+                SoundManager.instance.Grass();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main2");
+            }
+            else
+            {
+                SoundManager.instance.Grass();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main2_H");
+            }
         }
     }
 }

@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
       FadePanel.instance.UnFade();
     spawners = FindObjectsOfType<Spawner>();
     fires = FindObjectsOfType<Fire>();
-    if(SceneManager.GetActiveScene().name=="Main") 
+    if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H") 
       StartCoroutine(Game1());
-    else if (SceneManager.GetActiveScene().name == "Main2")
+    else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name=="Main2_H")
       StartCoroutine(Game2());
   }
   IEnumerator Game1()

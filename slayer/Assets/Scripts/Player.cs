@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -413,7 +414,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator atkCor()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         isattack = false;
         yield return new WaitForSeconds(ComboManager.instance.comboDelay);
         particle.SetActive(false);

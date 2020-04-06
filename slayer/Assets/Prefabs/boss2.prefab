@@ -603,10 +603,10 @@ MonoBehaviour:
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
   crew: {fileID: 8796634812464565399, guid: a245cce0af3f5724c8f88b1c0731c91f, type: 3}
-  patternDelay: 1.5
+  patternDelay: 1.7
   hpPlusValue: 12
-  patternMinusValue: 0.25
-  moveFastValue: 0.1
+  patternMinusValue: 0.15
+  moveFastValue: 0.15
   dmgDelay: 0
   webAttack: {fileID: 7577133271063831809, guid: 035a80e27ef822d49af1cefee22a09f2,
     type: 3}
