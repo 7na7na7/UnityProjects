@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip Skill1Sound;
     public AudioClip Skill2Sound;
     public AudioClip LockedSound;
+    public AudioClip bestScoreSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -51,6 +52,10 @@ public class SoundManager : MonoBehaviour
     public void Locked()
     {
         audio.PlayOneShot(LockedSound,savedBgs);
+    }
+    public void bestScore()
+    {
+        audio.PlayOneShot(bestScoreSound,savedBgs*3);
     }
     public void Skill1()
     {

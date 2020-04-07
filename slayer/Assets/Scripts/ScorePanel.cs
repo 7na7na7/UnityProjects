@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ScorePanel : MonoBehaviour
 {
+    public GameObject bestScore;
+    private bool isBest = false;
     public Text bonusText1,bonusText2;
     public float textDelay;
     public int headScore,maxComboScore;
@@ -17,6 +19,10 @@ public class ScorePanel : MonoBehaviour
     private string highScoreKey2 = "highScoreKey2";
     private int highScore1;
     private int highScore2;
+    private string highScoreKey1_H = "highScoreKey1_H";
+    private string highScoreKey2_H = "highScoreKey2_H";
+    private int highScore1_H;
+    private int highScore2_H;
     private string highComboKey1 = "highComboKey1";
     private string highComboKey2 = "highComboKey2";
     private int highCombo1;
@@ -36,6 +42,10 @@ public class ScorePanel : MonoBehaviour
         //점수 불러오기
         highScore1 = PlayerPrefs.GetInt(highScoreKey1, 0);
         highScore2 = PlayerPrefs.GetInt(highScoreKey2, 0);
+        highScore1_H = PlayerPrefs.GetInt(highScoreKey1_H, 0);
+        highScore2_H = PlayerPrefs.GetInt(highScoreKey2_H, 0);
+        highCombo1 = PlayerPrefs.GetInt(highComboKey1, 0);
+        highCombo2 = PlayerPrefs.GetInt(highComboKey2, 0);
 
        
         if (SceneManager.GetActiveScene().name == "Main") //스테이지 1
@@ -43,6 +53,7 @@ public class ScorePanel : MonoBehaviour
             //점수
             if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore1)
             {
+                isBest = true;
                 GooglePlayManager.instance.AddScore1(ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore)); //리더보드에 점수추가
                 highScore1 = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
                 PlayerPrefs.SetInt(highScoreKey1,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
@@ -61,6 +72,7 @@ public class ScorePanel : MonoBehaviour
             //점수
             if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore2)
             {
+                isBest = true;
                 GooglePlayManager.instance.AddScore2(ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore)); //리더보드에 점수추가
                 highScore2 = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
                 PlayerPrefs.SetInt(highScoreKey2,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
@@ -74,31 +86,50 @@ public class ScorePanel : MonoBehaviour
                 PlayerPrefs.SetInt(highComboKey2,maxcombov);
             }
         }
-       
+        else if (SceneManager.GetActiveScene().name == "Main_H") //스테이지 1 하드
+        {
+            //점수
+            if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore1_H)
+            {
+                isBest = true;
+                highScore1_H = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
+                PlayerPrefs.SetInt(highScoreKey1_H,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Main2_H") //스테이지 2 하드
+        {
+            //점수
+            if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore2_H)
+            {
+                isBest = true;
+                highScore2_H = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
+                PlayerPrefs.SetInt(highScoreKey2_H,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+            }
+        }
 
        
 
         if (killedOniv >= 50)
         {
-            if(SceneManager.GetActiveScene().name=="Main") 
+            if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H") 
                 GooglePlayManager.instance.Achievement4();
-            else if(SceneManager.GetActiveScene().name=="Main2") 
+            else if(SceneManager.GetActiveScene().name=="Main2"||SceneManager.GetActiveScene().name=="Main2_H") 
                 GooglePlayManager.instance.Achievement7();
         }
 
         if (killedOniv >= 100)
         {
-            if(SceneManager.GetActiveScene().name=="Main") 
+            if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H") 
                 GooglePlayManager.instance.Achievement5();
-            else if(SceneManager.GetActiveScene().name=="Main2") 
+            else if(SceneManager.GetActiveScene().name=="Main2"||SceneManager.GetActiveScene().name=="Main2_H") 
                 GooglePlayManager.instance.Achievement8();
         }
 
         if (killedOniv >= 300)
         {
-            if(SceneManager.GetActiveScene().name=="Main") 
+            if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H") 
                 GooglePlayManager.instance.Achievement6();
-            else if(SceneManager.GetActiveScene().name=="Main2") 
+            else if(SceneManager.GetActiveScene().name=="Main2"||SceneManager.GetActiveScene().name=="Main2_H") 
                 GooglePlayManager.instance.Achievement9();
         }
 
@@ -174,6 +205,12 @@ public class ScorePanel : MonoBehaviour
             }
 
             yield return new WaitForSecondsRealtime(0.2f);
+        }
+
+        if (isBest)
+        {
+            SoundManager.instance.bestScore();
+            bestScore.SetActive(true);
         }
     }
 }

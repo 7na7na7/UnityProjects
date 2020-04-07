@@ -7,6 +7,7 @@ using Image = UnityEngine.Experimental.UIElements.Image;
 
 public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
 {
+    public Text bestScoreText;
     public GameObject context;
     private bool isNormal = true;
     public Button normal, hard;
@@ -78,6 +79,29 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
                     t[i].SetActive(true);
                 else
                     t[i].SetActive(false);
+            }
+        }
+
+        if (targetIndex == 0)
+        {
+            if (isNormal)
+            {
+                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey1", 0);
+            }
+            else
+            {
+                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey1_H", 0);
+            }
+        }
+        else if (targetIndex == 1)
+        {
+            if (isNormal)
+            {
+                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2", 0);
+            }
+            else
+            {
+                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2_H", 0);
             }
         }
     }
