@@ -271,9 +271,9 @@ public class Player : MonoBehaviour
         }
 
         if (ComboManager.instance.canCombo)
-            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.4f);
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 1f);
         else
-            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.2f);
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.5f);
 
 
         rigid.velocity *= 0.3f;
