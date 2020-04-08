@@ -11116,8 +11116,8 @@ MonoBehaviour:
   goPrefab: {fileID: 5551452906894720759, guid: d543fce3e2beaa14fb360a87f104bc19,
     type: 3}
   ShotTr: {fileID: 532030476}
-  minForce: 10
-  maxForce: 14
+  minForce: 8
+  maxForce: 12
 --- !u!1 &535311510
 GameObject:
   m_ObjectHideFlags: 0
@@ -11744,8 +11744,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.7, y: -78.7}
-  m_SizeDelta: {x: 177.6, y: 264.9}
+  m_AnchoredPosition: {x: 0.7, y: -121.1}
+  m_SizeDelta: {x: 177.6, y: 349.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &750072868
 MonoBehaviour:
@@ -12421,7 +12421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossCount: 0
   boss: {fileID: 8413693056172056092, guid: 878943c292bc8f24f832386c31823db8, type: 3}
-  bossTime: 40
+  bossTime: 35
   jumpingTIme: 20
   fallingTime: 20
   spiderTime: 0
@@ -29147,8 +29147,8 @@ MonoBehaviour:
   goPrefab: {fileID: 4995652743223643570, guid: 5e6c7caea70005a489a6c8acae3aa74c,
     type: 3}
   ShotTr: {fileID: 1750403229}
-  minForce: 10
-  maxForce: 14
+  minForce: 8
+  maxForce: 12
 --- !u!4 &1750403229
 Transform:
   m_ObjectHideFlags: 0
@@ -29810,8 +29810,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -78.69997}
-  m_SizeDelta: {x: 177.6, y: 264.9}
+  m_AnchoredPosition: {x: -2, y: -121.1}
+  m_SizeDelta: {x: 177.6, y: 349.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019067521
 MonoBehaviour:

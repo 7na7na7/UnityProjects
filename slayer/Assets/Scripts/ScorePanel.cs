@@ -59,7 +59,6 @@ public class ScorePanel : MonoBehaviour
                 PlayerPrefs.SetInt(highScoreKey1,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
             }
             //콤보
-            highCombo1 = PlayerPrefs.GetInt(highComboKey1, 0);
             if (maxcombov > highCombo1)
             {
                 GooglePlayManager.instance.AddCombo1(maxcombov);
@@ -77,7 +76,6 @@ public class ScorePanel : MonoBehaviour
                 highScore2 = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
                 PlayerPrefs.SetInt(highScoreKey2,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
             }
-            highCombo2 = PlayerPrefs.GetInt(highComboKey2, 0);
             //콤보
             if (maxcombov > highCombo2)
             {

@@ -10516,8 +10516,8 @@ MonoBehaviour:
   delayMinusValue: 0.03
   delayMinusDuration: 10
   isFalling: 0
-  minDelay: 2.5
-  maxDelay: 3.5
+  minDelay: 2.7
+  maxDelay: 3.7
   onis:
   - {fileID: 6460461716665487614, guid: f92bc77a831747141a35af0b27b8fca1, type: 3}
   - {fileID: 6460461716665487614, guid: f92bc77a831747141a35af0b27b8fca1, type: 3}
@@ -11252,8 +11252,8 @@ MonoBehaviour:
   delayMinusValue: 0.03
   delayMinusDuration: 10
   isRight: 0
-  minDelay: 3.5
-  maxDelay: 5.5
+  minDelay: 3.7
+  maxDelay: 5.7
   goPrefab: {fileID: 6457026776787078318, guid: 14bf6712b8b9e4d49bbebb43abddf10e,
     type: 3}
   ShotTr: {fileID: 532030476}
@@ -11886,8 +11886,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.7, y: -78.7}
-  m_SizeDelta: {x: 177.6, y: 264.9}
+  m_AnchoredPosition: {x: 0.7, y: -119.3}
+  m_SizeDelta: {x: 177.6, y: 346.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &750072868
 MonoBehaviour:
@@ -12325,8 +12325,8 @@ MonoBehaviour:
   delayMinusValue: 0.03
   delayMinusDuration: 10
   isFalling: 0
-  minDelay: 2.5
-  maxDelay: 3.5
+  minDelay: 2.7
+  maxDelay: 3.7
   onis:
   - {fileID: 8064775080635642671, guid: 96134c73a9648684e868836a1c31da04, type: 3}
   - {fileID: 8064775080635642671, guid: 96134c73a9648684e868836a1c31da04, type: 3}
@@ -12563,11 +12563,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossCount: 2
   boss: {fileID: 3373281082922345524, guid: da437ed53c86bf943a21546fca2e8568, type: 3}
-  bossTime: 60
-  jumpingTIme: 20
-  fallingTime: 20
-  spiderTime: 20
-  beforeBossTime: 10
+  bossTime: 35
+  jumpingTIme: 15
+  fallingTime: 15
+  spiderTime: 15
+  beforeBossTime: 15
   pausePanel: {fileID: 1992018347}
   pauseSprite: {fileID: 21300000, guid: 1d0f98903363712418330219fd1bb30a, type: 3}
   goSprite: {fileID: 21300000, guid: aa64e06469fb2774fbbd070d9f685f1d, type: 3}
@@ -22794,8 +22794,8 @@ MonoBehaviour:
   delayMinusValue: 0.05
   delayMinusDuration: 10
   isFalling: 0
-  minDelay: 7
-  maxDelay: 11
+  minDelay: 7.2
+  maxDelay: 11.2
   onis:
   - {fileID: 2492335165434357946, guid: aa90ef3471fa26640926d810caea34a8, type: 3}
 --- !u!1 &1263658337
@@ -24018,8 +24018,8 @@ MonoBehaviour:
   delayMinusValue: 0.05
   delayMinusDuration: 10
   isFalling: 1
-  minDelay: 7
-  maxDelay: 9
+  minDelay: 7.2
+  maxDelay: 9.2
   onis:
   - {fileID: 5038903497622032812, guid: 4caee3ffc254d3142b39f613e5f9806f, type: 3}
   - {fileID: 6707456504863894030, guid: 8d688adaa7e90444cadf652e2c156995, type: 3}
@@ -29195,8 +29195,8 @@ MonoBehaviour:
   delayMinusValue: 0.03
   delayMinusDuration: 10
   isRight: 1
-  minDelay: 3.5
-  maxDelay: 5.5
+  minDelay: 3.7
+  maxDelay: 5.7
   goPrefab: {fileID: 5820659145242091367, guid: 1aca1cc1fe83132458be7fabae6e85d9,
     type: 3}
   ShotTr: {fileID: 1750403229}
@@ -29999,8 +29999,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -78.69997}
-  m_SizeDelta: {x: 177.6, y: 264.9}
+  m_AnchoredPosition: {x: -2, y: -119.3}
+  m_SizeDelta: {x: 177.6, y: 346.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019067521
 MonoBehaviour:
