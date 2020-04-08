@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
     public float savedrotSpeed;
     public float delay;
     public float speed = 2f;
-    public GameObject target; //카메라가 따라갈 대상
+   public GameObject target; //카메라가 따라갈 대상
     public GameObject savedTarget;
     public BoxCollider2D bound; //카메라가 나가지 못하는 영역을 박스 콜라이더로 받음
 
@@ -22,6 +22,8 @@ public class CameraManager : MonoBehaviour
     public bool canFollow = true;
     private void Start()
     {
+        target=GameObject.FindWithTag("Player");
+        savedTarget = target;
         instance = this;
         theCamera = GetComponent<Camera>();
         minBound = bound.bounds.min; //minbound에 box콜라이더의 영역 최솟값 대입

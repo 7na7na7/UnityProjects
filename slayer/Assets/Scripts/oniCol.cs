@@ -15,7 +15,7 @@ public class oniCol : MonoBehaviour
         {
             if (oni.dmgDelay >= 0.05f)
             {
-                if (Player.instance.isattack)
+                if (kagura.instance.isKagura)
                 {
                     if (isHead)
                     {
@@ -30,7 +30,23 @@ public class oniCol : MonoBehaviour
                 }
                 else
                 {
-                    Player.instance.die();
+                    if (Player.instance.isattack)
+                    {
+                        if (isHead)
+                        {
+                            oni.die(true);
+                            Player.instance.oniHead(gameObject);
+                        }
+                        else
+                        {
+                            oni.die(false);
+                            Player.instance.oniBody(gameObject);
+                        }
+                    }
+                    else
+                    {
+                        Player.instance.die();
+                    }
                 }
             }
         }

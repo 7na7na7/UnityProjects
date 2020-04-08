@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [Header("설정해줘야하는값")]
     public bool isDesktop;
+    public int playerIndex=0;
     //public float comboTimeScale;
     public float nuckBackCantTouchTime; //넉백시에 터치못하게되는 시간
     public float force; //움직이는 속도
@@ -14,11 +15,11 @@ public class Player : MonoBehaviour
     public GameObject dieEffect;
     [Header("신경쓸필요없음")] 
     private float playerMoveValue=1.1f;
-    public fade panel; //콤보중 화면 어둡게 만들어줌
+    private fade panel; //콤보중 화면 어둡게 만들어줌
     public bool isGameOver = false;
     public GameObject comboPop;
     public GameObject headPop;
-    public GameObject worldCanvas;
+    private GameObject worldCanvas;
     private Animator anim;
     public static Player instance;
     private float unRotY, RotY;
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
     public bool isattack = false; //공격중인지 판단
     private bool canMove = true;
     private CameraManager camera; //카메라스크립트
-    public Transform min, max; //터치할수있는 최소, 최대 역역
+    private Transform min, max; //터치할수있는 최소, 최대 역역
     private Rigidbody2D rigid; //리지드바디얻어옴
     public GameObject particle; //전기이펙트
     public GameObject trail; //뒤따라오는트레일이펙트
@@ -36,6 +37,11 @@ public class Player : MonoBehaviour
     private float canTouchTime = 0;
     private void Start()
     {
+        panel = FindObjectOfType<fade>();
+        worldCanvas=GameObject.Find("World").gameObject;
+        min = GameObject.Find("Min").transform;
+        max=GameObject.Find("Max").transform;
+        
         for (int i = 0; i < GameManager.instance.bossCount; i++)
             force *= playerMoveValue;
         if (instance == null)
@@ -247,8 +253,24 @@ public class Player : MonoBehaviour
             anim.Play("attack_ready");
             camera.sizeup();
             StartCoroutine(panel.fadeIn());
-            trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
-            particle.SetActive(true);
+            if (playerIndex == 0)
+            {
+                trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
+                particle.SetActive(true);
+            }
+            else if (playerIndex == 1)
+            {
+                if (kagura.instance.isKagura)
+                {
+                    trail.GetComponent<TrailRenderer>().startColor = Color.red;
+                    particle.SetActive(true);
+                }
+                else
+                {
+                    trail.GetComponent<TrailRenderer>().startColor = Color.cyan;
+                    particle.SetActive(false);
+                }
+            }
 
             //if (Time.timeScale == 1)
               //  Time.timeScale = comboTimeScale;
@@ -260,8 +282,24 @@ public class Player : MonoBehaviour
         else //첫번째
         {
             anim.Play("attack_ready");
-            particle.SetActive(false);
-            trail.GetComponent<TrailRenderer>().startColor = Color.white;
+            if (playerIndex == 0)
+            {
+                trail.GetComponent<TrailRenderer>().startColor = Color.white;
+                particle.SetActive(false);
+            }
+            else if (playerIndex == 1)
+            {
+                if (kagura.instance.isKagura)
+                {
+                    trail.GetComponent<TrailRenderer>().startColor = Color.red;
+                    particle.SetActive(true);
+                }
+                else
+                {
+                    trail.GetComponent<TrailRenderer>().startColor = Color.cyan;
+                    particle.SetActive(false);
+                }
+            }
             camera.sizedown();
             StartCoroutine(panel.fadeout());
 
@@ -367,8 +405,6 @@ public class Player : MonoBehaviour
             
             Instantiate(slashEffect, transform.position, Quaternion.identity);
             if (ComboManager.instance.comboCount <= 1)
-                anim.Play("attackAnim2");
-            else
                 anim.Play("attackAnim");
             canMove = false;
         }
