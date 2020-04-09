@@ -46,9 +46,9 @@ public class bossScript : MonoBehaviour
         GameManager.instance.bossCount++;
         
         anim = GetComponent<Animator>();
-        if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H") 
+        if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H"||SceneManager.GetActiveScene().name=="Main_EZ") 
             StartCoroutine(Go());
-        else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_H")
+        else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_H"||SceneManager.GetActiveScene().name == "Main2_EZ")
             StartCoroutine(Go2());
     }
 

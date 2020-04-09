@@ -221,7 +221,21 @@ public class Player : MonoBehaviour
              StartCoroutine(panel.fadeout());
          }
          */
-
+    public void rotate(Vector2 to)
+    {
+        if (to.x > transform.position.x)
+        {
+            flipY(false);
+            transform.eulerAngles =
+                new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 60);
+        }
+        else
+        {
+            flipY(true);
+            transform.eulerAngles =
+                new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 120);
+        }
+    }
     public IEnumerator go2(Vector2 to)
     {
         SoundManager.instance.swing();
@@ -252,11 +266,11 @@ public class Player : MonoBehaviour
         {
             anim.Play("attack_ready");
             camera.sizeup();
-            StartCoroutine(panel.fadeIn());
             if (playerIndex == 0)
             {
                 trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
                 particle.SetActive(true);
+                StartCoroutine(panel.fadeIn());
             }
             else if (playerIndex == 1)
             {
@@ -277,7 +291,10 @@ public class Player : MonoBehaviour
 
             Vector2 dir = to - (Vector2) transform.position;
             dir.Normalize();
-            rigid.velocity = dir * force * 2;
+            if (playerIndex == 0)
+                rigid.velocity = dir * force * 2;
+            else
+                rigid.velocity = dir * force *1.1f;
         }
         else //첫번째
         {
@@ -286,6 +303,7 @@ public class Player : MonoBehaviour
             {
                 trail.GetComponent<TrailRenderer>().startColor = Color.white;
                 particle.SetActive(false);
+                StartCoroutine(panel.fadeout());
             }
             else if (playerIndex == 1)
             {
@@ -301,7 +319,6 @@ public class Player : MonoBehaviour
                 }
             }
             camera.sizedown();
-            StartCoroutine(panel.fadeout());
 
             Vector2 dir = to - (Vector2) transform.position;
             dir.Normalize();
@@ -309,9 +326,9 @@ public class Player : MonoBehaviour
         }
 
         if (ComboManager.instance.canCombo)
-            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.4f);
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.6f);
         else
-            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.2f);
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.3f);
 
 
         rigid.velocity *= 0.3f;
@@ -322,7 +339,9 @@ public class Player : MonoBehaviour
         particle.SetActive(false);
         trail.GetComponent<TrailRenderer>().startColor = Color.white;
         camera.sizedown();
-        StartCoroutine(panel.fadeout());
+        
+        if(playerIndex==0) 
+            StartCoroutine(panel.fadeout());
     }
 
     public void Stop()
@@ -332,7 +351,8 @@ public class Player : MonoBehaviour
         particle.SetActive(false);
         trail.GetComponent<TrailRenderer>().startColor = Color.white;
         camera.sizedown();
-        StartCoroutine(panel.fadeout());
+        if(playerIndex==0) 
+            StartCoroutine(panel.fadeout());
     }
     public void flipY(bool flip)
     {
@@ -347,8 +367,22 @@ public class Player : MonoBehaviour
         if (!isGameOver)
         {
             if (hit.CompareTag("damage"))
-            { 
-                die();
+            {
+                if (playerIndex == 1)
+                {
+                    if (kagura.instance.isKagura)
+                    {
+                        
+                    }
+                    else
+                    {
+                        die();
+                    }
+                }
+                else
+                {
+                    die();   
+                }
             }
         }
     }
@@ -460,6 +494,7 @@ public class Player : MonoBehaviour
         particle.SetActive(false);
         trail.GetComponent<TrailRenderer>().startColor = Color.white;
         camera.sizedown();
-        StartCoroutine(panel.fadeout());
+        if(playerIndex==0) 
+            StartCoroutine(panel.fadeout());
     }
 }

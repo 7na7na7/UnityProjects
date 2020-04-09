@@ -19,14 +19,27 @@ public class mpSlider : MonoBehaviour
     {
         while (true)
         {
-            mp.value += 1f;
+            mp.value += 1;
             yield return new WaitForSeconds(duration);
         }
     }
 
     public void mpDown(int v)
     {
-        mp.value -= v;
+        if (Player.instance.playerIndex == 1)
+        {
+            if (kagura.instance.isKagura)
+            {
+            }
+            else
+            {
+                mp.value -=v;   
+            }
+        }
+        else
+        {
+            mp.value -= v;
+        }
     }
 
     public void mpUp(int v)

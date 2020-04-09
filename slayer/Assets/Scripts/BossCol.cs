@@ -14,6 +14,7 @@ public class BossCol : MonoBehaviour
             {
                 if (kagura.instance.isKagura)
                 {
+                    Player.instance.rotate(transform.position);
                     if (isHead)
                     {
                         boss.die(true);
@@ -29,6 +30,7 @@ public class BossCol : MonoBehaviour
                 {
                     if (Player.instance.isattack)
                     {
+                        kagura.instance.valueUp(1);
                         if (isHead)
                         {
                             boss.die(true);

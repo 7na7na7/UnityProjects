@@ -9,9 +9,9 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
 {
     public Text bestScoreText;
     public GameObject context;
-    private bool isNormal = true;
-    public Button normal, hard;
- public Scrollbar scrollbar;
+    private int difficulty = 1;
+    public Button normal, hard, EZ;
+    public Scrollbar scrollbar;
  public GameObject[] t;
  private Color Alpha125;
  private Color Alpha255;
@@ -38,8 +38,9 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         for (int i = 0; i < SIZE; i++) pos[i] = distance * i;
         normal.GetComponent<UnityEngine.UI.Image>().color = Alpha255;
         hard.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        EZ.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
         context.SetActive(false);
-        isNormal = true;
+        difficulty = 1;
     }
 
     public void normalChange()
@@ -48,7 +49,8 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         SoundManager.instance.select();
         normal.GetComponent<UnityEngine.UI.Image>().color = Alpha255;
         hard.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
-        isNormal = true;
+        EZ.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        difficulty = 1;
     }
     public void hardChange()
     {
@@ -56,7 +58,17 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         SoundManager.instance.select();
         normal.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
         hard.GetComponent<UnityEngine.UI.Image>().color = Alpha255;
-        isNormal = false;
+        EZ.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        difficulty = 2;
+    }
+    public void EZChange()
+    {
+        context.SetActive(true);
+        SoundManager.instance.select();
+        normal.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        EZ.GetComponent<UnityEngine.UI.Image>().color = Alpha255;
+        hard.GetComponent<UnityEngine.UI.Image>().color = Alpha125;
+        difficulty = 0;
     }
     void Update()
     {
@@ -84,24 +96,32 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
 
         if (targetIndex == 0)
         {
-            if (isNormal)
+            if (difficulty==1)
             {
                 bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey1", 0);
             }
-            else
+            else if(difficulty==2)
             {
                 bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey1_H", 0);
+            }
+            else
+            {
+                bestScoreText.text = "E-Z";
             }
         }
         else if (targetIndex == 1)
         {
-            if (isNormal)
+            if (difficulty==1)
             {
                 bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2", 0);
             }
-            else
+            else if(difficulty==2)
             {
                 bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2_H", 0);
+            }
+            else
+            {
+                bestScoreText.text = "E-Z";
             }
         }
     }
@@ -161,19 +181,26 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
 
     IEnumerator delayChange()
     {
-        if (isNormal)
+        if (difficulty==1)
         {
             SoundManager.instance.tsuzumi(1);
             FadePanel.instance.Fade();
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Main");
         }
-        else
+        else if(difficulty==2)
         {
             SoundManager.instance.tsuzumi(1);
             FadePanel.instance.Fade();
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Main_H");
+        }
+        else
+        {
+            SoundManager.instance.tsuzumi(1);
+            FadePanel.instance.Fade();
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Main_EZ");
         }
     }
     IEnumerator delayChange2()
@@ -184,19 +211,26 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         }
         else
         {
-            if (isNormal)
+            if (difficulty==1)
             {
                 SoundManager.instance.Grass();
                 FadePanel.instance.Fade();
                 yield return new WaitForSeconds(1f);
                 SceneManager.LoadScene("Main2");
             }
-            else
+            else if(difficulty==2)
             {
                 SoundManager.instance.Grass();
                 FadePanel.instance.Fade();
                 yield return new WaitForSeconds(1f);
                 SceneManager.LoadScene("Main2_H");
+            }
+            else
+            {
+                SoundManager.instance.Grass();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main2_EZ");
             }
         }
     }
