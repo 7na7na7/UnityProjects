@@ -41,9 +41,13 @@ public class Player : MonoBehaviour
         worldCanvas=GameObject.Find("World").gameObject;
         min = GameObject.Find("Min").transform;
         max=GameObject.Find("Max").transform;
-        
+
         for (int i = 0; i < GameManager.instance.bossCount; i++)
+        {
+            mpSlider.instance.bossCut();
             force *= playerMoveValue;
+        }
+
         if (instance == null)
             instance = this;
 
@@ -55,6 +59,10 @@ public class Player : MonoBehaviour
         RotY = transform.localScale.y * -1;
     }
 
+    public void forceUp()
+    {
+        force *= playerMoveValue;
+    }
     void Update()
     {
         if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch&&canTouchTime>=nuckBackCantTouchTime) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
@@ -245,14 +253,30 @@ public class Player : MonoBehaviour
         if (to.x > transform.position.x)
         {
             flipY(false);
-            transform.eulerAngles =
-                new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 60);
+            if (playerIndex == 2)
+            {
+                transform.eulerAngles =
+                    new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 90);
+            }
+            else
+            {
+                transform.eulerAngles =
+                    new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 60);   
+            }
         }
         else
         {
             flipY(true);
-            transform.eulerAngles =
-                new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 120);
+            if (playerIndex == 2)
+            {
+                transform.eulerAngles =
+                    new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 90);
+            }
+            else
+            {
+                transform.eulerAngles =
+                    new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 120);
+            }
         }
 
         Instantiate(jumpEffect, transform.position,
@@ -265,7 +289,10 @@ public class Player : MonoBehaviour
         if (ComboManager.instance.canCombo) //콤보중
         {
             anim.Play("attack_ready");
-            camera.sizeup();
+            if (playerIndex == 2)
+                camera.sizeup2();
+            else
+                camera.sizeup();
             if (playerIndex == 0)
             {
                 trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
@@ -285,6 +312,11 @@ public class Player : MonoBehaviour
                     particle.SetActive(false);
                 }
             }
+            else if (playerIndex == 2)
+            {
+                trail.GetComponent<TrailRenderer>().startColor = Color.black;
+                particle.SetActive(true);
+            }
 
             //if (Time.timeScale == 1)
               //  Time.timeScale = comboTimeScale;
@@ -293,7 +325,9 @@ public class Player : MonoBehaviour
             dir.Normalize();
             if (playerIndex == 0)
                 rigid.velocity = dir * force * 2;
-            else
+            else if(playerIndex==1)
+                rigid.velocity = dir * force *1.1f;
+            else if(playerIndex==2)
                 rigid.velocity = dir * force *1.1f;
         }
         else //첫번째
@@ -318,6 +352,11 @@ public class Player : MonoBehaviour
                     particle.SetActive(false);
                 }
             }
+            else if (playerIndex == 2)
+            {
+                trail.GetComponent<TrailRenderer>().startColor = Color.black;
+                particle.SetActive(false);
+            }
             camera.sizedown();
 
             Vector2 dir = to - (Vector2) transform.position;
@@ -326,9 +365,19 @@ public class Player : MonoBehaviour
         }
 
         if (ComboManager.instance.canCombo)
-            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.6f);
+        {
+            if(playerIndex==0)
+                yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 1f);
+            else 
+                yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.4f);   
+        }
         else
-            yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.3f);
+        {
+            if(playerIndex==0)
+                yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.5f);
+            else
+                yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.3f);   
+        }
 
 
         rigid.velocity *= 0.3f;

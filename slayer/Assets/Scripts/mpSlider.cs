@@ -7,7 +7,7 @@ public class mpSlider : MonoBehaviour
 {
     public static mpSlider instance;
     public Slider mp;
-    public float duration;
+    private float duration = 0.4f;
     void Start()
     {
         instance = this;
@@ -49,6 +49,6 @@ public class mpSlider : MonoBehaviour
 
     public void bossCut()
     {
-        duration *= 0.65f;
+        duration *= 0.9f;
     }
 }

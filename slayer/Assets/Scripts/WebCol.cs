@@ -34,7 +34,7 @@ public class WebCol : MonoBehaviour
             if (color.a < 1f)
             {
 
-                color.a += 0.02f;
+                color.a += 0.015f;
                 spr.color = color;
             }
             else

@@ -937,8 +937,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32364107be96a8c4ca278bfc378a934d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canStage1: 0
-  canStage1Key: canStage1
   tsuzumiL: {fileID: 8300000, guid: e924653e2d536de40a06030df01fd2e4, type: 3}
   tsuzumiM: {fileID: 8300000, guid: d3c580609ad716f41a32fbf305a13b35, type: 3}
   tsuzumiR: {fileID: 8300000, guid: 0681e7ac7e5d68c4b921d7aab09488c6, type: 3}
@@ -1727,7 +1725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -755, y: -127}
+  m_AnchoredPosition: {x: -755, y: -273}
   m_SizeDelta: {x: 137.3, y: 139.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1208309903
@@ -2588,7 +2586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -818, y: 369}
+  m_AnchoredPosition: {x: -757, y: 369}
   m_SizeDelta: {x: 192.57, y: 195.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766467063

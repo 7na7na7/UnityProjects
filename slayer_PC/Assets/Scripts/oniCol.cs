@@ -15,22 +15,64 @@ public class oniCol : MonoBehaviour
         {
             if (oni.dmgDelay >= 0.05f)
             {
-                if (Player.instance.isattack)
+                if (Player.instance.playerIndex == 1)
                 {
-                    if (isHead)
+                    if (kagura.instance.isKagura)
                     {
-                        oni.die(true);
-                        Player.instance.oniHead(gameObject);
+                        Player.instance.rotate(transform.position);
+                        
+                        if (isHead)
+                        {
+                            oni.die(true);
+                            Player.instance.oniHead(gameObject);
+                        }
+                        else
+                        {
+                            oni.die(false);
+                            Player.instance.oniBody(gameObject);
+                        }
                     }
                     else
                     {
-                        oni.die(false);
-                        Player.instance.oniBody(gameObject);
+                        if (Player.instance.isattack)
+                        {
+                            kagura.instance.valueUp(1);
+                            if (isHead)
+                            {
+                                oni.die(true);
+                                Player.instance.oniHead(gameObject);
+                            }
+                            else
+                            {
+                                oni.die(false);
+                                Player.instance.oniBody(gameObject);
+                            }
+                        }
+                        else
+                        {
+                            Player.instance.die();
+                        }
                     }
                 }
                 else
                 {
-                    Player.instance.die();
+                    if (Player.instance.isattack)
+                    {
+                        if (isHead)
+                        {
+                            oni.die(true);
+                            Player.instance.oniHead(gameObject);
+                        }
+                        else
+                        {
+                            oni.die(false);
+                            Player.instance.oniBody(gameObject);
+                        }
+                    }
+                    else
+                    {
+                        Player.instance.die();
+                    }
                 }
             }
         }

@@ -6424,8 +6424,8 @@ MonoBehaviour:
   goPrefab: {fileID: 6457026776787078318, guid: 14bf6712b8b9e4d49bbebb43abddf10e,
     type: 3}
   ShotTr: {fileID: 532030476}
-  minForce: 10
-  maxForce: 14
+  minForce: 8
+  maxForce: 12
 --- !u!1 &535311510
 GameObject:
   m_ObjectHideFlags: 0
@@ -7190,7 +7190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mp: {fileID: 790190207}
-  duration: 0.3
 --- !u!1 &795311215
 GameObject:
   m_ObjectHideFlags: 0
@@ -14687,8 +14686,8 @@ MonoBehaviour:
   goPrefab: {fileID: 5820659145242091367, guid: 1aca1cc1fe83132458be7fabae6e85d9,
     type: 3}
   ShotTr: {fileID: 1750403229}
-  minForce: 10
-  maxForce: 14
+  minForce: 8
+  maxForce: 12
 --- !u!4 &1750403229
 Transform:
   m_ObjectHideFlags: 0
@@ -15012,6 +15011,7 @@ MonoBehaviour:
   Skill2Sound: {fileID: 0}
   LockedSound: {fileID: 0}
   bestScoreSound: {fileID: 0}
+  kaguraONSound: {fileID: 0}
   savedBgm: 1
   savedBgs: 1
 --- !u!1 &1818758089

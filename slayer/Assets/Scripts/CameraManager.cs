@@ -99,7 +99,11 @@ public class CameraManager : MonoBehaviour
         StopAllCoroutines();
        StartCoroutine(sizeupCor());
     }
-
+    public void sizeup2()
+    {
+        StopAllCoroutines();
+        StartCoroutine(sizeupCor2());
+    }
     public void sizedown()
     {
         StopAllCoroutines();
@@ -120,7 +124,15 @@ public class CameraManager : MonoBehaviour
         }
         yield return null;
     }
-    
+    public IEnumerator sizeupCor2()
+    {
+        while (theCamera.orthographicSize<9.1f)
+        {
+            theCamera.orthographicSize += 0.1f;
+            yield return new WaitForSeconds(delay);
+        }
+        yield return null;
+    }
     public IEnumerator sizedownCor()
     {
         while (theCamera.orthographicSize>5)
@@ -162,17 +174,34 @@ public class CameraManager : MonoBehaviour
     {
         if (ComboManager.instance.comboCount >= 2)
         {
-            while (theCamera.orthographicSize>6.3f)
+            if (Player.instance.playerIndex == 2)
             {
-                theCamera.orthographicSize -= 0.1f;
-                yield return new WaitForSeconds(delay*0.1f);
+                while (theCamera.orthographicSize>8.4f)
+                {
+                    theCamera.orthographicSize -= 0.1f;
+                    yield return new WaitForSeconds(delay*0.1f);
+                }
+                while (theCamera.orthographicSize <= 9.1f)
+                {
+                    theCamera.orthographicSize += 0.1f;
+                    yield return new WaitForSeconds(delay);
+                }
+                theCamera.orthographicSize = 9.1f;   
             }
-            while (theCamera.orthographicSize <= 7)
+            else
             {
-                theCamera.orthographicSize += 0.1f;
-                yield return new WaitForSeconds(delay);
+                while (theCamera.orthographicSize>6.3f)
+                {
+                    theCamera.orthographicSize -= 0.1f;
+                    yield return new WaitForSeconds(delay*0.1f);
+                }
+                while (theCamera.orthographicSize <= 7)
+                {
+                    theCamera.orthographicSize += 0.1f;
+                    yield return new WaitForSeconds(delay);
+                }
+                theCamera.orthographicSize = 7;   
             }
-            theCamera.orthographicSize = 7;
         }
         else
         {

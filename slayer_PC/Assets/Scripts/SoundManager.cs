@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
-    public int canStage1 = 0;
-    public string canStage1Key = "canStage1";
     public AudioClip tsuzumiL, tsuzumiM, tsuzumiR;
     public AudioClip hitSound;
     public AudioClip swingSound;
@@ -34,20 +32,12 @@ public class SoundManager : MonoBehaviour
     private string bgsKey = "bgsKey";
     public float savedBgm;
     public float savedBgs;
-
-    public void CanStage1()
-    {
-        canStage1 = 1;
-        PlayerPrefs.SetInt(canStage1Key,canStage1);
-    }
     void Start()
     {
         if (instance == null)
         {
-            Screen.SetResolution(1920, 1080, true);
             instance = this;
             DontDestroyOnLoad(gameObject);
-            canStage1 = PlayerPrefs.GetInt(canStage1Key,0);
             savedBgm = PlayerPrefs.GetFloat(bgmKey,1f);
             savedBgs = PlayerPrefs.GetFloat(bgsKey, 1f);
         }

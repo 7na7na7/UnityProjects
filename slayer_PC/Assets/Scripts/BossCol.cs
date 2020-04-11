@@ -12,8 +12,9 @@ public class BossCol : MonoBehaviour
         {
             if (boss.dmgDelay >= 0.05f)
             {
-                if (Player.instance.isattack)
+                if (kagura.instance.isKagura)
                 {
+                    Player.instance.rotate(transform.position);
                     if (isHead)
                     {
                         boss.die(true);
@@ -27,7 +28,24 @@ public class BossCol : MonoBehaviour
                 }
                 else
                 {
-                    Player.instance.die();
+                    if (Player.instance.isattack)
+                    {
+                        kagura.instance.valueUp(1);
+                        if (isHead)
+                        {
+                            boss.die(true);
+                            Player.instance.oniHead(gameObject);
+                        }
+                        else
+                        {
+                            boss.die(false);
+                            Player.instance.oniBody(gameObject);
+                        }
+                    }
+                    else
+                    {
+                        Player.instance.die();
+                    }   
                 }
             }
         }

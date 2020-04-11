@@ -100,7 +100,6 @@ public class ScorePanel : MonoBehaviour
                 PlayerPrefs.SetInt(highScoreKey2_H,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
             }
         }
-        
 
         yield return new WaitForSecondsRealtime(0.3f);
         while (killedOnic<killedOniv)

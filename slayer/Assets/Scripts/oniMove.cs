@@ -122,6 +122,8 @@ public class oniMove : MonoBehaviour
                 SoundManager.instance.head();
 
                 hp -= 2;
+                if (Player.instance.playerIndex == 2)
+                    hp--;
                 if (hp <= 0)
                 {
                     if (oniIndex == 1)
@@ -177,6 +179,13 @@ public class oniMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (Player.instance.playerIndex == 1)
+            {
+                if (kagura.instance.isKagura)
+                {
+                    return;
+                }
+            }
             if (!Player.instance.isattack)
             {
                 if (oniIndex == 1||oniIndex==2||oniIndex==3||oniIndex==5)

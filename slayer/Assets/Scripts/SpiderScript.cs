@@ -4,7 +4,6 @@ using DG.Tweening;
 
 public class SpiderScript : MonoBehaviour
 {
-    public GameObject web;
     public float startDown = 4.6f;
     public float startDownTime = 1f;
     public float minTIme, maxTime;

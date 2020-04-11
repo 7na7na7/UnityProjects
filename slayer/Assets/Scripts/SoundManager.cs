@@ -25,6 +25,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip Skill2Sound;
     public AudioClip LockedSound;
     public AudioClip bestScoreSound;
+    public AudioClip kaguraONSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -49,7 +50,11 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
-    public void Locked()
+    public void kaguraON()
+    {
+        audio.PlayOneShot(kaguraONSound,savedBgs*5);
+    }
+public void Locked()
     {
         audio.PlayOneShot(LockedSound,savedBgs);
     }

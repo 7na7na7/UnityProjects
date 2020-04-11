@@ -25,7 +25,6 @@ public class LoadScene : MonoBehaviour
    {  SoundManager.instance.select();
       SceneManager.LoadScene("Setting");
    }
-   
 
    public void Tutorial()
    {
@@ -33,7 +32,7 @@ public class LoadScene : MonoBehaviour
       SceneManager.LoadScene("Tutorial");
    }
 
-   public void end()
+   public void Exit()
    {
       Application.Quit();
    }

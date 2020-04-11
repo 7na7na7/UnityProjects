@@ -10,27 +10,51 @@ public class BossCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (boss.dmgDelay >= 0.05f)
+            if (boss.dmgDelay >= 0.05f&&!GameManager.instance.isGameOver)
             {
-                if (kagura.instance.isKagura)
+                if (Player.instance.playerIndex == 1)
                 {
-                    Player.instance.rotate(transform.position);
-                    if (isHead)
+                    if (kagura.instance.isKagura)
                     {
-                        boss.die(true);
-                        Player.instance.oniHead(gameObject);
+                        Player.instance.rotate(transform.position);
+                        
+                        if (isHead)
+                        {
+                            boss.die(true);
+                            Player.instance.oniHead(gameObject);
+                        }
+                        else
+                        {
+                            boss.die(false);
+                            Player.instance.oniBody(gameObject);
+                        }
                     }
                     else
                     {
-                        boss.die(false);
-                        Player.instance.oniBody(gameObject);
+                        if (Player.instance.isattack)
+                        {
+                            kagura.instance.valueUp(1);
+                            if (isHead)
+                            {
+                               boss.die(true);
+                                Player.instance.oniHead(gameObject);
+                            }
+                            else
+                            {
+                                boss.die(false);
+                                Player.instance.oniBody(gameObject);
+                            }
+                        }
+                        else
+                        {
+                            Player.instance.die();
+                        }
                     }
                 }
                 else
                 {
                     if (Player.instance.isattack)
                     {
-                        kagura.instance.valueUp(1);
                         if (isHead)
                         {
                             boss.die(true);
@@ -45,7 +69,7 @@ public class BossCol : MonoBehaviour
                     else
                     {
                         Player.instance.die();
-                    }   
+                    }
                 }
             }
         }

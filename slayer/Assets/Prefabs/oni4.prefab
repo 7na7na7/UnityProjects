@@ -232,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isJumping: 0
   canGo: 0
-  hp: 2
+  hp: 1
   oniIndex: 4
   minX: 30
   maxX: -30
@@ -342,7 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2e30674f16c904b9eb1c5ab80386a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  web: {fileID: 7058529880638527011}
   startDown: 4.6
   startDownTime: 1
   minTIme: 1

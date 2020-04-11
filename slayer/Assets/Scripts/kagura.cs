@@ -21,7 +21,17 @@ public class kagura : MonoBehaviour
     {
         if (!isKagura)
         {
-            slider.value += v * 2;
+            if (v == 1)
+                slider.value += 1f;
+            else
+            {
+                if (v >= 10)
+                    slider.value += v * 3;
+                else if (v >= 5)
+                    slider.value += v * 2;
+                else if (v >= 2)
+                    slider.value += v*1.5f;
+            }
             if (slider.value >= slider.maxValue)
             {
                 isKagura = true;
@@ -32,6 +42,7 @@ public class kagura : MonoBehaviour
 
     IEnumerator hinokami()
     {
+        SoundManager.instance.kaguraON();
         effect.SetActive(true);
         fire.SetActive(true);
         while (slider.value>0)

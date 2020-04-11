@@ -1035,6 +1035,7 @@ MonoBehaviour:
   Skill2Sound: {fileID: 8300000, guid: 0fb5a6c323795344b8708f89d35b065d, type: 3}
   LockedSound: {fileID: 8300000, guid: 8b5a40d008f020e4090cbb0314440248, type: 3}
   bestScoreSound: {fileID: 8300000, guid: aa753085c814be044a042a79dd252665, type: 3}
+  kaguraONSound: {fileID: 8300000, guid: 95a784f78d34132469cb9255216150c0, type: 3}
   savedBgm: 0
   savedBgs: 0
 --- !u!4 &766661957
@@ -1563,7 +1564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46.600037, y: 348.75}
+  m_AnchoredPosition: {x: -46.599976, y: 348.75}
   m_SizeDelta: {x: -1132.9, y: -697.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1018619857

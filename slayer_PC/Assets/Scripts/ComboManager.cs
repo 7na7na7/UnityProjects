@@ -30,11 +30,13 @@ public class ComboManager : MonoBehaviour
         Time.timeScale = 1;
         if (comboCount >= 2)
         {
-
             ScoreMgr.instance.comboInitialize(comboCount);
             int value = 25;
             value += comboCount / 5 * 25;
             ScoreMgr.instance.scoreUp(comboCount,value*comboCount,true);
+            
+            if(Player.instance.playerIndex==1) //플레이어가 탄지로면 히노카미 카구라 사용
+                kagura.instance.valueUp(comboCount);
         }
         comboCount = 0;
     }

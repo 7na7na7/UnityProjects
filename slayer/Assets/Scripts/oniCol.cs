@@ -13,7 +13,7 @@ public class oniCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (oni.dmgDelay >= 0.05f)
+            if (oni.dmgDelay >= 0.05f&&!GameManager.instance.isGameOver)
             {
                 if (Player.instance.playerIndex == 1)
                 {

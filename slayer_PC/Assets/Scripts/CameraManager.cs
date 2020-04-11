@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
     public float savedrotSpeed;
     public float delay;
     public float speed = 2f;
-    public GameObject target; //카메라가 따라갈 대상
+   public GameObject target; //카메라가 따라갈 대상
     public GameObject savedTarget;
     public BoxCollider2D bound; //카메라가 나가지 못하는 영역을 박스 콜라이더로 받음
 
@@ -20,6 +20,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
     public GameObject posGO;
     public bool canFollow = true;
+    private bool canGo = false;
     private void Start()
     {
         instance = this;
@@ -30,11 +31,19 @@ public class CameraManager : MonoBehaviour
         //theCamera.orthographicSize *= 2;
     }
 
+    public void GameStart()
+    {
+        target=GameObject.FindWithTag("Player");
+        savedTarget = target;
+        canGo = true;
+    }
     void Update()
     {
-        if (target.gameObject != null&&!FindObjectOfType<GameManager>().isGameOver&&canFollow)
+        if (canGo)
         {
-            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
+            if (target.gameObject != null && !FindObjectOfType<GameManager>().isGameOver && canFollow)
+            {
+                targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
                 //transform.position = targetPosition;
 
 
@@ -60,23 +69,24 @@ public class CameraManager : MonoBehaviour
                 }
                 else if (rot == 1)
                 {
-                    if(transform.eulerAngles.z>1||transform.eulerAngles.z<-1)
+                    if (transform.eulerAngles.z > 1 || transform.eulerAngles.z < -1)
                     {
-                        if(transform.eulerAngles.z>1)
-                            transform.eulerAngles=new Vector3(0,0,transform.eulerAngles.z-Time.deltaTime*rotSpeed);
+                        if (transform.eulerAngles.z > 1)
+                            transform.eulerAngles =
+                                new Vector3(0, 0, transform.eulerAngles.z - Time.deltaTime * rotSpeed);
                         else
-                            transform.eulerAngles=new Vector3(0,0,transform.eulerAngles.z+Time.deltaTime*rotSpeed);
+                            transform.eulerAngles =
+                                new Vector3(0, 0, transform.eulerAngles.z + Time.deltaTime * rotSpeed);
                     }
-                    
+
                 }
                 else if (rot == 2)
                 {
-                    transform.eulerAngles=new Vector3(0,0,transform.eulerAngles.z+Time.deltaTime*rotSpeed);
+                    transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + Time.deltaTime * rotSpeed);
                 }
+            }
         }
-        
     }
-
     public void SetBound(BoxCollider2D newBound)
     {
         bound = newBound;

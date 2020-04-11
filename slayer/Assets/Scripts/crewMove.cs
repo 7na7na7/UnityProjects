@@ -1,12 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class crewMove : MonoBehaviour
 {
+    public float speed = 10;
     public bool isAngle = false;
     private Vector2 dir;
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Main2_EZ")
+            speed *= 0.7f;
+        else if (SceneManager.GetActiveScene().name == "Main2_H")
+            speed *= 1.2f;
         if (isAngle)
         {
             transform.eulerAngles =
@@ -19,7 +25,7 @@ public class crewMove : MonoBehaviour
 
     void Update()
     {
-        transform.position += (Vector3)dir * Time.deltaTime * 10;
+        transform.position += (Vector3)dir * Time.deltaTime * speed;
        //transform.Translate(dir*Time.deltaTime*10);
     }
 

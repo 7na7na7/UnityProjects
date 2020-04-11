@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
   private void Awake()
   {
     instance = this;
-    Time.timeScale = 1;
   }
 
   private void Start()
@@ -38,9 +37,9 @@ public class GameManager : MonoBehaviour
       FadePanel.instance.UnFade();
     spawners = FindObjectsOfType<Spawner>();
     fires = FindObjectsOfType<Fire>();
-    if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H") 
+    if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H"||SceneManager.GetActiveScene().name=="Main_EZ") 
       StartCoroutine(Game1());
-    else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name=="Main2_H")
+    else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name=="Main2_H"||SceneManager.GetActiveScene().name=="Main2_EZ")
       StartCoroutine(Game2());
   }
   IEnumerator Game1()

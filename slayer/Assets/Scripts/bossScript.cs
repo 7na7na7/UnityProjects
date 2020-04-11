@@ -220,6 +220,7 @@ public class bossScript : MonoBehaviour
             anim.Play("LeftDash");
         transform.GetChild(1).gameObject.tag = "damage";
         transform.GetChild(2).gameObject.tag = "damage";
+        
         SoundManager.instance.Dash();
         if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.4f))
         {
@@ -349,6 +350,8 @@ public class bossScript : MonoBehaviour
                     ScoreMgr.instance.headshot++;
                     SoundManager.instance.head();
                     slider.value -= 2;
+                    if (Player.instance.playerIndex == 2)
+                        slider.value--;
                     
                     if (slider.value <= Mathf.RoundToInt(slider.maxValue * (SceneManager.GetActiveScene().name=="Main" ? 0.3f : 0.4f)))
                     {
@@ -363,7 +366,10 @@ public class bossScript : MonoBehaviour
                     {
                         CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
                         CameraManager.instance.rot = 1;
-                        CameraManager.instance.closeUpSlow();
+                        if (!Player.instance.isGameOver)
+                        {
+                            CameraManager.instance.closeUpSlow();   
+                        }
                         ScoreMgr.instance.scoreUp(0, 3000, false);
                         FindObjectOfType<GameManager>().bossDead = true;
                         ComboManager.instance.comboIniitailize();
@@ -380,6 +386,7 @@ public class bossScript : MonoBehaviour
                         }
                         else if(SceneManager.GetActiveScene().name=="Main") 
                             GooglePlayManager.instance.CanStage1();
+                        Player.instance.forceUp();
                         Destroy(gameObject);
                     }
                 }
@@ -400,14 +407,17 @@ public class bossScript : MonoBehaviour
                     {
                         CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
                         CameraManager.instance.rot = 1;
-                        CameraManager.instance.closeUpSlow();
+                        if (!Player.instance.isGameOver)
+                        {
+                            CameraManager.instance.closeUpSlow();   
+                        }
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
                         ScoreMgr.instance.scoreUp(0, 3000, false);
                         Instantiate(effect, transform.position, Quaternion.identity);
                         FindObjectOfType<GameManager>().bossDead = true;
                         mpSlider.instance.bossCut();
-                        if (SceneManager.GetActiveScene().name == "Main2")
+                        if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_EZ"||SceneManager.GetActiveScene().name == "Main2_H")
                         {
                             GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
                             foreach (GameObject web in webs)
@@ -415,8 +425,9 @@ public class bossScript : MonoBehaviour
                                 Destroy(web);
                             }
                         }
-                        else if(SceneManager.GetActiveScene().name=="Main") 
+                        else if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_EZ"||SceneManager.GetActiveScene().name=="Main_H") 
                             GooglePlayManager.instance.CanStage1();
+                        Player.instance.forceUp();
                         Destroy(gameObject);
                     }
                 }

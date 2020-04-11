@@ -13,6 +13,7 @@ public class ComboManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+        comboDelay = 1;
     }
 
     public void comboIniitailize()
