@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip LockedSound;
     public AudioClip bestScoreSound;
     public AudioClip kaguraONSound;
+    public AudioClip zenichuComboSound;
+    public AudioClip inoskaeComboSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -50,6 +52,15 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void zenichuCombo()
+    {
+        audio.PlayOneShot(zenichuComboSound,savedBgs*3);
+    }
+
+    public void inoskaeCombo()
+    {
+        audio.PlayOneShot(inoskaeComboSound,savedBgs);
+    }
     public void kaguraON()
     {
         audio.PlayOneShot(kaguraONSound,savedBgs*5);

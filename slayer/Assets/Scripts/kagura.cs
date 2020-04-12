@@ -26,7 +26,7 @@ public class kagura : MonoBehaviour
             else
             {
                 if (v >= 10)
-                    slider.value += v * 3;
+                    slider.value += v * 2.5f;
                 else if (v >= 5)
                     slider.value += v * 2;
                 else if (v >= 2)

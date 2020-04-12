@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public GameObject slashEffect;
     public GameObject dieEffect;
     [Header("신경쓸필요없음")] 
+    private bool isFirst = false;
     private float playerMoveValue=1.1f;
     private fade panel; //콤보중 화면 어둡게 만들어줌
     public bool isGameOver = false;
@@ -289,18 +290,23 @@ public class Player : MonoBehaviour
         if (ComboManager.instance.canCombo) //콤보중
         {
             anim.Play("attack_ready");
-            if (playerIndex == 2)
-                camera.sizeup2();
-            else
-                camera.sizeup();
+
             if (playerIndex == 0)
             {
+                camera.sizeup();
+                if (!isFirst)
+                {
+                    isFirst = true;
+                    SoundManager.instance.zenichuCombo();
+                }
+
                 trail.GetComponent<TrailRenderer>().startColor = Color.yellow;
                 particle.SetActive(true);
                 StartCoroutine(panel.fadeIn());
             }
             else if (playerIndex == 1)
             {
+                camera.sizeup();
                 if (kagura.instance.isKagura)
                 {
                     trail.GetComponent<TrailRenderer>().startColor = Color.red;
@@ -314,6 +320,13 @@ public class Player : MonoBehaviour
             }
             else if (playerIndex == 2)
             {
+                camera.sizeup2();
+                if (!isFirst)
+                {
+                    isFirst = true;
+                    SoundManager.instance.inoskaeCombo();
+                }
+
                 trail.GetComponent<TrailRenderer>().startColor = Color.black;
                 particle.SetActive(true);
             }
@@ -332,6 +345,7 @@ public class Player : MonoBehaviour
         }
         else //첫번째
         {
+            isFirst = false;
             anim.Play("attack_ready");
             if (playerIndex == 0)
             {
@@ -378,8 +392,7 @@ public class Player : MonoBehaviour
             else
                 yield return new WaitUntil(() => Vector2.Distance(transform.position, to) <= 0.3f);   
         }
-
-
+        
         rigid.velocity *= 0.3f;
         rigid.bodyType = RigidbodyType2D.Dynamic;
         yield return new WaitForSeconds(0.2f);

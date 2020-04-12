@@ -10,7 +10,7 @@ public class crewMove : MonoBehaviour
     private void Start()
     {
         if (SceneManager.GetActiveScene().name == "Main2_EZ")
-            speed *= 0.7f;
+            speed *= 0.6f;
         else if (SceneManager.GetActiveScene().name == "Main2_H")
             speed *= 1.2f;
         if (isAngle)
