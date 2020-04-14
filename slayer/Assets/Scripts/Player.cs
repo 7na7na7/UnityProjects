@@ -446,6 +446,11 @@ public class Player : MonoBehaviour
                     die();   
                 }
             }
+
+            if (hit.CompareTag("die"))
+            {
+                die();
+            }
         }
     }
 

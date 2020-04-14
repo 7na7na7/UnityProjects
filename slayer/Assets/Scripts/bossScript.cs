@@ -338,29 +338,35 @@ public class bossScript : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(false);
     }
 
-    public void die(bool isHead)
+    public void dead()
     {
-        if (canMove)
-        {
-            if (dmgDelay >= 0.1f)
-            {
-                Player.instance.AttackCor();
-                if (isHead)
-                {
-                    ScoreMgr.instance.headshot++;
-                    SoundManager.instance.head();
-                    slider.value -= 2;
-                    if (Player.instance.playerIndex == 2)
-                        slider.value--;
-                    
-                    if (slider.value <= Mathf.RoundToInt(slider.maxValue * (SceneManager.GetActiveScene().name=="Main" ? 0.3f : 0.4f)))
+        if (SceneManager.GetActiveScene().name == "Main" ||
+                        SceneManager.GetActiveScene().name == "Main_H" ||
+                        SceneManager.GetActiveScene().name == "Main_EZ")
                     {
-                        spr = GetComponent<SpriteRenderer>();
-                        color.r = 255;
-                        color.g = 0.5f;
-                        color.b = 0.5f;
-                        color.a = 1;
-                        spr.color = color;
+                        if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+                        {
+                            spr = GetComponent<SpriteRenderer>();
+                            color.r = 255;
+                            color.g = 0.5f;
+                            color.b = 0.5f;
+                            color.a = 1;
+                            spr.color = color;
+                        }
+                    }
+                    else if (SceneManager.GetActiveScene().name == "Main2" ||
+                             SceneManager.GetActiveScene().name == "Main2_H" ||
+                             SceneManager.GetActiveScene().name == "Main2_EZ")
+                    {
+                        if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.4f))
+                        {
+                            spr = GetComponent<SpriteRenderer>();
+                            color.r = 255;
+                            color.g = 0.5f;
+                            color.b = 0.5f;
+                            color.a = 1;
+                            spr.color = color;
+                        }
                     }
                     if (slider.value <= 0)
                     {
@@ -376,47 +382,6 @@ public class bossScript : MonoBehaviour
                         ScoreMgr.instance.killedOni++;
                         Instantiate(headEffect, transform.position, Quaternion.identity);
                         mpSlider.instance.bossCut();
-                        if (SceneManager.GetActiveScene().name == "Main2")
-                        {
-                            GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
-                            foreach (GameObject web in webs)
-                            {
-                                Destroy(web);
-                            }
-                        }
-                        else if(SceneManager.GetActiveScene().name=="Main") 
-                            GooglePlayManager.instance.CanStage1();
-                        Player.instance.forceUp();
-                        Destroy(gameObject);
-                    }
-                }
-                else
-                {
-                    SoundManager.instance.body();
-                    slider.value--;
-                    if (slider.value <= Mathf.RoundToInt(slider.maxValue * (SceneManager.GetActiveScene().name=="Main" ? 0.3f : 0.4f)))
-                    {
-                        spr = GetComponent<SpriteRenderer>();
-                        color.r = 255;
-                        color.g = 0.5f;
-                        color.b = 0.5f;
-                        color.a = 1;
-                        spr.color = color;
-                    }
-                    if (slider.value <= 0)
-                    {
-                        CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
-                        CameraManager.instance.rot = 1;
-                        if (!Player.instance.isGameOver)
-                        {
-                            CameraManager.instance.closeUpSlow();   
-                        }
-                        ComboManager.instance.comboIniitailize();
-                        ScoreMgr.instance.killedOni++;
-                        ScoreMgr.instance.scoreUp(0, 3000, false);
-                        Instantiate(effect, transform.position, Quaternion.identity);
-                        FindObjectOfType<GameManager>().bossDead = true;
-                        mpSlider.instance.bossCut();
                         if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_EZ"||SceneManager.GetActiveScene().name == "Main2_H")
                         {
                             GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
@@ -430,13 +395,31 @@ public class bossScript : MonoBehaviour
                         Player.instance.forceUp();
                         Destroy(gameObject);
                     }
-                }
-
-                dmgDelay = 0;
-                Player.instance.ComboText(isHead);
-            }
-        }
     }
-
-   
+    public void die(bool isHead)
+    {
+        if (canMove)
+        {
+            if (dmgDelay >= 0.1f)
+            {
+                Player.instance.AttackCor();
+                if (isHead)
+                {
+                    ScoreMgr.instance.headshot++;
+                    SoundManager.instance.head();
+                    slider.value -= 2;
+                    if (Player.instance.playerIndex == 2)
+                        slider.value--;
+                }
+                else
+                {
+                    SoundManager.instance.body();
+                    slider.value--;
+                }
+                dead();
+            } 
+            dmgDelay = 0; 
+            Player.instance.ComboText(isHead); 
+        } 
+    }
 }

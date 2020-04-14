@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
@@ -117,7 +118,10 @@ public class CameraManager : MonoBehaviour
 
     public IEnumerator sizeupCor()
     {
-        while (theCamera.orthographicSize<7)
+        int max = 7;
+        if (SceneManager.GetActiveScene().name == "Main3")
+            max = 8;
+        while (theCamera.orthographicSize<max)
         {
             theCamera.orthographicSize += 0.1f;
             yield return new WaitForSeconds(delay);
@@ -126,7 +130,10 @@ public class CameraManager : MonoBehaviour
     }
     public IEnumerator sizeupCor2()
     {
-        while (theCamera.orthographicSize<9.1f)
+        float max = 9.1f;
+        if (SceneManager.GetActiveScene().name == "Main3")
+            max = 10.1f;
+        while (theCamera.orthographicSize<max)
         {
             theCamera.orthographicSize += 0.1f;
             yield return new WaitForSeconds(delay);
@@ -135,7 +142,10 @@ public class CameraManager : MonoBehaviour
     }
     public IEnumerator sizedownCor()
     {
-        while (theCamera.orthographicSize>5)
+        int min = 5;
+        if (SceneManager.GetActiveScene().name == "Main3")
+            min = 6;
+        while (theCamera.orthographicSize>min)
         {
             theCamera.orthographicSize -= 0.1f;
             yield return new WaitForSeconds(delay);

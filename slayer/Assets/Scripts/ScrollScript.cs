@@ -15,7 +15,7 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
  public GameObject[] t;
  private Color Alpha125;
  private Color Alpha255;
-    private const int SIZE = 2;
+    private const int SIZE = 3;
     private float[] pos = new float[SIZE];
     private float distance, curPos, targetPos;
     private bool isDrag;
@@ -170,13 +170,12 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     public void SceneChange()
     {
         if (targetIndex == 0)
-        {
-            StartCoroutine(delayChange()); 
-        }
+            StartCoroutine(delayChange());
         else if(targetIndex==1)
-        {
             StartCoroutine(delayChange2());
-        }
+        else if(targetIndex==2)
+            StartCoroutine(delayChange3());
+            
     }
 
     IEnumerator delayChange()
@@ -232,6 +231,30 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
                 yield return new WaitForSeconds(1f);
                 SceneManager.LoadScene("Main2_EZ");
             }
+        }
+    }
+    IEnumerator delayChange3()
+    {
+        if (difficulty==1)
+        {
+            SoundManager.instance.tsuzumi(1);
+            FadePanel.instance.Fade();
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Main3");
+        }
+        else if(difficulty==2)
+        {
+            SoundManager.instance.tsuzumi(1);
+            FadePanel.instance.Fade();
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Main3");
+        }
+        else
+        {
+            SoundManager.instance.tsuzumi(1);
+            FadePanel.instance.Fade();
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Main3");
         }
     }
 }

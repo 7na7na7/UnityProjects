@@ -16,7 +16,7 @@ public class AnimCtrl : MonoBehaviour
 
     private void Update()
     {
-        if (rigid.velocity.y < -0.1f && !GetComponent<Player>().isattack) //떨어지고 있고, 공격 중이 아니라면
+        if (rigid.velocity.y < -3f && !GetComponent<Player>().isattack) //떨어지고 있고, 공격 중이 아니라면
         {
             Player.instance.flipY(false);
             transform.eulerAngles=new Vector3(0,0,0);
