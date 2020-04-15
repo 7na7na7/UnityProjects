@@ -171,6 +171,7 @@ public class GameManager : MonoBehaviour
 
   public void RESTART()
   {
+    SoundManager.instance?.select();
     SoundManager.instance.select();
     FadePanel.instance.rightFade();
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);

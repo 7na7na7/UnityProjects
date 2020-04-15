@@ -138,6 +138,8 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,200,false);
                     else if(oniIndex==6) 
                         ScoreMgr.instance.scoreUp(0,250,false);
+                    else if(oniIndex==7)
+                        ScoreMgr.instance.scoreUp(0,100,false);
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
