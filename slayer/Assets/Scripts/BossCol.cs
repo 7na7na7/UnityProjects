@@ -10,7 +10,7 @@ public class BossCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (boss.dmgDelay >= 0.05f&&!GameManager.instance.isGameOver)
+            if (boss.dmgDelay >= 0.1f&&!GameManager.instance.isGameOver)
             {
                 if (Player.instance.playerIndex == 1)
                 {

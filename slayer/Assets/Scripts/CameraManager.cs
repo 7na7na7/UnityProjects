@@ -182,50 +182,60 @@ public class CameraManager : MonoBehaviour
     }
     IEnumerator closeUpCor()
     {
+        float min = 0;
         if (ComboManager.instance.comboCount >= 2)
         {
             if (Player.instance.playerIndex == 2)
             {
-                while (theCamera.orthographicSize>8.4f)
+                min = 8.4f;
+                if (SceneManager.GetActiveScene().name == "Main3")
+                    min++;
+                while (theCamera.orthographicSize>min)
                 {
                     theCamera.orthographicSize -= 0.1f;
                     yield return new WaitForSeconds(delay*0.1f);
                 }
-                while (theCamera.orthographicSize <= 9.1f)
+                while (theCamera.orthographicSize <= min+1)
                 {
                     theCamera.orthographicSize += 0.1f;
                     yield return new WaitForSeconds(delay);
                 }
-                theCamera.orthographicSize = 9.1f;   
+                theCamera.orthographicSize = min+1;   
             }
             else
             {
-                while (theCamera.orthographicSize>6.3f)
+                min = 6.3f;
+                if (SceneManager.GetActiveScene().name == "Main3")
+                    min++;
+                while (theCamera.orthographicSize>min)
                 {
                     theCamera.orthographicSize -= 0.1f;
                     yield return new WaitForSeconds(delay*0.1f);
                 }
-                while (theCamera.orthographicSize <= 7)
+                while (theCamera.orthographicSize <= min+0.7f)
                 {
                     theCamera.orthographicSize += 0.1f;
                     yield return new WaitForSeconds(delay);
                 }
-                theCamera.orthographicSize = 7;   
+                theCamera.orthographicSize = min+0.7f;   
             }
         }
         else
         {
-            while (theCamera.orthographicSize>4.3f)
+            min = 4.3f;
+            if (SceneManager.GetActiveScene().name == "Main3")
+                min++;
+            while (theCamera.orthographicSize>min)
             {
                 theCamera.orthographicSize -= 0.1f;
                 yield return new WaitForSeconds(delay*0.1f);
             }
-            while (theCamera.orthographicSize <= 5)
+            while (theCamera.orthographicSize <= min+0.7f)
             {
                 theCamera.orthographicSize += 0.1f;
                 yield return new WaitForSeconds(delay);
             }
-            theCamera.orthographicSize = 5;
+            theCamera.orthographicSize = min+0.7f;
         }
 
         yield return null;

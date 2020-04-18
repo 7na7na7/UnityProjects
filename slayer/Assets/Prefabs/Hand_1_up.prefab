@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8542609236535064498}
   - component: {fileID: 8542609236535064511}
   m_Layer: 0
-  m_Name: Hand_1
+  m_Name: Hand_1_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 8542609236535064496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 8521403239424147461}
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isJumping: 0
   canGo: 0
-  hp: 3
+  hp: 2
   oniIndex: 7
   minX: -8.73
   maxX: -4.22

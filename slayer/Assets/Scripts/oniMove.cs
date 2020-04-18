@@ -44,12 +44,15 @@ public class oniMove : MonoBehaviour
             }
         }
 
-        if (!isStop)
-        { 
-            if (transform.position.x >= minX && transform.position.x <= maxX) 
-            { 
-                StartCoroutine(attack());
-                isStop = true;
+        if (oniIndex != 8)
+        {
+            if (!isStop)
+            {
+                if (transform.position.x >= minX && transform.position.x <= maxX)
+                {
+                    StartCoroutine(attack());
+                    isStop = true;
+                }
             }
         }
 
@@ -111,6 +114,11 @@ public class oniMove : MonoBehaviour
         }
     }
 
+    private void justDie()
+    {
+        Instantiate(effect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
     public void die(bool isHead)
     {
         if (dmgDelay >= 0.1f)
@@ -139,7 +147,11 @@ public class oniMove : MonoBehaviour
                     else if(oniIndex==6) 
                         ScoreMgr.instance.scoreUp(0,250,false);
                     else if(oniIndex==7)
+                        ScoreMgr.instance.scoreUp(0,200,false);
+                    else if(oniIndex==8)
                         ScoreMgr.instance.scoreUp(0,100,false);
+                    else if(oniIndex==9)
+                        ScoreMgr.instance.scoreUp(0,300,false);
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
@@ -177,6 +189,15 @@ public class oniMove : MonoBehaviour
         }
     }
 
+    IEnumerator reverse()
+    {
+        speed *= Random.Range(0, 2) == 0 ? -1 : 1;
+        while (true)
+        {
+            speed *= -1;
+            yield return new WaitForSeconds(2);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -250,9 +271,19 @@ public class oniMove : MonoBehaviour
                 {
                     anim.Play("oni6_Walking");
                 }
+                else if (oniIndex == 8)
+                {
+                    anim.Play("HandIdle");
+                    StartCoroutine(reverse());
+                }
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                
             }
+        }
+
+        if (other.CompareTag("die"))
+        {
+            justDie();
         }
     }
 }

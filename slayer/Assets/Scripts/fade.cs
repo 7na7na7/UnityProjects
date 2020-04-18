@@ -7,6 +7,7 @@ using Image = UnityEngine.UI.Image;
 
 public class fade : MonoBehaviour
 {
+   public bool isDream=false;
    public float speed;
    private Image img;
    private Color fadecolor;
@@ -16,8 +17,35 @@ public class fade : MonoBehaviour
       img = GetComponent<Image>();
    }
 
+   public void Dream()
+   {
+      StopAllCoroutines();
+      StartCoroutine(dreamCor());
+   }
+
+   IEnumerator dreamCor()
+   {
+      fadeinNow();
+      yield return new WaitForSeconds(1.5f);
+      fadeoutNow();
+   }
+   public void  fadeinNow()
+   {
+      fadecolor = img.color;
+      fadecolor.a = 1;
+      img.color = fadecolor;
+   }
+
+   public void fadeoutNow()
+   {
+      fadecolor = img.color;
+      fadecolor.a = 0;
+      img.color = fadecolor;
+   }
    public IEnumerator fadeIn()
        {
+          if(!isDream)
+          {
           StopAllCoroutines();
           if (img.color.a < 0.5f)
           {
@@ -31,42 +59,54 @@ public class fade : MonoBehaviour
                    break;
              }
           }
+          }
        }
    public IEnumerator fadeInRealTime()
    {
-      StopAllCoroutines();
-      if (img.color.a < 0.5f)
+      if (!isDream)
       {
-         while (true)
+         StopAllCoroutines();
+         if (img.color.a < 0.5f)
          {
-            fadecolor = img.color;
-            fadecolor.a += 0.1f;
-            yield return new WaitForSecondsRealtime(speed);
-            img.color = fadecolor;
-            if (img.color.a >= 0.5f)
-               break;
+            while (true)
+            {
+               fadecolor = img.color;
+               fadecolor.a += 0.1f;
+               yield return new WaitForSecondsRealtime(speed);
+               img.color = fadecolor;
+               if (img.color.a >= 0.5f)
+                  break;
+            }
+
+            FindObjectOfType<GameOverManager>().panel.SetActive(true);
          }
-         FindObjectOfType<GameOverManager>().panel.SetActive(true);
       }
    }
+
    public IEnumerator fadeout()
    {
-      StopAllCoroutines();
-      if (img.color.a > 0)
+      if (!isDream)
       {
-         while (true)
+         StopAllCoroutines();
+         if (img.color.a > 0)
          {
-            fadecolor = img.color;
-            fadecolor.a -= 0.1f;
-            yield return new WaitForSeconds(speed);
-            img.color = fadecolor;
-            if (img.color.a <= 0)
-               break;
+            while (true)
+            {
+               fadecolor = img.color;
+               fadecolor.a -= 0.1f;
+               yield return new WaitForSeconds(speed);
+               img.color = fadecolor;
+               if (img.color.a <= 0)
+                  break;
+            }
          }
       }
    }
+
    public IEnumerator fadeoutRealTime()
    {
+      if(!isDream)
+      {
       StopAllCoroutines();
       if (img.color.a > 0)
       {
@@ -79,6 +119,7 @@ public class fade : MonoBehaviour
             if (img.color.a <= 0)
                break;
          }
+      }
       }
    }
 }

@@ -451,9 +451,14 @@ public class Player : MonoBehaviour
             {
                 die();
             }
+
+            if (hit.CompareTag("dream"))
+            {
+                GameObject.Find("DreamPanel").gameObject.GetComponent<fade>().Dream();
+            }
         }
     }
-
+    
     public void oniBody(GameObject hit)
     {
         if (!isGameOver)
