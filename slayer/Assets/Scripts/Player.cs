@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
     public GameObject dieEffect;
-    [Header("신경쓸필요없음")] 
+    [Header("신경쓸필요없음")]
+    private bool isMeetEnmu = false;
     private bool isFirst = false;
     private float playerMoveValue=1.1f;
     private fade panel; //콤보중 화면 어둡게 만들어줌
@@ -66,7 +67,15 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch&&canTouchTime>=nuckBackCantTouchTime) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
+        if (transform.position.x > 250)
+        {
+            if (!isMeetEnmu)
+            {
+               CameraManager.instance.meetEnmuFunc();
+                isMeetEnmu = true;
+            }
+        }
+            if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch&&canTouchTime>=nuckBackCantTouchTime) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
         {
             if (isDesktop)
             {

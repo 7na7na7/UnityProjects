@@ -93,7 +93,7 @@ public class HandTrap : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         isGo = false;
     }
 }

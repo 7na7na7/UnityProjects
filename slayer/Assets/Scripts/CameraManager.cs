@@ -32,6 +32,26 @@ public class CameraManager : MonoBehaviour
         //theCamera.orthographicSize *= 2;
     }
 
+    public void meetEnmuFunc()
+    {
+        StartCoroutine(meetEnmu());
+    }
+   IEnumerator meetEnmu()
+    {
+        GameManager.instance.StopFalling();
+        Player.instance.canTouch = false;
+        FadePanel.instance?.Fade();
+        yield return new WaitForSeconds(1f);
+        ChangeBound();
+        Player.instance.transform.position = GameObject.Find("BossTr").transform.position;
+        FadePanel.instance?.UnFade();
+        Player.instance.canTouch = true;
+    }
+    public void ChangeBound()
+    {
+        minBound = GameObject.Find("CamBound_2").GetComponent<BoxCollider2D>().bounds.min;
+        maxBound = GameObject.Find("CamBound_2").GetComponent<BoxCollider2D>().bounds.max;
+    }
     public void GameStart()
     {
         target=GameObject.FindWithTag("Player");

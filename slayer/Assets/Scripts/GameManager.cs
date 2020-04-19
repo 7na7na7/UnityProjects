@@ -33,14 +33,22 @@ public class GameManager : MonoBehaviour
 
   private void Start()
   {
-    if(FindObjectOfType<FadePanel>()) 
-      FadePanel.instance.UnFade();
+    FadePanel.instance?.UnFade();
     spawners = FindObjectsOfType<Spawner>();
     fires = FindObjectsOfType<Fire>();
     if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H"||SceneManager.GetActiveScene().name=="Main_EZ") 
       StartCoroutine(Game1());
     else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name=="Main2_H"||SceneManager.GetActiveScene().name=="Main2_EZ")
       StartCoroutine(Game2());
+  }
+
+  public void StopFalling()
+  {
+    foreach (Spawner s in spawners) //위에서 내려오는거 불가능
+    {
+      if (s.isFalling)
+        s.canSpawn = false;
+    }
   }
   IEnumerator Game1()
   { yield return new WaitForSeconds(jumpingTIme);

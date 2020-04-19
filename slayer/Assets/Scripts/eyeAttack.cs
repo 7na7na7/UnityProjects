@@ -16,7 +16,7 @@ public class eyeAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         attackCol.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         attackCol.SetActive(false);
         gameObject.SetActive(false);
     }

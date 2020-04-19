@@ -18,7 +18,7 @@ public class TrainManager : MonoBehaviour
     
     void Start()
     {
-        for (int i = 0; i < 4; i++) //i<mons.Length
+        for (int i = 0; i < mons.Length; i++) //i<mons.Length
         {
             list.Clear();
             if (i == 0 || i == 1 || i == 2 || i == 3) //
