@@ -25,14 +25,14 @@ public class HandTrap : MonoBehaviour
         float n1, n2, n3;
         if (!isDown)
         {
-            n1 = 2.4f;
-            n2 = 1.5f;
+            n1 = 1.5f;
+            n2 = 0.75f;
             n3 = 0.573194f;
         }
         else
         {
-            n1 = -2.4f;
-            n2 = -1.5f;
+            n1 = -1f;
+            n2 = -0.5f;
             n3 = -0.573194f;
         }
 
@@ -93,7 +93,7 @@ public class HandTrap : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         isGo = false;
     }
 }

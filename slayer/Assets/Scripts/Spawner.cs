@@ -65,12 +65,14 @@ public class Spawner : MonoBehaviour
                 GameObject oni = null;
                
                 if (isHand)
-                {
-                    float r = Random.Range(Player.instance.transform.position.x-HandSpawnValue*0.1f,
-                        Player.instance.transform.position.x + HandSpawnValue);
-                    Instantiate(onis[0], new Vector3(r , transform.position.y, 0),
-                        Quaternion.identity); 
-                }
+
+                    if (Player.instance)
+                    {
+                        float r = Random.Range(Player.instance.transform.position.x - HandSpawnValue * 0.1f,
+                            Player.instance.transform.position.x + HandSpawnValue);
+                        Instantiate(onis[0], new Vector3(r, transform.position.y, 0),
+                            Quaternion.identity);
+                    }
                 else
                 {
                     float r = Random.Range(GameObject.Find("Min").transform.position.x+3,

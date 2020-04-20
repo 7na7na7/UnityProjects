@@ -124,6 +124,21 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
                 bestScoreText.text = "E-Z";
             }
         }
+        else if (targetIndex == 2)//해야됨
+        {
+            if (difficulty==1)
+            {
+                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2", 0);
+            }
+            else if(difficulty==2)
+            {
+                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2_H", 0);
+            }
+            else
+            {
+                bestScoreText.text = "E-Z";
+            }
+        }
     }
     public void OnBeginDrag(PointerEventData eventData) => curPos = SetPos();
     

@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+  public int trainTime = 0;
   public int bossCount = 0;
   public GameObject boss;
   public int bossTime;
@@ -31,6 +32,17 @@ public class GameManager : MonoBehaviour
     instance = this;
   }
 
+  IEnumerator timer()
+  {
+    while (true)
+    {
+      yield return new WaitForSeconds(1);
+      if (!isGameOver)
+        trainTime++;
+      else
+        break;
+    }
+  }
   private void Start()
   {
     FadePanel.instance?.UnFade();
@@ -40,6 +52,8 @@ public class GameManager : MonoBehaviour
       StartCoroutine(Game1());
     else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name=="Main2_H"||SceneManager.GetActiveScene().name=="Main2_EZ")
       StartCoroutine(Game2());
+    else if (SceneManager.GetActiveScene().name == "Main3")
+      StartCoroutine(timer());
   }
 
   public void StopFalling()
