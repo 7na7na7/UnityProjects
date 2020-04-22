@@ -118,7 +118,7 @@ public class ScorePanel : MonoBehaviour
                 GooglePlayManager.instance.Achievement8();
         }
 
-        if (killedOniv >= 300)
+        if (killedOniv >= 200)
         {
             if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H"||SceneManager.GetActiveScene().name=="Main_EZ") 
                 GooglePlayManager.instance.Achievement6();

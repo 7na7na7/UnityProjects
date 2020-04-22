@@ -5751,6 +5751,8 @@ MonoBehaviour:
   delayMinusValue: 0.03
   delayMinusDuration: 10
   isFalling: 0
+  isHand: 0
+  HandSpawnValue: 0
   minDelay: 2.7
   maxDelay: 3.7
   onis:
@@ -6295,6 +6297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19649be08a0023f45ae7ec476e89151a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTrain: 0
   bestScore: {fileID: 838450584}
   bonusText1: {fileID: 2119136006}
   bonusText2: {fileID: 586777411}
@@ -7122,7 +7125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mp: {fileID: 790190207}
-  duration: 0.35
 --- !u!1 &795311215
 GameObject:
   m_ObjectHideFlags: 0
@@ -7173,6 +7175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a08098865c43640b5b87c7c8602204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDream: 0
   speed: 0.02
 --- !u!114 &795311218
 MonoBehaviour:
@@ -7424,6 +7427,8 @@ MonoBehaviour:
   delayMinusValue: 0.03
   delayMinusDuration: 10
   isFalling: 0
+  isHand: 0
+  HandSpawnValue: 0
   minDelay: 2.7
   maxDelay: 3.7
   onis:
@@ -7796,6 +7801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79874a6799eb2c24fae733b8760765b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trainTime: 0
   bossCount: 2
   boss: {fileID: 8413693056172056092, guid: 878943c292bc8f24f832386c31823db8, type: 3}
   bossTime: 35
@@ -8279,6 +8285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a08098865c43640b5b87c7c8602204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDream: 0
   speed: 0.04
 --- !u!114 &1033945276
 MonoBehaviour:
@@ -9004,7 +9011,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9778,6 +9785,8 @@ MonoBehaviour:
   delayMinusValue: 0.03
   delayMinusDuration: 10
   isFalling: 1
+  isHand: 0
+  HandSpawnValue: 0
   minDelay: 3.7
   maxDelay: 5.7
   onis:
@@ -15095,6 +15104,9 @@ MonoBehaviour:
   Skill2Sound: {fileID: 0}
   LockedSound: {fileID: 0}
   bestScoreSound: {fileID: 0}
+  kaguraONSound: {fileID: 0}
+  zenichuComboSound: {fileID: 0}
+  inoskaeComboSound: {fileID: 0}
   savedBgm: 0
   savedBgs: 0
 --- !u!1 &1818758089

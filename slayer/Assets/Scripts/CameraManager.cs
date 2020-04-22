@@ -34,7 +34,8 @@ public class CameraManager : MonoBehaviour
 
     public void meetEnmuFunc()
     {
-        StopAllCoroutines();
+        Player.instance.Stop();
+        Player.instance.StopAllCoroutines();
         StartCoroutine(meetEnmu());
     }
    IEnumerator meetEnmu()
@@ -52,10 +53,12 @@ public class CameraManager : MonoBehaviour
         print("6");
         ChangeBound();
         print("7");
-        Player.instance.transform.position = GameObject.Find("BossTr").transform.position;
+        Player.instance.transform.position = GameObject.Find("PlayerTr").transform.position;
         GameObject.Find("Max").transform.Translate(0,5.7f,0);
         FadePanel.instance.UnFade();
         Player.instance.canTouch = true;
+        
+        GameManager.instance.Game3Func();
     }
     public void ChangeBound()
     {
@@ -128,12 +131,10 @@ public class CameraManager : MonoBehaviour
     public void sizeup()
     {
         StopAllCoroutines();
-       StartCoroutine(sizeupCor());
-    }
-    public void sizeup2()
-    {
-        StopAllCoroutines();
-        StartCoroutine(sizeupCor2());
+        if(Player.instance.playerIndex!=2) 
+            StartCoroutine(sizeupCor());
+        else
+            StartCoroutine(sizeupCor2());
     }
     public void sizedown()
     {
@@ -218,7 +219,7 @@ public class CameraManager : MonoBehaviour
             if (Player.instance.playerIndex == 2)
             {
                 min = 8.4f;
-                if (SceneManager.GetActiveScene().name == "Main3")
+                if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
                     min++;
                 while (theCamera.orthographicSize>min)
                 {
@@ -235,7 +236,7 @@ public class CameraManager : MonoBehaviour
             else
             {
                 min = 6.3f;
-                if (SceneManager.GetActiveScene().name == "Main3")
+                if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
                     min++;
                 while (theCamera.orthographicSize>min)
                 {
@@ -253,7 +254,7 @@ public class CameraManager : MonoBehaviour
         else
         {
             min = 4.3f;
-            if (SceneManager.GetActiveScene().name == "Main3")
+            if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
                 min++;
             while (theCamera.orthographicSize>min)
             {

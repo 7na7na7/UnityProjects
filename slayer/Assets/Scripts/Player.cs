@@ -329,7 +329,7 @@ public class Player : MonoBehaviour
             }
             else if (playerIndex == 2)
             {
-                camera.sizeup2();
+                camera.sizeup();
                 if (!isFirst)
                 {
                     isFirst = true;
@@ -529,6 +529,8 @@ public class Player : MonoBehaviour
     {
         if (!isGameOver)
         {
+            if(SceneManager.GetActiveScene().name=="Main3"||SceneManager.GetActiveScene().name=="Main3_H"||SceneManager.GetActiveScene().name=="Main3_EZ")
+                CameraManager.instance.StopAllCoroutines();
             isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);
             StopAllCoroutines();

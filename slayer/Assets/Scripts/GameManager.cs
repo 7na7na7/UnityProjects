@@ -161,6 +161,17 @@ public class GameManager : MonoBehaviour
       } 
     }
   }
+
+  public void Game3Func()
+  {
+    StartCoroutine(Game3());
+  }
+  IEnumerator Game3()
+  {
+    Instantiate(boss,GameObject.Find("BossTr").transform.position,Quaternion.identity);
+    yield return new WaitUntil(() => bossDead);
+    print("끝");
+  }
   public void pause()
   {
     if (!isGameOver)

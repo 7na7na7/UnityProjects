@@ -50,6 +50,8 @@ public class bossScript : MonoBehaviour
             StartCoroutine(Go());
         else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_H"||SceneManager.GetActiveScene().name == "Main2_EZ")
             StartCoroutine(Go2());
+        else if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
+            StartCoroutine(Go3());
     }
 
     IEnumerator Go()
@@ -145,6 +147,27 @@ public class bossScript : MonoBehaviour
         }   
     }
 
+    IEnumerator Go3()
+    {
+        transform.SetParent(GameObject.Find("enmuStage").transform);
+        CameraManager.instance.rotSpeed = CameraManager.instance.savedrotSpeed;
+        int t = (int)Time.timeScale;
+        Time.timeScale = 0;
+        CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,-10);
+        CameraManager.instance.OnBound();
+        SoundManager.instance.heal();
+        while (slider.value<slider.maxValue)
+        {
+            slider.value += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        CameraManager.instance.canFollow = true;
+        Player.instance.canTouch = true;
+        Time.timeScale = t;
+        CameraManager.instance.StopAllCoroutines();
+        CameraManager.instance.theCamera.orthographicSize = 6;
+        canMove = true;
+    }
     IEnumerator webAttackCor()
     {
         SoundManager.instance.Skill1();
@@ -338,7 +361,7 @@ public class bossScript : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(false);
     }
 
-    public void dead()
+    public void dead(bool isHead)
     {
         if (SceneManager.GetActiveScene().name == "Main" ||
                         SceneManager.GetActiveScene().name == "Main_H" ||
@@ -380,7 +403,10 @@ public class bossScript : MonoBehaviour
                         FindObjectOfType<GameManager>().bossDead = true;
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
-                        Instantiate(headEffect, transform.position, Quaternion.identity);
+                        if(isHead) 
+                            Instantiate(headEffect, transform.position, Quaternion.identity);
+                        else
+                            Instantiate(effect, transform.position, Quaternion.identity);
                         mpSlider.instance.bossCut();
                         if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_EZ"||SceneManager.GetActiveScene().name == "Main2_H")
                         {
@@ -408,15 +434,19 @@ public class bossScript : MonoBehaviour
                     ScoreMgr.instance.headshot++;
                     SoundManager.instance.head();
                     slider.value -= 2;
+                    //플레이어가 이노스케라면 보스가 데미지 더 입음
+                    /*
                     if (Player.instance.playerIndex == 2)
                         slider.value--;
+                        */
+                    dead(true);
                 }
                 else
                 {
                     SoundManager.instance.body();
                     slider.value--;
+                    dead(false);
                 }
-                dead();
             } 
             dmgDelay = 0; 
             Player.instance.ComboText(isHead); 
