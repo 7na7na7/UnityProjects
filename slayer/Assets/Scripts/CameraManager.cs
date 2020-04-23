@@ -39,20 +39,18 @@ public class CameraManager : MonoBehaviour
         StartCoroutine(meetEnmu());
     }
    IEnumerator meetEnmu()
-    {
-        print("1");
+   {
+       GameObject[] mons = GameObject.FindGameObjectsWithTag("hand");
+       foreach (GameObject mon in mons)
+       {
+           Destroy(mon);
+       }
         GameManager.instance.StopFalling();
-        print("2");
         Player.instance.canTouch = false;
-        print("3");
         FadePanel.instance.Fade();
         yield return new WaitForSeconds(1f);
-        print("4");
-        print("5");
         //yield return new WaitForSeconds(1f);
-        print("6");
         ChangeBound();
-        print("7");
         Player.instance.transform.position = GameObject.Find("PlayerTr").transform.position;
         GameObject.Find("Max").transform.Translate(0,5.7f,0);
         FadePanel.instance.UnFade();

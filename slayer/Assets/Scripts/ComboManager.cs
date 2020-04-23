@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ComboManager : MonoBehaviour
 {
@@ -18,11 +19,13 @@ public class ComboManager : MonoBehaviour
 
     public void comboIniitailize()
     {
-        StopAllCoroutines();
-        StartCoroutine(comboInitialization());
+      
+            StopAllCoroutines();
+            StartCoroutine(comboInitialization());
     }
     IEnumerator comboInitialization()
     {
+        int value = 25;
         canCombo = true;
         comboCount++;
         yield return new WaitForSeconds(0.2f);
@@ -31,22 +34,29 @@ public class ComboManager : MonoBehaviour
         Time.timeScale = 1;
         if (comboCount >= 2)
         {
-            if(comboCount>=6)
+            if (comboCount >= 6)
                 GooglePlayManager.instance.Achievement1();
-            if(comboCount>=12)
+            if (comboCount >= 12)
                 GooglePlayManager.instance.Achievement2();
-            if(comboCount>=24)
+            if (comboCount >= 24)
                 GooglePlayManager.instance.Achievement3();
-            
+
             ScoreMgr.instance.comboInitialize(comboCount);
-            int value = 25;
             value += comboCount / 5 * 25;
-            ScoreMgr.instance.scoreUp(comboCount,value*comboCount,true);
-            
-            if(Player.instance.playerIndex==1) //플레이어가 탄지로면 히노카미 카구라 사용
+
+            if (Player.instance.playerIndex == 1) //플레이어가 탄지로면 히노카미 카구라 사용
                 kagura.instance.valueUp(comboCount);
         }
+
         comboCount = 0;
+        if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
+            SceneManager.GetActiveScene().name == "Main3_H")
+        {
+        }
+        else
+        {
+            ScoreMgr.instance.scoreUp(comboCount, value * comboCount, true);
+        }
     }
 
     public void ComboEnd()

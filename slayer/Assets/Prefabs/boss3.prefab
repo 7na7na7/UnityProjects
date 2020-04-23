@@ -742,6 +742,10 @@ MonoBehaviour:
   RedwebAttack: {fileID: 0}
   webAttack2: {fileID: 0}
   RedwebAttack2: {fileID: 0}
+  train1: {fileID: 2426927108078511373, guid: 59742dc1d2c757347b0a30a92d603f75, type: 3}
+  train2: {fileID: 3968463938335330997, guid: 32c28eb65aad8684b951084bb14e1b33, type: 3}
+  trainAttack1Delay: 3
+  trainAttack2Delay: 4
 --- !u!50 &7260873942339216898
 Rigidbody2D:
   serializedVersion: 4

@@ -67,7 +67,8 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if (transform.position.x > 250)
+        //if (transform.position.x > 250)
+        if (transform.position.x > 50)
         {
             if (!isMeetEnmu)
             {
@@ -463,6 +464,7 @@ public class Player : MonoBehaviour
 
             if (hit.CompareTag("dream"))
             {
+                print("Dream");
                 GameObject.Find("DreamPanel").gameObject.GetComponent<fade>().Dream();
             }
         }
@@ -482,10 +484,11 @@ public class Player : MonoBehaviour
             else
                 dir = new Vector2(0.3f, dir.y);
         }
-        if (dir.y < 0.3f)
+        if (dir.y <= 0.3f)
                 dir = new Vector2(dir.x, 0.3f);
+        
 
-            rigid.velocity = Vector2.zero;
+        rigid.velocity = Vector2.zero;
         rigid.bodyType = RigidbodyType2D.Dynamic;
         rigid.velocity = dir * nuckbackforce;
         
@@ -512,8 +515,9 @@ public class Player : MonoBehaviour
                 else
                     dir = new Vector2(0.3f, dir.y);
             }
-            if (dir.y < 0.3f)
+            if (dir.y <= 0.3f)
                 dir = new Vector2(dir.x, 0.3f);
+         
             rigid.velocity = Vector2.zero;
             rigid.bodyType = RigidbodyType2D.Dynamic;
             rigid.velocity = dir * nuckbackforce;

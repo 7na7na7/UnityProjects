@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
@@ -15,22 +16,37 @@ public class ScoreText : MonoBehaviour
 
     private void Update()
     {
-        Txt.text ="Score : "+ ScoreMgr.instance.score.ToString();
+        if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
+            SceneManager.GetActiveScene().name == "Main3_H")
+        {
+            Txt.text = "Time : " + GameManager.instance.trainTime / 60 + "Min " + GameManager.instance.trainTime % 60+"Sec";
+        }
+        else
+        {
+            Txt.text ="Score : "+ ScoreMgr.instance.score.ToString();   
+        }
     }
     
     public IEnumerator size()
-    {
-        while (Txt.fontSize<280)
+    { if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
+          SceneManager.GetActiveScene().name == "Main3_H")
         {
-            Txt.fontSize += 2;
-            
-            yield return new WaitForSeconds(delay);
         }
-        while (Txt.fontSize>250)
+        else
         {
-            Txt.fontSize -= 2;
-            
-            yield return new WaitForSeconds(delay);
+            while (Txt.fontSize < 280)
+            {
+                Txt.fontSize += 2;
+
+                yield return new WaitForSeconds(delay);
+            }
+
+            while (Txt.fontSize > 250)
+            {
+                Txt.fontSize -= 2;
+
+                yield return new WaitForSeconds(delay);
+            }
         }
     }
 }

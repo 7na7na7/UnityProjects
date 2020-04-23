@@ -26,6 +26,10 @@ public class bossScript : MonoBehaviour
     public GameObject RedwebAttack;
     public GameObject webAttack2;
     public GameObject RedwebAttack2;
+    public GameObject train1;
+    public GameObject train2;
+    public float trainAttack1Delay = 0;
+    public float trainAttack2Delay = 0;
     private Color color;
     private void Start()
     {
@@ -149,6 +153,8 @@ public class bossScript : MonoBehaviour
 
     IEnumerator Go3()
     {
+        StartCoroutine(trainAttack1());
+        StartCoroutine(trainAttack2());
         transform.SetParent(GameObject.Find("enmuStage").transform);
         CameraManager.instance.rotSpeed = CameraManager.instance.savedrotSpeed;
         int t = (int)Time.timeScale;
@@ -167,6 +173,36 @@ public class bossScript : MonoBehaviour
         CameraManager.instance.StopAllCoroutines();
         CameraManager.instance.theCamera.orthographicSize = 6;
         canMove = true;
+        while (true)
+        {
+            if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                yield return new WaitForSeconds(patternDelay*0.75f);
+            else
+                yield return new WaitForSeconds(patternDelay);
+            int r = 0;
+
+            //대충 startcorutine
+            yield return new WaitUntil(()=>canGo);
+            canGo = false;
+        }   
+    }
+
+    IEnumerator trainAttack2()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(trainAttack2Delay,trainAttack2Delay+1));
+            Instantiate(train2,new Vector3(Random.Range(GameObject.Find("eyeMin").transform.position.x,GameObject.Find("eyeMax").transform.position.x),
+                Random.Range(GameObject.Find("eyeMin").transform.position.y,GameObject.Find("eyeMax").transform.position.y),0),Quaternion.identity);
+        }
+    }
+    IEnumerator trainAttack1()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(trainAttack1Delay,trainAttack1Delay+1));
+            Instantiate(train1);
+        }
     }
     IEnumerator webAttackCor()
     {
