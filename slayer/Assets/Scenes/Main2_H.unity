@@ -5290,6 +5290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ccdb0b23026d34db8e3dfda7e8641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 8300000, guid: f9b1d6f9203a029409dd3f903a194fe1, type: 3}
   bgmValue: 1
 --- !u!82 &253863737
 AudioSource:
@@ -7733,6 +7734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79874a6799eb2c24fae733b8760765b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canChangeTimeScale: 1
   trainTime: 0
   bossCount: 2
   boss: {fileID: 3373281082922345524, guid: da437ed53c86bf943a21546fca2e8568, type: 3}
@@ -8202,7 +8204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59912, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033945275
@@ -15026,6 +15028,7 @@ MonoBehaviour:
   kaguraONSound: {fileID: 0}
   zenichuComboSound: {fileID: 0}
   inoskaeComboSound: {fileID: 0}
+  steamSound: {fileID: 0}
   savedBgm: 1
   savedBgs: 1
 --- !u!1 &1818758089
@@ -15428,7 +15431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59912, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1992018349

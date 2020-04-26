@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class kagura : MonoBehaviour
@@ -22,7 +23,13 @@ public class kagura : MonoBehaviour
         if (!isKagura)
         {
             if (v == 1)
-                slider.value += 1f;
+            {
+                if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
+                    SceneManager.GetActiveScene().name == "Main3_H")
+                    slider.value += 2;
+                else
+                    slider.value += 1;
+            }
             else
             {
                 if (v >= 10)
@@ -31,6 +38,16 @@ public class kagura : MonoBehaviour
                     slider.value += v * 2;
                 else if (v >= 2)
                     slider.value += v*1.5f;
+                if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
+                    SceneManager.GetActiveScene().name == "Main3_H")
+                {
+                    if (v >= 10)
+                        slider.value += v * 2.5f;
+                    else if (v >= 5)
+                        slider.value += v * 2;
+                    else if (v >= 2)
+                        slider.value += v*1.5f;
+                }
             }
             if (slider.value >= slider.maxValue)
             {

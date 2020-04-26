@@ -26,7 +26,7 @@ public class fade : MonoBehaviour
    IEnumerator dreamCor()
    {
       fadeinNow();
-      yield return new WaitForSeconds(1.5f);
+      yield return new WaitForSeconds(1.25f);
       fadeoutNow();
    }
    public void  fadeinNow()

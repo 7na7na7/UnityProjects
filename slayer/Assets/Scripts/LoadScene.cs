@@ -14,7 +14,10 @@ public class LoadScene : MonoBehaviour
             Title();
       }
    }
-
+   public void cafe()
+   {
+      Application.OpenURL("https://cafe.naver.com/onidefence");
+   }
    public void Title()
    {
       SoundManager.instance.select();

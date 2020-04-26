@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
+    private bool isEnmu = false;
     public bool isSpider = false;
     public bool canSpawn = true;
     public float delayMinusValue=0;
@@ -59,21 +61,34 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
+            yield return new WaitForSeconds(Random.Range(minDelay, maxDelay)*2);
             if (canSpawn)
             {
                 GameObject oni = null;
-               
-                if (isHand)
 
-                    if (Player.instance)
+                if (isHand)
+                {
+                    if (isEnmu)
                     {
-                        float r = Random.Range(Player.instance.transform.position.x - HandSpawnValue * 0.1f,
-                            Player.instance.transform.position.x + HandSpawnValue);
-                        Instantiate(onis[0], new Vector3(r, transform.position.y, 0),
-                            Quaternion.identity);
+                        if (Player.instance)
+                        {
+                            float r = Random.Range(468f,494f);
+                            Instantiate(onis[0], new Vector3(r, transform.position.y, 0),
+                                Quaternion.identity);
+                        }
                     }
-                else
+                    else
+                    {
+                        if (Player.instance)
+                        {
+                            float r = Random.Range(Player.instance.transform.position.x - HandSpawnValue * 0.1f,
+                                Player.instance.transform.position.x + HandSpawnValue);
+                            Instantiate(onis[0], new Vector3(r, transform.position.y, 0),
+                                Quaternion.identity);
+                        }   
+                    }
+                }
+            else
                 {
                     float r = Random.Range(GameObject.Find("Min").transform.position.x+3,
                         GameObject.Find("Max").transform.position.x-3);
@@ -102,5 +117,11 @@ public class Spawner : MonoBehaviour
                 maxDelay -= delayMinusValue;
             }
         }
+    }
+
+    public void enmu()
+    {
+        transform.Translate(0,6,0);
+        isEnmu = true;
     }
 }

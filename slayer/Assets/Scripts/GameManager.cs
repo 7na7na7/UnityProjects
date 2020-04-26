@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+  public bool canChangeTimeScale = true;
   public int trainTime = 0;
   public int bossCount = 0;
   public GameObject boss;
@@ -32,15 +33,57 @@ public class GameManager : MonoBehaviour
     instance = this;
   }
 
+  public void canChangeFunc()
+  {
+    StartCoroutine(canChangeCor());
+  }
+ public IEnumerator canChangeCor()
+  {
+    yield return new WaitForSeconds(1f);
+    GameManager.instance.canChangeTimeScale = true;
+  }
   IEnumerator timer()
   {
     while (true)
     {
       yield return new WaitForSeconds(1);
       if (!isGameOver)
-        trainTime++;
+        trainTime += 1;
       else
         break;
+    }
+  }
+
+  public void bossDie()
+  {
+    StartCoroutine(scoreCor());
+  }
+  IEnumerator scoreCor()
+  {
+    Player.instance.Stop();
+    Player.instance.canTouch = false;
+    StopFalling();
+
+    GameObject.Find("DreamPanel").gameObject.SetActive(false);
+    
+    GameObject[] mons = GameObject.FindGameObjectsWithTag("hand");
+    foreach (GameObject mon in mons)
+    {
+      Destroy(mon);
+    }
+    GameObject[] mons2 = GameObject.FindGameObjectsWithTag("damage");
+    foreach (GameObject mon2 in mons2)
+    {
+      Destroy(mon2);
+    }
+    Player.instance.Stop();
+    yield return new WaitForSeconds(0.5f);
+    if (!isGameOver)
+    {
+      isGameOver = true;
+      StopAllCoroutines();
+      FindObjectOfType<GameManager>().isGameOver = true;
+      FindObjectOfType<GameOverManager>().GameoverFunc(gameObject);
     }
   }
   private void Start()
@@ -52,7 +95,7 @@ public class GameManager : MonoBehaviour
       StartCoroutine(Game1());
     else if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name=="Main2_H"||SceneManager.GetActiveScene().name=="Main2_EZ")
       StartCoroutine(Game2());
-    else if (SceneManager.GetActiveScene().name == "Main3")
+    else if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
       StartCoroutine(timer());
   }
 
@@ -170,7 +213,7 @@ public class GameManager : MonoBehaviour
   {
     Instantiate(boss,GameObject.Find("BossTr").transform.position,Quaternion.identity);
     yield return new WaitUntil(() => bossDead);
-    print("끝");
+    bossDie();
   }
   public void pause()
   {
@@ -179,25 +222,23 @@ public class GameManager : MonoBehaviour
       SoundManager.instance.select();
       if (isPause)
       {
-        if (Time.timeScale == 0)
-        {
+     
           GameObject.Find("BGM").GetComponent<AudioSource>().UnPause();
           pausePanel.SetActive(false);
           Time.timeScale = 1;
           pauseBtn.GetComponent<Image>().sprite = goSprite;
           isPause = false;
-        }
+        
       }
       else //일시정지
       {
-        if (Time.timeScale == 1)
-        {
+       
           GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
           pausePanel.SetActive(true);
           Time.timeScale = 0;
           pauseBtn.GetComponent<Image>().sprite = pauseSprite;
           isPause = true;
-        }
+        
       }
     }
   }

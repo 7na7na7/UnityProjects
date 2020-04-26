@@ -30,8 +30,9 @@ public class ComboManager : MonoBehaviour
         comboCount++;
         yield return new WaitForSeconds(0.2f);
         yield return new WaitForSeconds(comboDelay);
+        if (GameManager.instance.canChangeTimeScale)
+            Time.timeScale = 1;
         canCombo = false;
-        Time.timeScale = 1;
         if (comboCount >= 2)
         {
             if (comboCount >= 6)
@@ -46,28 +47,36 @@ public class ComboManager : MonoBehaviour
 
             if (Player.instance.playerIndex == 1) //플레이어가 탄지로면 히노카미 카구라 사용
                 kagura.instance.valueUp(comboCount);
+            
+            if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
+                SceneManager.GetActiveScene().name == "Main3_H")
+            {
+            }
+            else
+            {
+                ScoreMgr.instance.scoreUp(comboCount, value * comboCount, true);
+            }
         }
-
         comboCount = 0;
+    }
+
+    public void ComboEnd()
+    {
         if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
             SceneManager.GetActiveScene().name == "Main3_H")
         {
         }
         else
         {
-            ScoreMgr.instance.scoreUp(comboCount, value * comboCount, true);
+            if (comboCount >= 2)
+            {
+                ScoreMgr.instance.comboInitialize(comboCount);
+                ScoreMgr.instance.comboInitialize(comboCount);
+                int value = 25;
+                value += comboCount / 5 * 25;
+                ScoreMgr.instance.scoreUp(comboCount,value*comboCount,true);
+            }
+            comboCount = 0;   
         }
-    }
-
-    public void ComboEnd()
-    {
-        if (comboCount >= 2)
-        {
-            ScoreMgr.instance.comboInitialize(comboCount);
-            int value = 25;
-            value += comboCount / 5 * 25;
-            ScoreMgr.instance.scoreUp(comboCount,value*comboCount,true);
-        }
-        comboCount = 0;
     }
 }

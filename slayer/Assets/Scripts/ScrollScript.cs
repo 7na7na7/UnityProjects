@@ -22,6 +22,8 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     private int targetIndex;
     public GameObject stage2panel;
     public Text stage2Text;
+    public GameObject stage3panel;
+    public Text stage3Text;
     void Start()
     {
         Alpha125.r = 255;
@@ -82,6 +84,16 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             stage2panel.SetActive(false);
             stage2Text.text = "나타구모 산";
         }
+        if (GooglePlayManager.instance.canStage2 == 0)
+        {
+            stage3panel.SetActive(true);
+            stage3Text.text = "[루이 처치 시 잠금 해제]";
+        }
+        else
+        {
+            stage3panel.SetActive(false);
+            stage3Text.text = "무한열차";
+        }
         if (!isDrag)
         {
             scrollbar.value = Mathf.Lerp(scrollbar.value, targetPos, 0.1f);
@@ -128,11 +140,19 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         {
             if (difficulty==1)
             {
-                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2", 0);
+                float a = PlayerPrefs.GetFloat("fastTimeKeyN", 0);
+                if (a == 0)
+                    bestScoreText.text = "최단시간 : 미기록";
+                else
+                    bestScoreText.text = "최단시간 : " + a;
             }
             else if(difficulty==2)
             {
-                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2_H", 0);
+                float a = PlayerPrefs.GetFloat("fastTimeKeyH", 0);
+                if (a == 0)
+                    bestScoreText.text = "최단시간 : 미기록";
+                else
+                    bestScoreText.text = "최단시간 : " + a;
             }
             else
             {
@@ -250,26 +270,33 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     }
     IEnumerator delayChange3()
     {
-        if (difficulty==1)
+        if (GooglePlayManager.instance.canStage2 == 0)
         {
-            SoundManager.instance.tsuzumi(1);
-            FadePanel.instance.Fade();
-            yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("Main3");
-        }
-        else if(difficulty==2)
-        {
-            SoundManager.instance.tsuzumi(1);
-            FadePanel.instance.Fade();
-            yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("Main3");
+            SoundManager.instance.Locked();
         }
         else
         {
-            SoundManager.instance.tsuzumi(1);
-            FadePanel.instance.Fade();
-            yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("Main3");
+            if (difficulty==1)
+            {
+                SoundManager.instance.steam();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main3");
+            }
+            else if(difficulty==2)
+            {
+                SoundManager.instance.steam();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main3_H");
+            }
+            else
+            {
+                SoundManager.instance.steam();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main3_EZ");
+            }
         }
     }
 }

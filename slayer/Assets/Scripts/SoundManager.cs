@@ -28,6 +28,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip kaguraONSound;
     public AudioClip zenichuComboSound;
     public AudioClip inoskaeComboSound;
+    public AudioClip steamSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -52,9 +53,13 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void steam()
+    {
+        audio.PlayOneShot(steamSound,savedBgs);
+    }
     public void zenichuCombo()
     {
-        audio.PlayOneShot(zenichuComboSound,savedBgs*3);
+        audio.PlayOneShot(zenichuComboSound,savedBgs*2);
     }
 
     public void inoskaeCombo()

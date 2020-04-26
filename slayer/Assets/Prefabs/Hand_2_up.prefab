@@ -174,6 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e63d0e85efc6bc46aa61f3767bce7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spr: {fileID: 0}
+  bossObj: {fileID: 0}
+  isBossStage: 0
   isDown: 0
   speed: 16
 --- !u!1 &5373782561311343715
@@ -207,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 5373782561311343715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1.7761, z: 1.7761}
+  m_LocalScale: {x: 0.75, y: 1.7761, z: 1.7761}
   m_Children: []
   m_Father: {fileID: 4722801482650357627}
   m_RootOrder: 0

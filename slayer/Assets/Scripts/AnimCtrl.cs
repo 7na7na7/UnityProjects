@@ -23,6 +23,13 @@ public class AnimCtrl : MonoBehaviour
             GetComponent<Player>().trail.GetComponent<TrailRenderer>().emitting = false;
             GetComponent<Player>().trail2.GetComponent<TrailRenderer>().emitting = false;
             anim.Play("fallAnim");
+            if (GameManager.instance.canChangeTimeScale)
+            {
+                if (GameManager.instance.isPause)
+                    Time.timeScale = 0;
+                else
+                    Time.timeScale = 1;   
+            }
         }
     }
 

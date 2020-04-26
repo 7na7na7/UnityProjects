@@ -4,31 +4,32 @@ using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
-    public int rot=1;
+    public int rot = 1;
     public float rotSpeed;
     public float fastrotSpeed;
     public float savedrotSpeed;
     public float delay;
     public float speed = 2f;
-   public GameObject target; //카메라가 따라갈 대상
+    public GameObject target; //카메라가 따라갈 대상
     public GameObject savedTarget;
     public BoxCollider2D bound; //카메라가 나가지 못하는 영역을 박스 콜라이더로 받음
 
     private Vector3 targetPosition; //대상의 현재 값
     private Vector3 minBound, maxBound; //박스 콜라이더 영역의 최소/최대 xyz값을 지님
     private float halfWidth, halfHeight; //카메라의 반너비, 반높이 값을 지닐 변수
-   public Camera theCamera; //카메라의 반높이값을 구할 속성을 이용하기 위한 변수
+    public Camera theCamera; //카메라의 반높이값을 구할 속성을 이용하기 위한 변수
     public static CameraManager instance;
     public GameObject posGO;
     public bool canFollow = true;
     private bool canGo = false;
+
     private void Start()
     {
         instance = this;
         theCamera = GetComponent<Camera>();
         minBound = bound.bounds.min; //minbound에 box콜라이더의 영역 최솟값 대입
         maxBound = bound.bounds.max;
-        savedrotSpeed=rotSpeed;
+        savedrotSpeed = rotSpeed;
         //theCamera.orthographicSize *= 2;
     }
 
@@ -38,37 +39,43 @@ public class CameraManager : MonoBehaviour
         Player.instance.StopAllCoroutines();
         StartCoroutine(meetEnmu());
     }
-   IEnumerator meetEnmu()
-   {
-       GameObject[] mons = GameObject.FindGameObjectsWithTag("hand");
-       foreach (GameObject mon in mons)
-       {
-           Destroy(mon);
-       }
-        GameManager.instance.StopFalling();
+
+    IEnumerator meetEnmu()
+    {
+        GameObject[] mons = GameObject.FindGameObjectsWithTag("hand");
+        foreach (GameObject mon in mons)
+        {
+            Destroy(mon);
+        } 
+        if(SceneManager.GetActiveScene().name=="Main3_EZ") 
+            GameManager.instance.StopFalling();
+        FindObjectOfType<Spawner>().enmu();
         Player.instance.canTouch = false;
         FadePanel.instance.Fade();
         yield return new WaitForSeconds(1f);
         //yield return new WaitForSeconds(1f);
         ChangeBound();
         Player.instance.transform.position = GameObject.Find("PlayerTr").transform.position;
-        GameObject.Find("Max").transform.Translate(0,5.7f,0);
+        GameObject.Find("Max").transform.Translate(0, 5.7f, 0);
         FadePanel.instance.UnFade();
         Player.instance.canTouch = true;
-        
+
         GameManager.instance.Game3Func();
     }
+
     public void ChangeBound()
     {
         minBound = GameObject.Find("CamBound_2").GetComponent<BoxCollider2D>().bounds.min;
         maxBound = GameObject.Find("CamBound_2").GetComponent<BoxCollider2D>().bounds.max;
     }
+
     public void GameStart()
     {
-        target=GameObject.FindWithTag("Player");
+        target = GameObject.FindWithTag("Player");
         savedTarget = target;
         canGo = true;
     }
+
     void Update()
     {
         if (canGo)
@@ -119,6 +126,7 @@ public class CameraManager : MonoBehaviour
             }
         }
     }
+
     public void SetBound(BoxCollider2D newBound)
     {
         bound = newBound;
@@ -129,16 +137,18 @@ public class CameraManager : MonoBehaviour
     public void sizeup()
     {
         StopAllCoroutines();
-        if(Player.instance.playerIndex!=2) 
+        if (Player.instance.playerIndex != 2)
             StartCoroutine(sizeupCor());
         else
             StartCoroutine(sizeupCor2());
     }
+
     public void sizedown()
     {
         StopAllCoroutines();
         StartCoroutine(sizedownCor());
     }
+
     public void gameOver(GameObject g)
     {
         StopAllCoroutines();
@@ -148,7 +158,7 @@ public class CameraManager : MonoBehaviour
     public IEnumerator sizeupCor()
     {
         int max = 7;
-        if (SceneManager.GetActiveScene().name == "Main3")
+        if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_EZ"||SceneManager.GetActiveScene().name == "Main3_H")
             max = 8;
         while (theCamera.orthographicSize<max)
         {
@@ -160,7 +170,7 @@ public class CameraManager : MonoBehaviour
     public IEnumerator sizeupCor2()
     {
         float max = 9.1f;
-        if (SceneManager.GetActiveScene().name == "Main3")
+        if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_EZ"||SceneManager.GetActiveScene().name == "Main3_H")
             max = 10.1f;
         while (theCamera.orthographicSize<max)
         {
@@ -172,7 +182,7 @@ public class CameraManager : MonoBehaviour
     public IEnumerator sizedownCor()
     {
         int min = 5;
-        if (SceneManager.GetActiveScene().name == "Main3")
+        if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_EZ"||SceneManager.GetActiveScene().name == "Main3_H")
             min = 6;
         while (theCamera.orthographicSize>min)
         {
@@ -310,8 +320,12 @@ public class CameraManager : MonoBehaviour
         Player.instance.StopAllCoroutines();
         StartCoroutine(targetChange(g));
     }
+
+   
     public IEnumerator targetChange(GameObject g)
     {
+        GameManager.instance.canChangeTimeScale = false;
+GameManager.instance.canChangeFunc();
         posGO.transform.position = g.transform.position;
         Player.instance.canTouch = false;
         theCamera.orthographicSize = 5;

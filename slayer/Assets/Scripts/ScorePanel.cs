@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,18 +19,28 @@ public class ScorePanel : MonoBehaviour
     
     private string highScoreKey1 = "highScoreKey1";
     private string highScoreKey2 = "highScoreKey2";
+    private string fastTimeKeyN = "fastTimeKeyN";
     private int highScore1;
     private int highScore2;
+    private int Traintime;
     private string highScoreKey1_H = "highScoreKey1_H";
     private string highScoreKey2_H = "highScoreKey2_H";
+    private string fastTimeKeyH = "fastTimeKeyH";
     private int highScore1_H;
     private int highScore2_H;
+    private int Traintime_H;
     private string highComboKey1 = "highComboKey1";
     private string highComboKey2 = "highComboKey2";
     private int highCombo1;
     private int highCombo2;
+
     public IEnumerator bonus()
     {
+        if (SceneManager.GetActiveScene().name == "Main3_EZ"||SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H")
+        {
+            if(Player.instance.playerIndex==1) 
+                GameObject.Find("kaguraObj").gameObject.SetActive(false);
+        }
         //점수 불러오기
         highScore1 = PlayerPrefs.GetInt(highScoreKey1, 0);
         highScore2 = PlayerPrefs.GetInt(highScoreKey2, 0);
@@ -37,8 +48,9 @@ public class ScorePanel : MonoBehaviour
         highScore2_H = PlayerPrefs.GetInt(highScoreKey2_H, 0);
         highCombo1 = PlayerPrefs.GetInt(highComboKey1, 0);
         highCombo2 = PlayerPrefs.GetInt(highComboKey2, 0);
+        Traintime = PlayerPrefs.GetInt(fastTimeKeyN, 999);
+        Traintime_H=PlayerPrefs.GetInt(fastTimeKeyH, 999);
 
-       
         if (SceneManager.GetActiveScene().name == "Main") //스테이지 1
         {
             //점수
@@ -97,8 +109,31 @@ public class ScorePanel : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Main3") //스테이지 3
         {
-            
-        }//////////////////////////////////
+            if (Player.instance != null)
+            {
+                //점수
+                if (GameManager.instance.trainTime < Traintime)
+                {
+                    isBest = true;
+                    GooglePlayManager.instance.AddScore3(GameManager.instance.trainTime); //리더보드에 점수추가
+                    Traintime = GameManager.instance.trainTime;
+                    PlayerPrefs.SetFloat(fastTimeKeyN, GameManager.instance.trainTime);
+                }
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Main3_H") //스테이지 3
+        {
+            if (Player.instance != null)
+            {
+                //점수
+                if (GameManager.instance.trainTime < Traintime_H)
+                {
+                    isBest = true;
+                    Traintime_H = GameManager.instance.trainTime;
+                    PlayerPrefs.SetFloat(fastTimeKeyH, GameManager.instance.trainTime);
+                }
+            }
+        }
 
        
 
@@ -129,7 +164,8 @@ public class ScorePanel : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.3f);
  if (isTrain)
  {
-     GameObject.Find("trainText").GetComponent<Text>().text = "시간 : "+GameManager.instance.trainTime/60+"분 "+GameManager.instance.trainTime%60+"초";
+     GameObject.Find("trainText").GetComponent<Text>().text =
+         "시간 : " + GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
  }
         else
         {

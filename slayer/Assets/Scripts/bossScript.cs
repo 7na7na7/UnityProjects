@@ -13,7 +13,7 @@ public class bossScript : MonoBehaviour
     public GameObject crew;
     private Animator anim;
     public float patternDelay;
-    private bool canGo = false;
+    public bool canGo = false;
     private int previous = 10;
     private bool canMove = false;
     private int attackCount = 0;
@@ -28,11 +28,15 @@ public class bossScript : MonoBehaviour
     public GameObject RedwebAttack2;
     public GameObject train1;
     public GameObject train2;
+    public HandTrap[] spikes;
+    public HandTrap[] spikes2;
     public float trainAttack1Delay = 0;
     public float trainAttack2Delay = 0;
+    public float spikeDelay = 0;
     private Color color;
     private void Start()
     {
+        FindObjectOfType<BgmManager>().bossFunc();
         Player.instance.Stop();
         slider.maxValue += GameManager.instance.bossCount * hpPlusValue;
         for (int i = 0; i < GameManager.instance.bossCount;i++)
@@ -155,6 +159,7 @@ public class bossScript : MonoBehaviour
     {
         StartCoroutine(trainAttack1());
         StartCoroutine(trainAttack2());
+        StartCoroutine(trainAttack3());
         transform.SetParent(GameObject.Find("enmuStage").transform);
         CameraManager.instance.rotSpeed = CameraManager.instance.savedrotSpeed;
         int t = (int)Time.timeScale;
@@ -189,19 +194,76 @@ public class bossScript : MonoBehaviour
 
     IEnumerator trainAttack2()
     {
+        bool a = true;
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(trainAttack2Delay,trainAttack2Delay+1));
-            Instantiate(train2,new Vector3(Random.Range(GameObject.Find("eyeMin").transform.position.x,GameObject.Find("eyeMax").transform.position.x),
-                Random.Range(GameObject.Find("eyeMin").transform.position.y,GameObject.Find("eyeMax").transform.position.y),0),Quaternion.identity);
+            if (a)
+            {
+                yield return new WaitForSeconds(Random.Range(0,trainAttack2Delay*0.5f));
+                a = false;
+            }
+            else
+            {
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                    yield return new WaitForSeconds(0.7f * Random.Range(trainAttack2Delay, trainAttack2Delay + 1));
+                else
+                    yield return new WaitForSeconds(Random.Range(trainAttack2Delay, trainAttack2Delay + 1));
+            }
+            Instantiate(train2, new Vector3(
+                Random.Range(GameObject.Find("eyeMin").transform.position.x,
+                    GameObject.Find("eyeMax").transform.position.x),
+                Random.Range(GameObject.Find("eyeMin").transform.position.y,
+                    GameObject.Find("eyeMax").transform.position.y), 0), Quaternion.identity);
         }
     }
     IEnumerator trainAttack1()
     {
+        bool a = true;
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(trainAttack1Delay,trainAttack1Delay+1));
+            if (a)
+            {
+                yield return new WaitForSeconds(Random.Range(0,trainAttack1Delay*0.5f));
+                a = false;
+            }
+            else
+            {
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+                    yield return new WaitForSeconds(0.7f*Random.Range(trainAttack1Delay,trainAttack1Delay+1));
+                else
+                    yield return new WaitForSeconds(Random.Range(trainAttack1Delay,trainAttack1Delay+1));   
+            }
             Instantiate(train1);
+        }
+    }
+    IEnumerator trainAttack3()
+    {
+        bool a = true;
+        while (true)
+        {
+            if (a)
+            {
+                yield return new WaitForSeconds(Random.Range(0, spikeDelay*0.5f));
+                a = false;
+            }
+            else
+            {
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                    yield return new WaitForSeconds(0.7f * Random.Range(spikeDelay, spikeDelay + 1));
+                else
+                    yield return new WaitForSeconds(Random.Range(spikeDelay, spikeDelay + 1));
+            }
+            int r = Random.Range(0, 2);
+            if (r == 0)
+            {
+                for (int i = 0; i < spikes2.Length; i++)
+                    spikes2[i].GetComponent<HandTrap>().bossAtk();
+            }
+            else
+            {
+                for (int i = 0; i < spikes.Length; i++)
+                    spikes[i].GetComponent<HandTrap>().bossAtk();
+            }
         }
     }
     IEnumerator webAttackCor()
@@ -244,6 +306,7 @@ public class bossScript : MonoBehaviour
     }
     IEnumerator webAttackCor2()
     {
+
         SoundManager.instance.Skill2();
         anim.Play(("bossAttack"));
         if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.4f))
@@ -267,11 +330,16 @@ public class bossScript : MonoBehaviour
             }
             yield return new WaitForSeconds(4f);
         }
-        
         canGo = true;
     }
     IEnumerator move2()
     {
+        spr = GetComponent<SpriteRenderer>();
+        color.r = 255;
+        color.g = 0f;
+        color.b = 0f;
+        color.a = 1;
+        spr.color = color;
         Vector3 p = new Vector3(Player.instance.transform.position.x,Player.instance.transform.position.y+0.6f,0);
         if(Player.instance.transform.position.x>transform.position.x) 
             anim.Play("RightDash");
@@ -303,10 +371,33 @@ public class bossScript : MonoBehaviour
         }
         transform.GetChild(1).gameObject.tag = "oni";
         transform.GetChild(2).gameObject.tag = "oniHead";
+        spr = GetComponent<SpriteRenderer>();
+        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+        {
+            color.r = 255;
+            color.g = 0.5f;
+            color.b = 0.5f;
+            color.a = 1;
+            spr.color = color;
+        }
+        else
+        {
+            color.r = 255;
+            color.g = 255f;
+            color.b = 255f;
+            color.a = 1;
+            spr.color = color;   
+        }
         canGo = true;
     }
     IEnumerator move()
     {
+        spr = GetComponent<SpriteRenderer>();
+        color.r = 255;
+        color.g = 0f;
+        color.b = 0f;
+        color.a = 1;
+        spr.color = color;
         transform.GetChild(1).gameObject.tag = "damage";
         transform.GetChild(2).gameObject.tag = "damage";
         SoundManager.instance.Dash();
@@ -334,6 +425,22 @@ public class bossScript : MonoBehaviour
         }
         transform.GetChild(1).gameObject.tag = "oni";
         transform.GetChild(2).gameObject.tag = "oniHead";
+        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+        {
+            color.r = 255;
+            color.g = 0.5f;
+            color.b = 0.5f;
+            color.a = 1;
+            spr.color = color;
+        }
+        else
+        {
+            color.r = 255;
+            color.g = 255f;
+            color.b = 255f;
+            color.a = 1;
+            spr.color = color;   
+        }
         canGo = true;
     }
     IEnumerator tsuzumi(int r)
@@ -417,7 +524,7 @@ public class bossScript : MonoBehaviour
                              SceneManager.GetActiveScene().name == "Main2_H" ||
                              SceneManager.GetActiveScene().name == "Main2_EZ")
                     {
-                        if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.4f))
+                        if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
                         {
                             spr = GetComponent<SpriteRenderer>();
                             color.r = 255;
@@ -427,7 +534,21 @@ public class bossScript : MonoBehaviour
                             spr.color = color;
                         }
                     }
-                    if (slider.value <= 0)
+        else if (SceneManager.GetActiveScene().name == "Main3" ||
+                 SceneManager.GetActiveScene().name == "Main3_H" ||
+                 SceneManager.GetActiveScene().name == "Main3_EZ")
+        {
+            if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+            {
+                spr = GetComponent<SpriteRenderer>();
+                color.r = 255;
+                color.g = 0.5f;
+                color.b = 0.5f;
+                color.a = 1;
+                spr.color = color;
+            }
+        }
+        if (slider.value <= 0)
                     {
                         CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
                         CameraManager.instance.rot = 1;
@@ -451,9 +572,18 @@ public class bossScript : MonoBehaviour
                             {
                                 Destroy(web);
                             }
+                            GooglePlayManager.instance.CanStage2();
                         }
                         else if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_EZ"||SceneManager.GetActiveScene().name=="Main_H") 
                             GooglePlayManager.instance.CanStage1();
+                        
+                        else if (SceneManager.GetActiveScene().name == "Main3" ||
+                                 SceneManager.GetActiveScene().name == "Main3_EZ" ||
+                                 SceneManager.GetActiveScene().name == "Main3_H")
+                        {
+                            Player.instance.isSuper = true;
+                        } 
+                        FindObjectOfType<BgmManager>().bossDie();
                         Player.instance.forceUp();
                         Destroy(gameObject);
                     }

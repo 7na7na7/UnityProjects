@@ -7801,6 +7801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79874a6799eb2c24fae733b8760765b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canChangeTimeScale: 1
   trainTime: 0
   bossCount: 2
   boss: {fileID: 8413693056172056092, guid: 878943c292bc8f24f832386c31823db8, type: 3}
@@ -9659,6 +9660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ccdb0b23026d34db8e3dfda7e8641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 8300000, guid: 3bd585e7d97879e47b2d9798ca4c8472, type: 3}
   bgmValue: 1
 --- !u!1 &1597885675
 GameObject:
@@ -15107,6 +15109,7 @@ MonoBehaviour:
   kaguraONSound: {fileID: 0}
   zenichuComboSound: {fileID: 0}
   inoskaeComboSound: {fileID: 0}
+  steamSound: {fileID: 0}
   savedBgm: 0
   savedBgs: 0
 --- !u!1 &1818758089

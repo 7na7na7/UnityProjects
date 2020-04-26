@@ -5290,6 +5290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ccdb0b23026d34db8e3dfda7e8641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 8300000, guid: f9b1d6f9203a029409dd3f903a194fe1, type: 3}
   bgmValue: 1
 --- !u!82 &253863737
 AudioSource:
@@ -6478,7 +6479,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 694492841}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &532030477
 MonoBehaviour:
@@ -6501,8 +6502,8 @@ MonoBehaviour:
   goPrefab: {fileID: 6457026776787078318, guid: 14bf6712b8b9e4d49bbebb43abddf10e,
     type: 3}
   ShotTr: {fileID: 532030476}
-  minForce: 8
-  maxForce: 12
+  minForce: 5
+  maxForce: 9
 --- !u!1 &535311510
 GameObject:
   m_ObjectHideFlags: 0
@@ -7017,7 +7018,6 @@ Transform:
   m_Children:
   - {fileID: 365089508}
   - {fileID: 811699934}
-  - {fileID: 1248010717}
   - {fileID: 1750403229}
   - {fileID: 532030476}
   - {fileID: 1619864540}
@@ -7807,13 +7807,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79874a6799eb2c24fae733b8760765b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canChangeTimeScale: 1
   trainTime: 0
   bossCount: 0
   boss: {fileID: 3373281082922345524, guid: 79edc2eee175ad741a8fc85b0f036551, type: 3}
-  bossTime: 30
-  jumpingTIme: 13
-  fallingTime: 13
-  spiderTime: 13
+  bossTime: 36
+  jumpingTIme: 12
+  fallingTime: 12
+  spiderTime: 12
   beforeBossTime: 10
   pausePanel: {fileID: 1992018347}
   pauseSprite: {fileID: 21300000, guid: 1d0f98903363712418330219fd1bb30a, type: 3}
@@ -8412,7 +8413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59912, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033945275
@@ -8734,60 +8735,6 @@ Transform:
   m_Father: {fileID: 1091975043}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1248010716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1248010717}
-  - component: {fileID: 1248010718}
-  m_Layer: 0
-  m_Name: SpiderSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1248010717
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248010716}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 694492841}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1248010718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248010716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d0b8b4f6faa1740bcc6616aeca31ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSpider: 1
-  canSpawn: 0
-  delayMinusValue: 0.05
-  delayMinusDuration: 10
-  isFalling: 0
-  isHand: 0
-  HandSpawnValue: 0
-  minDelay: 10
-  maxDelay: 14
-  onis:
-  - {fileID: 2492335165434357946, guid: bb189dd19aa36d440a23794e8787494c, type: 3}
 --- !u!1 &1263658337
 GameObject:
   m_ObjectHideFlags: 0
@@ -9821,7 +9768,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 694492841}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1619864541
 MonoBehaviour:
@@ -14834,8 +14781,8 @@ MonoBehaviour:
   goPrefab: {fileID: 5820659145242091367, guid: 1aca1cc1fe83132458be7fabae6e85d9,
     type: 3}
   ShotTr: {fileID: 1750403229}
-  minForce: 8
-  maxForce: 12
+  minForce: 5
+  maxForce: 9
 --- !u!4 &1750403229
 Transform:
   m_ObjectHideFlags: 0
@@ -14848,7 +14795,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 694492841}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1767419101
 GameObject:
@@ -15162,6 +15109,7 @@ MonoBehaviour:
   kaguraONSound: {fileID: 0}
   zenichuComboSound: {fileID: 0}
   inoskaeComboSound: {fileID: 0}
+  steamSound: {fileID: 0}
   savedBgm: 1
   savedBgs: 1
 --- !u!1 &1818758089
@@ -15428,7 +15376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.59906, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59912, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1992018349

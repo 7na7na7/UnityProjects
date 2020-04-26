@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     public int nuckbackforce; //밀려나는 힘
     public GameObject slashEffect;
     public GameObject dieEffect;
-    [Header("신경쓸필요없음")]
+    [Header("신경쓸필요없음")] 
+    public bool isSuper = false;
     private bool isMeetEnmu = false;
     private bool isFirst = false;
     private float playerMoveValue=1.1f;
@@ -67,16 +68,20 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        //if (transform.position.x > 250)
-        if (transform.position.x > 50)
+        if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
+            SceneManager.GetActiveScene().name == "Main3_H")
         {
-            if (!isMeetEnmu)
+            if (transform.position.x > 250)
             {
-               CameraManager.instance.meetEnmuFunc();
-                isMeetEnmu = true;
+                if (!isMeetEnmu)
+                {
+                    CameraManager.instance.meetEnmuFunc();
+                    isMeetEnmu = true;
+                }
             }
         }
-            if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch&&canTouchTime>=nuckBackCantTouchTime) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
+
+        if ( mpSlider.instance.mp.value >= 1 && !isGameOver && Time.timeScale != 0&&canTouch&&canTouchTime>=nuckBackCantTouchTime) //기력이 1이상이고, 게임오버가 아니고, 멈추지 않았다면
         {
             if (isDesktop)
             {
@@ -337,7 +342,12 @@ public class Player : MonoBehaviour
                     SoundManager.instance.inoskaeCombo();
                 }
 
-                trail.GetComponent<TrailRenderer>().startColor = Color.black;
+                Color color = Color.white;
+                color.r = 0;
+                color.g = 0.3f;
+                color.b =0.5f;
+              
+                trail.GetComponent<TrailRenderer>().startColor = color;
                 particle.SetActive(true);
             }
 
@@ -421,7 +431,6 @@ public class Player : MonoBehaviour
         rigid.bodyType = RigidbodyType2D.Dynamic;
         isattack = false;
         particle.SetActive(false);
-        trail.GetComponent<TrailRenderer>().startColor = Color.white;
         camera.sizedown();
         if(playerIndex==0) 
             StartCoroutine(panel.fadeout());
@@ -436,7 +445,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hit)
     {
-        if (!isGameOver)
+        if (!isGameOver&&!isSuper)
         {
             if (hit.CompareTag("damage"))
             {
@@ -464,7 +473,6 @@ public class Player : MonoBehaviour
 
             if (hit.CompareTag("dream"))
             {
-                print("Dream");
                 GameObject.Find("DreamPanel").gameObject.GetComponent<fade>().Dream();
             }
         }
@@ -533,8 +541,6 @@ public class Player : MonoBehaviour
     {
         if (!isGameOver)
         {
-            if(SceneManager.GetActiveScene().name=="Main3"||SceneManager.GetActiveScene().name=="Main3_H"||SceneManager.GetActiveScene().name=="Main3_EZ")
-                CameraManager.instance.StopAllCoroutines();
             isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);
             StopAllCoroutines();
@@ -544,6 +550,7 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void ComboText(bool isHead)
     {
         if (isHead)

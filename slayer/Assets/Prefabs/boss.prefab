@@ -277,6 +277,7 @@ MonoBehaviour:
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
   crew: {fileID: 8796634812464565399, guid: a245cce0af3f5724c8f88b1c0731c91f, type: 3}
   patternDelay: 2.3
+  canGo: 0
   hpPlusValue: 10
   patternMinusValue: 0.85
   moveFastValue: 0.85
@@ -285,6 +286,13 @@ MonoBehaviour:
   RedwebAttack: {fileID: 0}
   webAttack2: {fileID: 0}
   RedwebAttack2: {fileID: 0}
+  train1: {fileID: 0}
+  train2: {fileID: 0}
+  spikes: []
+  spikes2: []
+  trainAttack1Delay: 0
+  trainAttack2Delay: 0
+  spikeDelay: 0
 --- !u!50 &5606277874480119227
 Rigidbody2D:
   serializedVersion: 4

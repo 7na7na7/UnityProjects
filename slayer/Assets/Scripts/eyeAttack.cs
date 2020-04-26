@@ -14,7 +14,7 @@ public class eyeAttack : MonoBehaviour
 
     IEnumerator attack()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         attackCol.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         attackCol.SetActive(false);

@@ -187,7 +187,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 15
+  m_MaxValue: 14
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -511,7 +511,8 @@ MonoBehaviour:
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
   crew: {fileID: 8796634812464565399, guid: a245cce0af3f5724c8f88b1c0731c91f, type: 3}
-  patternDelay: 3
+  patternDelay: 3.45
+  canGo: 0
   hpPlusValue: 7
   patternMinusValue: 0.85
   moveFastValue: 0.85
@@ -520,6 +521,13 @@ MonoBehaviour:
   RedwebAttack: {fileID: 0}
   webAttack2: {fileID: 0}
   RedwebAttack2: {fileID: 0}
+  train1: {fileID: 0}
+  train2: {fileID: 0}
+  spikes: []
+  spikes2: []
+  trainAttack1Delay: 0
+  trainAttack2Delay: 0
+  spikeDelay: 0
 --- !u!50 &3828096657800050210
 Rigidbody2D:
   serializedVersion: 4

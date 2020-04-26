@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class GooglePlayManager : MonoBehaviour
 {
    public int canStage1 = 0;
+   public int canStage2 = 0;
    private string canStage1Key = "canStage1";
+   private string canStage2Key = "canStage2";
    private int isFirst = 0;
    private string isFirstKey = "isFirst";
    public static GooglePlayManager instance;
@@ -21,6 +23,7 @@ public class GooglePlayManager : MonoBehaviour
          PlayGamesPlatform.Activate();
          LogIn();
          canStage1 = PlayerPrefs.GetInt(canStage1Key,0);
+         canStage2 = PlayerPrefs.GetInt(canStage2Key,0);
          isFirst = PlayerPrefs.GetInt(isFirstKey, 0);
          if (isFirst == 0)
          {
@@ -34,12 +37,21 @@ public class GooglePlayManager : MonoBehaviour
          Destroy(gameObject);
       }
    }
+   
    public void CanStage1()
    {
       if (canStage1 != 1)
       {
          canStage1 = 1;
          PlayerPrefs.SetInt(canStage1Key, 1);
+      }
+   }
+   public void CanStage2()
+   {
+      if (canStage2 != 1)
+      {
+         canStage2 = 1;
+         PlayerPrefs.SetInt(canStage2Key, 1);
       }
    }
    public void LogIn()
@@ -98,6 +110,13 @@ public class GooglePlayManager : MonoBehaviour
       {
       });
    }
+   public void AddScore3(int score)
+   {
+      Social.ReportScore(score, GPGSIds.leaderboard______3, (bool bSuccess) =>
+      {
+      });
+   }
+
    public void AddCombo1(int combo)
    {
       Social.ReportScore(combo, GPGSIds.leaderboard______1_2, (bool bSuccess) =>
@@ -151,7 +170,7 @@ public class GooglePlayManager : MonoBehaviour
    }
    public void Achievement9()
    {
-      Social.ReportProgress(GPGSIds.achievement_____2, 100.0f, (bool bSuccess) => { }); //업적 달성!
+      Social.ReportProgress(GPGSIds.achievement____2_3, 100.0f, (bool bSuccess) => { }); //업적 달성!
    }
    public void ToTitle()
    {

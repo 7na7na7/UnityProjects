@@ -19,7 +19,7 @@ public class ScoreText : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
             SceneManager.GetActiveScene().name == "Main3_H")
         {
-            Txt.text = "Time : " + GameManager.instance.trainTime / 60 + "Min " + GameManager.instance.trainTime % 60+"Sec";
+            Txt.text = "Time : " +GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
         }
         else
         {
