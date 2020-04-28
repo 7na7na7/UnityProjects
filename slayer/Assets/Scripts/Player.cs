@@ -329,7 +329,12 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    trail.GetComponent<TrailRenderer>().startColor = Color.cyan;
+                    Color color = Color.white;
+                    color.r = 0;
+                    color.g = 0.72f;
+                    color.b =1f;
+              
+                    trail.GetComponent<TrailRenderer>().startColor = color;
                     particle.SetActive(false);
                 }
             }
@@ -350,6 +355,16 @@ public class Player : MonoBehaviour
                 trail.GetComponent<TrailRenderer>().startColor = color;
                 particle.SetActive(true);
             }
+            else if (playerIndex == 3)
+            {
+                camera.sizeup();
+                Color color = Color.white;
+                color.r = 0;
+                color.g = 0.72f;
+                color.b =1f;
+                trail.GetComponent<TrailRenderer>().startColor = color;
+                particle.SetActive(false);
+            }
 
             //if (Time.timeScale == 1)
               //  Time.timeScale = comboTimeScale;
@@ -361,6 +376,8 @@ public class Player : MonoBehaviour
             else if(playerIndex==1)
                 rigid.velocity = dir * force *1.1f;
             else if(playerIndex==2)
+                rigid.velocity = dir * force *1.1f;
+            else if(playerIndex==3)
                 rigid.velocity = dir * force *1.1f;
         }
         else //첫번째
@@ -382,7 +399,12 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    trail.GetComponent<TrailRenderer>().startColor = Color.cyan;
+                    Color color = Color.white;
+                    color.r = 0;
+                    color.g = 0.72f;
+                    color.b =1f;
+              
+                    trail.GetComponent<TrailRenderer>().startColor = color;
                     particle.SetActive(false);
                 }
             }
@@ -390,6 +412,17 @@ public class Player : MonoBehaviour
             {
                 trail.GetComponent<TrailRenderer>().startColor = Color.black;
                 particle.SetActive(false);
+            }
+            else if (playerIndex == 3)
+            {
+            
+                    Color color = Color.white;
+                    color.r = 0;
+                    color.g = 0.72f;
+                    color.b =1f;
+              
+                    trail.GetComponent<TrailRenderer>().startColor = color;
+                    particle.SetActive(false);
             }
             camera.sizedown();
 
@@ -539,7 +572,7 @@ public class Player : MonoBehaviour
     
     public void die()
     {
-        if (!isGameOver)
+        if (!isGameOver&&!isSuper)
         {
             isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);

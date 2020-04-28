@@ -42,11 +42,14 @@ public class CameraManager : MonoBehaviour
 
     IEnumerator meetEnmu()
     {
+        Player.instance.isSuper = true;
+        /*
         GameObject[] mons = GameObject.FindGameObjectsWithTag("hand");
         foreach (GameObject mon in mons)
         {
             Destroy(mon);
         } 
+        */
         if(SceneManager.GetActiveScene().name=="Main3_EZ") 
             GameManager.instance.StopFalling();
         FindObjectOfType<Spawner>().enmu();
@@ -56,6 +59,7 @@ public class CameraManager : MonoBehaviour
         //yield return new WaitForSeconds(1f);
         ChangeBound();
         Player.instance.transform.position = GameObject.Find("PlayerTr").transform.position;
+        Player.instance.isSuper = false;
         GameObject.Find("Max").transform.Translate(0, 5.7f, 0);
         FadePanel.instance.UnFade();
         Player.instance.canTouch = true;
