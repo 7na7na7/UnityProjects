@@ -582,6 +582,7 @@ public class bossScript : MonoBehaviour
                                  SceneManager.GetActiveScene().name == "Main3_H")
                         {
                             Player.instance.isSuper = true;
+                            Player.instance.canTouch = false;
                         } 
                         FindObjectOfType<BgmManager>().bossDie();
                         Player.instance.forceUp();

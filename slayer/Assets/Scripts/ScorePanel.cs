@@ -107,17 +107,18 @@ public class ScorePanel : MonoBehaviour
                 PlayerPrefs.SetInt(highScoreKey2_H,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
             }
         }
-        else if (SceneManager.GetActiveScene().name == "Main3") //스테이지 3
+        else if (SceneManager.GetActiveScene().name == "Main3") //스테이지 3a
         {
-            if (Player.instance != null)
+            if (Player.instance != null) //플레이어가 죽지 않았다면
             {
+                print("시간 : "+GameManager.instance.trainTime+" 기존기록 : "+Traintime);
                 //점수
                 if (GameManager.instance.trainTime < Traintime)
                 {
                     isBest = true;
                     GooglePlayManager.instance.AddScore3(GameManager.instance.trainTime); //리더보드에 점수추가
                     Traintime = GameManager.instance.trainTime;
-                    PlayerPrefs.SetFloat(fastTimeKeyN, GameManager.instance.trainTime);
+                    PlayerPrefs.SetInt(fastTimeKeyN, Traintime);
                 }
             }
         }
@@ -130,7 +131,7 @@ public class ScorePanel : MonoBehaviour
                 {
                     isBest = true;
                     Traintime_H = GameManager.instance.trainTime;
-                    PlayerPrefs.SetFloat(fastTimeKeyH, GameManager.instance.trainTime);
+                    PlayerPrefs.SetInt(fastTimeKeyH, Traintime_H);
                 }
             }
         }

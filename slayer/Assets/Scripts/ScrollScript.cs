@@ -140,7 +140,7 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         {
             if (difficulty==1)
             {
-                float a = PlayerPrefs.GetFloat("fastTimeKeyN", 0);
+                int a = PlayerPrefs.GetInt("fastTimeKeyN", 0);
                 if (a == 0)
                     bestScoreText.text = "최단시간 : 미기록";
                 else
@@ -148,7 +148,7 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             }
             else if(difficulty==2)
             {
-                float a = PlayerPrefs.GetFloat("fastTimeKeyH", 0);
+                int a = PlayerPrefs.GetInt("fastTimeKeyH", 0);
                 if (a == 0)
                     bestScoreText.text = "최단시간 : 미기록";
                 else

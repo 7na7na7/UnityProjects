@@ -572,7 +572,7 @@ public class Player : MonoBehaviour
     
     public void die()
     {
-        if (!isGameOver&&!isSuper)
+        if (isGameOver&&!isSuper)
         {
             isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);
@@ -623,5 +623,10 @@ public class Player : MonoBehaviour
         camera.sizedown();
         if(playerIndex==0) 
             StartCoroutine(panel.fadeout());
+    }
+
+    public void Barrier()
+    {
+        
     }
 }
