@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip zenichuComboSound;
     public AudioClip inoskaeComboSound;
     public AudioClip steamSound;
+    public AudioClip waterDropSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -53,6 +54,10 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void waterDrop()
+    {
+        audio.PlayOneShot(waterDropSound,savedBgs*10);
+    }
     public void steam()
     {
         audio.PlayOneShot(steamSound,savedBgs);

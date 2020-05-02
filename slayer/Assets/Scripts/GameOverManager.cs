@@ -18,6 +18,11 @@ public class GameOverManager : MonoBehaviour
     public IEnumerator GameOver(GameObject g)
     {
         delete.SetActive(false);
+        GameObject[] hearts = GameObject.FindGameObjectsWithTag("heart");
+        foreach (GameObject heart in hearts)
+        {
+            heart.SetActive(false);
+        }
         Player.instance.StopAllCoroutines();
         //콤보 마무리해줌
         ComboManager.instance.ComboEnd();

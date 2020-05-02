@@ -52,4 +52,11 @@ public class LoadScene : MonoBehaviour
       SoundManager.instance.select();
       SceneManager.LoadScene("Tutorial");
    }
+
+   public void SetUp()
+   {
+      SoundManager.instance.select();
+      PlayerPrefs.DeleteAll();
+      Application.Quit();
+   }
 }

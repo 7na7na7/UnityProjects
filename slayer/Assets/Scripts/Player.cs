@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public GameObject slashEffect;
     public GameObject dieEffect;
     [Header("신경쓸필요없음")] 
+    public bool isBarrier = false;
+    public bool isNuckBack = false;
     public bool isSuper = false;
     private bool isMeetEnmu = false;
     private bool isFirst = false;
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     public static Player instance;
     private float unRotY, RotY;
+    private float unRotX, RotX;
     private Vector2 currentV;
     public bool isattack = false; //공격중인지 판단
     private bool canMove = true;
@@ -38,8 +41,10 @@ public class Player : MonoBehaviour
     public GameObject jumpEffect; //점프시 이펙트
     public bool canTouch = true;
     private float canTouchTime = 0;
+
     private void Start()
     {
+
         panel = FindObjectOfType<fade>();
         worldCanvas=GameObject.Find("World").gameObject;
         min = GameObject.Find("Min").transform;
@@ -60,6 +65,8 @@ public class Player : MonoBehaviour
 
         unRotY = transform.localScale.y;
         RotY = transform.localScale.y * -1;
+        unRotX = transform.localScale.x;
+        RotX = transform.localScale.x * -1;
     }
 
     public void forceUp()
@@ -68,6 +75,10 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.A))
+            OnBarrier();
+        else if(Input.GetKeyDown(KeyCode.S))
+            OffBarrier();
         if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
             SceneManager.GetActiveScene().name == "Main3_H")
         {
@@ -261,12 +272,14 @@ public class Player : MonoBehaviour
         }
     }
     public IEnumerator go2(Vector2 to)
-    {
+    {  
+        flipX(false);
+        isNuckBack = false;
         SoundManager.instance.swing();
         mpSlider.instance.mpDown(1);
         GetComponent<Player>().trail.GetComponent<TrailRenderer>().emitting = true;
         GetComponent<Player>().trail2.GetComponent<TrailRenderer>().emitting = true;
-        if (to.x > transform.position.x)
+        if (to.x > transform.position.x) //오른쪽
         {
             flipY(false);
             if (playerIndex == 2)
@@ -280,7 +293,7 @@ public class Player : MonoBehaviour
                     new Vector3(0, 0, -getAngle(transform.position.x, transform.position.y, to.x, to.y) + 60);   
             }
         }
-        else
+        else //왼쪽
         {
             flipY(true);
             if (playerIndex == 2)
@@ -304,7 +317,8 @@ public class Player : MonoBehaviour
         canMove = true;
         if (ComboManager.instance.canCombo) //콤보중
         {
-            anim.Play("attack_ready");
+            //if (to.x < transform.position.x) 
+                anim.Play("attack_ready");
 
             if (playerIndex == 0)
             {
@@ -475,7 +489,13 @@ public class Player : MonoBehaviour
         else
             transform.localScale = new Vector3(transform.localScale.x, unRotY, 1);
     }
-
+    public void flipX(bool flip)
+    {
+        if (flip)
+            transform.localScale = new Vector3(RotX, transform.localScale.y, 1);
+        else
+            transform.localScale = new Vector3(unRotX, transform.localScale.y, 1);
+    }
     private void OnTriggerEnter2D(Collider2D hit)
     {
         if (!isGameOver&&!isSuper)
@@ -490,18 +510,22 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
-                        die();
+                        HeartManager.instance.Damaged();
+                        HeartManager.instance.damaged();
                     }
                 }
                 else
                 {
-                    die();   
+                    HeartManager.instance.Damaged();
+                    HeartManager.instance.damaged();
                 }
             }
 
             if (hit.CompareTag("die"))
             {
-                die();
+                HeartManager.instance.Damaged();
+                HeartManager.instance.Damaged();
+                HeartManager.instance.Damaged();
             }
 
             if (hit.CompareTag("dream"))
@@ -513,7 +537,7 @@ public class Player : MonoBehaviour
     
     public void oniBody(GameObject hit)
     {
-        if (!isGameOver)
+        if (!isGameOver&&!isSuper)
         {
             canTouchTime = 0;
             Vector2 dir = transform.position - hit.transform.position;
@@ -532,19 +556,16 @@ public class Player : MonoBehaviour
         rigid.velocity = Vector2.zero;
         rigid.bodyType = RigidbodyType2D.Dynamic;
         rigid.velocity = dir * nuckbackforce;
-        
         Instantiate(slashEffect, transform.position, Quaternion.identity);
-        if (ComboManager.instance.comboCount <= 1)
-            anim.Play("attackAnim");
-        else
-            anim.Play("attackAnim");
+        anim.Play("attackAnim");
         canMove = false;
-    }
+        isNuckBack = true;
+        }
 }
 
     public void oniHead(GameObject hit)
     {
-        if (!isGameOver)
+        if (!isGameOver&&!isSuper)
         {
             canTouchTime = 0;
             Vector2 dir = transform.position - hit.transform.position;
@@ -564,15 +585,15 @@ public class Player : MonoBehaviour
             rigid.velocity = dir * nuckbackforce;
             
             Instantiate(slashEffect, transform.position, Quaternion.identity);
-            if (ComboManager.instance.comboCount <= 1)
-                anim.Play("attackAnim");
+            anim.Play("attackAnim");
             canMove = false;
+            isNuckBack = true;
         }
     }
     
-    public void die()
+    public void Realdie()
     {
-        if (isGameOver&&!isSuper)
+        if (!isGameOver&&!isSuper)
         {
             isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);
@@ -625,8 +646,21 @@ public class Player : MonoBehaviour
             StartCoroutine(panel.fadeout());
     }
 
-    public void Barrier()
+    public void OnBarrier()
     {
-        
+        if (!isBarrier&&playerIndex==3)
+        {
+            isBarrier = true;
+            GameObject.Find("Barrier").GetComponent<ParticleSystem>().Play();
+        }
+    }
+
+    public void OffBarrier()
+    {
+        if (isBarrier&&playerIndex==3)
+        {
+            isBarrier = false;
+            GameObject.Find("Barrier").GetComponent<ParticleSystem>().Stop();
+        }
     }
 }

@@ -17,4 +17,10 @@ public class bossAttack1 : MonoBehaviour
     {
        transform.Translate(0,-speed*Time.deltaTime,0);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+            Destroy(gameObject);
+    }
 }

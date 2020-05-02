@@ -47,6 +47,8 @@ public class ComboManager : MonoBehaviour
 
             if (Player.instance.playerIndex == 1) //플레이어가 탄지로면 히노카미 카구라 사용
                 kagura.instance.valueUp(comboCount);
+            else if(Player.instance.playerIndex==3) //플레이어가 기유면 11형 잔잔한물결 사용
+                kagura.instance.ValueUp2(comboCount);
             
             if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
                 SceneManager.GetActiveScene().name == "Main3_H")

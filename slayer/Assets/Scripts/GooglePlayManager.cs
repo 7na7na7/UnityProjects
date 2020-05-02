@@ -68,26 +68,9 @@ public class GooglePlayManager : MonoBehaviour
 
    public void LogInOrLogOut()
    {
-      if (Social.localUser.authenticated)
-      {
-         LogOut();
-         GameObject.Find("GoogleText").GetComponent<Text>().text = "로그아웃됨";
+      Social.localUser.Authenticate((bool success) =>
+         { });
       }
-      else
-      {
-         Social.localUser.Authenticate((bool success) =>
-         {
-            if (success)
-            {
-               GameObject.Find("GoogleText").GetComponent<Text>().text = "로그인됨";
-            }
-            else
-            {
-               GameObject.Find("GoogleText").GetComponent<Text>().text = "로그인 실패";
-            }
-         });  
-      }
-   }
    public void LogOut()
    {
       ((PlayGamesPlatform)Social.Active).SignOut();

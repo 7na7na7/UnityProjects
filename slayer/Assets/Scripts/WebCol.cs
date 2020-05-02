@@ -62,7 +62,7 @@ public class WebCol : MonoBehaviour
                     }
                     else
                     {
-                        Player.instance.die();
+                        HeartManager.instance.Damaged();
                     }
                 }
             }

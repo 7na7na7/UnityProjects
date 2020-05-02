@@ -13,30 +13,15 @@ public class oniCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (oni.dmgDelay >= 0.1f&&!GameManager.instance.isGameOver)
-            {
-                if (Player.instance.playerIndex == 1)
+            
+                if (oni.dmgDelay >= 0.1f && !GameManager.instance.isGameOver&&!Player.instance.isSuper)
                 {
-                    if (kagura.instance.isKagura)
+                    if (Player.instance.playerIndex == 1)
                     {
-                        Player.instance.rotate(transform.position);
-                        
-                        if (isHead)
+                        if (kagura.instance.isKagura)
                         {
-                            oni.die(true);
-                            Player.instance.oniHead(gameObject);
-                        }
-                        else
-                        {
-                            oni.die(false);
-                            Player.instance.oniBody(gameObject);
-                        }
-                    }
-                    else
-                    {
-                        if (Player.instance.isattack)
-                        {
-                            kagura.instance.valueUp(1);
+                            Player.instance.rotate(transform.position);
+
                             if (isHead)
                             {
                                 oni.die(true);
@@ -50,31 +35,53 @@ public class oniCol : MonoBehaviour
                         }
                         else
                         {
-                            Player.instance.die();
-                        }
-                    }
-                }
-                else
-                {
-                    if (Player.instance.isattack)
-                    {
-                        if (isHead)
-                        {
-                            oni.die(true);
-                            Player.instance.oniHead(gameObject);
-                        }
-                        else
-                        {
-                            oni.die(false);
-                            Player.instance.oniBody(gameObject);
+                            if (Player.instance.isattack)
+                            {
+                                kagura.instance.valueUp(1);
+                                if (isHead)
+                                {
+                                    oni.die(true);
+                                    Player.instance.oniHead(gameObject);
+                                }
+                                else
+                                {
+                                    oni.die(false);
+                                    Player.instance.oniBody(gameObject);
+                                }
+                            }
+                            else
+                            {
+                                {
+                                    HeartManager.instance.Damaged();
+                                    HeartManager.instance.damaged();
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        Player.instance.die();
+                        if (Player.instance.isattack)
+                        {
+                            if(Player.instance.playerIndex==3)
+                                kagura.instance.ValueUp2(1);
+                            if (isHead)
+                            {
+                                oni.die(true);
+                                Player.instance.oniHead(gameObject);
+                            }
+                            else
+                            {
+                                oni.die(false);
+                                Player.instance.oniBody(gameObject);
+                            }
+                        }
+                        else
+                        {
+                            HeartManager.instance.Damaged();
+                            HeartManager.instance.damaged();
+                        }
                     }
                 }
-            }
         }
     }
 }

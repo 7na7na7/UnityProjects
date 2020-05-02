@@ -78,8 +78,8 @@ public class CameraManager : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         savedTarget = target;
         canGo = true;
+        HeartManager.instance.tanjiro();
     }
-
     void Update()
     {
         if (canGo)

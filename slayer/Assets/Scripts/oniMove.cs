@@ -133,8 +133,6 @@ public class oniMove : MonoBehaviour
                 SoundManager.instance.head();
 
                 hp -= 2;
-                if (Player.instance.playerIndex == 2)
-                    hp--;
                 if (hp <= 0)
                 {
                     if (oniIndex == 1)
@@ -199,7 +197,7 @@ public class oniMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Player.instance.playerIndex == 1)
+            if (Player.instance.playerIndex == 1||Player.instance.playerIndex==3)
             {
                 if (kagura.instance.isKagura)
                 {
@@ -208,28 +206,31 @@ public class oniMove : MonoBehaviour
             }
             if (!Player.instance.isattack)
             {
-                if (oniIndex == 1||oniIndex==2||oniIndex==3||oniIndex==5)
+                if (oniIndex == 1 || oniIndex == 2 || oniIndex == 3 || oniIndex == 5)
                 {
-                    if(oniIndex==1) 
-                        anim.Play("oni1Attack");
-                    else if(oniIndex==2)
-                        anim.Play("oni2Attack");
-                    else if(oniIndex==3)
-                        anim.Play("oni3_Attack");
-                    else if(oniIndex==5)
-                        anim.Play("oni5_Attack");
-                    else if(oniIndex==6)
-                        anim.Play("oni6_Attack");
-                    if (canGo)
+                    if (HeartManager.instance.heartCount == 0)
                     {
-                        if (other.transform.position.x < transform.position.x)
-                            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),transform.localScale.y, transform.localScale.z);
-                        else if (other.transform.position.x > transform.position.x)
-                            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x)*-1, transform.localScale.y, transform.localScale.z);
+                        if (oniIndex == 1)
+                            anim.Play("oni1Attack");
+                        else if (oniIndex == 2)
+                            anim.Play("oni2Attack");
+                        else if (oniIndex == 3)
+                            anim.Play("oni3_Attack");
+                        else if (oniIndex == 5)
+                            anim.Play("oni5_Attack");
+                        else if (oniIndex == 6)
+                            anim.Play("oni6_Attack");
+                        if (canGo)
+                        {
+                            if (other.transform.position.x < transform.position.x)
+                                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x),
+                                    transform.localScale.y, transform.localScale.z);
+                            else if (other.transform.position.x > transform.position.x)
+                                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1,
+                                    transform.localScale.y, transform.localScale.z);
+                        }
                     }
                 }
-              
-                
             }
         }
 

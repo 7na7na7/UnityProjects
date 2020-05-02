@@ -10,7 +10,7 @@ public class BossCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if (boss.dmgDelay >= 0.1f&&!GameManager.instance.isGameOver)
+            if (boss.dmgDelay >= 0.1f&&!GameManager.instance.isGameOver&&!Player.instance.isSuper)
             {
                 if (Player.instance.playerIndex == 1)
                 {
@@ -47,7 +47,10 @@ public class BossCol : MonoBehaviour
                         }
                         else
                         {
-                            Player.instance.die();
+                            {
+                                HeartManager.instance.Damaged();
+                                HeartManager.instance.damaged();
+                            }
                         }
                     }
                 }
@@ -55,6 +58,8 @@ public class BossCol : MonoBehaviour
                 {
                     if (Player.instance.isattack)
                     {
+                        if(Player.instance.playerIndex==3)
+                            kagura.instance.ValueUp2(1);
                         if (isHead)
                         {
                             boss.die(true);
@@ -68,7 +73,9 @@ public class BossCol : MonoBehaviour
                     }
                     else
                     {
-                        Player.instance.die();
+                        HeartManager.instance.damaged();
+                        
+                            HeartManager.instance.Damaged();
                     }
                 }
             }
