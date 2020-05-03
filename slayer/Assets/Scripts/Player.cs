@@ -510,22 +510,23 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
-                        HeartManager.instance.Damaged();
-                        HeartManager.instance.damaged();
+                        HeartManager.instance.Damaged1();
+                        HeartManager.instance.damaged2();
                     }
                 }
                 else
                 {
-                    HeartManager.instance.Damaged();
-                    HeartManager.instance.damaged();
+                    HeartManager.instance.Damaged1();
+                    HeartManager.instance.damaged2();
                 }
             }
 
             if (hit.CompareTag("die"))
             {
-                HeartManager.instance.Damaged();
-                HeartManager.instance.Damaged();
-                HeartManager.instance.Damaged();
+                HeartManager.instance.damaged2();
+                HeartManager.instance.Damaged1();
+                HeartManager.instance.Damaged1();
+                HeartManager.instance.Damaged1();
             }
 
             if (hit.CompareTag("dream"))
