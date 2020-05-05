@@ -79,7 +79,16 @@ public class PlayerSelect : MonoBehaviour
             currentIndex = 3;
         }
     }
-
+    public void Shinobu()
+    {
+        if(currentIndex==4)
+            Go();
+        else
+        {
+            SoundManager.instance.@select();
+            currentIndex = 4;
+        }
+    }
     public void Go()
     {
         SoundManager.instance.@select();

@@ -136,8 +136,12 @@ public class ScorePanel : MonoBehaviour
             }
         }
 
-       
-
+        
+        scorec = ScoreMgr.instance.score;
+        headv = ScoreMgr.instance.headshot;
+        killedOniv=ScoreMgr.instance.killedOni;
+        scorev = ScoreMgr.instance.score;
+        maxcombov = ScoreMgr.instance.maxCombo;   
         if (killedOniv >= 50)
         {
             if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H"||SceneManager.GetActiveScene().name=="Main_EZ") 
@@ -168,18 +172,13 @@ public class ScorePanel : MonoBehaviour
      GameObject.Find("trainText").GetComponent<Text>().text =
          "시간 : " + GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
  }
-        else
-        {
-            head.text = "급소 공격 횟수 : 0번";
-            killedOni.text = "죽인 오니 : 0마리";
-            maxCombo.text = "최대 콤보 횟수 : 0번";
-            score.text = ScoreMgr.instance.score.ToString();
-            scorec = ScoreMgr.instance.score;
-            headv = ScoreMgr.instance.headshot;
-            killedOniv=ScoreMgr.instance.killedOni;
-            scorev = ScoreMgr.instance.score;
-            maxcombov = ScoreMgr.instance.maxCombo;   
-                    while (killedOnic<killedOniv)
+ else 
+ { 
+     head.text = "급소 공격 횟수 : 0번";
+     killedOni.text = "죽인 오니 : 0마리";
+     maxCombo.text = "최대 콤보 횟수 : 0번";
+     score.text = ScoreMgr.instance.score.ToString();
+     while (killedOnic<killedOniv)
         {
             yield return new WaitForSecondsRealtime(textDelay);
             if (killedOnic + 1 == killedOniv)

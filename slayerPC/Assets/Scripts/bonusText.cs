@@ -16,7 +16,7 @@ public class bonusText : MonoBehaviour
         color.g = 255;
         color.b = 0;
         color.a = 1;
-        GetComponent<RectTransform>().position=new Vector3( GetComponent<RectTransform>().position.x+300, GetComponent<RectTransform>().position.y-50, GetComponent<RectTransform>().position.z);
+        GetComponent<RectTransform>().position=new Vector3( GetComponent<RectTransform>().position.x, GetComponent<RectTransform>().position.y-50, GetComponent<RectTransform>().position.z);
     }
     
     void Update()

@@ -7277,7 +7277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 654, y: 412}
+  m_AnchoredPosition: {x: 636, y: 412}
   m_SizeDelta: {x: 189.4, y: 24.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &790190207
@@ -15459,6 +15459,7 @@ MonoBehaviour:
   zenichuComboSound: {fileID: 0}
   inoskaeComboSound: {fileID: 0}
   steamSound: {fileID: 0}
+  waterDropSound: {fileID: 0}
   savedBgm: 1
   savedBgs: 1
 --- !u!1 &1818758089

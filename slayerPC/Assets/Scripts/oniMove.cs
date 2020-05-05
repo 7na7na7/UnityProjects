@@ -130,9 +130,21 @@ public class oniMove : MonoBehaviour
             if (isHead)
             {
                 ScoreMgr.instance.headshot++;
-                SoundManager.instance.head();
 
-                hp -= 2;
+                if (Player.instance.playerIndex == 4)
+                {
+                    SoundManager.instance.body();
+                    hp--;
+                    Player.instance.ComboText(false);
+                    Instantiate(effect, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Player.instance.ComboText(true);
+                    SoundManager.instance.head();
+                    hp -= 2;
+                    Instantiate(headEffect, transform.position, Quaternion.identity);
+                }
                 if (hp <= 0)
                 {
                     if (oniIndex == 1)
@@ -150,12 +162,12 @@ public class oniMove : MonoBehaviour
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
-                    Instantiate(headEffect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
             }
             else
             {
+                Player.instance.ComboText(false);
                 SoundManager.instance.body();
                 hp--;
                 if (hp <= 0)
@@ -179,7 +191,6 @@ public class oniMove : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
-            Player.instance.ComboText(isHead);
             dmgDelay = 0;
         }
     }

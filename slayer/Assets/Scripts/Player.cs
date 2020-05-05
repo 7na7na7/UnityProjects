@@ -379,6 +379,23 @@ public class Player : MonoBehaviour
                 trail.GetComponent<TrailRenderer>().startColor = color;
                 particle.SetActive(false);
             }
+            else if (playerIndex == 4)
+            {
+                camera.sizeup();
+                if (!isFirst)
+                {
+                    isFirst = true;
+                    //시노부콤보
+                }
+
+                Color color = Color.white;
+                color.r = 0.66f;
+                color.g = 0f;
+                color.b =1f;
+              
+                trail.GetComponent<TrailRenderer>().startColor = color;
+                particle.SetActive(true);
+            }
 
             //if (Time.timeScale == 1)
               //  Time.timeScale = comboTimeScale;
@@ -392,6 +409,8 @@ public class Player : MonoBehaviour
             else if(playerIndex==2)
                 rigid.velocity = dir * force *1.1f;
             else if(playerIndex==3)
+                rigid.velocity = dir * force *1.1f;
+            else if(playerIndex==4)
                 rigid.velocity = dir * force *1.1f;
         }
         else //첫번째
@@ -437,6 +456,16 @@ public class Player : MonoBehaviour
               
                     trail.GetComponent<TrailRenderer>().startColor = color;
                     particle.SetActive(false);
+            }
+            else if (playerIndex == 4)
+            {
+                Color color = Color.white;
+                color.r = 0.66f;
+                color.g = 0.5f;
+                color.b =1f;
+              
+                trail.GetComponent<TrailRenderer>().startColor = color;
+                particle.SetActive(false);
             }
             camera.sizedown();
 

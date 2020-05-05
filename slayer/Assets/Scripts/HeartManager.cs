@@ -13,6 +13,16 @@ public class HeartManager : MonoBehaviour
     {
         instance = this;
         heartCount = hearts.Length;
+        
+        //1280 * 720에 맞추기 위해 처음에 약간 왼쪽으로 땡겨주기
+        GameObject[] heartsObjs;
+        heartsObjs = GameObject.FindGameObjectsWithTag("heart");
+        foreach (GameObject rt in heartsObjs)
+        {
+            rt.GetComponent<RectTransform>().anchoredPosition = new Vector2(
+                rt.GetComponent<RectTransform>().anchoredPosition.x-50,
+                rt.GetComponent<RectTransform>().anchoredPosition.y);
+        }
     }
 
     public void tanjiro()

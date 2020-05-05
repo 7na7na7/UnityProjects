@@ -68,9 +68,18 @@ public class GooglePlayManager : MonoBehaviour
 
    public void LogInOrLogOut()
    {
-      Social.localUser.Authenticate((bool success) =>
-         { });
+      if (Social.localUser.authenticated) // GPGS 로그인 되어 있는 경우
+      {
+         ((PlayGamesPlatform)Social.Active).SignOut(); //로그아웃
       }
+      else // GPGS 로그인이 되어 있지 않은 경우
+      {
+         Social.localUser.Authenticate((bool Success) =>
+         {
+            //로그인
+         });    
+      }
+   }
    public void LogOut()
    {
       ((PlayGamesPlatform)Social.Active).SignOut();
