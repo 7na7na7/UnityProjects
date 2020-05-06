@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class oniMove : MonoBehaviour
 {
+    private bool isPoison = false;
     public bool isJumping;
     public bool canGo;
     public int hp = 2;
@@ -122,18 +123,22 @@ public class oniMove : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void die(bool isHead)
+    public void die(bool isHead, bool isPois=false)
     {
-        if (dmgDelay >= 0.1f)
+        float v = 0.1f;
+        if (isPois)
+            v = 0;
+        if (dmgDelay >= v)
         { 
-            Player.instance.AttackCor();
+            if(!isPois) 
+                Player.instance.AttackCor();
             if (isHead)
             {
                 ScoreMgr.instance.headshot++;
 
-
                 if (Player.instance.playerIndex == 4)
                 {
+                    poison();
                     SoundManager.instance.body();
                     hp--;
                     Player.instance.ComboText(false);
@@ -169,7 +174,12 @@ public class oniMove : MonoBehaviour
             else
             {
                 Player.instance.ComboText(false);
-                SoundManager.instance.body();
+                
+                if(isPois)
+                    SoundManager.instance.poison();
+                else
+                    SoundManager.instance.body();
+                
                 hp--;
                 if (hp <= 0)
                 {
@@ -192,7 +202,8 @@ public class oniMove : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
-            dmgDelay = 0;
+            if(!isPois) 
+                dmgDelay = 0;
         }
     }
 
@@ -294,6 +305,27 @@ public class oniMove : MonoBehaviour
         if (other.CompareTag("die"))
         {
             justDie();
+        }
+    }
+
+    public void poison()
+    {
+        if (!isPoison)
+            StartCoroutine(poisonCor());
+    }
+    public IEnumerator poisonCor()
+    {
+        isPoison = true;
+        SpriteRenderer spr= GetComponent<SpriteRenderer>();
+        Color color = Color.white;
+        color.r = 0.66f;
+        color.g = 0.32f;
+        color.b =1f;
+        spr.color = color;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.75f);
+            die(false,true);
         }
     }
 }

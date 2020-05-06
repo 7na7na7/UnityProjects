@@ -385,7 +385,7 @@ public class Player : MonoBehaviour
                 if (!isFirst)
                 {
                     isFirst = true;
-                    //시노부콤보
+                    SoundManager.instance.shinobuCombo();
                 }
 
                 Color color = Color.white;

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Net.Mime;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 
 public class bossScript : MonoBehaviour
 {
+    private bool isPoison = false;
     public float moveSpeed;
     public Slider slider;
     public GameObject effect;
@@ -372,21 +374,31 @@ public class bossScript : MonoBehaviour
         transform.GetChild(1).gameObject.tag = "oni";
         transform.GetChild(2).gameObject.tag = "oniHead";
         spr = GetComponent<SpriteRenderer>();
-        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+        if (isPoison)
         {
-            color.r = 255;
-            color.g = 0.5f;
-            color.b = 0.5f;
-            color.a = 1;
+            color.r = 0.66f;
+            color.g = 0.32f;
+            color.b =1f;
             spr.color = color;
         }
         else
         {
-            color.r = 255;
-            color.g = 255f;
-            color.b = 255f;
-            color.a = 1;
-            spr.color = color;   
+            if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+            {
+                color.r = 255;
+                color.g = 0.5f;
+                color.b = 0.5f;
+                color.a = 1;
+                spr.color = color;
+            }
+            else
+            {
+                color.r = 255;
+                color.g = 255f;
+                color.b = 255f;
+                color.a = 1;
+                spr.color = color;   
+            }   
         }
         canGo = true;
     }
@@ -425,22 +437,33 @@ public class bossScript : MonoBehaviour
         }
         transform.GetChild(1).gameObject.tag = "oni";
         transform.GetChild(2).gameObject.tag = "oniHead";
-        if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+        if (isPoison)
         {
-            color.r = 255;
-            color.g = 0.5f;
-            color.b = 0.5f;
-            color.a = 1;
+            color.r = 0.66f;
+            color.g = 0.32f;
+            color.b =1f;
             spr.color = color;
         }
         else
         {
-            color.r = 255;
-            color.g = 255f;
-            color.b = 255f;
-            color.a = 1;
-            spr.color = color;   
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                    {
+                        color.r = 255;
+                        color.g = 0.5f;
+                        color.b = 0.5f;
+                        color.a = 1;
+                        spr.color = color;
+                    }
+                    else
+                    {
+                        color.r = 255;
+                        color.g = 255f;
+                        color.b = 255f;
+                        color.a = 1;
+                        spr.color = color;   
+                    }
         }
+    
         canGo = true;
     }
     IEnumerator tsuzumi(int r)
@@ -506,48 +529,54 @@ public class bossScript : MonoBehaviour
 
     public void dead(bool isHead)
     {
-        if (SceneManager.GetActiveScene().name == "Main" ||
-                        SceneManager.GetActiveScene().name == "Main_H" ||
-                        SceneManager.GetActiveScene().name == "Main_EZ")
-                    {
-                        if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
-                        {
-                            spr = GetComponent<SpriteRenderer>();
-                            color.r = 255;
-                            color.g = 0.5f;
-                            color.b = 0.5f;
-                            color.a = 1;
-                            spr.color = color;
-                        }
-                    }
-                    else if (SceneManager.GetActiveScene().name == "Main2" ||
-                             SceneManager.GetActiveScene().name == "Main2_H" ||
-                             SceneManager.GetActiveScene().name == "Main2_EZ")
-                    {
-                        if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
-                        {
-                            spr = GetComponent<SpriteRenderer>();
-                            color.r = 255;
-                            color.g = 0.5f;
-                            color.b = 0.5f;
-                            color.a = 1;
-                            spr.color = color;
-                        }
-                    }
-        else if (SceneManager.GetActiveScene().name == "Main3" ||
-                 SceneManager.GetActiveScene().name == "Main3_H" ||
-                 SceneManager.GetActiveScene().name == "Main3_EZ")
+        if (!isPoison)
         {
-            if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+            if (SceneManager.GetActiveScene().name == "Main" ||
+                SceneManager.GetActiveScene().name == "Main_H" ||
+                SceneManager.GetActiveScene().name == "Main_EZ")
             {
-                spr = GetComponent<SpriteRenderer>();
-                color.r = 255;
-                color.g = 0.5f;
-                color.b = 0.5f;
-                color.a = 1;
-                spr.color = color;
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+                {
+                    spr = GetComponent<SpriteRenderer>();
+                    color.r = 255;
+                    color.g = 0.5f;
+                    color.b = 0.5f;
+                    color.a = 1;
+                    spr.color = color;
+                }
             }
-        }
+            else if (SceneManager.GetActiveScene().name == "Main2" ||
+                     SceneManager.GetActiveScene().name == "Main2_H" ||
+                     SceneManager.GetActiveScene().name == "Main2_EZ")
+            {
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+                {
+                    spr = GetComponent<SpriteRenderer>();
+                    color.r = 255;
+                    color.g = 0.5f;
+                    color.b = 0.5f;
+                    color.a = 1;
+                    spr.color = color;
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Main3" ||
+                     SceneManager.GetActiveScene().name == "Main3_H" ||
+                     SceneManager.GetActiveScene().name == "Main3_EZ")
+            {
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+                {
+                    spr = GetComponent<SpriteRenderer>();
+                    color.r = 255;
+                    color.g = 0.5f;
+                    color.b = 0.5f;
+                    color.a = 1;
+                    spr.color = color;
+                }
+            }
+        } //독묻은상태가 아니면 색바꾸기
+        
+       
+        
         if (slider.value <= 0)
                     {
                         CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
@@ -589,34 +618,82 @@ public class bossScript : MonoBehaviour
                         Destroy(gameObject);
                     }
     }
-    public void die(bool isHead)
+    public void die(bool isHead, bool isPois=false)
     {
         if (canMove)
         {
-            if (dmgDelay >= 0.1f)
+            float v = 0.1f;
+            if (isPois)
+                v = 0;
+            if (dmgDelay >= v)
             {
-                Player.instance.AttackCor();
+                if(!isPois) 
+                    Player.instance.AttackCor();
+                
                 if (isHead)
                 {
                     ScoreMgr.instance.headshot++;
-                    SoundManager.instance.head();
-                    slider.value -= 2;
+                    if (Player.instance.playerIndex == 4)
+                    {
+                        poison();
+                        SoundManager.instance.body();
+                        slider.value--;
+                        Player.instance.ComboText(false);
+                        Instantiate(effect, transform.position, Quaternion.identity);
+                        dead(false);
+                    }
+                    else
+                    {
+                        Player.instance.ComboText(true);
+                        SoundManager.instance.head();
+                        slider.value -= 2;
+                        Instantiate(headEffect, transform.position, Quaternion.identity);
+                        dead(true);
+                    }
+                    
                     //플레이어가 이노스케라면 보스가 데미지 더 입음
                     /*
                     if (Player.instance.playerIndex == 2)
                         slider.value--;
                         */
-                    dead(true);
                 }
                 else
                 {
-                    SoundManager.instance.body();
+                    if(isPois)
+                        SoundManager.instance.poison();
+                    else
+                        SoundManager.instance.body();
+                  
                     slider.value--;
                     dead(false);
                 }
             } 
-            dmgDelay = 0; 
+            if(!isPois) 
+                dmgDelay = 0; 
             Player.instance.ComboText(isHead); 
         } 
+    }
+    public void poison()
+    {
+        if (!isPoison)
+            StartCoroutine(poisonCor());
+    }
+    public IEnumerator poisonCor()
+    {
+        isPoison = true;
+        SpriteRenderer spr= GetComponent<SpriteRenderer>();
+        Color color = Color.white;
+        color.r = 0.66f;
+        color.g = 0.32f;
+        color.b =1f;
+        spr.color = color;
+        while (true)
+        {
+            if(SceneManager.GetActiveScene().name=="Main3"||SceneManager.GetActiveScene().name=="Main3_EZ"||SceneManager.GetActiveScene().name=="Main3_H")
+                yield return new WaitForSeconds(1.25f);
+            else
+                yield return new WaitForSeconds(1.5f);
+            die(false,true);
+        }
     }
 }

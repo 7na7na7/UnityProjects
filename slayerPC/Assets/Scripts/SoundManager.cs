@@ -30,6 +30,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip inoskaeComboSound;
     public AudioClip steamSound;
     public AudioClip waterDropSound;
+    public AudioClip poisonSound;
+    public AudioClip shinobuComboSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -53,7 +55,14 @@ public class SoundManager : MonoBehaviour
        
         audio = GetComponent<AudioSource>();
     }
-
+    public void shinobuCombo()
+    {
+        audio.PlayOneShot(shinobuComboSound, savedBgs*10);
+    }
+    public void poison()
+    {
+        audio.PlayOneShot(poisonSound, savedBgs*3);
+    }
     public void waterDrop()
     {
         audio.PlayOneShot(waterDropSound,savedBgs*10);
