@@ -77,22 +77,36 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         if (GooglePlayManager.instance.canStage1 == 0)
         {
             stage2panel.SetActive(true);
-            stage2Text.text = "[쿄우가이 처치 시 잠금 해제]";
+            if (TextManager.instance.isKor == 1) //한국어
+                stage2Text.text = "[쿄우가이 처치 시 잠금 해제]";
+            else //영어
+                stage2Text.text = "[Kill Kyogai for unlock]";
         }
         else
         {
             stage2panel.SetActive(false);
-            stage2Text.text = "나타구모 산";
+            if (TextManager.instance.isKor == 1) //한국어
+                stage2Text.text = "나타구모 산";
+            else
+                stage2Text.text = "Natagumo Mountain";
         }
         if (GooglePlayManager.instance.canStage2 == 0)
         {
             stage3panel.SetActive(true);
-            stage3Text.text = "[루이 처치 시 잠금 해제]";
+            if (TextManager.instance.isKor == 1) //한국어
+                stage3Text.text = "[루이 처치 시 잠금 해제]";
+            else //영어
+                stage3Text.text = "[Kill Rui for unlock]";
+           
         }
         else
         {
             stage3panel.SetActive(false);
-            stage3Text.text = "무한열차";
+            if (TextManager.instance.isKor == 1) //한국어
+                stage3Text.text = "무한열차";
+            else //영어
+                stage3Text.text = "Infinity Train";
+            
         }
         if (!isDrag)
         {
@@ -110,11 +124,11 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         {
             if (difficulty==1)
             {
-                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey1", 0);
+                bestScoreText.text = "" + PlayerPrefs.GetInt("highScoreKey1", 0);
             }
             else if(difficulty==2)
             {
-                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey1_H", 0);
+                bestScoreText.text = "" + PlayerPrefs.GetInt("highScoreKey1_H", 0);
             }
             else
             {
@@ -125,15 +139,15 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         {
             if (difficulty==1)
             {
-                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2", 0);
+                bestScoreText.text = "" + PlayerPrefs.GetInt("highScoreKey2", 0);
             }
             else if(difficulty==2)
             {
-                bestScoreText.text = "최고기록 : " + PlayerPrefs.GetInt("highScoreKey2_H", 0);
+                bestScoreText.text = "" + PlayerPrefs.GetInt("highScoreKey2_H", 0);
             }
             else
             {
-                bestScoreText.text = "E-Z";
+                bestScoreText.text = "";
             }
         }
         else if (targetIndex == 2)//해야됨
@@ -142,17 +156,17 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             {
                 int a = PlayerPrefs.GetInt("fastTimeKeyN", 0);
                 if (a == 0)
-                    bestScoreText.text = "최단시간 : 미기록";
+                    bestScoreText.text = "9999";
                 else
-                    bestScoreText.text = "최단시간 : " + a;
+                    bestScoreText.text = "" + a;
             }
             else if(difficulty==2)
             {
                 int a = PlayerPrefs.GetInt("fastTimeKeyH", 0);
                 if (a == 0)
-                    bestScoreText.text = "최단시간 : 미기록";
+                    bestScoreText.text = "9999";
                 else
-                    bestScoreText.text = "최단시간 : " + a;
+                    bestScoreText.text = "" + a;
             }
             else
             {
