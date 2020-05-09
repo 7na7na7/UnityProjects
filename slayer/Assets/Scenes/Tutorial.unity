@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 307610824}
   - component: {fileID: 307610826}
   - component: {fileID: 307610825}
+  - component: {fileID: 307610827}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -336,8 +337,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015211292, y: -57.320038}
-  m_SizeDelta: {x: 394.14, y: 98.68}
+  m_AnchoredPosition: {x: 1.73, y: -57.320038}
+  m_SizeDelta: {x: 576.51, y: 98.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &307610825
 MonoBehaviour:
@@ -364,7 +365,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 300
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -379,6 +380,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307610823}
   m_CullTransparentMesh: 0
+--- !u!114 &307610827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307610823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8006c892aaec3a74896755950222ace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kor: "\uD0C0\uC774\uD2C0\uB85C"
+  eng: Title
 --- !u!1 &735557224
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 993029860}
   - component: {fileID: 993029862}
+  - component: {fileID: 993029863}
   - component: {fileID: 993029861}
   m_Layer: 0
   m_Name: Text
@@ -662,8 +678,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -693, y: -452}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 111.7, y: -418.9}
+  m_SizeDelta: {x: 7063.8, y: 593.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &993029861
 MonoBehaviour:
@@ -693,11 +709,10 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC18C\uC911\uD55C \uC0AC\uB78C\uC744 \uC624\uB2C8\uB4E4\uB85C\uBD80\uD130
-    \uC9C0\uCF1C\uB0B4\uC138\uC694!"
+  m_Text: 
 --- !u!222 &993029862
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -706,6 +721,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993029859}
   m_CullTransparentMesh: 0
+--- !u!114 &993029863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993029859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8006c892aaec3a74896755950222ace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kor: "\uC18C\uC911\uD55C \uC0AC\uB78C\uC744 \uC624\uB2C8\uB4E4\uB85C\uBD80\uD130
+    \uC9C0\uCF1C\uB0B4\uC138\uC694!"
+  eng: Protect your precious people from Oni!
 --- !u!1 &1059239045
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1275897555}
   - component: {fileID: 1275897557}
+  - component: {fileID: 1275897558}
   - component: {fileID: 1275897556}
   m_Layer: 0
   m_Name: Text
@@ -886,8 +917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24, y: -444}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 214.2, y: -432}
+  m_SizeDelta: {x: 4789.8, y: 737.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275897556
 MonoBehaviour:
@@ -917,11 +948,10 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD130\uCE58 \uC2DC \uD574\uB2F9 \uACBD\uB85C\uB85C \uB3CC\uC9C4\uD558\uBA70
-    \n\uC801\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  m_Text: 
 --- !u!222 &1275897557
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -930,6 +960,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275897554}
   m_CullTransparentMesh: 0
+--- !u!114 &1275897558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275897554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8006c892aaec3a74896755950222ace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kor: "\uD130\uCE58 \uC2DC \uD574\uB2F9 \uACBD\uB85C\uB85C \uB3CC\uC9C4\uD558\uBA70
+    \ \uC801\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  eng: When touched, attack the enemy by rushing into that path.
 --- !u!1 &1305525499
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1305525500}
   - component: {fileID: 1305525502}
+  - component: {fileID: 1305525503}
   - component: {fileID: 1305525501}
   m_Layer: 0
   m_Name: Text
@@ -964,8 +1010,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -170, y: 259}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 88.6, y: 58.5}
+  m_SizeDelta: {x: 5695.1, y: 2258.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1305525501
 MonoBehaviour:
@@ -995,11 +1041,10 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uACF5\uACA9\uD558\uAE30 \uC704\uD574\uC11C\uB294 \uD638\uD761\uC774 \uD544\uC694\uD558\uBA70,
-    \n\uD638\uD761\uC740 \uC790\uB3D9 \uCDA9\uC804\uB429\uB2C8\uB2E4."
+  m_Text: 
 --- !u!222 &1305525502
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1008,6 +1053,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305525499}
   m_CullTransparentMesh: 0
+--- !u!114 &1305525503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305525499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8006c892aaec3a74896755950222ace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kor: "\uACF5\uACA9\uD558\uAE30 \uC704\uD574\uC11C\uB294 \uD638\uD761\uC774 \uD544\uC694\uD558\uBA70,
+    \ \uD638\uD761\uC740 \uC790\uB3D9 \uCDA9\uC804\uB429\uB2C8\uB2E4."
+  eng: You should have breath to Attack. breath is Auto-fill.
 --- !u!1 &1425711845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1425711846
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1091,6 +1151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511214536}
   - component: {fileID: 1511214538}
+  - component: {fileID: 1511214539}
   - component: {fileID: 1511214537}
   m_Layer: 0
   m_Name: Text
@@ -1115,8 +1176,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -676, y: -602}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 59.6, y: -593.3}
+  m_SizeDelta: {x: 6261.3, y: 941.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511214537
 MonoBehaviour:
@@ -1146,11 +1207,10 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC5F0\uC18D\uC73C\uB85C \uACF5\uACA9\uD558\uBA74 \uCF64\uBCF4\uB97C \uC313\uC744
-    \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  m_Text: 
 --- !u!222 &1511214538
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1159,6 +1219,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511214535}
   m_CullTransparentMesh: 0
+--- !u!114 &1511214539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511214535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8006c892aaec3a74896755950222ace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kor: "\uC5F0\uC18D\uC73C\uB85C \uACF5\uACA9\uD558\uBA74 \uCF64\uBCF4\uB97C \uC313\uC744
+    \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  eng: Continuous attacks can build a combo.
 --- !u!1 &1621048667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,7 +1530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2068606169
 RectTransform:
   m_ObjectHideFlags: 0

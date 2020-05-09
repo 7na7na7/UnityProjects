@@ -147,7 +147,7 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             }
             else
             {
-                bestScoreText.text = "";
+                bestScoreText.text = "E-Z";
             }
         }
         else if (targetIndex == 2)//해야됨

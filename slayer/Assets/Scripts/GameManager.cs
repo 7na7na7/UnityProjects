@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
   public int fallingTime;
   public int spiderTime;
   public int beforeBossTime;
-  public GameObject pausePanel;
   public Sprite pauseSprite, goSprite;
   public Button pauseBtn;
   public bool isGameOver=false;
@@ -28,8 +27,12 @@ public class GameManager : MonoBehaviour
   public bool isPause = false;
   public static GameManager instance;
   private bool once = false;
+
+  private GameObject pausePanel;
   private void Awake()
   {
+    pausePanel = GameObject.Find("pausePanel").gameObject;
+    pausePanel.SetActive(false);
     instance = this;
   }
 
@@ -224,7 +227,7 @@ public class GameManager : MonoBehaviour
       {
      
           GameObject.Find("BGM").GetComponent<AudioSource>().UnPause();
-          pausePanel.SetActive(false);
+         pausePanel.SetActive(false);
           Time.timeScale = 1;
           pauseBtn.GetComponent<Image>().sprite = goSprite;
           isPause = false;
@@ -245,7 +248,6 @@ public class GameManager : MonoBehaviour
 
   public void RESTART()
   {
-    SoundManager.instance?.select();
     SoundManager.instance.select();
     FadePanel.instance.rightFade();
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);

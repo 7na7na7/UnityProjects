@@ -754,6 +754,7 @@ GameObject:
   - component: {fileID: 7838089249460095806}
   - component: {fileID: 7838089249460095807}
   - component: {fileID: 7838089249460095804}
+  - component: {fileID: 6796001672798678346}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -819,7 +820,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Boss - \uCFC4\uC6B0\uAC00\uC774"
+  m_Text: 
 --- !u!114 &7838089249460095807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,3 +851,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 5, y: 0}
   m_UseGraphicAlpha: 1
+--- !u!114 &6796001672798678346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838089249460095794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8006c892aaec3a74896755950222ace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kor: "Boss - \uCFC4\uC6B0\uAC00\uC774"
+  eng: Boss - kyogai

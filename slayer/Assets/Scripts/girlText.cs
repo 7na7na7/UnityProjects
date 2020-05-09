@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class girlText : MonoBehaviour
 {
     public string[] texts;
+    public string[] textseng;
     public Text text;
     public Sprite spr;
     public float destroyDelay;
@@ -19,7 +20,11 @@ public class girlText : MonoBehaviour
         }
 
         //대사 무작위
-        text.text = texts[Random.Range(0, texts.Length)];
+        if (TextManager.instance.isKor == 1) //한국어
+            text.text = texts[Random.Range(0, texts.Length)];
+        else //영어
+            text.text = textseng[Random.Range(0, texts.Length)];
+      
         
         Destroy(gameObject,destroyDelay);
     }

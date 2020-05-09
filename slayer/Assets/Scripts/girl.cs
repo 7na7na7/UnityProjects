@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class girl : MonoBehaviour
 {
     public string hitText = "아얏!";
+    public string hitTextEng = "Ouch!";
     public static girl instance;
     //public float invisibleTime;
     public Slider hp;
@@ -34,7 +35,12 @@ public class girl : MonoBehaviour
         else
         {
             if (FindObjectOfType<girlText>() != null)
-                FindObjectOfType<girlText>().text.text = hitText;
+            {
+                if (TextManager.instance.isKor == 1) //한국어
+                    FindObjectOfType<girlText>().text.text = hitText;
+                else //영어
+                    FindObjectOfType<girlText>().text.text = hitTextEng;
+            }
             yield return new WaitForSeconds(1);
             anim.Play("girlAnim");
         }

@@ -169,14 +169,29 @@ public class ScorePanel : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.3f);
  if (isTrain)
  {
-     GameObject.Find("trainText").GetComponent<Text>().text =
-         "시간 : " + GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
+     if (TextManager.instance.isKor == 1) //한국어
+         GameObject.Find("trainText").GetComponent<Text>().text =
+             "시간 : " + GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
+     else //영어
+         GameObject.Find("trainText").GetComponent<Text>().text =
+             "Time : " + GameManager.instance.trainTime / 60 +"min "+ GameManager.instance.trainTime % 60+"sec";
+     
  }
  else 
- { 
-     head.text = "급소 공격 횟수 : 0번";
-     killedOni.text = "죽인 오니 : 0마리";
-     maxCombo.text = "최대 콤보 횟수 : 0번";
+ {
+     if (TextManager.instance.isKor == 1) //한국어
+     {
+         head.text = "급소 공격 횟수 : 0번";
+         killedOni.text = "죽인 오니 : 0마리";
+         maxCombo.text = "최대 콤보 횟수 : 0번";
+     }
+     else //영어
+     {
+         head.text = "Vital points count : 0";
+         killedOni.text = "Killed Oni : 0";
+         maxCombo.text = "Max combo count : 0";
+     }
+     
      score.text = ScoreMgr.instance.score.ToString();
      while (killedOnic<killedOniv)
         {
@@ -188,7 +203,11 @@ public class ScorePanel : MonoBehaviour
             
             if (killedOnic% 3 == 0)
                 SoundManager.instance.scoreCount();
+
+            if (TextManager.instance.isKor == 1) //한국어
                 killedOni.text = "죽인 오니 : " + killedOnic + "마리";
+            else //영어
+                killedOni.text = "Killed Oni : " + killedOnic;
         }
         yield return new WaitForSecondsRealtime(0.3f);
         if (headv > 0)
@@ -202,7 +221,11 @@ public class ScorePanel : MonoBehaviour
                     headc+=2;
                 if (headc% 3 == 0)
                     SoundManager.instance.scoreCount();
-                head.text = "급소 공격 횟수 : " + headc + "번";
+
+                if (TextManager.instance.isKor == 1) //한국어
+                    head.text = "급소 공격 횟수 : " + headc + "번";
+                else //영어
+                    head.text = "Vital points count : " + headc;
             }
 
             yield return new WaitForSecondsRealtime(0.3f);
@@ -215,7 +238,11 @@ public class ScorePanel : MonoBehaviour
                 maxcomboc++;
                 if (maxcomboc % 3 == 0)
                     SoundManager.instance.scoreCount();
-                maxCombo.text = "최대 콤보 횟수 : " + maxcomboc + "번";
+
+                if (TextManager.instance.isKor == 1) //한국어
+                    maxCombo.text = "최대 콤보 횟수 : " + maxcomboc + "번";
+                else //영어
+                    maxCombo.text = "Max combo count : " + maxcomboc;
             }
 
             yield return new WaitForSecondsRealtime(0.3f);
@@ -223,7 +250,11 @@ public class ScorePanel : MonoBehaviour
 
         if (headv > 0)
         {
-            bonusText1.text = "급소 보너스 + " + headv * headScore;
+            if (TextManager.instance.isKor == 1) //한국어
+                bonusText1.text = "급소 보너스 + " + headv * headScore;
+            else //영어
+                bonusText1.text = "Vital point bonus + " + headv * headScore;
+          
             while (scorec < ScoreMgr.instance.score + (headv * headScore))
             {
                 yield return new WaitForSecondsRealtime(textDelay);
@@ -238,7 +269,11 @@ public class ScorePanel : MonoBehaviour
 
         if (maxcombov > 1)
         {
-            bonusText2.text = "최대콤보 보너스 + " + maxcombov * maxComboScore;
+            if (TextManager.instance.isKor == 1) //한국어
+                bonusText2.text = "최대콤보 보너스 + " + maxcombov * maxComboScore;
+            else //영어
+                bonusText2.text = "Max combo bonus + " + maxcombov * maxComboScore;
+            
             while (scorec < ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore))
             {
                 yield return new WaitForSecondsRealtime(textDelay);

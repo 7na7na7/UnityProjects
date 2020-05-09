@@ -23,7 +23,19 @@ public class LoadScene : MonoBehaviour
       SoundManager.instance.select();
       SceneManager.LoadScene("Title");
    }
+   public void RESTART()
+   {
+      SoundManager.instance.select();
+      FadePanel.instance.rightFade();
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+   }
 
+   public void TITLE()
+   {
+      SoundManager.instance.select();
+      FadePanel.instance.rightFade();
+      SceneManager.LoadScene("Title");
+   }
    public void Setting()
    {  SoundManager.instance.select();
       SceneManager.LoadScene("Setting");
@@ -53,6 +65,10 @@ public class LoadScene : MonoBehaviour
       SceneManager.LoadScene("Tutorial");
    }
 
+   public void Language()
+   {
+      SceneManager.LoadScene("Language");
+   }
    public void SetUp()
    {
       SoundManager.instance.select();

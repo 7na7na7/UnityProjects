@@ -20,4 +20,18 @@ public class TextManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Set(bool isKorB)
+    {
+        if (isKorB)
+        {
+            isKor = 1;
+            PlayerPrefs.SetInt(lanKey,1);
+        }
+        else
+        {
+            isKor = 0;
+            PlayerPrefs.SetInt(lanKey,0);
+        }
+    }
 }

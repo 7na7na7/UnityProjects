@@ -10,8 +10,8 @@ public class GooglePlayManager : MonoBehaviour
    public int canStage2 = 0;
    private string canStage1Key = "canStage1";
    private string canStage2Key = "canStage2";
-   private int isFirst = 0;
-   private string isFirstKey = "isFirst";
+   public int isFirst = 0;
+   public string isFirstKey = "isFirst";
    public static GooglePlayManager instance;
    private void Start()
    {
@@ -25,11 +25,10 @@ public class GooglePlayManager : MonoBehaviour
          canStage1 = PlayerPrefs.GetInt(canStage1Key,0);
          canStage2 = PlayerPrefs.GetInt(canStage2Key,0);
          isFirst = PlayerPrefs.GetInt(isFirstKey, 0);
+         
          if (isFirst == 0)
          {
-            isFirst = 1;
-            PlayerPrefs.SetInt(isFirstKey, 1);
-            FindObjectOfType<LoadScene>().Tutorial();
+            FindObjectOfType<LoadScene>().Language();
          }
       }
       else

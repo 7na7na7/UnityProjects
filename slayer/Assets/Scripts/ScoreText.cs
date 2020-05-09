@@ -19,11 +19,14 @@ public class ScoreText : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Main3" || SceneManager.GetActiveScene().name == "Main3_EZ" ||
             SceneManager.GetActiveScene().name == "Main3_H")
         {
-            Txt.text = "Time : " +GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
+            if (TextManager.instance.isKor == 1) //한국어
+                Txt.text = "Time : " +GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
+            else //영어
+                Txt.text = "Time : " +GameManager.instance.trainTime / 60 +"min "+ GameManager.instance.trainTime % 60+"sec";
         }
         else
         {
-            Txt.text ="Score : "+ ScoreMgr.instance.score.ToString();   
+            Txt.text ="Score : "+ ScoreMgr.instance.score.ToString();
         }
     }
     
