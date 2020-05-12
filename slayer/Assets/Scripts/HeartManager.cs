@@ -66,6 +66,14 @@ public class HeartManager : MonoBehaviour
         }  
     }
 
+    public void Die()
+    {
+        SoundManager.instance.hit();
+        heartCount--;
+        hearts[heartCount].gameObject.SetActive(false);
+        heartCount--;
+        hearts[heartCount].gameObject.SetActive(false);
+    }
     public void damaged2()
     {
         if (!Player.instance.isSuper)

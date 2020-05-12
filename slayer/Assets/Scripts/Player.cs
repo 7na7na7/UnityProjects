@@ -396,7 +396,23 @@ public class Player : MonoBehaviour
                 trail.GetComponent<TrailRenderer>().startColor = color;
                 particle.SetActive(true);
             }
+            else if (playerIndex == 5)
+            {
+                camera.sizeup();
+                if (!isFirst)
+                {
+                    isFirst = true;
+                    SoundManager.instance.shinobuCombo();
+                }
 
+                Color color = Color.white;
+                color.r = 1f;
+                color.g = 0.4f;
+                color.b =0.4f;
+              
+                trail.GetComponent<TrailRenderer>().startColor = color;
+                particle.SetActive(true);
+            }
             //if (Time.timeScale == 1)
               //  Time.timeScale = comboTimeScale;
 
@@ -404,13 +420,7 @@ public class Player : MonoBehaviour
             dir.Normalize();
             if (playerIndex == 0)
                 rigid.velocity = dir * force * 2;
-            else if(playerIndex==1)
-                rigid.velocity = dir * force *1.1f;
-            else if(playerIndex==2)
-                rigid.velocity = dir * force *1.1f;
-            else if(playerIndex==3)
-                rigid.velocity = dir * force *1.1f;
-            else if(playerIndex==4)
+            else
                 rigid.velocity = dir * force *1.1f;
         }
         else //첫번째
@@ -462,6 +472,16 @@ public class Player : MonoBehaviour
                 Color color = Color.white;
                 color.r = 0.66f;
                 color.g = 0.5f;
+                color.b =1f;
+              
+                trail.GetComponent<TrailRenderer>().startColor = color;
+                particle.SetActive(false);
+            }
+            else if (playerIndex == 5)
+            {
+                Color color = Color.white;
+                color.r = 1f;
+                color.g = 0.73f;
                 color.b =1f;
               
                 trail.GetComponent<TrailRenderer>().startColor = color;
@@ -552,10 +572,7 @@ public class Player : MonoBehaviour
 
             if (hit.CompareTag("die"))
             {
-                HeartManager.instance.damaged2();
-                HeartManager.instance.Damaged1();
-                HeartManager.instance.Damaged1();
-                HeartManager.instance.Damaged1();
+                HeartManager.instance.Die();
             }
 
             if (hit.CompareTag("dream"))

@@ -2755,6 +2755,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canStage1: 0
   canStage2: 0
+  isFirst: 0
+  isFirstKey: isFirst
 --- !u!4 &1414325716
 Transform:
   m_ObjectHideFlags: 0

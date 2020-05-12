@@ -16,6 +16,7 @@ public class oniMove : MonoBehaviour
     private bool isStop = false;
     public GameObject effect;
     public GameObject headEffect;
+    public GameObject poisonEffect;
     public float speed;
     
     private Animator anim;
@@ -130,6 +131,8 @@ public class oniMove : MonoBehaviour
             v = 0;
         if (dmgDelay >= v)
         { 
+            if (Player.instance.playerIndex == 4)
+                poison();
             if(!isPois) 
                 Player.instance.AttackCor();
             if (isHead)
@@ -138,7 +141,6 @@ public class oniMove : MonoBehaviour
 
                 if (Player.instance.playerIndex == 4)
                 {
-                    poison();
                     SoundManager.instance.body();
                     hp--;
                     Player.instance.ComboText(false);
@@ -326,6 +328,7 @@ public class oniMove : MonoBehaviour
         {
             yield return new WaitForSeconds(0.75f);
             die(false,true);
+            Instantiate(poisonEffect, transform.position, Quaternion.identity);
         }
     }
 }

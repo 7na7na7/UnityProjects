@@ -12,6 +12,7 @@ public class bossScript : MonoBehaviour
     public Slider slider;
     public GameObject effect;
     public GameObject headEffect;
+    public GameObject poisonEffect;
     public GameObject crew;
     private Animator anim;
     public float patternDelay;
@@ -627,6 +628,8 @@ public class bossScript : MonoBehaviour
                 v = 0;
             if (dmgDelay >= v)
             {
+                if (Player.instance.playerIndex == 4)
+                    poison();
                 if(!isPois) 
                     Player.instance.AttackCor();
                 
@@ -635,7 +638,6 @@ public class bossScript : MonoBehaviour
                     ScoreMgr.instance.headshot++;
                     if (Player.instance.playerIndex == 4)
                     {
-                        poison();
                         SoundManager.instance.body();
                         slider.value--;
                         Player.instance.ComboText(false);
@@ -694,6 +696,7 @@ public class bossScript : MonoBehaviour
             else
                 yield return new WaitForSeconds(1.5f);
             die(false,true);
+            Instantiate(poisonEffect, transform.position, Quaternion.identity);
         }
     }
 }
