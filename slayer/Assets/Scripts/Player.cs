@@ -402,7 +402,7 @@ public class Player : MonoBehaviour
                 if (!isFirst)
                 {
                     isFirst = true;
-                    SoundManager.instance.shinobuCombo();
+                    //SoundManager.instance.shinobuCombo();
                 }
 
                 Color color = Color.white;
@@ -411,7 +411,6 @@ public class Player : MonoBehaviour
                 color.b =0.4f;
               
                 trail.GetComponent<TrailRenderer>().startColor = color;
-                particle.SetActive(true);
             }
             //if (Time.timeScale == 1)
               //  Time.timeScale = comboTimeScale;
