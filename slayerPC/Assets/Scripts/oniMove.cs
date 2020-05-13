@@ -16,6 +16,8 @@ public class oniMove : MonoBehaviour
     private bool isStop = false;
     public GameObject effect;
     public GameObject headEffect;
+    public GameObject poisonEffect;
+    public GameObject ExplodingBloodEffect;
     public float speed;
     
     private Animator anim;
@@ -57,7 +59,7 @@ public class oniMove : MonoBehaviour
             }
         }
 
-        if (dmgDelay < Time.deltaTime*10)
+        if (dmgDelay < 0.1f)
             dmgDelay += Time.deltaTime;
     }
 
@@ -123,6 +125,38 @@ public class oniMove : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Explosion()
+    {
+        print("A");
+        if (dmgDelay >= 0.1f)
+        {
+            SoundManager.instance.body();
+            Player.instance.ComboText(false);
+            hp--;
+            if (hp <= 0)
+            {
+                if (oniIndex == 1)
+                    ScoreMgr.instance.scoreUp(0,100, false);
+                else if (oniIndex == 2)
+                    ScoreMgr.instance.scoreUp(0,150, false);
+                else if(oniIndex==3) 
+                    ScoreMgr.instance.scoreUp(0,100,false);
+                else if(oniIndex==4) 
+                    ScoreMgr.instance.scoreUp(0,300,false);
+                else if(oniIndex==5) 
+                    ScoreMgr.instance.scoreUp(0,200,false);
+                else if(oniIndex==6) 
+                    ScoreMgr.instance.scoreUp(0,250,false);
+                ComboManager.instance.comboIniitailize();
+                ScoreMgr.instance.killedOni++;
+                CameraManager.instance.closeUp();
+                Instantiate(effect, transform.position, Quaternion.identity);
+           
+                Destroy(gameObject);
+            }   
+        }
+    }
     public void die(bool isHead, bool isPois=false)
     {
         float v = 0.1f;
@@ -130,6 +164,8 @@ public class oniMove : MonoBehaviour
             v = 0;
         if (dmgDelay >= v)
         { 
+            if (Player.instance.playerIndex == 4)
+                poison();
             if(!isPois) 
                 Player.instance.AttackCor();
             if (isHead)
@@ -138,7 +174,6 @@ public class oniMove : MonoBehaviour
 
                 if (Player.instance.playerIndex == 4)
                 {
-                    poison();
                     SoundManager.instance.body();
                     hp--;
                     Player.instance.ComboText(false);
@@ -168,6 +203,8 @@ public class oniMove : MonoBehaviour
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
+                    if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                        Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
             }
@@ -199,6 +236,8 @@ public class oniMove : MonoBehaviour
                     ScoreMgr.instance.killedOni++;
                     CameraManager.instance.closeUp();
                     Instantiate(effect, transform.position, Quaternion.identity);
+                    if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                        Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
             }
@@ -306,6 +345,8 @@ public class oniMove : MonoBehaviour
         {
             justDie();
         }
+        if(other.CompareTag("explosion"))
+            Explosion();
     }
 
     public void poison()
@@ -326,6 +367,7 @@ public class oniMove : MonoBehaviour
         {
             yield return new WaitForSeconds(0.75f);
             die(false,true);
+            Instantiate(poisonEffect, transform.position, Quaternion.identity);
         }
     }
 }

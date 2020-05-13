@@ -89,7 +89,16 @@ public class PlayerSelect : MonoBehaviour
             currentIndex = 4;
         }
     }
-
+    public void Nezuko()
+    {
+        if(currentIndex==5)
+            Go();
+        else
+        {
+            SoundManager.instance.@select();
+            currentIndex = 5;
+        }
+    }
     public void Go()
     {
         SoundManager.instance.@select();
