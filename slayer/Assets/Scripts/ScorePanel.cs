@@ -172,10 +172,14 @@ public class ScorePanel : MonoBehaviour
      if (TextManager.instance.isKor == 1) //한국어
          GameObject.Find("trainText").GetComponent<Text>().text =
              "시간 : " + GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
-     else //영어
+     else if (TextManager.instance.isKor == 0) //영어
          GameObject.Find("trainText").GetComponent<Text>().text =
              "Time : " + GameManager.instance.trainTime / 60 +"min "+ GameManager.instance.trainTime % 60+"sec";
-     
+     else if (TextManager.instance.isKor == 2) //일본어
+         GameObject.Find("trainText").GetComponent<Text>().text =
+             "Time : " + GameManager.instance.trainTime / 60 +"分 "+ GameManager.instance.trainTime % 60+"秒";
+
+
  }
  else 
  {
@@ -185,12 +189,19 @@ public class ScorePanel : MonoBehaviour
          killedOni.text = "죽인 오니 : 0마리";
          maxCombo.text = "최대 콤보 횟수 : 0번";
      }
-     else //영어
+     else if (TextManager.instance.isKor == 0) //영어
      {
          head.text = "Vital points count : 0";
          killedOni.text = "Killed Oni : 0";
          maxCombo.text = "Max combo count : 0";
      }
+     else if (TextManager.instance.isKor == 2) //일본어
+     {
+         head.text = "急所攻撃回数 : 0回";
+         killedOni.text = "殺した鬼 : 0匹";
+         maxCombo.text = "最大コンボ回数 : 0回";
+     }
+   
      
      score.text = ScoreMgr.instance.score.ToString();
      while (killedOnic<killedOniv)
@@ -206,8 +217,11 @@ public class ScorePanel : MonoBehaviour
 
             if (TextManager.instance.isKor == 1) //한국어
                 killedOni.text = "죽인 오니 : " + killedOnic + "마리";
-            else //영어
+            else if (TextManager.instance.isKor == 0) //영어
                 killedOni.text = "Killed Oni : " + killedOnic;
+            else if (TextManager.instance.isKor == 2) //일본어
+                killedOni.text = "殺した鬼 : " + killedOnic+"匹";
+
         }
         yield return new WaitForSecondsRealtime(0.3f);
         if (headv > 0)
@@ -224,8 +238,10 @@ public class ScorePanel : MonoBehaviour
 
                 if (TextManager.instance.isKor == 1) //한국어
                     head.text = "급소 공격 횟수 : " + headc + "번";
-                else //영어
+                else if (TextManager.instance.isKor == 0) //영어
                     head.text = "Vital points count : " + headc;
+                else if (TextManager.instance.isKor == 2) //일본어
+                    head.text = "急所攻撃回数 : " + headc+"回";
             }
 
             yield return new WaitForSecondsRealtime(0.3f);
@@ -241,8 +257,11 @@ public class ScorePanel : MonoBehaviour
 
                 if (TextManager.instance.isKor == 1) //한국어
                     maxCombo.text = "최대 콤보 횟수 : " + maxcomboc + "번";
-                else //영어
+                else if (TextManager.instance.isKor == 0) //영어
                     maxCombo.text = "Max combo count : " + maxcomboc;
+                else if (TextManager.instance.isKor == 2) //일본어
+                    maxCombo.text = "最大コンボ回数 : " + maxcomboc+"回";
+                    
             }
 
             yield return new WaitForSecondsRealtime(0.3f);
@@ -252,8 +271,11 @@ public class ScorePanel : MonoBehaviour
         {
             if (TextManager.instance.isKor == 1) //한국어
                 bonusText1.text = "급소 보너스 + " + headv * headScore;
-            else //영어
+            else if (TextManager.instance.isKor == 0) //영어
                 bonusText1.text = "Vital point bonus + " + headv * headScore;
+            else if (TextManager.instance.isKor == 2) //일본어
+                bonusText1.text = "急所ボーナス + " + headv * headScore;
+               
           
             while (scorec < ScoreMgr.instance.score + (headv * headScore))
             {
@@ -271,8 +293,11 @@ public class ScorePanel : MonoBehaviour
         {
             if (TextManager.instance.isKor == 1) //한국어
                 bonusText2.text = "최대콤보 보너스 + " + maxcombov * maxComboScore;
-            else //영어
+            else if (TextManager.instance.isKor == 0) //영어
                 bonusText2.text = "Max combo bonus + " + maxcombov * maxComboScore;
+            else if (TextManager.instance.isKor == 2) //일본어
+                bonusText2.text = "最大コンボボーナス + " + maxcombov * maxComboScore;
+               
             
             while (scorec < ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore))
             {

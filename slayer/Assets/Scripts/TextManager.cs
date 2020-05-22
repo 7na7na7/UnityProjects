@@ -13,7 +13,7 @@ public class TextManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            isKor = PlayerPrefs.GetInt(lanKey, 0);
+            isKor = PlayerPrefs.GetInt(lanKey, 1);
         }
         else
         {
@@ -21,17 +21,10 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    public void Set(bool isKorB)
+    public void Set(int value)
     {
-        if (isKorB)
-        {
-            isKor = 1;
-            PlayerPrefs.SetInt(lanKey,1);
-        }
-        else
-        {
-            isKor = 0;
-            PlayerPrefs.SetInt(lanKey,0);
-        }
+
+        isKor = value;
+        PlayerPrefs.SetInt(lanKey, value);
     }
 }

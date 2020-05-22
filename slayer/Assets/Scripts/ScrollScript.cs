@@ -79,35 +79,44 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             stage2panel.SetActive(true);
             if (TextManager.instance.isKor == 1) //한국어
                 stage2Text.text = "[쿄우가이 처치 시 잠금 해제]";
-            else //영어
+            else if (TextManager.instance.isKor == 0)//영어
                 stage2Text.text = "[Kill Kyogai for unlock]";
+            else if (TextManager.instance.isKor == 2)//일본어
+                stage2Text.text = "[響凱処置時にロック解除]";
         }
         else
         {
             stage2panel.SetActive(false);
             if (TextManager.instance.isKor == 1) //한국어
                 stage2Text.text = "나타구모 산";
-            else
+            else if (TextManager.instance.isKor == 0)//영어
                 stage2Text.text = "Natagumo Mountain";
+            else if (TextManager.instance.isKor == 2)//일본어
+                stage2Text.text = "ナタグモ山";
+                
         }
         if (GooglePlayManager.instance.canStage2 == 0)
         {
             stage3panel.SetActive(true);
             if (TextManager.instance.isKor == 1) //한국어
                 stage3Text.text = "[루이 처치 시 잠금 해제]";
-            else //영어
+            else if (TextManager.instance.isKor == 0)//영어
                 stage3Text.text = "[Kill Rui for unlock]";
-           
+            else if (TextManager.instance.isKor == 2)//일본어
+                stage3Text.text = "[累処置時にロック解除]";
         }
         else
         {
             stage3panel.SetActive(false);
             if (TextManager.instance.isKor == 1) //한국어
                 stage3Text.text = "무한열차";
-            else //영어
+            else if (TextManager.instance.isKor == 0)//영어
                 stage3Text.text = "Infinity Train";
-            
+            else if (TextManager.instance.isKor == 2)//일본어
+                stage3Text.text = "無限列車";
         }
+        
+        
         if (!isDrag)
         {
             scrollbar.value = Mathf.Lerp(scrollbar.value, targetPos, 0.1f);

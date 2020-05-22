@@ -27,8 +27,11 @@ public class ScoreMgr : MonoBehaviour
            GameObject go=Instantiate(comboText,Canvas.transform);
            if (TextManager.instance.isKor == 1) //한국어
                go.GetComponent<Text>().text = count+ "콤보 +" + point;
-           else //영어
+           else if (TextManager.instance.isKor == 0) //한국어//영어
                go.GetComponent<Text>().text = count+ "combo +" + point;
+           else if (TextManager.instance.isKor == 2) //일본어
+               go.GetComponent<Text>().text = count+ "コンボ +" + point;
+           
          
         }
         score += point;

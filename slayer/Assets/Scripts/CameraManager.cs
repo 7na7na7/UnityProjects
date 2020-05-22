@@ -112,15 +112,17 @@ public class CameraManager : MonoBehaviour
                 }
                 else if (rot == 1)
                 {
-                    if (transform.eulerAngles.z > 1 || transform.eulerAngles.z < -1)
+                    if (transform.eulerAngles.z > 1.5f || transform.eulerAngles.z < -1.5f)
                     {
-                        if (transform.eulerAngles.z > 1)
+                        if (transform.eulerAngles.z > 1.5f)
                             transform.eulerAngles =
-                                new Vector3(0, 0, transform.eulerAngles.z - Time.deltaTime * rotSpeed);
+                                new Vector3(0, 0, transform.eulerAngles.z - Time.deltaTime * rotSpeed*0.5f);
                         else
                             transform.eulerAngles =
-                                new Vector3(0, 0, transform.eulerAngles.z + Time.deltaTime * rotSpeed);
+                                new Vector3(0, 0, transform.eulerAngles.z + Time.deltaTime * rotSpeed*0.5f);
                     }
+                    else
+                        transform.eulerAngles=Vector3.zero;
 
                 }
                 else if (rot == 2)

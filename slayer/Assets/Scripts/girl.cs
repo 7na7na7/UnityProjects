@@ -9,6 +9,7 @@ public class girl : MonoBehaviour
 {
     public string hitText = "아얏!";
     public string hitTextEng = "Ouch!";
+    public string hitTextJap = "アヤッ!";
     public static girl instance;
     //public float invisibleTime;
     public Slider hp;
@@ -38,8 +39,10 @@ public class girl : MonoBehaviour
             {
                 if (TextManager.instance.isKor == 1) //한국어
                     FindObjectOfType<girlText>().text.text = hitText;
-                else //영어
+                else if (TextManager.instance.isKor == 0)//영어
                     FindObjectOfType<girlText>().text.text = hitTextEng;
+                else if (TextManager.instance.isKor == 2)
+                    FindObjectOfType<girlText>().text.text = hitTextJap;
             }
             yield return new WaitForSeconds(1);
             anim.Play("girlAnim");

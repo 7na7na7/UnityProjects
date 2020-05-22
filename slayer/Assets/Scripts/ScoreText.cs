@@ -21,8 +21,10 @@ public class ScoreText : MonoBehaviour
         {
             if (TextManager.instance.isKor == 1) //한국어
                 Txt.text = "Time : " +GameManager.instance.trainTime / 60 +"분 "+ GameManager.instance.trainTime % 60+"초";
-            else //영어
+            else if (TextManager.instance.isKor == 0) //영어
                 Txt.text = "Time : " +GameManager.instance.trainTime / 60 +"min "+ GameManager.instance.trainTime % 60+"sec";
+            else if (TextManager.instance.isKor == 2) //일본어
+                Txt.text = "Time : " +GameManager.instance.trainTime / 60 +"分 "+ GameManager.instance.trainTime % 60+"秒";
         }
         else
         {
