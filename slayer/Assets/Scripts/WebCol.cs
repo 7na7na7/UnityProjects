@@ -55,7 +55,10 @@ public class WebCol : MonoBehaviour
                 {
                     if (Player.instance.isattack)
                     {
-                        SoundManager.instance.body();
+                        if(Player.instance.playerIndex==5)
+                            SoundManager.instance.Body_N();
+                        else
+                            SoundManager.instance.body();
                         Player.instance.oniBody(gameObject);
                         Player.instance.AttackCor();
                         Destroy(gameObject);

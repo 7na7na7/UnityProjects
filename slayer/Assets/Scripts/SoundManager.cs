@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
+    public AudioClip NezukoBody, NezukoHead;
     public AudioClip tsuzumiL, tsuzumiM, tsuzumiR;
     public AudioClip hitSound;
     public AudioClip swingSound;
@@ -56,6 +57,14 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void Head_N()
+    {
+        audio.PlayOneShot(NezukoHead, savedBgs*2);
+    }
+    public void Body_N()
+    {
+        audio.PlayOneShot(NezukoBody, savedBgs*7);
+    }
     public void shinobuCombo()
     {
         audio.PlayOneShot(shinobuComboSound, savedBgs*10);

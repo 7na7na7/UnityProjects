@@ -131,7 +131,10 @@ public class oniMove : MonoBehaviour
         print("A");
         if (dmgDelay >= 0.1f)
         {
-            SoundManager.instance.body();
+            if(Player.instance.playerIndex==5)
+                SoundManager.instance.Body_N();
+            else
+                SoundManager.instance.body();
             Player.instance.ComboText(false);
             hp--;
             if (hp <= 0)
@@ -182,7 +185,16 @@ public class oniMove : MonoBehaviour
                 else
                 {
                     Player.instance.ComboText(true);
-                    SoundManager.instance.head();
+                    if(Player.instance.playerIndex==5)
+                        SoundManager.instance.Head_N();
+                    else
+                        SoundManager.instance.head();
+                   
+                    if (Player.instance.playerIndex == 6)
+                    {
+                        if (kanao.instance.isRage)
+                            hp -= 2;
+                    }
                     hp -= 2;
                     Instantiate(headEffect, transform.position, Quaternion.identity);
                 }
@@ -215,8 +227,18 @@ public class oniMove : MonoBehaviour
                 if(isPois)
                     SoundManager.instance.poison();
                 else
-                    SoundManager.instance.body();
-                
+                {
+                    if(Player.instance.playerIndex==5)
+                        SoundManager.instance.Body_N();
+                    else
+                        SoundManager.instance.body();
+                }
+                    
+                if (Player.instance.playerIndex == 6)
+                {
+                    if (kanao.instance.isRage)
+                        hp --;
+                }
                 hp--;
                 if (hp <= 0)
                 {

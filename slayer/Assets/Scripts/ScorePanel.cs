@@ -36,6 +36,11 @@ public class ScorePanel : MonoBehaviour
 
     public IEnumerator bonus()
     {
+        scorec = ScoreMgr.instance.score;
+        headv = ScoreMgr.instance.headshot;
+        killedOniv=ScoreMgr.instance.killedOni;
+        scorev = ScoreMgr.instance.score;
+        maxcombov = ScoreMgr.instance.maxCombo;   
         if (SceneManager.GetActiveScene().name == "Main3_EZ"||SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H")
         {
             if(Player.instance.playerIndex==1) 
@@ -53,6 +58,7 @@ public class ScorePanel : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Main") //스테이지 1
         {
+            print(ScoreMgr.instance.score+" "+headv*headScore+" "+maxcombov*maxComboScore+" "+highScore1);
             //점수
             if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore1)
             {
@@ -137,11 +143,7 @@ public class ScorePanel : MonoBehaviour
         }
 
         
-        scorec = ScoreMgr.instance.score;
-        headv = ScoreMgr.instance.headshot;
-        killedOniv=ScoreMgr.instance.killedOni;
-        scorev = ScoreMgr.instance.score;
-        maxcombov = ScoreMgr.instance.maxCombo;   
+       
         if (killedOniv >= 50)
         {
             if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_H"||SceneManager.GetActiveScene().name=="Main_EZ") 

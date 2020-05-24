@@ -639,6 +639,7 @@ public class bossScript : MonoBehaviour
                     if (Player.instance.playerIndex == 4)
                     {
                         SoundManager.instance.body();
+                        
                         slider.value--;
                         Player.instance.ComboText(false);
                         Instantiate(effect, transform.position, Quaternion.identity);
@@ -647,8 +648,17 @@ public class bossScript : MonoBehaviour
                     else
                     {
                         Player.instance.ComboText(true);
-                        SoundManager.instance.head();
+                        if(Player.instance.playerIndex==5)
+                            SoundManager.instance.Head_N();
+                        else
+                            SoundManager.instance.head();
+                        
                         slider.value -= 2;
+                        if (Player.instance.playerIndex == 6)
+                        {
+                            if (kanao.instance.isRage)
+                                slider.value -= 2;
+                        }
                         Instantiate(headEffect, transform.position, Quaternion.identity);
                         dead(true);
                     }
@@ -664,9 +674,20 @@ public class bossScript : MonoBehaviour
                     if(isPois)
                         SoundManager.instance.poison();
                     else
-                        SoundManager.instance.body();
+                    {
+                        if(Player.instance.playerIndex==5)
+                            SoundManager.instance.Body_N();
+                        else
+                            SoundManager.instance.body();
+                    }
+                       
                   
                     slider.value--;
+                    if (Player.instance.playerIndex == 6)
+                    {
+                        if (kanao.instance.isRage)
+                            slider.value --;
+                    }
                     dead(false);
                 }
             } 
