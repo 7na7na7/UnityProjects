@@ -412,6 +412,21 @@ public class Player : MonoBehaviour
               
                 trail.GetComponent<TrailRenderer>().startColor = color;
             }
+            else if (playerIndex == 6)
+            {
+                camera.sizeup();
+                if (!isFirst)
+                {
+                    isFirst = true;
+                }
+
+                Color color = Color.white;
+                color.r = 1f;
+                color.g = 0.4f;
+                color.b =1;
+              
+                trail.GetComponent<TrailRenderer>().startColor = color;
+            }
             //if (Time.timeScale == 1)
               //  Time.timeScale = comboTimeScale;
 
@@ -481,6 +496,16 @@ public class Player : MonoBehaviour
                 Color color = Color.white;
                 color.r = 1f;
                 color.g = 0.73f;
+                color.b =1f;
+              
+                trail.GetComponent<TrailRenderer>().startColor = color;
+                particle.SetActive(false);
+            }
+            else if (playerIndex ==6)
+            {
+                Color color = Color.white;
+                color.r = 1f;
+                color.g = 0.4f;
                 color.b =1f;
               
                 trail.GetComponent<TrailRenderer>().startColor = color;

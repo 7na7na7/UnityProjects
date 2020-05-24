@@ -99,6 +99,16 @@ public class PlayerSelect : MonoBehaviour
             currentIndex = 5;
         }
     }
+    public void Kanao()
+    {
+        if(currentIndex==6)
+            Go();
+        else
+        {
+            SoundManager.instance.@select();
+            currentIndex = 6;
+        }
+    }
     public void Go()
     {
         SoundManager.instance.@select();

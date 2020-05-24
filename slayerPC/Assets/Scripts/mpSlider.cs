@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class mpSlider : MonoBehaviour
 {
+    public bool isMana = true;
     public static mpSlider instance;
     public Slider mp;
     private float duration = 0.4f;
@@ -26,19 +27,22 @@ public class mpSlider : MonoBehaviour
 
     public void mpDown(int v)
     {
-        if (Player.instance.playerIndex == 1)
+        if (isMana)
         {
-            if (kagura.instance.isKagura)
+            if (Player.instance.playerIndex == 1)
             {
+                if (kagura.instance.isKagura)
+                {
+                }
+                else
+                {
+                    mp.value -=v;   
+                }
             }
             else
             {
-                mp.value -=v;   
+                mp.value -= v;
             }
-        }
-        else
-        {
-            mp.value -= v;
         }
     }
 

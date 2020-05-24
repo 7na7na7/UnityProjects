@@ -12,6 +12,7 @@ public class bossScript : MonoBehaviour
     public Slider slider;
     public GameObject effect;
     public GameObject headEffect;
+    public GameObject poisonEffect;
     public GameObject crew;
     private Animator anim;
     public float patternDelay;
@@ -627,6 +628,8 @@ public class bossScript : MonoBehaviour
                 v = 0;
             if (dmgDelay >= v)
             {
+                if (Player.instance.playerIndex == 4)
+                    poison();
                 if(!isPois) 
                     Player.instance.AttackCor();
                 
@@ -635,8 +638,8 @@ public class bossScript : MonoBehaviour
                     ScoreMgr.instance.headshot++;
                     if (Player.instance.playerIndex == 4)
                     {
-                        poison();
                         SoundManager.instance.body();
+                        
                         slider.value--;
                         Player.instance.ComboText(false);
                         Instantiate(effect, transform.position, Quaternion.identity);
@@ -645,8 +648,17 @@ public class bossScript : MonoBehaviour
                     else
                     {
                         Player.instance.ComboText(true);
-                        SoundManager.instance.head();
+                        if(Player.instance.playerIndex==5)
+                            SoundManager.instance.Head_N();
+                        else
+                            SoundManager.instance.head();
+                        
                         slider.value -= 2;
+                        if (Player.instance.playerIndex == 6)
+                        {
+                            if (kanao.instance.isRage)
+                                slider.value -= 2;
+                        }
                         Instantiate(headEffect, transform.position, Quaternion.identity);
                         dead(true);
                     }
@@ -662,13 +674,23 @@ public class bossScript : MonoBehaviour
                     if(isPois)
                         SoundManager.instance.poison();
                     else
-                        SoundManager.instance.body();
+                    {
+                        if(Player.instance.playerIndex==5)
+                            SoundManager.instance.Body_N();
+                        else
+                            SoundManager.instance.body();
+                    }
+                       
                   
                     slider.value--;
+                    if (Player.instance.playerIndex == 6)
+                    {
+                        if (kanao.instance.isRage)
+                            slider.value --;
+                    }
                     dead(false);
                 }
             } 
-            
             if(!isPois) 
                 dmgDelay = 0; 
             Player.instance.ComboText(isHead); 
@@ -695,6 +717,7 @@ public class bossScript : MonoBehaviour
             else
                 yield return new WaitForSeconds(1.5f);
             die(false,true);
+            Instantiate(poisonEffect, transform.position, Quaternion.identity);
         }
     }
 }

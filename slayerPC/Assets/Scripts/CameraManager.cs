@@ -185,6 +185,11 @@ public class CameraManager : MonoBehaviour
     }
     public IEnumerator sizedownCor()
     {
+        if (Player.instance.playerIndex == 6)
+        {
+            if(kanao.instance.isRage)
+                yield break;   
+        }
         int min = 5;
         if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_EZ"||SceneManager.GetActiveScene().name == "Main3_H")
             min = 6;
