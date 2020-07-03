@@ -15,17 +15,21 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
  public GameObject[] t;
  private Color Alpha125;
  private Color Alpha255;
-    private const int SIZE = 3;
+    private const int SIZE = 4;
     private float[] pos = new float[SIZE];
     private float distance, curPos, targetPos;
     private bool isDrag;
-    private int targetIndex;
+    public int targetIndex;
     public GameObject stage2panel;
     public Text stage2Text;
     public GameObject stage3panel;
     public Text stage3Text;
     void Start()
     {
+        //테스트
+        GooglePlayManager.instance.CanStage1();
+        GooglePlayManager.instance.CanStage2();
+        GooglePlayManager.instance.CanStage3();
         Alpha125.r = 255;
         Alpha125.g = 255;
         Alpha125.b = 255;
@@ -233,6 +237,8 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             StartCoroutine(delayChange2());
         else if(targetIndex==2)
             StartCoroutine(delayChange3());
+        else if(targetIndex==3)
+            StartCoroutine(delayChange4());
             
     }
 
@@ -319,6 +325,37 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
                 FadePanel.instance.Fade();
                 yield return new WaitForSeconds(1f);
                 SceneManager.LoadScene("Main3_EZ");
+            }
+        }
+    }
+    IEnumerator delayChange4()
+    {
+        if (GooglePlayManager.instance.canStage3 == 0)
+        {
+            SoundManager.instance.Locked();
+        }
+        else
+        {
+            if (difficulty==1)
+            {
+                SoundManager.instance.steam();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main4");
+            }
+            else if(difficulty==2)
+            {
+                SoundManager.instance.steam();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main4_H");
+            }
+            else
+            {
+                SoundManager.instance.steam();
+                FadePanel.instance.Fade();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("Main4_EZ");
             }
         }
     }

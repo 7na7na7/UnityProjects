@@ -8,8 +8,10 @@ public class GooglePlayManager : MonoBehaviour
 {
    public int canStage1 = 0;
    public int canStage2 = 0;
+   public int canStage3 = 0;
    private string canStage1Key = "canStage1";
    private string canStage2Key = "canStage2";
+   private string canStage3Key = "canStage3";
    public int isFirst = 0;
    public string isFirstKey = "isFirst";
    public static GooglePlayManager instance;
@@ -24,6 +26,7 @@ public class GooglePlayManager : MonoBehaviour
          LogIn();
          canStage1 = PlayerPrefs.GetInt(canStage1Key,0);
          canStage2 = PlayerPrefs.GetInt(canStage2Key,0);
+         canStage3 = PlayerPrefs.GetInt(canStage3Key,0);
          isFirst = PlayerPrefs.GetInt(isFirstKey, 0);
          
          if (isFirst == 0)
@@ -51,6 +54,14 @@ public class GooglePlayManager : MonoBehaviour
       {
          canStage2 = 1;
          PlayerPrefs.SetInt(canStage2Key, 1);
+      }
+   }
+   public void CanStage3()
+   {
+      if (canStage3 != 1)
+      {
+         canStage3 = 1;
+         PlayerPrefs.SetInt(canStage3Key, 1);
       }
    }
    public void LogIn()
