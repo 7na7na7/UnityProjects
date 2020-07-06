@@ -19,21 +19,26 @@ public class ScorePanel : MonoBehaviour
     
     private string highScoreKey1 = "highScoreKey1";
     private string highScoreKey2 = "highScoreKey2";
+    private string highScoreKey3 = "highScoreKey3";
     private string fastTimeKeyN = "fastTimeKeyN";
     private int highScore1;
     private int highScore2;
+    private int highScore3;
     private int Traintime;
     private string highScoreKey1_H = "highScoreKey1_H";
     private string highScoreKey2_H = "highScoreKey2_H";
+    private string highScoreKey3_H = "highScoreKey3_H";
     private string fastTimeKeyH = "fastTimeKeyH";
     private int highScore1_H;
     private int highScore2_H;
+    private int highScore3_H;
     private int Traintime_H;
     private string highComboKey1 = "highComboKey1";
     private string highComboKey2 = "highComboKey2";
+    private string highComboKey3 = "highComboKey3";
     private int highCombo1;
     private int highCombo2;
-
+    private int highCombo3;
     public IEnumerator bonus()
     {
         scorec = ScoreMgr.instance.score;

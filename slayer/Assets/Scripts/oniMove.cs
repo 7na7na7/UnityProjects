@@ -32,6 +32,8 @@ public class oniMove : MonoBehaviour
         hp += hpUpValue * (int)(GameManager.instance.bossCount / 2);
         if(oniIndex==5)
             transform.Translate(0,Random.Range(1.5f,1.6f),0);
+        else if(oniIndex==9)
+            transform.Translate(0,1.3f,0);
     }
 
     void Update()
@@ -107,6 +109,14 @@ public class oniMove : MonoBehaviour
                     StartCoroutine(girl.instance.hitted(20));
                     yield return new WaitForSeconds(1);
                     anim.Play("oni6_Idle");
+                    yield return new WaitForSeconds(1f);
+                }
+                else if(oniIndex==9)
+                {
+                    anim.Play("oni7_Attack");
+                    StartCoroutine(girl.instance.hitted(10));
+                    yield return new WaitForSeconds(1);
+                    anim.Play("oni7_Idle");
                     yield return new WaitForSeconds(1f);
                 }
             }
@@ -304,6 +314,8 @@ public class oniMove : MonoBehaviour
                             anim.Play("oni5_Attack");
                         else if (oniIndex == 6)
                             anim.Play("oni6_Attack");
+                        else if (oniIndex == 9)
+                            anim.Play("oni7_Attack");
                         if (canGo)
                         {
                             if (other.transform.position.x < transform.position.x)
