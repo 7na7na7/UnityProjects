@@ -7127,6 +7127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9a0069e13df514689949e443706f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMana: 1
   mp: {fileID: 790190207}
 --- !u!1 &795311215
 GameObject:
@@ -8336,7 +8337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.598755, y: 32.399994}
+  m_AnchoredPosition: {x: -60.598694, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033945275
@@ -8399,6 +8400,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HPCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 621464906261825176, guid: fa940a61600ce3144b0645a3ae30485d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 621464906261825181, guid: fa940a61600ce3144b0645a3ae30485d,
         type: 3}
@@ -9148,7 +9154,7 @@ PrefabInstance:
     - target: {fileID: 7679086509479319411, guid: 41476f03cc1a99542af68b0d430341b8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -60.599487
+      value: -60.599426
       objectReference: {fileID: 0}
     - target: {fileID: 7679086509479319411, guid: 41476f03cc1a99542af68b0d430341b8,
         type: 3}
@@ -10212,6 +10218,7 @@ MonoBehaviour:
   onis:
   - {fileID: 5237110592307178767, guid: 939cec587a1b77442aa6b41a73b06701, type: 3}
   - {fileID: 5237110592307178767, guid: 939cec587a1b77442aa6b41a73b06701, type: 3}
+  isStage4: 0
 --- !u!1 &1646019359
 GameObject:
   m_ObjectHideFlags: 0
@@ -15699,6 +15706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32364107be96a8c4ca278bfc378a934d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NezukoBody: {fileID: 0}
+  NezukoHead: {fileID: 0}
   tsuzumiL: {fileID: 8300000, guid: e924653e2d536de40a06030df01fd2e4, type: 3}
   tsuzumiM: {fileID: 8300000, guid: d3c580609ad716f41a32fbf305a13b35, type: 3}
   tsuzumiR: {fileID: 8300000, guid: 0681e7ac7e5d68c4b921d7aab09488c6, type: 3}

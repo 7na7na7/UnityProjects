@@ -63,6 +63,8 @@ public class bossScript : MonoBehaviour
             StartCoroutine(Go2());
         else if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
             StartCoroutine(Go3());
+        else if (SceneManager.GetActiveScene().name == "Main4"||SceneManager.GetActiveScene().name == "Main4_H"||SceneManager.GetActiveScene().name == "Main4_EZ")
+            StartCoroutine(Go4());
     }
 
     IEnumerator Go()
@@ -158,6 +160,52 @@ public class bossScript : MonoBehaviour
         }   
     }
 
+    IEnumerator Go4()
+    {
+        int t = (int)Time.timeScale;
+        Time.timeScale = 0;
+        CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,-10);
+        CameraManager.instance.OnBound();
+        SoundManager.instance.heal();
+        while (slider.value<slider.maxValue)
+        {
+            slider.value += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        CameraManager.instance.canFollow = true;
+        Player.instance.isattack = false;
+        Player.instance.canTouch = true;
+        Time.timeScale = t;
+        CameraManager.instance.StopAllCoroutines();
+        CameraManager.instance.theCamera.orthographicSize = 5;
+        canMove = true;
+        while (true)
+        {
+            if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                yield return new WaitForSeconds(patternDelay*0.75f);
+            else
+                yield return new WaitForSeconds(patternDelay);
+            int r = Random.Range(0, 3);
+            
+            StartCoroutine(dakiAttack());
+//            if(r==0) 
+//                StartCoroutine(move2());
+//            else if(r==1)
+//                StartCoroutine(webAttackCor());
+//            else if(r==2)
+//                StartCoroutine(webAttackCor2());
+            yield return new WaitUntil(()=>canGo);
+            canGo = false;
+            anim.Play("bossIdle");
+        }   
+    }
+
+    IEnumerator dakiAttack()
+    {
+        print("공격!");
+        yield return new WaitForSeconds(1f);
+        canGo = true;
+    }
     IEnumerator Go3()
     {
         StartCoroutine(trainAttack1());

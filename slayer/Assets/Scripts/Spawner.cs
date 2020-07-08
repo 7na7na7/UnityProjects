@@ -15,8 +15,12 @@ public class Spawner : MonoBehaviour
     public float HandSpawnValue = 0;
     public float minDelay,maxDelay;
     public GameObject[] onis;
+
+    public bool isStage4 = false;
     void Start()
     {
+        
+        
         if(isSpider)
             StartCoroutine(spawn3());
         else if (isFalling)
@@ -90,13 +94,16 @@ public class Spawner : MonoBehaviour
                 }
             else
                 {
+                    int a = 6;
+                    if (isStage4)
+                        a = -4;
                     float r = Random.Range(GameObject.Find("Min").transform.position.x+3,
                         GameObject.Find("Max").transform.position.x-3);
                     if (r <= -6.5f)
-                        oni = Instantiate(onis[0], new Vector3(r - 6f, transform.position.y, 0),
+                        oni = Instantiate(onis[0], new Vector3(r - a, transform.position.y, 0),
                             Quaternion.identity); // 인덱스 0이 오른쪽으로 가는오니
                     else if (r > -6.5f)
-                        oni = Instantiate(onis[1], new Vector3(r + 6f, transform.position.y, 0),
+                        oni = Instantiate(onis[1], new Vector3(r + a, transform.position.y, 0),
                             Quaternion.identity); // 인덱스 1이 왼쪽으로 가는오니
                     if (oni.GetComponent<oniMove>().oniIndex == 2)
                         oni.transform.Translate(0, 1f, 0);

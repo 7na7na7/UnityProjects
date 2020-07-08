@@ -4,6 +4,7 @@ using DG.Tweening;
 
 public class SpiderScript : MonoBehaviour
 {
+    public bool isSpider = true;
     public float startDown = 4.6f;
     public float startDownTime = 1f;
     public float minTIme, maxTime;
@@ -26,7 +27,8 @@ public class SpiderScript : MonoBehaviour
         transform.DOMove(new Vector3(transform.position.x, transform.position.y - startDown, 0), startDownTime);
         yield return new WaitForSeconds(startDownTime);
         StartPos = transform.position;
-        StartCoroutine(attack());
+        if(isSpider) 
+            StartCoroutine(attack());
         while (true)
         {
             float time = Random.Range(minTIme, maxTime);

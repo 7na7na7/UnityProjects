@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour
       StartCoroutine(Game2());
     else if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
       StartCoroutine(timer());
+    else if (SceneManager.GetActiveScene().name == "Main4"||SceneManager.GetActiveScene().name=="Main4_H"||SceneManager.GetActiveScene().name=="Main4_EZ")
+      StartCoroutine(Game4());
   }
 
   public void StopFalling()
@@ -108,6 +110,40 @@ public class GameManager : MonoBehaviour
     {
       if (s.isFalling)
         s.canSpawn = false;
+    }
+  }
+  IEnumerator Game4()
+  { 
+    yield return new WaitForSeconds(fallingTime);
+    foreach (Spawner s in spawners) //위에서 내려오는거 가능
+    {
+      if (s.isFalling)
+        s.canSpawn = true;
+    }
+
+    while (true)
+    {
+      if (!once)
+      {
+        yield return new WaitForSeconds(bossTime);
+        once = true;
+      }
+      else
+        yield return new WaitForSeconds(bossTime+ fallingTime);
+      foreach (Spawner s in spawners)
+      {
+        s.canSpawn = false;
+      }
+
+      Instantiate(txt, GameObject.Find("bossTextTr").transform);
+      yield return new WaitForSeconds(beforeBossTime);
+      Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x+10,GameObject.Find("Max").transform.position.x-10),transform.position.y,0),Quaternion.identity);
+      yield return new WaitUntil(() => bossDead);
+      bossDead = false;
+      foreach (Spawner s in spawners)
+      {
+        s.canSpawn = true;
+      }
     }
   }
   IEnumerator Game1()
@@ -217,6 +253,24 @@ public class GameManager : MonoBehaviour
     Instantiate(boss,GameObject.Find("BossTr").transform.position,Quaternion.identity);
     yield return new WaitUntil(() => bossDead);
     bossDie();
+  }
+
+  public void OnscoreFunc()
+  {
+    Player.instance.isSuper = true;
+
+    Player.instance.Stop();
+    Player.instance.canTouch = false;
+    StopFalling();
+    
+    Player.instance.Stop();
+    if (!isGameOver)
+    {
+      isGameOver = true;
+      StopAllCoroutines();
+      FindObjectOfType<GameManager>().isGameOver = true;
+      FindObjectOfType<GameOverManager>().GameoverFunc(Player.instance.gameObject);
+    }
   }
   public void pause()
   {

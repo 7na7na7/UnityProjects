@@ -54,10 +54,13 @@ public class ScorePanel : MonoBehaviour
         //점수 불러오기
         highScore1 = PlayerPrefs.GetInt(highScoreKey1, 0);
         highScore2 = PlayerPrefs.GetInt(highScoreKey2, 0);
+        highScore3 = PlayerPrefs.GetInt(highScoreKey3, 0);
         highScore1_H = PlayerPrefs.GetInt(highScoreKey1_H, 0);
         highScore2_H = PlayerPrefs.GetInt(highScoreKey2_H, 0);
+        highScore3_H = PlayerPrefs.GetInt(highScoreKey3_H, 0);
         highCombo1 = PlayerPrefs.GetInt(highComboKey1, 0);
         highCombo2 = PlayerPrefs.GetInt(highComboKey2, 0);
+        highCombo3 = PlayerPrefs.GetInt(highComboKey3, 0);
         Traintime = PlayerPrefs.GetInt(fastTimeKeyN, 999);
         Traintime_H=PlayerPrefs.GetInt(fastTimeKeyH, 999);
 
@@ -96,6 +99,24 @@ public class ScorePanel : MonoBehaviour
                 GooglePlayManager.instance.AddCombo2(maxcombov);
                 highCombo2 = maxcombov;
                 PlayerPrefs.SetInt(highComboKey2,maxcombov);
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Main4") //스테이지 2
+        {
+            //점수
+            if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore3)
+            {
+                isBest = true;
+                GooglePlayManager.instance.AddScore4(ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore)); //리더보드에 점수추가
+                highScore3 = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
+                PlayerPrefs.SetInt(highScoreKey3,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+            }
+            //콤보
+            if (maxcombov > highCombo3)
+            {
+                GooglePlayManager.instance.AddCombo4(maxcombov);
+                highCombo3 = maxcombov;
+                PlayerPrefs.SetInt(highComboKey3,maxcombov);
             }
         }
         else if (SceneManager.GetActiveScene().name == "Main_H") //스테이지 1 하드

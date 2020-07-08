@@ -24,6 +24,8 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     public Text stage2Text;
     public GameObject stage3panel;
     public Text stage3Text;
+    public GameObject stage4panel;
+    public Text stage4Text;
     void Start()
     {
         //테스트
@@ -119,7 +121,27 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
             else if (TextManager.instance.isKor == 2)//일본어
                 stage3Text.text = "無限列車";
         }
-        
+        if (GooglePlayManager.instance.canStage3 == 0)
+        {
+            stage4panel.SetActive(true);
+            if (TextManager.instance.isKor == 1) //한국어
+                stage4Text.text = "[엔무 처치 시 잠금 해제]";
+            else if (TextManager.instance.isKor == 0)//영어
+                stage4Text.text = "[Kill Enmu for unlock]";
+            else if (TextManager.instance.isKor == 2)//일본어
+                stage4Text.text = "[魘夢処置時にロック解除]";
+        }
+        else
+        {
+            stage4panel.SetActive(false);
+            if (TextManager.instance.isKor == 1) //한국어
+                stage4Text.text = "요시와라 유곽";
+            else if (TextManager.instance.isKor == 0)//영어
+                stage4Text.text = "Yoshiwara Redlight District ";
+            else if (TextManager.instance.isKor == 2)//일본어
+                stage4Text.text = "吉原遊郭";
+                
+        }
         
         if (!isDrag)
         {
@@ -163,7 +185,7 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
                 bestScoreText.text = "E-Z";
             }
         }
-        else if (targetIndex == 2)//해야됨
+        else if (targetIndex == 2)
         {
             if (difficulty==1)
             {
@@ -180,6 +202,21 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
                     bestScoreText.text = "9999";
                 else
                     bestScoreText.text = "" + a;
+            }
+            else
+            {
+                bestScoreText.text = "E-Z";
+            }
+        }
+        else if (targetIndex == 3)
+        {
+            if (difficulty==1)
+            {
+                bestScoreText.text = "" + PlayerPrefs.GetInt("highScoreKey3", 0);
+            }
+            else if(difficulty==2)
+            {
+                bestScoreText.text = "" + PlayerPrefs.GetInt("highScoreKey3_H", 0);
             }
             else
             {

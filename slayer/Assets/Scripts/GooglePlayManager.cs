@@ -118,7 +118,14 @@ public class GooglePlayManager : MonoBehaviour
       {
       });
    }
-
+   public void AddScore4(int score)
+   {
+      /*
+      Social.ReportScore(score, GPGSIds.leaderboard______3, (bool bSuccess) =>
+      {
+      });
+      */
+   }
    public void AddCombo1(int combo)
    {
       Social.ReportScore(combo, GPGSIds.leaderboard______1_2, (bool bSuccess) =>
@@ -130,6 +137,14 @@ public class GooglePlayManager : MonoBehaviour
       Social.ReportScore(combo, GPGSIds.leaderboard______2_2, (bool bSuccess) =>
       {
       });
+   }
+   public void AddCombo4(int combo)
+   {
+      /*
+      Social.ReportScore(combo, GPGSIds.leaderboard______2_2, (bool bSuccess) =>
+      {
+      });
+      */
    }
    // 업적보기
    public void OnShowAchievement()
