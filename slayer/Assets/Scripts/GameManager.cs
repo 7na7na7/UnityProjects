@@ -115,11 +115,18 @@ public class GameManager : MonoBehaviour
   IEnumerator Game4()
   { 
     yield return new WaitForSeconds(fallingTime);
+    yield return new WaitForSeconds(fallingTime);
     foreach (Spawner s in spawners) //위에서 내려오는거 가능
     {
-      s.canSpawn = true;
+      if (s.isFalling)
+        s.canSpawn = true;
     }
-
+    yield return new WaitForSeconds(spiderTime);
+    foreach (Spawner s in spawners) //거미등장
+    {
+      if (s.isSpider)
+        s.canSpawn = true;
+    }
     while (true)
     {
       if (!once)
