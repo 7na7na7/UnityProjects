@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class oniMove : MonoBehaviour
 {
+    public GameObject silkScript;
     private bool isPoison = false;
     public bool isJumping;
     public bool canGo;
@@ -163,17 +164,27 @@ public class oniMove : MonoBehaviour
                     ScoreMgr.instance.scoreUp(0,250,false);
                 else if(oniIndex==9) 
                     ScoreMgr.instance.scoreUp(0,150,false);
-                else if(oniIndex==10) 
+                if (oniIndex == 10)
+                {
+                    print("A");
                     ScoreMgr.instance.scoreUp(0,300,false);
-                
-                ComboManager.instance.comboIniitailize();
-                ScoreMgr.instance.killedOni++;
-                CameraManager.instance.closeUp();
-                Instantiate(effect, transform.position, Quaternion.identity);
-           
-                if(oniIndex==10)
-                    transform.GetChild(2).GetComponent<silkScript>().WifeEscape();
-                Destroy(gameObject);
+                    silkScript.GetComponent<silkScript>().WifeEscape();
+                        
+                    ComboManager.instance.comboIniitailize();
+                    ScoreMgr.instance.killedOni++;
+                    CameraManager.instance.closeUp();
+                    if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                        Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    ComboManager.instance.comboIniitailize();
+                    ScoreMgr.instance.killedOni++;
+                    CameraManager.instance.closeUp();
+                    if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                        Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
+                }
             }   
         }
     }
@@ -231,18 +242,27 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,250,false);
                     else if(oniIndex==9) 
                         ScoreMgr.instance.scoreUp(0,150,false);
-                    else if(oniIndex==10) 
+                    if (oniIndex == 10)
+                    {
+                        print("A");
                         ScoreMgr.instance.scoreUp(0,300,false);
-                    
-                    ComboManager.instance.comboIniitailize();
-                    ScoreMgr.instance.killedOni++;
-                    CameraManager.instance.closeUp();
-                    if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
-                        Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
-                    
-                    if(oniIndex==10)
-                        transform.GetChild(2).GetComponent<silkScript>().WifeEscape();
-                    Destroy(gameObject);
+                        silkScript.GetComponent<silkScript>().WifeEscape();
+                        
+                        ComboManager.instance.comboIniitailize();
+                        ScoreMgr.instance.killedOni++;
+                        CameraManager.instance.closeUp();
+                        if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                            Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        ComboManager.instance.comboIniitailize();
+                        ScoreMgr.instance.killedOni++;
+                        CameraManager.instance.closeUp();
+                        if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                            Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                        Destroy(gameObject);
+                    }
                 }
             }
             else
@@ -281,18 +301,27 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,250,false);
                     else if(oniIndex==9) 
                         ScoreMgr.instance.scoreUp(0,150,false);
-                    else if(oniIndex==10) 
+                    if (oniIndex == 10)
+                    {
+                        print("A");
                         ScoreMgr.instance.scoreUp(0,300,false);
-                    ComboManager.instance.comboIniitailize();
-                    ScoreMgr.instance.killedOni++;
-                    CameraManager.instance.closeUp();
-                    Instantiate(effect, transform.position, Quaternion.identity);
-                    if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
-                        Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
-                    
-                    if(oniIndex==10)
-                        transform.GetChild(2).GetComponent<silkScript>().WifeEscape();
-                    Destroy(gameObject);
+                        silkScript.GetComponent<silkScript>().WifeEscape();
+                        
+                        ComboManager.instance.comboIniitailize();
+                        ScoreMgr.instance.killedOni++;
+                        CameraManager.instance.closeUp();
+                        if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                            Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        ComboManager.instance.comboIniitailize();
+                        ScoreMgr.instance.killedOni++;
+                        CameraManager.instance.closeUp();
+                        if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
+                            Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                        Destroy(gameObject);
+                    }
                 }
             }
             if(!isPois) 
@@ -366,6 +395,11 @@ public class oniMove : MonoBehaviour
                     else if(oniIndex==3)
                         transform.localScale = new Vector3(1, 1, 1);
                 }
+                if (oniIndex == 9)
+                {
+                    if (canGo == false) 
+                        transform.Translate(0,-1.5f,0);
+                }
                 canGo = true;
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -392,6 +426,7 @@ public class oniMove : MonoBehaviour
                     anim.Play("HandIdle");
                     StartCoroutine(reverse());
                 }
+               
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                
             }

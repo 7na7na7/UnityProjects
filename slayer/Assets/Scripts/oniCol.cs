@@ -13,9 +13,7 @@ public class oniCol : MonoBehaviour
     {
         if (hit.CompareTag("Player"))
         {
-            if(oni.oniIndex==10) 
-                Destroy(oni.gameObject);
-                if (oni.dmgDelay >= 0.1f && !GameManager.instance.isGameOver&&!Player.instance.isSuper)
+            if (oni.dmgDelay >= 0.1f && !GameManager.instance.isGameOver&&!Player.instance.isSuper)
                 {
                     if (Player.instance.playerIndex == 1)
                     {

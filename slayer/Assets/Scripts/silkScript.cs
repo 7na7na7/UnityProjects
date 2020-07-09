@@ -52,6 +52,8 @@ public class silkScript : MonoBehaviour
 
     public void WifeEscape()
     {
+        print("AASD");
         Instantiate(wifes[r], transform.position, Quaternion.identity);
+        Destroy(transform.parent.gameObject);
     }
 }

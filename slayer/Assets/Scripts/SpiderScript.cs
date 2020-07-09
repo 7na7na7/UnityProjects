@@ -33,7 +33,6 @@ public class SpiderScript : MonoBehaviour
             float time = Random.Range(minTIme, maxTime);
             if (Random.Range(0, 3) == 0)
             {
-                
             }
             else
             {

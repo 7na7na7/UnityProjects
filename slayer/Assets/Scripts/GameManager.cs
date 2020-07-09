@@ -117,8 +117,7 @@ public class GameManager : MonoBehaviour
     yield return new WaitForSeconds(fallingTime);
     foreach (Spawner s in spawners) //위에서 내려오는거 가능
     {
-      if (s.isFalling)
-        s.canSpawn = true;
+      s.canSpawn = true;
     }
 
     while (true)

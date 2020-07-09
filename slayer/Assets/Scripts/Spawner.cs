@@ -15,8 +15,7 @@ public class Spawner : MonoBehaviour
     public float HandSpawnValue = 0;
     public float minDelay,maxDelay;
     public GameObject[] onis;
-
-    public bool isStage4 = false;
+    
     void Start()
     {
         
@@ -95,8 +94,6 @@ public class Spawner : MonoBehaviour
             else
                 {
                     int a = 6;
-                    if (isStage4)
-                        a = -2;
                     float r = Random.Range(GameObject.Find("Min").transform.position.x+3,
                         GameObject.Find("Max").transform.position.x-3);
                     if (r <= -6.5f)
