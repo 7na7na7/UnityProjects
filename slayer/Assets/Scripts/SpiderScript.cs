@@ -27,8 +27,7 @@ public class SpiderScript : MonoBehaviour
         transform.DOMove(new Vector3(transform.position.x, transform.position.y - startDown, 0), startDownTime);
         yield return new WaitForSeconds(startDownTime);
         StartPos = transform.position;
-        if(isSpider) 
-            StartCoroutine(attack());
+        StartCoroutine(attack());
         while (true)
         {
             float time = Random.Range(minTIme, maxTime);
@@ -58,11 +57,13 @@ public class SpiderScript : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(attackDelay);
-            GetComponent<Animator>().Play("oni4_Attack");
+            if(isSpider) 
+                GetComponent<Animator>().Play("oni4_Attack");
             Instantiate(spiderAttack,transform.position,Quaternion.identity);
             SoundManager.instance.SpiderAttack();
             yield return new WaitForSeconds(0.5f);
-            GetComponent<Animator>().Play("oni4_Idle");
+            if(isSpider) 
+                GetComponent<Animator>().Play("oni4_Idle");
         }
     }
 }
