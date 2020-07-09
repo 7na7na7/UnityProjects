@@ -171,6 +171,8 @@ public class oniMove : MonoBehaviour
                 CameraManager.instance.closeUp();
                 Instantiate(effect, transform.position, Quaternion.identity);
            
+                if(oniIndex==10)
+                    transform.GetChild(2).GetComponent<silkScript>().WifeEscape();
                 Destroy(gameObject);
             }   
         }
@@ -237,6 +239,9 @@ public class oniMove : MonoBehaviour
                     CameraManager.instance.closeUp();
                     if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
                         Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                    
+                    if(oniIndex==10)
+                        transform.GetChild(2).GetComponent<silkScript>().WifeEscape();
                     Destroy(gameObject);
                 }
             }
@@ -284,6 +289,9 @@ public class oniMove : MonoBehaviour
                     Instantiate(effect, transform.position, Quaternion.identity);
                     if (Player.instance.playerIndex == 5) //네즈코면 폭혈소환
                         Instantiate(ExplodingBloodEffect, transform.position, Quaternion.identity);
+                    
+                    if(oniIndex==10)
+                        transform.GetChild(2).GetComponent<silkScript>().WifeEscape();
                     Destroy(gameObject);
                 }
             }

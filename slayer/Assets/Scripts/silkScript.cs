@@ -6,15 +6,18 @@ using Random = UnityEngine.Random;
 
 public class silkScript : MonoBehaviour
 {
+    public GameObject[] wifes;
     public GameObject bloodEffect;
     public Sprite[] sprites;
     public oniMove oni;
     public SpriteRenderer spr;
     public Sprite stringNULL;
 
+    private int r;
     private void Start()
     {
-        spr.sprite = sprites[Random.Range(0,sprites.Length)];
+        r = Random.Range(0, wifes.Length);
+        spr.sprite = sprites[r];
     }
 
     private void OnTriggerEnter2D(Collider2D hit)
@@ -45,5 +48,10 @@ public class silkScript : MonoBehaviour
                         }
                 }
         }
+    }
+
+    public void WifeEscape()
+    {
+        Instantiate(wifes[r], transform.position, Quaternion.identity);
     }
 }
