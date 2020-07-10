@@ -30,7 +30,7 @@ public class oniMove : MonoBehaviour
         anim = GetComponent<Animator>();
         for (int i = 0; i < GameManager.instance.bossCount; i++)
             speed *= speedUpValue;
-        hp += hpUpValue * (int)(GameManager.instance.bossCount / 2);
+        hp += hpUpValue * Mathf.RoundToInt(GameManager.instance.bossCount / 2);
         if(oniIndex==5)
             transform.Translate(0,Random.Range(1.5f,1.6f),0);
         else if(oniIndex==9)
@@ -168,7 +168,8 @@ public class oniMove : MonoBehaviour
                 {
                     print("A");
                     ScoreMgr.instance.scoreUp(0,300,false);
-                    silkScript.GetComponent<silkScript>().WifeEscape();
+                    if(silkScript!=null) 
+                        silkScript.GetComponent<silkScript>().WifeEscape();
                         
                     ComboManager.instance.comboIniitailize();
                     ScoreMgr.instance.killedOni++;
@@ -246,7 +247,8 @@ public class oniMove : MonoBehaviour
                     {
                         print("A");
                         ScoreMgr.instance.scoreUp(0,300,false);
-                        silkScript.GetComponent<silkScript>().WifeEscape();
+                        if(silkScript!=null) 
+                            silkScript.GetComponent<silkScript>().WifeEscape();
                         
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
@@ -303,9 +305,9 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,150,false);
                     if (oniIndex == 10)
                     {
-                        print("A");
                         ScoreMgr.instance.scoreUp(0,300,false);
-                        silkScript.GetComponent<silkScript>().WifeEscape();
+                        if(silkScript!=null) 
+                            silkScript.GetComponent<silkScript>().WifeEscape();
                         
                         ComboManager.instance.comboIniitailize();
                         ScoreMgr.instance.killedOni++;
@@ -395,11 +397,6 @@ public class oniMove : MonoBehaviour
                     else if(oniIndex==3)
                         transform.localScale = new Vector3(1, 1, 1);
                 }
-                if (oniIndex == 9)
-                {
-                    if (canGo == false) 
-                        transform.Translate(0,-1.5f,0);
-                }
                 canGo = true;
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -436,6 +433,7 @@ public class oniMove : MonoBehaviour
         {
             justDie();
         }
+        
         if(other.CompareTag("explosion"))
             Explosion();
     }
