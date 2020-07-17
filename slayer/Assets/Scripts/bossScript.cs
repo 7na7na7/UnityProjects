@@ -33,6 +33,7 @@ public class bossScript : MonoBehaviour
     public GameObject train2;
     public HandTrap[] spikes;
     public HandTrap[] spikes2;
+    public GameObject dakiAttack;
     public float trainAttack1Delay = 0;
     public float trainAttack2Delay = 0;
     public float spikeDelay = 0;
@@ -179,6 +180,7 @@ public class bossScript : MonoBehaviour
         CameraManager.instance.StopAllCoroutines();
         CameraManager.instance.theCamera.orthographicSize = 5;
         canMove = true;
+        dakiAttack.GetComponent<PolygonCollider2D>().enabled = false;
         while (true)
         {
             if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
@@ -187,23 +189,99 @@ public class bossScript : MonoBehaviour
                 yield return new WaitForSeconds(patternDelay);
             int r = Random.Range(0, 3);
             
-            StartCoroutine(dakiAttack());
-//            if(r==0) 
-//                StartCoroutine(move2());
-//            else if(r==1)
-//                StartCoroutine(webAttackCor());
-//            else if(r==2)
-//                StartCoroutine(webAttackCor2());
+
+            if(r==0) 
+                StartCoroutine(dakiAttack1());
+            else if (r == 1)
+                StartCoroutine(dakiAttack2());
+            else if(r==2)
+                StartCoroutine(dakiMove());
+
             yield return new WaitUntil(()=>canGo);
             canGo = false;
             anim.Play("bossIdle");
-        }   
+        }
     }
 
-    IEnumerator dakiAttack()
+    IEnumerator dakiAttack1()
     {
-        print("공격!");
+        dakiAttack.GetComponent<PolygonCollider2D>().enabled = true;
+        dakiAttack.GetComponent<SpriteRenderer>().color=Color.red;
+        Vector2 savedScale = dakiAttack.transform.localScale;
+        Vector2 ScaleUp = dakiAttack.transform.localScale * 3;
+        while (dakiAttack.transform.localScale.sqrMagnitude<ScaleUp.sqrMagnitude)
+        {
+            dakiAttack.transform.localScale=new Vector2(dakiAttack.transform.localScale.x+0.2f,dakiAttack.transform.localScale.y+0.2f);
+            yield return new WaitForSeconds(0.01f);
+        }
+yield return new WaitForSeconds(0.5f);
+dakiAttack.GetComponent<PolygonCollider2D>().enabled = false;
+dakiAttack.GetComponent<SpriteRenderer>().color = Color.white;
+while (dakiAttack.transform.localScale.sqrMagnitude>savedScale.sqrMagnitude)
+{
+    dakiAttack.transform.localScale=new Vector2(dakiAttack.transform.localScale.x-0.2f,dakiAttack.transform.localScale.y-0.2f);
+    yield return new WaitForSeconds(0.01f);
+}
+yield return new WaitForSeconds(1f);
+        canGo = true;
+    }
+
+    IEnumerator dakiAttack2()
+    {
+        Spawner[] spawners = FindObjectsOfType<Spawner>();
+        foreach (Spawner s in spawners)
+        {
+            if(s.isSpider) 
+                s.DakiMobSpawn();
+        }
         yield return new WaitForSeconds(1f);
+        canGo = true;
+    }
+    IEnumerator dakiMove()
+    {
+        spr = GetComponent<SpriteRenderer>();
+        color.r = 255;
+        color.g = 0f;
+        color.b = 0f;
+        color.a = 1;
+        spr.color = color;
+        Vector3 p = new Vector3(Player.instance.transform.position.x,transform.position.y,0);
+        
+        anim.Play("walk");
+        transform.GetChild(0).gameObject.tag = "damage";
+        transform.GetChild(1).gameObject.tag = "damage";
+        transform.GetChild(2).gameObject.tag = "damage";
+        
+       
+        Vector2 dir = p - transform.position;
+        dir.Normalize();
+        while (Vector3.Distance(p,transform.position)>0.1f)
+        {
+            transform.Translate(dir * moveSpeed * Time.deltaTime);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        transform.GetChild(0).gameObject.tag = "oni";
+        transform.GetChild(1).gameObject.tag = "oniHead";
+        transform.GetChild(2).gameObject.tag = "oni";
+        
+        if (isPoison)
+        {
+            color.r = 0.66f;
+            color.g = 0.32f;
+            color.b =1f;
+            spr.color = color;
+        }
+        else
+        {
+         
+            color.r = 255;
+            color.g = 255f;
+            color.b = 255f;
+            color.a = 1;
+            spr.color = color;
+        }
+
         canGo = true;
     }
     IEnumerator Go3()

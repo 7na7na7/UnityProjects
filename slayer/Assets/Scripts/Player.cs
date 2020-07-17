@@ -664,7 +664,7 @@ public class Player : MonoBehaviour
     
     public void Realdie()
     {
-        if (!isGameOver&&!isSuper)
+        if (!isGameOver)
         {
             isGameOver = true;
             Instantiate(dieEffect, transform.position, Quaternion.identity);

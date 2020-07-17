@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 556486092}
   - component: {fileID: 556486091}
   - component: {fileID: 556486090}
+  - component: {fileID: 5134866829028140666}
   m_Layer: 0
-  m_Name: silk1
-  m_TagString: Untagged
+  m_Name: DakiAttack
+  m_TagString: damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +100,98 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &5134866829028140666
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556486089}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.115, y: 1.115}
+    newSize: {x: 1.115, y: 1.115}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.0005979339, y: 0.0036691497}
+      - {x: 0.04298925, y: -0.012404644}
+      - {x: 0.18123476, y: -0.05027271}
+      - {x: 0.26506272, y: -0.07021072}
+      - {x: 0.30477858, y: -0.081648506}
+      - {x: 0.36136198, y: -0.098155245}
+      - {x: 0.42529312, y: -0.11536212}
+      - {x: 0.45567527, y: -0.08170215}
+      - {x: 0.50089765, y: -0.024385456}
+      - {x: 0.5051049, y: -0.021390434}
+      - {x: 0.53209907, y: 0.011134333}
+      - {x: 0.52886456, y: 0.012199758}
+      - {x: 0.41587833, y: 0.018713884}
+      - {x: 0.32907036, y: 0.022737656}
+      - {x: 0.2584498, y: 0.026633842}
+      - {x: 0.16885081, y: 0.032316115}
+      - {x: 0.07204025, y: 0.036467467}
+      - {x: 0.22915877, y: 0.18822435}
+      - {x: 0.44468975, y: 0.39933002}
+      - {x: 0.457435, y: 0.40939525}
+      - {x: 0.49968964, y: 0.44433004}
+      - {x: 0.49377477, y: 0.44377467}
+      - {x: 0.44158494, y: 0.45011467}
+      - {x: 0.4034802, y: 0.4569446}
+      - {x: 0.3266502, y: 0.46743473}
+      - {x: 0.27488557, y: 0.40932998}
+      - {x: 0.18037546, y: 0.29292485}
+      - {x: 0.07024506, y: 0.15602963}
+      - {x: 0.024264751, y: 0.1015532}
+      - {x: -0.011650223, y: 0.34364423}
+      - {x: -0.013719597, y: 0.3467119}
+      - {x: -0.024395285, y: 0.4226639}
+      - {x: -0.038055375, y: 0.5078595}
+      - {x: -0.039820172, y: 0.5356048}
+      - {x: -0.07766395, y: 0.5341996}
+      - {x: -0.13413428, y: 0.5369447}
+      - {x: -0.20785956, y: 0.5365197}
+      - {x: -0.2210295, y: 0.53334975}
+      - {x: -0.20602949, y: 0.5021403}
+      - {x: -0.17194459, y: 0.41616005}
+      - {x: -0.08877465, y: 0.22390515}
+      - {x: -0.040178593, y: 0.09393625}
+      - {x: -0.31031045, y: 0.2763392}
+      - {x: -0.35179725, y: 0.307826}
+      - {x: -0.43539208, y: 0.3635287}
+      - {x: -0.47960782, y: 0.39642072}
+      - {x: -0.4845263, y: 0.40133923}
+      - {x: -0.485555, y: 0.3990683}
+      - {x: -0.4848524, y: 0.36560565}
+      - {x: -0.4798524, y: 0.31638974}
+      - {x: -0.46591818, y: 0.20051602}
+      - {x: -0.46487257, y: 0.1919503}
+      - {x: -0.3970441, y: 0.16853204}
+      - {x: -0.30829078, y: 0.13115945}
+      - {x: -0.22463141, y: 0.10051604}
+      - {x: -0.05082458, y: 0.041360572}
+      - {x: -0.22538213, y: -0.04878685}
+      - {x: -0.36231247, y: -0.1125}
+      - {x: -0.46478182, y: -0.15940206}
+      - {x: -0.46975514, y: -0.16459195}
+      - {x: -0.3950815, y: -0.19978188}
+      - {x: -0.30834278, y: -0.2477166}
+      - {x: -0.28853264, y: -0.25752673}
+      - {x: -0.22437531, y: -0.19717358}
+      - {x: -0.11587092, y: -0.090381324}
+      - {x: -0.07419039, y: -0.04636507}
+      - {x: -0.0221469, y: 0.010408025}
 --- !u!1 &45544799475430024
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +227,7 @@ RectTransform:
   - {fileID: 6254216007451060094}
   - {fileID: 8629051849256563860}
   m_Father: {fileID: 6254216008718418451}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -303,7 +396,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6254216008718418451}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2163673334310998150
 BoxCollider2D:
@@ -531,7 +624,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6254216008718418451}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6254216008069319275
 BoxCollider2D:
@@ -603,7 +696,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6254216008718418451}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6254216008104934216
 BoxCollider2D:
@@ -676,10 +769,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
-  - {fileID: 45544799475430025}
   - {fileID: 6254216008069319278}
   - {fileID: 6254216008104934218}
   - {fileID: 7486579788950037738}
+  - {fileID: 45544799475430025}
   - {fileID: 556486092}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -744,7 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15757de28d7d8d4418068fe3bbef6f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 4
   slider: {fileID: 6254216007451060095}
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
   headEffect: {fileID: 8179779311039321, guid: 6057dd76f779e9b45944abe2f3b276b5, type: 3}
@@ -765,6 +858,7 @@ MonoBehaviour:
   train2: {fileID: 0}
   spikes: []
   spikes2: []
+  dakiAttack: {fileID: 556486089}
   trainAttack1Delay: 0
   trainAttack2Delay: 0
   spikeDelay: 0
