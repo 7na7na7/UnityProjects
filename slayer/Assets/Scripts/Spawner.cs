@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     public float HandSpawnValue = 0;
     public float minDelay,maxDelay;
     public GameObject[] onis;
-    public GameObject dakiMob;
+    public GameObject dakiMobL, dakiMobR;
     void Start()
     {
         if(isSpider)
@@ -30,11 +30,17 @@ public class Spawner : MonoBehaviour
 
     }
 
-    public void DakiMobSpawn()
+    public void DakiMobSpawn(int r, Vector3 tr)
     {
-        float r = Random.Range(GameObject.Find("Min").transform.position.x+3,
-            GameObject.Find("Max").transform.position.x-3);
-        Instantiate(dakiMob, new Vector3(r,13.6f,0), Quaternion.identity);
+        if (dakiMobL != null)
+        {
+            GameObject oni;
+            if(r==0) 
+                oni = Instantiate(dakiMobR, tr, Quaternion.identity);
+            else
+                oni = Instantiate(dakiMobL, tr, Quaternion.identity);
+            oni.transform.Translate(0, UnityEngine.Random.Range(-0.2f, 0.2f), 0);   
+        }
     }
     IEnumerator spawn3()
     {

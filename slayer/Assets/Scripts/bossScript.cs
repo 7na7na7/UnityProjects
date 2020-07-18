@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class bossScript : MonoBehaviour
 {
+    public float minX, maxX;
+    public bool isDaki=true;
+    
     private bool isPoison = false;
     public float moveSpeed;
     public Slider slider;
@@ -203,12 +206,39 @@ public class bossScript : MonoBehaviour
         }
     }
 
+    IEnumerator dakiSecondAttackCor()
+    {
+        while (true)
+        {
+            if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                yield return new WaitForSeconds(patternDelay*0.75f);
+            else
+                yield return new WaitForSeconds(patternDelay);
+            int r = Random.Range(0, 3);
+            
+
+            if(r==0) 
+                StartCoroutine(dakiAttack1());
+            else if (r == 1)
+                StartCoroutine(dakiAttack2());
+            else if(r==2)
+                StartCoroutine(dakiMove());
+
+            yield return new WaitUntil(()=>canGo);
+            canGo = false;
+            anim.Play("bossIdle");
+        }
+    }
     IEnumerator dakiAttack1()
     {
         dakiAttack.GetComponent<PolygonCollider2D>().enabled = true;
         dakiAttack.GetComponent<SpriteRenderer>().color=Color.red;
         Vector2 savedScale = dakiAttack.transform.localScale;
-        Vector2 ScaleUp = dakiAttack.transform.localScale * 3;
+        Vector2 ScaleUp;
+        if (BossDeadCtrl.instance.isDakiFirstDead)
+            ScaleUp= dakiAttack.transform.localScale * 4.5f;
+        else
+            ScaleUp= dakiAttack.transform.localScale * 3;
         while (dakiAttack.transform.localScale.sqrMagnitude<ScaleUp.sqrMagnitude)
         {
             dakiAttack.transform.localScale=new Vector2(dakiAttack.transform.localScale.x+0.2f,dakiAttack.transform.localScale.y+0.2f);
@@ -228,13 +258,21 @@ yield return new WaitForSeconds(1f);
 
     IEnumerator dakiAttack2()
     {
-        Spawner[] spawners = FindObjectsOfType<Spawner>();
-        foreach (Spawner s in spawners)
+        int a = 3;
+        if (BossDeadCtrl.instance.isDakiFirstDead)
+            a = 5;
+        for (int i = 0; i < a; i++)
         {
-            if(s.isSpider) 
-                s.DakiMobSpawn();
+            int r = 0;
+            if (transform.position.x > -6) //오른쪽
+                r = 1;
+            Spawner[] spawners = FindObjectsOfType<Spawner>();
+            foreach (Spawner s in spawners)
+            {
+                s.DakiMobSpawn(r, new Vector3(transform.position.x,transform.position.y-2));
+            }
+            yield return new WaitForSeconds(1.25f);   
         }
-        yield return new WaitForSeconds(1f);
         canGo = true;
     }
     IEnumerator dakiMove()
@@ -245,7 +283,19 @@ yield return new WaitForSeconds(1f);
         color.b = 0f;
         color.a = 1;
         spr.color = color;
-        Vector3 p = new Vector3(Player.instance.transform.position.x,transform.position.y,0);
+
+        float x;
+        if (Player.instance.transform.position.x >= minX && Player.instance.transform.position.x < maxX) //해당 범위 안에 있으면
+        {
+            if (Player.instance.transform.position.x >= (maxX + minX) / 2) //오른쪽이면
+                x = maxX;
+            else
+                x = minX;
+        }
+        else
+            x = Player.instance.transform.position.x;
+        
+        Vector3 p = new Vector3(x,transform.position.y,0);
         
         anim.Play("walk");
         transform.GetChild(0).gameObject.tag = "damage";
@@ -255,9 +305,13 @@ yield return new WaitForSeconds(1f);
        
         Vector2 dir = p - transform.position;
         dir.Normalize();
+
+        float ms = moveSpeed;
+        if (BossDeadCtrl.instance.isDakiFirstDead)
+            ms *= 1.5f;
         while (Vector3.Distance(p,transform.position)>0.1f)
         {
-            transform.Translate(dir * moveSpeed * Time.deltaTime);
+            transform.Translate(dir * ms * Time.deltaTime);
             yield return new WaitForSeconds(0.01f);
         }
         
@@ -654,6 +708,42 @@ yield return new WaitForSeconds(1f);
             transform.GetChild(0).gameObject.SetActive(false);
     }
 
+    IEnumerator dakiDead()
+    {
+        BossDeadCtrl.instance.isDakiDead = true;
+        transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;
+        transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = false;
+        transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(5f);
+        while (slider.value<slider.maxValue/2.5f)
+        {
+            slider.value += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        BossDeadCtrl.instance.isDakiDead = false;
+        transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
+        transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
+        transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
+        StartCoroutine(dakiAttack2());
+    }
+    IEnumerator  gyutaroDead()
+    {
+        BossDeadCtrl.instance.isGyutaroDead = true;
+        transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;
+        transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = false;
+        transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(5f);
+        while (slider.value<slider.maxValue/2.5f)
+        {
+            slider.value += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        BossDeadCtrl.instance.isGyutaroDead = false;
+        transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
+        transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
+        transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
+        StartCoroutine(dakiAttack2());
+    }
     public void dead(bool isHead)
     {
         if (!isPoison)
@@ -700,13 +790,67 @@ yield return new WaitForSeconds(1f);
                     spr.color = color;
                 }
             }
+            else if (SceneManager.GetActiveScene().name == "Main4" ||
+                     SceneManager.GetActiveScene().name == "Main4_H" ||
+                     SceneManager.GetActiveScene().name == "Main4_EZ")
+            {
+                if (slider.value <= Mathf.RoundToInt(slider.maxValue *0.3f))
+                {
+                    spr = GetComponent<SpriteRenderer>();
+                    color.r = 255;
+                    color.g = 0.5f;
+                    color.b = 0.5f;
+                    color.a = 1;
+                    spr.color = color;
+                }
+            }
         } //독묻은상태가 아니면 색바꾸기
         
        
         
         if (slider.value <= 0)
                     {
-                        CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
+                        if (SceneManager.GetActiveScene().name == "Main4" || //스테이지4면
+                            SceneManager.GetActiveScene().name == "Main4_EZ" ||
+                            SceneManager.GetActiveScene().name == "Main4_H")
+                        {
+                            if (isDaki)
+                            {
+                                if (!BossDeadCtrl.instance.isDakiFirstDead)
+                                {
+                                    StopAllCoroutines();
+                                    BossDeadCtrl.instance.isDakiFirstDead = true;
+                                    isPoison = false;
+                                    StartCoroutine(Heal());
+                                    StartCoroutine(dakiSecondAttackCor());
+                                }
+                                else
+                                {
+                                    if (BossDeadCtrl.instance.isGyutaroDead) //둘 다 동시에 죽이는 경우
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        StartCoroutine(dakiDead());
+                                    }
+                            }
+                            }
+                            else
+                            {
+                                if (BossDeadCtrl.instance.isDakiDead) //둘 다 동시에 죽이는 경우
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    StartCoroutine(gyutaroDead());
+                                }
+                            }
+                        }
+                        else
+                        {
+                          CameraManager.instance.rotSpeed = CameraManager.instance.fastrotSpeed;
                         CameraManager.instance.rot = 1;
                         if (!Player.instance.isGameOver)
                         {
@@ -721,7 +865,7 @@ yield return new WaitForSeconds(1f);
                         else
                             Instantiate(effect, transform.position, Quaternion.identity);
                         mpSlider.instance.bossCut();
-                        if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_EZ"||SceneManager.GetActiveScene().name == "Main2_H")
+                        if (SceneManager.GetActiveScene().name == "Main2"||SceneManager.GetActiveScene().name == "Main2_EZ"||SceneManager.GetActiveScene().name == "Main2_H") //2스테이지면 거미줄없애고 죽음, 3스테 해금
                         {
                             GameObject[] webs = GameObject.FindGameObjectsWithTag("web");
                             foreach (GameObject web in webs)
@@ -730,20 +874,44 @@ yield return new WaitForSeconds(1f);
                             }
                             GooglePlayManager.instance.CanStage2();
                         }
-                        else if(SceneManager.GetActiveScene().name=="Main"||SceneManager.GetActiveScene().name=="Main_EZ"||SceneManager.GetActiveScene().name=="Main_H") 
+                        else if (SceneManager.GetActiveScene().name == "Main" ||
+                                 SceneManager.GetActiveScene().name == "Main_EZ" ||
+                                 SceneManager.GetActiveScene().name == "Main_H") //1스테이지면 2스테이지 해금
+                        {
                             GooglePlayManager.instance.CanStage1();
-                        
-                        else if (SceneManager.GetActiveScene().name == "Main3" ||
+                        }
+                        else if (SceneManager.GetActiveScene().name == "Main3" || //3스테이지면 4스테이지 해금
                                  SceneManager.GetActiveScene().name == "Main3_EZ" ||
                                  SceneManager.GetActiveScene().name == "Main3_H")
                         {
                             Player.instance.isSuper = true;
                             Player.instance.canTouch = false;
+                            GooglePlayManager.instance.CanStage3();
                         } 
                         FindObjectOfType<BgmManager>().bossDie();
                         Player.instance.forceUp();
-                        Destroy(gameObject);
+                        Destroy(gameObject);   
+                        }
                     }
+    }
+
+    IEnumerator Heal()
+    {
+        transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;
+        transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = false;
+        transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        while (slider.value<slider.maxValue)
+        {
+         
+            slider.value += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
+        transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
+        transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
+        transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
+        GetComponent<SpriteRenderer>().color=Color.white;
     }
     public void die(bool isHead, bool isPois=false)
     {
@@ -839,9 +1007,9 @@ yield return new WaitForSeconds(1f);
         while (true)
         {
             if(SceneManager.GetActiveScene().name=="Main3"||SceneManager.GetActiveScene().name=="Main3_EZ"||SceneManager.GetActiveScene().name=="Main3_H")
-                yield return new WaitForSeconds(1.25f);
-            else
                 yield return new WaitForSeconds(1.5f);
+            else
+                yield return new WaitForSeconds(2f);
             die(false,true);
             Instantiate(poisonEffect, transform.position, Quaternion.identity);
         }

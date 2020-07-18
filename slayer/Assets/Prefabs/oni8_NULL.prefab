@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2e30674f16c904b9eb1c5ab80386a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSpider: 0
+  isSpider: 1
   startDown: 1
   startDownTime: 1
   minTIme: 0.5
@@ -137,7 +137,7 @@ MonoBehaviour:
   - 4
   spiderAttack: {fileID: 8479755255685719811, guid: e3e81d79f6e21f1458a3e950dd220032,
     type: 3}
-  attackDelay: 2
+  attackDelay: 3
 --- !u!1 &1788819404855222416
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,8 +212,10 @@ PolygonCollider2D:
     - - {x: -1.0622504, y: 5.2749104}
       - {x: -0.97696483, y: 0.20538288}
       - {x: -0.50234973, y: -1.0226058}
-      - {x: -0.72156763, y: -3.0708792}
-      - {x: 0.59654796, y: -3.080513}
+      - {x: -0.75444746, y: -2.8646822}
+      - {x: -0.5964502, y: -3.0784037}
+      - {x: 0.5572027, y: -3.0541735}
+      - {x: 0.6416887, y: -2.9199643}
       - {x: 0.6136939, y: -0.6276572}
       - {x: 0.08981105, y: 0.5063672}
       - {x: 0.08206569, y: 4.39986}

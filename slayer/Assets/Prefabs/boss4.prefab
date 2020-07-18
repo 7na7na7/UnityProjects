@@ -837,6 +837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15757de28d7d8d4418068fe3bbef6f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minX: -9.73
+  maxX: -3.22
+  isDaki: 1
   moveSpeed: 4
   slider: {fileID: 6254216007451060095}
   effect: {fileID: 7352163233464832986, guid: 6aac0bb0d2deaf84c96afd5eb58a76e8, type: 3}
