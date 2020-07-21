@@ -143,7 +143,19 @@ public class GameManager : MonoBehaviour
 
       Instantiate(txt, GameObject.Find("bossTextTr").transform);
       yield return new WaitForSeconds(beforeBossTime);
-      Instantiate(boss,new Vector3(Random.Range(GameObject.Find("Min").transform.position.x+10,GameObject.Find("Max").transform.position.x-10),transform.position.y,0),Quaternion.identity);
+      Vector3 bossPos =
+        new Vector3(
+          Random.Range(GameObject.Find("Min").transform.position.x + 7,
+            GameObject.Find("Max").transform.position.x - 7), transform.position.y, 0);
+      
+      if (bossPos.x >= -10.73f && bossPos.x < -2.22f) //해당 범위 안에 있으면
+      {
+        if (bossPos.x >= (-10.73f + -2.22f) / 2) //오른쪽이면
+          bossPos.x = -10.73f;
+        else
+          bossPos.x = -2.22f;
+      }
+      Instantiate(boss,bossPos,Quaternion.identity);
       yield return new WaitUntil(() => bossDead);
       bossDead = false;
       foreach (Spawner s in spawners)

@@ -37,6 +37,7 @@ public class bossScript : MonoBehaviour
     public HandTrap[] spikes;
     public HandTrap[] spikes2;
     public GameObject dakiAttack;
+    public GameObject gyutaro;
     public float trainAttack1Delay = 0;
     public float trainAttack2Delay = 0;
     public float spikeDelay = 0;
@@ -190,14 +191,14 @@ public class bossScript : MonoBehaviour
                 yield return new WaitForSeconds(patternDelay*0.75f);
             else
                 yield return new WaitForSeconds(patternDelay);
-            int r = Random.Range(0, 3);
+            int r = Random.Range(0, 5);
             
 
-            if(r==0) 
+            if(r==0||r==1) 
                 StartCoroutine(dakiAttack1());
-            else if (r == 1)
+            else if (r == 2)
                 StartCoroutine(dakiAttack2());
-            else if(r==2)
+            else if(r==3||r==4)
                 StartCoroutine(dakiMove());
 
             yield return new WaitUntil(()=>canGo);
@@ -217,11 +218,11 @@ public class bossScript : MonoBehaviour
             int r = Random.Range(0, 3);
             
 
-            if(r==0) 
+            if(r==0||r==1) 
                 StartCoroutine(dakiAttack1());
-            else if (r == 1)
+            else if (r == 2)
                 StartCoroutine(dakiAttack2());
-            else if(r==2)
+            else if(r==3||r==4)
                 StartCoroutine(dakiMove());
 
             yield return new WaitUntil(()=>canGo);
@@ -258,9 +259,9 @@ yield return new WaitForSeconds(1f);
 
     IEnumerator dakiAttack2()
     {
-        int a = 3;
+        int a = 2;
         if (BossDeadCtrl.instance.isDakiFirstDead)
-            a = 5;
+            a = 3;
         for (int i = 0; i < a; i++)
         {
             int r = 0;
@@ -714,7 +715,17 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = false;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(5f);
+        Color color = Color.white;
+        color.a = 0.3f;
+        dakiAttack.GetComponent<SpriteRenderer>().color = color;
+        GetComponent<SpriteRenderer>().color = color;
+        for (int i = 0; i < 7; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            color.a +=0.1f;
+            dakiAttack.GetComponent<SpriteRenderer>().color = color;
+            GetComponent<SpriteRenderer>().color = color;
+        }
         while (slider.value<slider.maxValue/2.5f)
         {
             slider.value += 0.5f;
@@ -724,6 +735,7 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
+        
         StartCoroutine(dakiAttack2());
     }
     IEnumerator  gyutaroDead()
@@ -732,7 +744,15 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = false;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(5f);
+        Color color = Color.white;
+        color.a = 0.3f;
+        GetComponent<SpriteRenderer>().color = color;
+        for (int i = 0; i < 7; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            color.a +=0.1f;
+            GetComponent<SpriteRenderer>().color = color;
+        }
         while (slider.value<slider.maxValue/2.5f)
         {
             slider.value += 0.5f;
@@ -742,7 +762,8 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
-        StartCoroutine(dakiAttack2());
+
+        //StartCoroutine(dakiAttack2()); //규타로 공격패턴 넣기
     }
     public void dead(bool isHead)
     {
@@ -822,7 +843,6 @@ yield return new WaitForSeconds(1f);
                                     BossDeadCtrl.instance.isDakiFirstDead = true;
                                     isPoison = false;
                                     StartCoroutine(Heal());
-                                    StartCoroutine(dakiSecondAttackCor());
                                 }
                                 else
                                 {
@@ -832,6 +852,7 @@ yield return new WaitForSeconds(1f);
                                     }
                                     else
                                     {
+                                        StopAllCoroutines();
                                         StartCoroutine(dakiDead());
                                     }
                             }
@@ -900,18 +921,28 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = false;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(1f);
+        Color color = Color.white;
+        color.a = 0.3f;
+        GetComponent<SpriteRenderer>().color = color;
+        for (int i = 0; i < 4; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            color.a += 0.175f;
+            GetComponent<SpriteRenderer>().color = color;
+        }
+        
         while (slider.value<slider.maxValue)
         {
          
             slider.value += 0.5f;
             yield return new WaitForSecondsRealtime(0.01f);
         }
-
+        Instantiate(gyutaro, new Vector3(transform.position.x * -1, transform.position.y, 0), Quaternion.identity);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
         GetComponent<SpriteRenderer>().color=Color.white;
+        StartCoroutine(dakiSecondAttackCor());
     }
     public void die(bool isHead, bool isPois=false)
     {
