@@ -237,9 +237,9 @@ public class bossScript : MonoBehaviour
         Vector2 savedScale = dakiAttack.transform.localScale;
         Vector2 ScaleUp;
         if (BossDeadCtrl.instance.isDakiFirstDead)
-            ScaleUp= dakiAttack.transform.localScale * 4.5f;
+            ScaleUp= dakiAttack.transform.localScale * 4f;
         else
-            ScaleUp= dakiAttack.transform.localScale * 3;
+            ScaleUp= dakiAttack.transform.localScale * 2.5f;
         while (dakiAttack.transform.localScale.sqrMagnitude<ScaleUp.sqrMagnitude)
         {
             dakiAttack.transform.localScale=new Vector2(dakiAttack.transform.localScale.x+0.2f,dakiAttack.transform.localScale.y+0.2f);
@@ -937,7 +937,19 @@ yield return new WaitForSeconds(1f);
             slider.value += 0.5f;
             yield return new WaitForSecondsRealtime(0.01f);
         }
-        Instantiate(gyutaro, new Vector3(transform.position.x * -1, transform.position.y, 0), Quaternion.identity);
+        Vector3 bossPos =
+            new Vector3(
+                Random.Range(GameObject.Find("Min").transform.position.x + 7,
+                    GameObject.Find("Max").transform.position.x - 7), transform.position.y, 0);
+      
+        if (bossPos.x >= -10.73f && bossPos.x < -2.22f) //해당 범위 안에 있으면
+        {
+            if (bossPos.x >= (-10.73f + -2.22f) / 2) //오른쪽이면
+                bossPos.x = -10.73f;
+            else
+                bossPos.x = -2.22f;
+        }
+        Instantiate(gyutaro, bossPos, Quaternion.identity);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;

@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6a6ba7b-1b2b-41a4-b7ed-295db1527184" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../2Dpathfind/.idea/.idea.2Dpathfind/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../2Dpathfind/.idea/.idea.2Dpathfind/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2Dpathfind/.idea/.idea.2Dpathfind/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../2Dpathfind/.idea/.idea.2Dpathfind/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2Dpathfind/Assets/2D_PathFinding/Scenes/AStar.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../2Dpathfind/Assets/2D_PathFinding/Scenes/AStar.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2Dpathfind/Assets/2D_PathFinding/Scripts/NetworkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../2Dpathfind/Assets/2D_PathFinding/Scripts/NetworkManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.catHead/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.catHead/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.catHead/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.catHead/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cathead/Scenes/double.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cathead/Scenes/double.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cathead/Scenes/single.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cathead/Scenes/single.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cathead/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cathead/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slayer/Assets/Scenes/Main4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../slayer/Assets/Scenes/Main4.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../slayer/Assets/Scripts/bossScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../slayer/Assets/Scripts/bossScript.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +21,14 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/cathead/Scripts/SlimeScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cathead/Scripts/PopUpScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/cathead/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/cathead/Scripts/BossScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/cathead/Scripts/SlimeScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/cathead/Scripts/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -35,6 +39,12 @@
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -76,6 +86,7 @@
       <updated>1582709871737</updated>
       <workItem from="1582709875353" duration="487000" />
       <workItem from="1582868204969" duration="278000" />
+      <workItem from="1595341234165" duration="4103000" />
     </task>
     <servers />
   </component>

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private bool isPause = false;
     public AudioSource audio;
     public AudioClip koung;
 
@@ -33,13 +34,14 @@ public class GameManager : MonoBehaviour
     public bool isBig = false;
     public int wallHard = 50;
     public GameObject clear;
-    private void Start()
+    private void Awake()
     {
         StartCoroutine(spawn());
         StartCoroutine(PopUPCor());
         CanvasTr = GameObject.Find("Canvas").GetComponent<Transform>();
-        currentzombie--;
+        //currentzombie--;
     }
+
     private void Update()
     {
         //Time.timeScale = 3f;
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
             {
                 if (!isGameOver)
                 {
-                    StopAllCoroutines(); 
+                    StopAllCoroutines();
                     isGameOver = true;
                     Time.timeScale = 0;
                     GameOverpanel.SetActive(true);
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
             {
                 if (!isGameOver)
                 {
-                    StopAllCoroutines(); 
+                    StopAllCoroutines();
                     isGameOver = true;
                     Time.timeScale = 0;
                     GameOverpanel.SetActive(true);
@@ -92,19 +94,39 @@ public class GameManager : MonoBehaviour
             else
                 wave_left.text = "  Wave Clear!";
 
-            if (Input.GetKeyDown(KeyCode.P))
-            {
+            if (Input.GetKeyDown(KeyCode.P)||Input.GetKeyDown(KeyCode.Escape))
+
+    {
                 if (Time.timeScale != 0)
                 {
                     Time.timeScale = 0;
                     pausedPanel.SetActive(true);
+                    isPause = true;
                 }
                 else
                 {
                     Time.timeScale = 1;
                     pausedPanel.SetActive(false);
+                    isPause = false;
                 }
             }
+
+            if (isPause)
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    FindObjectOfType<KeySetting>().currentScore = 0;
+                }
+
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene("Title");
+                }
+            }
+            
         }
 
         if (wave >= 9)
@@ -135,6 +157,9 @@ public class GameManager : MonoBehaviour
         Instantiate(p2, transform.position,Quaternion.identity);
         p2Dead = false;
     }
+
+
+
     IEnumerator spawn()
     {
         yield return new WaitForSeconds(5f);
@@ -178,8 +203,9 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitUntil(()=>wave==i);
+            i++;
             GameObject pop7 =Instantiate(popUp, CanvasTr);
-            pop7.GetComponent<Text>().text = "-Wave "+i+"-";
+            pop7.GetComponent<Text>().text = "-Wave "+(i-1)+"-";
             if (wave == 2)
             {
                 yield return new WaitForSeconds(1f);
@@ -306,7 +332,6 @@ public class GameManager : MonoBehaviour
                 GameObject posp4a =Instantiate(popUp, CanvasTr);
                 posp4a.GetComponent<Text>().text = "last stage - boss party";
             }
-            i++;
         }
     }
 
