@@ -46,6 +46,12 @@ public class bossScript : MonoBehaviour
     private Color color;
     private void Start()
     {
+        if (isDaki)
+        {
+            BossDeadCtrl.instance.isDakiDead = false;
+            BossDeadCtrl.instance.isGyutaroDead = false;
+            BossDeadCtrl.instance.isDakiFirstDead = false;
+        }
         FindObjectOfType<BgmManager>().bossFunc();
         Player.instance.Stop();
         slider.maxValue += GameManager.instance.bossCount * hpPlusValue;
