@@ -38,6 +38,7 @@ public class bossScript : MonoBehaviour
     public HandTrap[] spikes2;
     public GameObject dakiAttack;
     public GameObject gyutaro;
+    public GameObject gyutaroAttack_1;
     public float trainAttack1Delay = 0;
     public float trainAttack2Delay = 0;
     public float spikeDelay = 0;
@@ -68,8 +69,14 @@ public class bossScript : MonoBehaviour
             StartCoroutine(Go2());
         else if (SceneManager.GetActiveScene().name == "Main3"||SceneManager.GetActiveScene().name == "Main3_H"||SceneManager.GetActiveScene().name == "Main3_EZ")
             StartCoroutine(Go3());
-        else if (SceneManager.GetActiveScene().name == "Main4"||SceneManager.GetActiveScene().name == "Main4_H"||SceneManager.GetActiveScene().name == "Main4_EZ")
-            StartCoroutine(Go4());
+        else if (SceneManager.GetActiveScene().name == "Main4" || SceneManager.GetActiveScene().name == "Main4_H" ||
+                 SceneManager.GetActiveScene().name == "Main4_EZ")
+        {
+            if (isDaki)
+                StartCoroutine(Go4());
+            else
+                StartCoroutine(Go5());
+        }
     }
 
     IEnumerator Go()
@@ -206,7 +213,72 @@ public class bossScript : MonoBehaviour
             anim.Play("bossIdle");
         }
     }
+    IEnumerator Go5()
+    {
+        int t = (int)Time.timeScale;
+        Time.timeScale = 0;
+        CameraManager.instance.transform.position=new Vector3(transform.position.x,transform.position.y,-10);
+        CameraManager.instance.OnBound();
+        SoundManager.instance.heal();
+        while (slider.value<slider.maxValue)
+        {
+            slider.value += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        CameraManager.instance.canFollow = true;
+        Player.instance.isattack = false;
+        Player.instance.canTouch = true;
+        Time.timeScale = t;
+        CameraManager.instance.StopAllCoroutines();
+        CameraManager.instance.theCamera.orthographicSize = 5;
+        canMove = true;
+        while (true)
+        {
+            if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                yield return new WaitForSeconds(patternDelay*0.75f);
+            else
+                yield return new WaitForSeconds(patternDelay);
+            int r = Random.Range(0, 5);
+            
+            StartCoroutine(gyutaroAttack1());
 
+            yield return new WaitUntil(()=>canGo);
+            canGo = false;
+            anim.Play("bossIdle");
+        }
+    }
+
+    IEnumerator gyutaroAttack1() //피의 참격
+    {
+        Instantiate(gyutaroAttack_1,transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+        canGo = true;
+    }
+
+    IEnumerator gyutaroAttack2()
+    {
+        yield return new WaitForSeconds(1.25f);
+        canGo = true;
+    }
+
+    IEnumerator gyutaroSecondAttackCor()
+    {
+        while (true)
+        {
+            if(slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
+                yield return new WaitForSeconds(patternDelay*0.75f);
+            else
+                yield return new WaitForSeconds(patternDelay);
+            int r = Random.Range(0, 5);
+            
+            StartCoroutine(gyutaroAttack1());
+
+            yield return new WaitUntil(()=>canGo);
+            canGo = false;
+            anim.Play("bossIdle");
+        }
+    }
+    
     IEnumerator dakiSecondAttackCor()
     {
         while (true)
@@ -375,7 +447,7 @@ yield return new WaitForSeconds(1f);
             canGo = false;
         }   
     }
-
+    
     IEnumerator trainAttack2()
     {
         bool a = true;
@@ -736,7 +808,7 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
         
-        StartCoroutine(dakiAttack2());
+        StartCoroutine(dakiSecondAttackCor());
     }
     IEnumerator  gyutaroDead()
     {
@@ -762,8 +834,7 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = true;
         transform.GetChild(2).gameObject.GetComponent<Collider2D>().enabled = true;
-
-        //StartCoroutine(dakiAttack2()); //규타로 공격패턴 넣기
+        gyutaroSecondAttackCor();
     }
     public void dead(bool isHead)
     {
@@ -835,7 +906,7 @@ yield return new WaitForSeconds(1f);
                             SceneManager.GetActiveScene().name == "Main4_EZ" ||
                             SceneManager.GetActiveScene().name == "Main4_H")
                         {
-                            if (isDaki)
+                            if (isDaki) //다키면
                             {
                                 if (!BossDeadCtrl.instance.isDakiFirstDead)
                                 {
@@ -848,23 +919,38 @@ yield return new WaitForSeconds(1f);
                                 {
                                     if (BossDeadCtrl.instance.isGyutaroDead) //둘 다 동시에 죽이는 경우
                                     {
-
+                                        GameOver(true);
+                                        bossScript[] bosses = FindObjectsOfType<bossScript>();
+                                        foreach (bossScript boss in bosses)
+                                        {
+                                            if(!boss.isDaki) //규타로면
+                                            boss.GameOver(false);
+                                        }
                                     }
                                     else
                                     {
                                         StopAllCoroutines();
+                                        isPoison = false;
                                         StartCoroutine(dakiDead());
-                                    }
+                                    } 
+                                }
                             }
-                            }
-                            else
+                            else //규타로면
                             {
                                 if (BossDeadCtrl.instance.isDakiDead) //둘 다 동시에 죽이는 경우
                                 {
-                                    
+                                    GameOver(true);
+                                    bossScript[] bosses = FindObjectsOfType<bossScript>();
+                                    foreach (bossScript boss in bosses)
+                                    {
+                                        if(boss.isDaki) //다키면
+                                            boss.GameOver(false);
+                                    }
                                 }
                                 else
                                 {
+                                    StopAllCoroutines();
+                                    isPoison = false;
                                     StartCoroutine(gyutaroDead());
                                 }
                             }
@@ -916,6 +1002,25 @@ yield return new WaitForSeconds(1f);
                     }
     }
 
+    public void GameOver(bool isMine)
+    {
+        if (isMine) //한번만 실행할것들
+        {
+            if (!Player.instance.isGameOver)
+            {
+                CameraManager.instance.closeUpSlow();   
+            }
+            ScoreMgr.instance.scoreUp(0, 3000, false);
+            FindObjectOfType<GameManager>().bossDead = true;      
+            ComboManager.instance.comboIniitailize();
+            mpSlider.instance.bossCut();
+            FindObjectOfType<BgmManager>().bossDie();
+            Player.instance.forceUp();
+        }
+        ScoreMgr.instance.killedOni++;
+        Instantiate(effect, transform.position, Quaternion.identity);
+        Destroy(gameObject);   
+    }
     IEnumerator Heal()
     {
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;

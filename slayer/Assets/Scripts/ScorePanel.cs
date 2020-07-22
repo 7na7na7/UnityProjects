@@ -66,7 +66,6 @@ public class ScorePanel : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Main") //스테이지 1
         {
-            print(ScoreMgr.instance.score+" "+headv*headScore+" "+maxcombov*maxComboScore+" "+highScore1);
             //점수
             if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore1)
             {

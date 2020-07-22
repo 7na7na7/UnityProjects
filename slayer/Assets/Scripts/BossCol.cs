@@ -79,5 +79,7 @@ public class BossCol : MonoBehaviour
                 }
             }
         }
+        if(hit.CompareTag("explosion"))
+            boss.die(false,false);
     }
 }

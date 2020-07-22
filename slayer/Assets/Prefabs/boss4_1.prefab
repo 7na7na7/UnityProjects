@@ -847,7 +847,7 @@ MonoBehaviour:
   poisonEffect: {fileID: 8179779311039321, guid: 3442cbd942ecc9f4998514bc138d8a36,
     type: 3}
   crew: {fileID: 8796634812464565399, guid: a245cce0af3f5724c8f88b1c0731c91f, type: 3}
-  patternDelay: 2.3
+  patternDelay: 3
   canGo: 0
   hpPlusValue: 10
   patternMinusValue: 0.85
@@ -863,6 +863,7 @@ MonoBehaviour:
   spikes2: []
   dakiAttack: {fileID: 556486089}
   gyutaro: {fileID: 6159152918383216312, guid: a17b3324526201d4da61368c07862e2d, type: 3}
+  gyutaroAttack_1: {fileID: 0}
   trainAttack1Delay: 0
   trainAttack2Delay: 0
   spikeDelay: 0
@@ -1051,7 +1052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -981, y: -469.69}
+  m_AnchoredPosition: {x: -983.6, y: -469.69}
   m_SizeDelta: {x: 233.1, y: 173.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8629051849256563856
