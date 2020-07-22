@@ -39,6 +39,7 @@ public class bossScript : MonoBehaviour
     public GameObject dakiAttack;
     public GameObject gyutaro;
     public GameObject gyutaroAttack_1;
+    public GameObject gyutaroAttack_2;
     public float trainAttack1Delay = 0;
     public float trainAttack2Delay = 0;
     public float spikeDelay = 0;
@@ -60,6 +61,7 @@ public class bossScript : MonoBehaviour
             moveSpeed = moveFastValue;
         if (patternDelay <= 0)
             patternDelay = patternMinusValue;
+        
         GameManager.instance.bossCount++;
         
         anim = GetComponent<Animator>();
@@ -75,7 +77,10 @@ public class bossScript : MonoBehaviour
             if (isDaki)
                 StartCoroutine(Go4());
             else
+            {
+                GameManager.instance.bossCount--;
                 StartCoroutine(Go5());
+            }
         }
     }
 
@@ -239,8 +244,10 @@ public class bossScript : MonoBehaviour
             else
                 yield return new WaitForSeconds(patternDelay);
             int r = Random.Range(0, 5);
-            
-            StartCoroutine(gyutaroAttack1());
+            if (r == 0 || r == 1)
+                StartCoroutine(gyutaroAttack1());
+            else
+                StartCoroutine(gyutaroAttack2());
 
             yield return new WaitUntil(()=>canGo);
             canGo = false;
@@ -255,12 +262,20 @@ public class bossScript : MonoBehaviour
         canGo = true;
     }
 
-    IEnumerator gyutaroAttack2()
+    IEnumerator gyutaroAttack2() //양방향 참격
     {
-        yield return new WaitForSeconds(1.25f);
+        //애니메이션 전환
+        yield return new WaitForSeconds(1f);
+        Instantiate(gyutaroAttack_2, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
         canGo = true;
     }
 
+    IEnumerator gyutaroMove()
+    {
+        yield return new WaitForSeconds(1f);
+        canGo = true;
+    }
     IEnumerator gyutaroSecondAttackCor()
     {
         while (true)

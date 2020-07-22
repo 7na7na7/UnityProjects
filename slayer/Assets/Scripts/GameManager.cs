@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
   IEnumerator Game4()
   { 
     yield return new WaitForSeconds(fallingTime);
-    yield return new WaitForSeconds(fallingTime);
     foreach (Spawner s in spawners) //위에서 내려오는거 가능
     {
       if (s.isFalling)
@@ -135,7 +134,7 @@ public class GameManager : MonoBehaviour
         once = true;
       }
       else
-        yield return new WaitForSeconds(bossTime+ fallingTime);
+        yield return new WaitForSeconds(bossTime+ fallingTime+spiderTime);
       foreach (Spawner s in spawners)
       {
         s.canSpawn = false;
@@ -275,6 +274,7 @@ public class GameManager : MonoBehaviour
 
   public void OnscoreFunc()
   {
+    Time.timeScale = 0;
     Player.instance.isSuper = true;
 
     Player.instance.Stop();

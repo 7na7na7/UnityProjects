@@ -121,11 +121,15 @@ public class oniMove : MonoBehaviour
                     anim.Play("oni7_Idle");
                     yield return new WaitForSeconds(1f);
                 }
+                else
+                {
+                    yield break;
+                }
             }
         }
         else
         {
-            yield return null;
+            yield break;
         }
     }
 
@@ -246,7 +250,6 @@ public class oniMove : MonoBehaviour
                         ScoreMgr.instance.scoreUp(0,150,false);
                     if (oniIndex == 10)
                     {
-                        print("A");
                         ScoreMgr.instance.scoreUp(0,300,false);
                         if(silkScript!=null) 
                             silkScript.GetComponent<silkScript>().WifeEscape();
@@ -288,6 +291,7 @@ public class oniMove : MonoBehaviour
                         hp --;
                 }
                 hp--;
+                Instantiate(effect, transform.position, Quaternion.identity);
                 if (hp <= 0)
                 {
                     if (oniIndex == 1)
