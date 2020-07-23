@@ -10,9 +10,11 @@ public class Note : MonoBehaviour
     
     private UnityEngine.UI.Image noteImage;
 
-    private void Start()
+    private void OnEnable()
     {
-        noteImage = GetComponent<UnityEngine.UI.Image>();
+        if(noteImage==null) 
+            noteImage = GetComponent<UnityEngine.UI.Image>();
+        noteImage.enabled = true;
     }
 
     void Update()

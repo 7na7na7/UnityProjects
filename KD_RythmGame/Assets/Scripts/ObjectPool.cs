@@ -34,7 +34,6 @@ public class ObjectPool : MonoBehaviour
             
             t_queue.Enqueue(t_clone);
         }
-
         return t_queue;
     }
 }

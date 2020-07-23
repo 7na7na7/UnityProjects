@@ -13,9 +13,13 @@ public class TimingManager : MonoBehaviour
   private Vector2[] timingBoxs = null;
 
   private EffectManager theEffect;
+  private ScoreManager theScore;
+  private ComboManager theCombo;
   private void Start()
   {
+    theCombo = FindObjectOfType<ComboManager>();
     theEffect = FindObjectOfType<EffectManager>();
+    theScore = FindObjectOfType<ScoreManager>();
     timingBoxs=new Vector2[timingRect.Length];
 
     for (int i = 0; i < timingRect.Length; i++)
@@ -42,11 +46,13 @@ public class TimingManager : MonoBehaviour
           if(x<timingBoxs.Length-1) 
             theEffect.NoteHitEffect();
           theEffect.JudgementEffect(x);
-          
+          //점수 증가
+          theScore.IncreaseScore(x);
           return;
         }
       }
     } 
-    theEffect.JudgementEffect(3);
+    theCombo.ResetCombo(); //초기화
+    theEffect.JudgementEffect(4);
   }
 }
