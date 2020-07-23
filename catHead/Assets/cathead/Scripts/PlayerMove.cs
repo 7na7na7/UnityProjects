@@ -816,8 +816,7 @@ public class PlayerMove : MonoBehaviour
         if (other.CompareTag("Item"))
         {
             bool canGo = true;
-            while (true)
-            {
+         
                 if (FindObjectOfType<GameManager>().wave >= 2)
                 {
                     if (canWeaponUse[1] != true)
@@ -828,7 +827,7 @@ public class PlayerMove : MonoBehaviour
                         audio.PlayOneShot(earnGun,0.5f);
                         canWeaponUse[1] = true;
                         canGo = false;
-                        break;
+                    
                     }
                    if (FindObjectOfType<GameManager>().wave >= 4)
                     {
@@ -840,7 +839,7 @@ public class PlayerMove : MonoBehaviour
                             audio.PlayOneShot(earnGun,0.5f);
                             canWeaponUse[2] = true;
                             canGo = false;
-                            break;
+                        
                         }
                         if (FindObjectOfType<GameManager>().wave >= 6) 
                         { 
@@ -852,7 +851,7 @@ public class PlayerMove : MonoBehaviour
                                 audio.PlayOneShot(earnGun,0.5f); 
                                 canWeaponUse[3] = true; 
                                 canGo = false;
-                                break;
+                               
                             }
                             if (FindObjectOfType<GameManager>().wave >= 8) 
                             { 
@@ -863,7 +862,7 @@ public class PlayerMove : MonoBehaviour
                                     audio.PlayOneShot(earnGun,0.5f); 
                                     canWeaponUse[4] = true; 
                                     canGo = false;
-                                    break;
+                                   
                                 }
                                 if (FindObjectOfType<GameManager>().wave >= 10) 
                                 { 
@@ -874,7 +873,7 @@ public class PlayerMove : MonoBehaviour
                                         audio.PlayOneShot(earnGun,0.5f); 
                                         canWeaponUse[5] = true; 
                                         canGo = false;
-                                        break;
+                                       
                                     }
                                     if (FindObjectOfType<GameManager>().wave >= 12) 
                                     { 
@@ -885,7 +884,6 @@ public class PlayerMove : MonoBehaviour
                                             audio.PlayOneShot(earnGun,0.5f); 
                                             canWeaponUse[6] = true; 
                                             canGo = false;
-                                            break;
                                         }
                                         if (FindObjectOfType<GameManager>().wave >= 15) 
                                         { 
@@ -896,7 +894,6 @@ public class PlayerMove : MonoBehaviour
                                                 audio.PlayOneShot(earnGun,0.5f); 
                                                 canWeaponUse[7] = true; 
                                                 canGo = false;
-                                                break;
                                             }
                                         }
                                     }
@@ -905,15 +902,13 @@ public class PlayerMove : MonoBehaviour
                         }
                     } 
                 }
-                break;
-            }
+
             if(canGo)
             {
                 int r;
                 if (hp.value != 100)
                 {
                     r = Random.Range(0, ReturnLastWeapon());
-                    
                 }
                 else
                 {
@@ -948,6 +943,24 @@ public class PlayerMove : MonoBehaviour
                         
                                 pop.GetComponent<Text>().text = weaponNames[r]+" Reloaded";
                                 break;
+                            }
+                            else
+                            {
+                                bool b = false;
+                                for(int i=0;i<BulletValues.Length;i++)
+                                {
+                                    if (BulletValues[i] != MaxBulletValues[i])
+                                        b = true;
+                                }
+
+                                if (!b)
+                                {
+                                    audio.PlayOneShot(healSound,0.25f);
+                                    hp.value = 100;
+                                    GameObject pop =Instantiate(popUp, CanVasTr);
+                                    pop.GetComponent<Text>().text = "HP Healed";
+                                    break;
+                                }
                             }
                         }
                     }

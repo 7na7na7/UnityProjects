@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //Time.timeScale = 3f;
         if (SceneManager.GetActiveScene().name == "double")
         {
             if (p1Dead && p2Dead)
@@ -275,8 +274,8 @@ public class GameManager : MonoBehaviour
             else if (wave == 12)
             {
                 yield return new WaitForSeconds(1f);
-                GameObject pop4a =Instantiate(popUp, CanvasTr);
-                pop4a.GetComponent<Text>().text = "new weapon : mine";
+                GameObject pop111a =Instantiate(popUp, CanvasTr);
+                pop111a.GetComponent<Text>().text = "new weapon : mine";
                 yield return new WaitForSeconds(1f);
                 GameObject pop5a =Instantiate(popUp, CanvasTr);
                 pop5a.GetComponent<Text>().text = "wall : double ammo";
