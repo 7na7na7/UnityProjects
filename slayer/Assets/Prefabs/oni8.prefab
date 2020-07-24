@@ -127,15 +127,15 @@ MonoBehaviour:
   isSpider: 0
   startDown: 1
   startDownTime: 1
-  minTIme: 0.5
-  maxTime: 1
+  minTIme: 1
+  maxTime: 2
   maxDown: 6
   ease: 1
   randomMovingTr:
-  - -4
   - -2
+  - -1
+  - 1
   - 2
-  - 4
   spiderAttack: {fileID: 8479755255685719811, guid: e3e81d79f6e21f1458a3e950dd220032,
     type: 3}
   attackDelay: 4

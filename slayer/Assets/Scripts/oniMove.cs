@@ -168,7 +168,7 @@ public class oniMove : MonoBehaviour
                 else if(oniIndex==6) 
                     ScoreMgr.instance.scoreUp(0,250,false);
                 else if(oniIndex==9) 
-                    ScoreMgr.instance.scoreUp(0,150,false);
+                    ScoreMgr.instance.scoreUp(0,200,false);
                 if (oniIndex == 10)
                 {
                     print("A");
@@ -247,7 +247,7 @@ public class oniMove : MonoBehaviour
                     else if(oniIndex==6) 
                         ScoreMgr.instance.scoreUp(0,250,false);
                     else if(oniIndex==9) 
-                        ScoreMgr.instance.scoreUp(0,150,false);
+                        ScoreMgr.instance.scoreUp(0,200,false);
                     if (oniIndex == 10)
                     {
                         ScoreMgr.instance.scoreUp(0,300,false);
@@ -307,7 +307,7 @@ public class oniMove : MonoBehaviour
                     else if(oniIndex==6) 
                         ScoreMgr.instance.scoreUp(0,250,false);
                     else if(oniIndex==9) 
-                        ScoreMgr.instance.scoreUp(0,150,false);
+                        ScoreMgr.instance.scoreUp(0,200,false);
                     if (oniIndex == 10)
                     {
                         ScoreMgr.instance.scoreUp(0,300,false);

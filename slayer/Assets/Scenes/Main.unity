@@ -7752,7 +7752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.599792, y: 32.399994}
+  m_AnchoredPosition: {x: -60.59973, y: 32.399994}
   m_SizeDelta: {x: -1162.9, y: -493.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033945275
@@ -14082,7 +14082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kor: "\uD14C\uB8E8\uCF54"
   eng: Teruko
-  jap: 
+  jap: "\u3066\u308B\u5B50"
 --- !u!114 &1767419105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14263,6 +14263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32364107be96a8c4ca278bfc378a934d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZSsound: {fileID: 0}
   NezukoBody: {fileID: 0}
   NezukoHead: {fileID: 0}
   tsuzumiL: {fileID: 8300000, guid: e924653e2d536de40a06030df01fd2e4, type: 3}
@@ -14292,6 +14293,7 @@ MonoBehaviour:
   waterDropSound: {fileID: 0}
   poisonSound: {fileID: 0}
   shinobuComboSound: {fileID: 0}
+  stage4OnSound: {fileID: 0}
   savedBgm: 0
   savedBgs: 0
 --- !u!1 &1818758089
@@ -15553,7 +15555,7 @@ PrefabInstance:
     - target: {fileID: 7679086509479319411, guid: 41476f03cc1a99542af68b0d430341b8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -60.599792
+      value: -60.59973
       objectReference: {fileID: 0}
     - target: {fileID: 7679086509479319411, guid: 41476f03cc1a99542af68b0d430341b8,
         type: 3}

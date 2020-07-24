@@ -25,6 +25,7 @@
 public static class GPGSIds
 {
         public const string leaderboard______3 = "CgkI7se0pOoFEAIQEg"; // <GPGSID>
+        public const string leaderboard______4 = "CgkI7se0pOoFEAIQEw"; // <GPGSID>
         public const string leaderboard______1 = "CgkI7se0pOoFEAIQCQ"; // <GPGSID>
         public const string achievement____2 = "CgkI7se0pOoFEAIQCw"; // <GPGSID>
         public const string achievement____2_3 = "CgkI7se0pOoFEAIQDQ"; // <GPGSID>
@@ -32,6 +33,7 @@ public static class GPGSIds
         public const string achievement____1_2 = "CgkI7se0pOoFEAIQBw"; // <GPGSID>
         public const string achievement____1 = "CgkI7se0pOoFEAIQBg"; // <GPGSID>
         public const string leaderboard______2 = "CgkI7se0pOoFEAIQDw"; // <GPGSID>
+        public const string leaderboard______4_2 = "CgkI7se0pOoFEAIQFA"; // <GPGSID>
         public const string achievement____2_2 = "CgkI7se0pOoFEAIQDA"; // <GPGSID>
         public const string achievement____1_3 = "CgkI7se0pOoFEAIQCA"; // <GPGSID>
         public const string achievement__12 = "CgkI7se0pOoFEAIQBA"; // <GPGSID>

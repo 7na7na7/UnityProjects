@@ -5716,6 +5716,8 @@ MonoBehaviour:
   - {fileID: 3870606486702478192, guid: fb848114033a49e44b27daa64f7abe3f, type: 3}
   - {fileID: 1577170261059121660, guid: edc120fcacbed03499ed2052cf6912a3, type: 3}
   - {fileID: 1577170261059121660, guid: edc120fcacbed03499ed2052cf6912a3, type: 3}
+  dakiMobL: {fileID: 0}
+  dakiMobR: {fileID: 0}
 --- !u!1 &387330261
 GameObject:
   m_ObjectHideFlags: 0
@@ -6983,6 +6985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9a0069e13df514689949e443706f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMana: 1
   mp: {fileID: 790190207}
 --- !u!1 &795311215
 GameObject:
@@ -7296,6 +7299,8 @@ MonoBehaviour:
   - {fileID: 3870606486702478192, guid: 3adec5ab387844541842d012d31207d9, type: 3}
   - {fileID: 1577170261059121660, guid: ea24bd756a27cd1489372f2417022f21, type: 3}
   - {fileID: 1577170261059121660, guid: ea24bd756a27cd1489372f2417022f21, type: 3}
+  dakiMobL: {fileID: 0}
+  dakiMobR: {fileID: 0}
 --- !u!4 &811699934
 Transform:
   m_ObjectHideFlags: 0
@@ -9118,6 +9123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitText: "\uC544\uC58F!"
   hitTextEng: Ouch!
+  hitTextJap: "\u30A2\u30E4\u30C3!"
   hp: {fileID: 689389187}
 --- !u!70 &1551013075
 CapsuleCollider2D:
@@ -9406,6 +9412,8 @@ MonoBehaviour:
   onis:
   - {fileID: 3469529808288473591, guid: 9c4c2c5d752f7204da887c85d8996b09, type: 3}
   - {fileID: 6088213968027057274, guid: 51a92c4af333e6e4d921a32a25ddbbcb, type: 3}
+  dakiMobL: {fileID: 0}
+  dakiMobR: {fileID: 0}
 --- !u!1 &1646019359
 GameObject:
   m_ObjectHideFlags: 0
@@ -14509,6 +14517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kor: "\uD14C\uB8E8\uCF54"
   eng: Teruko
+  jap: "\u3066\u308B\u5B50"
 --- !u!114 &1767419105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14689,6 +14698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32364107be96a8c4ca278bfc378a934d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZSsound: {fileID: 0}
+  NezukoBody: {fileID: 0}
+  NezukoHead: {fileID: 0}
   tsuzumiL: {fileID: 8300000, guid: e924653e2d536de40a06030df01fd2e4, type: 3}
   tsuzumiM: {fileID: 8300000, guid: d3c580609ad716f41a32fbf305a13b35, type: 3}
   tsuzumiR: {fileID: 8300000, guid: 0681e7ac7e5d68c4b921d7aab09488c6, type: 3}
@@ -14716,6 +14728,7 @@ MonoBehaviour:
   waterDropSound: {fileID: 0}
   poisonSound: {fileID: 0}
   shinobuComboSound: {fileID: 0}
+  stage4OnSound: {fileID: 0}
   savedBgm: 0
   savedBgs: 0
 --- !u!1 &1818758089

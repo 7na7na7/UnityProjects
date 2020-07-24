@@ -14743,7 +14743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kor: "\uB124\uC988\uCF54"
   eng: Nezuko
-  jap: 
+  jap: "\u79B0\u8C46\u5B50"
 --- !u!114 &1767419105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14924,6 +14924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32364107be96a8c4ca278bfc378a934d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZSsound: {fileID: 0}
   NezukoBody: {fileID: 0}
   NezukoHead: {fileID: 0}
   tsuzumiL: {fileID: 8300000, guid: e924653e2d536de40a06030df01fd2e4, type: 3}
@@ -14953,6 +14954,7 @@ MonoBehaviour:
   waterDropSound: {fileID: 0}
   poisonSound: {fileID: 0}
   shinobuComboSound: {fileID: 0}
+  stage4OnSound: {fileID: 0}
   savedBgm: 1
   savedBgs: 1
 --- !u!1 &1818758089

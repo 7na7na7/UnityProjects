@@ -118,6 +118,16 @@ public class ScorePanel : MonoBehaviour
                 PlayerPrefs.SetInt(highComboKey3,maxcombov);
             }
         }
+        else if (SceneManager.GetActiveScene().name == "Main4_H") //스테이지 2 하드
+        {
+            //점수
+            if (ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore) > highScore3_H)
+            {
+                isBest = true;
+                highScore3_H = ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore);
+                PlayerPrefs.SetInt(highScoreKey3_H,ScoreMgr.instance.score + (headv * headScore) + (maxcombov * maxComboScore));
+            }
+        }
         else if (SceneManager.GetActiveScene().name == "Main_H") //스테이지 1 하드
         {
             //점수

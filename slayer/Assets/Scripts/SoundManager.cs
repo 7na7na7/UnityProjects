@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
+    public AudioClip ZSsound;
     public AudioClip NezukoBody, NezukoHead;
     public AudioClip tsuzumiL, tsuzumiM, tsuzumiR;
     public AudioClip hitSound;
@@ -33,6 +34,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip waterDropSound;
     public AudioClip poisonSound;
     public AudioClip shinobuComboSound;
+    public AudioClip stage4OnSound;
     public static SoundManager instance;
     private AudioSource audio;
     
@@ -57,6 +59,14 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public void Stage4On()
+    {
+        audio.PlayOneShot(stage4OnSound, savedBgs*2);
+    }
+    public void ZS()
+    {
+        audio.PlayOneShot(ZSsound, savedBgs*3);
+    }
     public void Head_N()
     {
         audio.PlayOneShot(NezukoHead, savedBgs*2);

@@ -516,7 +516,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 20
+  m_MaxValue: 13
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -847,9 +847,9 @@ MonoBehaviour:
   poisonEffect: {fileID: 8179779311039321, guid: 3442cbd942ecc9f4998514bc138d8a36,
     type: 3}
   crew: {fileID: 8796634812464565399, guid: a245cce0af3f5724c8f88b1c0731c91f, type: 3}
-  patternDelay: 3
+  patternDelay: 3.5
   canGo: 0
-  hpPlusValue: 10
+  hpPlusValue: 7
   patternMinusValue: 0.85
   moveFastValue: 0.85
   dmgDelay: 0
@@ -864,6 +864,7 @@ MonoBehaviour:
   dakiAttack: {fileID: 556486089}
   gyutaro: {fileID: 6159152918383216312, guid: a17b3324526201d4da61368c07862e2d, type: 3}
   gyutaroAttack_1: {fileID: 0}
+  gyutaroAttack_2: {fileID: 0}
   trainAttack1Delay: 0
   trainAttack2Delay: 0
   spikeDelay: 0

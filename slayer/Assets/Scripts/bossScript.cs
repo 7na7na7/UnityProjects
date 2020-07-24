@@ -46,13 +46,24 @@ public class bossScript : MonoBehaviour
     private Color color;
     private void Start()
     {
-        if (isDaki)
+
+        if (SceneManager.GetActiveScene().name == "Main4" || SceneManager.GetActiveScene().name == "Main4_H" ||
+            SceneManager.GetActiveScene().name == "Main4_EZ")
         {
-            BossDeadCtrl.instance.isDakiDead = false;
-            BossDeadCtrl.instance.isGyutaroDead = false;
-            BossDeadCtrl.instance.isDakiFirstDead = false;
+            if (isDaki)
+            {
+                BossDeadCtrl.instance.isDakiDead = false;
+                BossDeadCtrl.instance.isGyutaroDead = false;
+                BossDeadCtrl.instance.isDakiFirstDead = false;
+            }
+            
+            if (isDaki && BossDeadCtrl.instance.isDakiFirstDead == false) 
+                FindObjectOfType<BgmManager>().bossFunc();   
         }
-        FindObjectOfType<BgmManager>().bossFunc();
+        else
+        {
+            FindObjectOfType<BgmManager>().bossFunc();
+        }
         Player.instance.Stop();
         slider.maxValue += GameManager.instance.bossCount * hpPlusValue;
         for (int i = 0; i < GameManager.instance.bossCount;i++)
@@ -84,7 +95,8 @@ public class bossScript : MonoBehaviour
                 StartCoroutine(Go4());
             else
             {
-                GameManager.instance.bossCount--;
+                //다키등장 - 다키등장 - 규타로등장 - 으로 +3-2 = 1 완벽하다!
+                GameManager.instance.bossCount-=2;
                 StartCoroutine(Go5());
             }
         }
@@ -249,12 +261,13 @@ public class bossScript : MonoBehaviour
                 yield return new WaitForSeconds(patternDelay*0.75f);
             else
                 yield return new WaitForSeconds(patternDelay);
-            int r = Random.Range(0, 5);
-            if (r == 0 || r == 1)
+            int r = Random.Range(0, 6);
+            if (r == 0 || r == 1||r==2)
                 StartCoroutine(gyutaroAttack1());
-            else
+            else if (r == 3 || r == 4)
                 StartCoroutine(gyutaroAttack2());
-
+            else
+                StartCoroutine(gyutaroMove());
             yield return new WaitUntil(()=>canGo);
             canGo = false;
             anim.Play("bossIdle");
@@ -270,16 +283,69 @@ public class bossScript : MonoBehaviour
 
     IEnumerator gyutaroAttack2() //양방향 참격
     {
-        //애니메이션 전환
-        yield return new WaitForSeconds(1f);
+        SoundManager.instance.ZS();
+        anim.Play("gyutaroAttack");
+        yield return new WaitForSeconds(1.5f);
+        anim.Play("gyutaroIdle");
         Instantiate(gyutaroAttack_2, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         canGo = true;
     }
 
     IEnumerator gyutaroMove()
     {
-        yield return new WaitForSeconds(1f);
+        spr = GetComponent<SpriteRenderer>();
+        color.r = 255;
+        color.g = 0f;
+        color.b = 0f;
+        color.a = 1;
+        spr.color = color;
+
+        Vector2 girlPos = FindObjectOfType<girl>().transform.position;
+        Vector2 Pos=new Vector2(girlPos.x-(Player.instance.transform.position.x-girlPos.x),Player.instance.transform.position.y);
+
+
+        Vector3 p = Pos;
+        
+        anim.Play("walk");
+        transform.GetChild(0).gameObject.tag = "damage";
+        transform.GetChild(1).gameObject.tag = "damage";
+        transform.GetChild(2).gameObject.tag = "damage";
+        
+       
+        Vector2 dir = p - transform.position;
+        dir.Normalize();
+
+        float ms = moveSpeed;
+        if (BossDeadCtrl.instance.isDakiFirstDead)
+            ms *= 1.5f;
+        while (Vector3.Distance(p,transform.position)>0.1f)
+        {
+            transform.Translate(dir * ms * Time.deltaTime);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
+        transform.GetChild(0).gameObject.tag = "oni";
+        transform.GetChild(1).gameObject.tag = "oniHead";
+        transform.GetChild(2).gameObject.tag = "oni";
+        
+        if (isPoison)
+        {
+            color.r = 0.66f;
+            color.g = 0.32f;
+            color.b =1f;
+            spr.color = color;
+        }
+        else
+        {
+         
+            color.r = 255;
+            color.g = 255f;
+            color.b = 255f;
+            color.a = 1;
+            spr.color = color;
+        }
+
         canGo = true;
     }
     IEnumerator gyutaroSecondAttackCor()
@@ -320,7 +386,7 @@ public class bossScript : MonoBehaviour
 
             yield return new WaitUntil(()=>canGo);
             canGo = false;
-            anim.Play("bossIdle");
+            anim.Play("dakirage");
         }
     }
     IEnumerator dakiAttack1()
@@ -689,7 +755,6 @@ yield return new WaitForSeconds(1f);
         transform.GetChild(2).gameObject.tag = "damage";
         SoundManager.instance.Dash();
         Vector3 p = new Vector3(Player.instance.transform.position.x,Player.instance.transform.position.y+0.6f,0);
-        SoundManager.instance.Dash();
         if (slider.value <= Mathf.RoundToInt(slider.maxValue * 0.3f))
         {
             Vector2 dir = p - transform.position;
@@ -804,6 +869,7 @@ yield return new WaitForSeconds(1f);
 
     IEnumerator dakiDead()
     {
+        anim.Play("dakirage");
         BossDeadCtrl.instance.isDakiDead = true;
         transform.GetChild(0).gameObject.GetComponent<Collider2D>().enabled = false;
         transform.GetChild(1).gameObject.GetComponent<Collider2D>().enabled = false;
@@ -1056,7 +1122,7 @@ yield return new WaitForSeconds(1f);
             color.a += 0.175f;
             GetComponent<SpriteRenderer>().color = color;
         }
-        
+        anim.Play("dakirage");
         while (slider.value<slider.maxValue)
         {
          

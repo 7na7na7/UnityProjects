@@ -1282,6 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32364107be96a8c4ca278bfc378a934d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZSsound: {fileID: 8300000, guid: fc6d3cb096d028c44b5c00c03e07d28c, type: 3}
   NezukoBody: {fileID: 8300000, guid: 6ae1e17acdb4b09498b51a1b18fce489, type: 3}
   NezukoHead: {fileID: 8300000, guid: b6f9547d9b6722c47b899944d90db7d3, type: 3}
   tsuzumiL: {fileID: 8300000, guid: e924653e2d536de40a06030df01fd2e4, type: 3}
@@ -1311,6 +1312,7 @@ MonoBehaviour:
   waterDropSound: {fileID: 8300000, guid: 926068140d875e14bb94615be49af2de, type: 3}
   poisonSound: {fileID: 8300000, guid: ed8b39cf4e4836d4da64d4159582077a, type: 3}
   shinobuComboSound: {fileID: 8300000, guid: ca6850b223c8f68498439d23e47029a0, type: 3}
+  stage4OnSound: {fileID: 8300000, guid: 69bb510af1d55a54b8d455e6a160e61b, type: 3}
   savedBgm: 0
   savedBgs: 0
 --- !u!4 &766661957
@@ -2762,6 +2764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canStage1: 0
   canStage2: 0
+  canStage3: 0
   isFirst: 0
   isFirstKey: isFirst
 --- !u!4 &1414325716

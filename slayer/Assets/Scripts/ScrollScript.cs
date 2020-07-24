@@ -28,10 +28,6 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
     public Text stage4Text;
     void Start()
     {
-        //테스트
-        GooglePlayManager.instance.CanStage1();
-        GooglePlayManager.instance.CanStage2();
-        GooglePlayManager.instance.CanStage3();
         Alpha125.r = 255;
         Alpha125.g = 255;
         Alpha125.b = 255;
@@ -375,21 +371,21 @@ public class ScrollScript : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDr
         {
             if (difficulty==1)
             {
-                SoundManager.instance.steam();
+                SoundManager.instance.Stage4On();
                 FadePanel.instance.Fade();
                 yield return new WaitForSeconds(1f);
                 SceneManager.LoadScene("Main4");
             }
             else if(difficulty==2)
             {
-                SoundManager.instance.steam();
+                SoundManager.instance.Stage4On();
                 FadePanel.instance.Fade();
                 yield return new WaitForSeconds(1f);
                 SceneManager.LoadScene("Main4_H");
             }
             else
             {
-                SoundManager.instance.steam();
+                SoundManager.instance.Stage4On();
                 FadePanel.instance.Fade();
                 yield return new WaitForSeconds(1f);
                 SceneManager.LoadScene("Main4_EZ");

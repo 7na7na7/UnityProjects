@@ -449,7 +449,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 20
+  m_MaxValue: 17
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -779,9 +779,9 @@ MonoBehaviour:
   poisonEffect: {fileID: 8179779311039321, guid: 3442cbd942ecc9f4998514bc138d8a36,
     type: 3}
   crew: {fileID: 8796634812464565399, guid: a245cce0af3f5724c8f88b1c0731c91f, type: 3}
-  patternDelay: 3
+  patternDelay: 3.5
   canGo: 0
-  hpPlusValue: 10
+  hpPlusValue: 7
   patternMinusValue: 0.85
   moveFastValue: 0.85
   dmgDelay: 0
