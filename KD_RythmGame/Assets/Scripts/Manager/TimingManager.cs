@@ -29,7 +29,7 @@ public class TimingManager : MonoBehaviour
     }
   }
 
-  public void CheckTiming()
+  public bool CheckTiming()
   {
     for (int i = 0; i < boxNoteList.Count; i++)
     {
@@ -48,11 +48,12 @@ public class TimingManager : MonoBehaviour
           theEffect.JudgementEffect(x);
           //점수 증가
           theScore.IncreaseScore(x);
-          return;
+          return true;
         }
       }
     } 
     theCombo.ResetCombo(); //초기화
     theEffect.JudgementEffect(4);
+    return false;
   }
 }
