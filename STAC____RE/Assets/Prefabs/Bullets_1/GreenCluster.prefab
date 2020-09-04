@@ -80,7 +80,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.31, y: 1.32}
+  m_Size: {x: 8.04, y: 6.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -113,7 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a0146fe9e8604185c88db3ec52287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clusterObj: {fileID: 0}
   trail: {fileID: 6119638924946717905}
   isColor1: 1
   dieParticle: {fileID: 1838152322236505922, guid: c850fc6c98a264e4fae43e692812f49a,
@@ -140,17 +139,17 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.49753335, y: 0.34506416}
-    oldSize: {x: 8.04, y: 6.72}
-    newSize: {x: 1.31, y: 1.32}
+    oldSize: {x: 8.533334, y: 8.533334}
+    newSize: {x: 8.04, y: 6.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.010180596, y: 4.403698}
-      - {x: -4.022647, y: -2.3197167}
-      - {x: 4.045173, y: -2.3177135}
+    - - {x: 0.030581873, y: 4.1587496}
+      - {x: -4.239033, y: -2.9451737}
+      - {x: 4.295804, y: -2.9454188}
 --- !u!114 &6710837368243052424
 MonoBehaviour:
   m_ObjectHideFlags: 0
