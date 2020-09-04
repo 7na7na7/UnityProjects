@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-//using GooglePlayGames;
-//using GooglePlayGames.BasicApi;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 using UnityEngine.SceneManagement;
 
 public class GooglePlayManager : MonoBehaviour
 {
-   /*
    public static GooglePlayManager instance;
 
    private void Start()
@@ -29,14 +28,6 @@ public class GooglePlayManager : MonoBehaviour
    {
       Social.localUser.Authenticate((bool success) =>
       {
-         if (success)
-         {
-            GameObject.Find("qq").GetComponent<Text>().text = "예아";
-         }
-         else
-         {
-            GameObject.Find("qq").GetComponent<Text>().text = "좆됐다!";
-         }
       });
    }
 
@@ -45,19 +36,14 @@ public class GooglePlayManager : MonoBehaviour
       if (Social.localUser.authenticated) // GPGS 로그인 되어 있는 경우
       {
          ((PlayGamesPlatform) Social.Active).SignOut(); //로그아웃
+         Social.localUser.Authenticate((bool success) =>
+         {
+         });
       }
       else // GPGS 로그인이 되어 있지 않은 경우
       {
          Social.localUser.Authenticate((bool success) =>
          {
-            if (success)
-            {
-               GameObject.Find("qq").GetComponent<Text>().text = "예아";
-            }
-            else
-            {
-               GameObject.Find("qq").GetComponent<Text>().text = "좆됐다!";
-            }
          });
       }
    }
@@ -78,5 +64,4 @@ public class GooglePlayManager : MonoBehaviour
    {
       Social.ShowAchievementsUI();
    }
-*/
 }
