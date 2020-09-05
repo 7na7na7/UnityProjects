@@ -35,7 +35,7 @@ public class Vibrate : MonoBehaviour
         {
             if (isAndroid())
                 vibrator.Call("vibrate");
-           else
+            else
                 Handheld.Vibrate();
         }
 
