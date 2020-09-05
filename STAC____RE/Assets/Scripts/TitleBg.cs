@@ -13,10 +13,10 @@ public class TitleBg : MonoBehaviour
     }
 
     void Update()
-    {
-        if (GetComponent<MeshRenderer>().material.ToString().Substring(0, 2) != mats[BulletData.instance.currentColorIndex].ToString().Substring(0, 2))
-        {
-            GetComponent<MeshRenderer>().material = mats[BulletData.instance.currentColorIndex];
-        }
-    }
+         {
+             if (GetComponent<MeshRenderer>().material.ToString().Substring(0, 2) != mats[BulletData.instance.currentColorIndex].ToString().Substring(0, 2))
+             {
+                 GetComponent<MeshRenderer>().material = mats[BulletData.instance.currentColorIndex];
+             }
+         }
 }

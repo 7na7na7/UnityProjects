@@ -23,7 +23,7 @@ public class ChangeColor : MonoBehaviour
     {
         if (BulletData.instance.isLockArray[ColorIndex] == 1)
         {
-            BulletData.instance.currentColorIndex = ColorIndex;
+            Fade2.instance.change(ColorIndex);
             PlayerPrefs.SetInt(BulletData.instance.currentColorKey,ColorIndex);
         }
     }
