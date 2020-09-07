@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2048562986226166144}
   - component: {fileID: 2048562986226166158}
   - component: {fileID: 2048562986226166159}
-  - component: {fileID: 2719008018170727773}
   - component: {fileID: 8560243267789931008}
   m_Layer: 0
   m_Name: Mint4
@@ -122,45 +121,6 @@ MonoBehaviour:
   minSpeed: 1.5
   maxSpeed: 2.5
   speed: 0
---- !u!114 &2719008018170727773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2048562986226166147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344074fc1d0a864ea2dbdb8f5403d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: ea74e37c8e1d18a44904a0aba018089d, type: 2}
-  variable: _HdrCreate_Value_1
-  anm:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  Speed: 0.5
 --- !u!61 &8560243267789931008
 BoxCollider2D:
   m_ObjectHideFlags: 0

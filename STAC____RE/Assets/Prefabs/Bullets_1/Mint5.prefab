@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6640445015289382898}
   - component: {fileID: 6640445015289382897}
   - component: {fileID: 6640445015289382893}
-  - component: {fileID: 6640445015289382896}
   - component: {fileID: 6640445015289382895}
   m_Layer: 0
   m_Name: Star1
@@ -113,7 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a0146fe9e8604185c88db3ec52287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clusterObj: {fileID: 0}
   trail: {fileID: 6910027846586165248}
   isColor1: 0
   dieParticle: {fileID: 1838152322236505922, guid: c850fc6c98a264e4fae43e692812f49a,
@@ -123,45 +121,6 @@ MonoBehaviour:
   minSpeed: 1.25
   maxSpeed: 4
   speed: 0
---- !u!114 &6640445015289382896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6640445015289382892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344074fc1d0a864ea2dbdb8f5403d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: ea74e37c8e1d18a44904a0aba018089d, type: 2}
-  variable: _HdrCreate_Value_1
-  anm:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  Speed: 0.5
 --- !u!60 &6640445015289382895
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +138,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.89, y: 6.89}
+    oldSize: {x: 6.88, y: 6.88}
     newSize: {x: 1.31, y: 1.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -203,7 +162,6 @@ GameObject:
   - component: {fileID: 6640445015452742914}
   - component: {fileID: 6640445015452742913}
   - component: {fileID: 6640445015452743165}
-  - component: {fileID: 6640445015452742912}
   - component: {fileID: 6640445015452743167}
   m_Layer: 0
   m_Name: Star5
@@ -304,7 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a0146fe9e8604185c88db3ec52287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clusterObj: {fileID: 0}
   trail: {fileID: 6910027847797012142}
   isColor1: 0
   dieParticle: {fileID: 1838152322236505922, guid: c850fc6c98a264e4fae43e692812f49a,
@@ -314,45 +271,6 @@ MonoBehaviour:
   minSpeed: 1.25
   maxSpeed: 4
   speed: 0
---- !u!114 &6640445015452742912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6640445015452743164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344074fc1d0a864ea2dbdb8f5403d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: ea74e37c8e1d18a44904a0aba018089d, type: 2}
-  variable: _HdrCreate_Value_1
-  anm:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  Speed: 0.5
 --- !u!60 &6640445015452743167
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -370,7 +288,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.89, y: 6.89}
+    oldSize: {x: 6.88, y: 6.88}
     newSize: {x: 1.31, y: 1.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -394,7 +312,6 @@ GameObject:
   - component: {fileID: 6640445015775028183}
   - component: {fileID: 6640445015775028182}
   - component: {fileID: 6640445015775028178}
-  - component: {fileID: 6640445015775028181}
   - component: {fileID: 6640445015775028180}
   m_Layer: 0
   m_Name: Star4
@@ -495,7 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a0146fe9e8604185c88db3ec52287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clusterObj: {fileID: 0}
   trail: {fileID: 6910027846189796343}
   isColor1: 0
   dieParticle: {fileID: 1838152322236505922, guid: c850fc6c98a264e4fae43e692812f49a,
@@ -505,45 +421,6 @@ MonoBehaviour:
   minSpeed: 1.25
   maxSpeed: 4
   speed: 0
---- !u!114 &6640445015775028181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6640445015775028177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344074fc1d0a864ea2dbdb8f5403d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: ea74e37c8e1d18a44904a0aba018089d, type: 2}
-  variable: _HdrCreate_Value_1
-  anm:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  Speed: 0.5
 --- !u!60 &6640445015775028180
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -561,7 +438,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.89, y: 6.89}
+    oldSize: {x: 6.88, y: 6.88}
     newSize: {x: 1.31, y: 1.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -585,7 +462,6 @@ GameObject:
   - component: {fileID: 6640445015916776016}
   - component: {fileID: 6640445015916776015}
   - component: {fileID: 6640445015916776011}
-  - component: {fileID: 6640445015916776014}
   - component: {fileID: 6640445015916776013}
   m_Layer: 0
   m_Name: Star3
@@ -686,7 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a0146fe9e8604185c88db3ec52287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clusterObj: {fileID: 0}
   trail: {fileID: 6910027846543870420}
   isColor1: 0
   dieParticle: {fileID: 1838152322236505922, guid: c850fc6c98a264e4fae43e692812f49a,
@@ -696,45 +571,6 @@ MonoBehaviour:
   minSpeed: 1.25
   maxSpeed: 4
   speed: 0
---- !u!114 &6640445015916776014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6640445015916776010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344074fc1d0a864ea2dbdb8f5403d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: ea74e37c8e1d18a44904a0aba018089d, type: 2}
-  variable: _HdrCreate_Value_1
-  anm:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  Speed: 0.5
 --- !u!60 &6640445015916776013
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -752,7 +588,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.89, y: 6.89}
+    oldSize: {x: 6.88, y: 6.88}
     newSize: {x: 1.31, y: 1.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -872,7 +708,6 @@ GameObject:
   - component: {fileID: 6640445016481494872}
   - component: {fileID: 6640445016481494871}
   - component: {fileID: 6640445016481494867}
-  - component: {fileID: 6640445016481494870}
   - component: {fileID: 6640445016481494869}
   m_Layer: 0
   m_Name: Star2
@@ -973,7 +808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a0146fe9e8604185c88db3ec52287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clusterObj: {fileID: 0}
   trail: {fileID: 6910027845879632559}
   isColor1: 0
   dieParticle: {fileID: 1838152322236505922, guid: c850fc6c98a264e4fae43e692812f49a,
@@ -983,45 +817,6 @@ MonoBehaviour:
   minSpeed: 1.25
   maxSpeed: 4
   speed: 0
---- !u!114 &6640445016481494870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6640445016481494866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344074fc1d0a864ea2dbdb8f5403d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: ea74e37c8e1d18a44904a0aba018089d, type: 2}
-  variable: _HdrCreate_Value_1
-  anm:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  Speed: 0.5
 --- !u!60 &6640445016481494869
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1039,7 +834,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.89, y: 6.89}
+    oldSize: {x: 6.88, y: 6.88}
     newSize: {x: 1.31, y: 1.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1494,15 +1289,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29f7542f67c7efb4fae269216bf9107e, type: 3}
---- !u!4 &880117024414105784 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5769485275461763832, guid: 29f7542f67c7efb4fae269216bf9107e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6640445016991121984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!96 &6910027845879632559 stripped
 TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 270990276258058479, guid: 29f7542f67c7efb4fae269216bf9107e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6640445016991121984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &880117024414105784 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5769485275461763832, guid: 29f7542f67c7efb4fae269216bf9107e,
     type: 3}
   m_PrefabInstance: {fileID: 6640445016991121984}
   m_PrefabAsset: {fileID: 0}

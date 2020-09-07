@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Bullet : MonoBehaviour
 {
+    private IEnumerator InCam;
     public TrailRenderer trail;
     public bool isColor1;
     public GameObject dieParticle;
@@ -29,6 +30,8 @@ public class Bullet : MonoBehaviour
             gameObject.AddComponent<Rigidbody2D>();
             GetComponent<Rigidbody2D>().isKinematic = true;
         }
+
+        InCam = VisibleInCam();
     }
     
     public void OnEnable()
@@ -57,8 +60,9 @@ public class Bullet : MonoBehaviour
                     speed += speed * Spawner.instance.bulletSpeedPercent;
                 }
                 Set();  
-            }
-
+            } 
+            StopCoroutine(InCam);
+            StartCoroutine(InCam);
             StartCoroutine(switchCor());
         }
     }
@@ -75,6 +79,11 @@ IEnumerator switchCor()
             break;
         case 2:
             straight();
+            dir = Player.instance.transform.position - transform.position;
+            dir.Normalize();
+                
+            float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0f, angle+45);
             break;
         case 3:
             break;
@@ -90,8 +99,10 @@ IEnumerator switchCor()
     }
     IEnumerator SetTrailTime()
     {
+        //쿠쿠루삥뽕테스트
         yield return new WaitForSeconds(0.1f);
-        trail.time= 1+(1/Mathf.Pow(speed,2));
+        trail.time = 0;
+        //1+(1/Mathf.Pow(speed,2));
     }
 
     public void randomStraight()
@@ -128,18 +139,26 @@ IEnumerator switchCor()
 
     private void Update()
     {
-        if (!CheckCamera.instance.CheckObjectIsInCamera(gameObject))
-        {
-            if (!canDestroy)
-            {
-                canDestroy = true;
-                StartCoroutine(Destroy());
-            }
-        } 
         if(BulletIndex==5) 
             transform.Translate(dir*speed*Time.deltaTime);
         else
             transform.position+=new Vector3(dir.x * speed * Time.deltaTime,dir.y * speed * Time.deltaTime);
+    }
+
+    IEnumerator VisibleInCam()
+    {
+        while (true)
+        {
+            if (!CheckCamera.instance.CheckObjectIsInCamera(gameObject))
+            {
+                if (!canDestroy)
+                {
+                    canDestroy = true;
+                    StartCoroutine(Destroy());
+                }
+            } 
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     public void straight()
@@ -281,9 +300,9 @@ IEnumerator switchCor()
 
     IEnumerator Destroy() //10초동안 보이지 않으면 파괴
     {
-        for(int i=0;i<20;i++)
+        for(int i=0;i<10;i++)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             if (CheckCamera.instance.CheckObjectIsInCamera(gameObject))
             {
                 canDestroy = false;
