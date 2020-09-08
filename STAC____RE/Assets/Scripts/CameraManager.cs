@@ -66,16 +66,20 @@ public class CameraManager : MonoBehaviour
 
     public void Revival()
     {
-        BGM.instance.fadeIn();
-        BulletSetFalse.instance.SetFalse();
-        StartCoroutine(targetChange2());
-        Fade.instance.Unfade();
-        GameObject playerGO=Instantiate(player_GO, lastTr);
-        FindObjectOfType<Tile>().transform.position = playerGO.transform.position;
-        gameoverPanel.SetActive(false);
-        Clock.SetActive(false);
-        FindObjectOfType<joystick>().go_Player = playerGO;
-        transform.position = new Vector3(playerGO.transform.position.x,playerGO.transform.position.y,transform.position.z);
+        if (GoldManager.instance.gold >= 30)
+        {
+            GoldManager.instance.LoseGold(30);
+            BGM.instance.fadeIn();
+            BulletSetFalse.instance.SetFalse();
+            StartCoroutine(targetChange2());
+            Fade.instance.Unfade();
+            GameObject playerGO=Instantiate(player_GO, lastTr);
+            FindObjectOfType<Tile>().transform.position = playerGO.transform.position;
+            gameoverPanel.SetActive(false);
+            Clock.SetActive(false);
+            FindObjectOfType<joystick>().go_Player = playerGO;
+            transform.position = new Vector3(playerGO.transform.position.x,playerGO.transform.position.y,transform.position.z);   
+        }
     }
     
     public IEnumerator targetChange2()
