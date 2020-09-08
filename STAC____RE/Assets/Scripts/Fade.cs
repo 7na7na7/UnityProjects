@@ -28,7 +28,7 @@ public class Fade : MonoBehaviour
         {
             image = GetComponent<Image>();
             color = image.color;
-            if(SceneManager.GetActiveScene().name=="Play")
+            if(SceneManager.GetActiveScene().name=="Play"||SceneManager.GetActiveScene().name=="Tutorial")
                 Unfade();   
         }
     }

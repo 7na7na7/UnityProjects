@@ -39,7 +39,7 @@ public class Rotate : MonoBehaviour
     }
     public void RotateSound()
     {
-        SoundMgr.instance.Play(2,2,1);
+        SoundMgr.instance.Play(2,4,1);
     }
     IEnumerator RotateCor(bool isR)
     {
@@ -67,7 +67,7 @@ public class Rotate : MonoBehaviour
                 Player.instance.transform.eulerAngles=new Vector3(Player.instance.transform.eulerAngles.x,Player.instance.transform.eulerAngles.y,Mathf.CeilToInt(Player.instance.transform.eulerAngles.z*10)/10);
             } 
         ScoreMgr.instance.scoreUp(0,GameManager.instance.liveScoreUpValue,false,false);
-            RotateSound();
+        RotateSound();
             Emission();
     }
 //    IEnumerator RotateCor2(bool isR)

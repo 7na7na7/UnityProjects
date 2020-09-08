@@ -31,6 +31,7 @@ public class Spawner : MonoBehaviour
         {
             StartCoroutine(spawn(i));
             StartCoroutine(delayMinus(i));
+            StartCoroutine(bulletSpeedUP());
         }
     }
 

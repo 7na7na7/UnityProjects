@@ -51,6 +51,8 @@ public class CameraManager : MonoBehaviour
         
         Time.timeScale = 1;
         Fade.instance.fade();
+        //쿠쿠루삥뽕
+        System.GC.Collect();
         if (GameManager.instance.canRevival)
         {
             GameManager.instance.canRevival = false;

@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Bullet : MonoBehaviour
 {
+    
     private IEnumerator InCam;
     public TrailRenderer trail;
     public bool isColor1;
@@ -57,7 +58,7 @@ public class Bullet : MonoBehaviour
                 if (BulletIndex != 5)
                 {
                     speed = Random.Range(minSpeed,maxSpeed);
-                    speed += speed * Spawner.instance.bulletSpeedPercent;
+                    speed += speed * Spawner.instance.bulletSpeedPercent/100;
                 }
                 Set();  
             } 
@@ -99,10 +100,8 @@ IEnumerator switchCor()
     }
     IEnumerator SetTrailTime()
     {
-        //쿠쿠루삥뽕테스트
         yield return new WaitForSeconds(0.1f);
-        trail.time = 0;
-        //1+(1/Mathf.Pow(speed,2));
+        savedTrailTime=1+(1/Mathf.Pow(speed,2));
     }
 
     public void randomStraight()
@@ -143,6 +142,8 @@ IEnumerator switchCor()
             transform.Translate(dir*speed*Time.deltaTime);
         else
             transform.position+=new Vector3(dir.x * speed * Time.deltaTime,dir.y * speed * Time.deltaTime);
+        
+        
     }
 
     IEnumerator VisibleInCam()
@@ -151,13 +152,20 @@ IEnumerator switchCor()
         {
             if (!CheckCamera.instance.CheckObjectIsInCamera(gameObject))
             {
+                trail.time = 0;
                 if (!canDestroy)
                 {
                     canDestroy = true;
                     StartCoroutine(Destroy());
                 }
-            } 
-            yield return new WaitForSeconds(1f);
+            }
+            else
+            {
+                if(trail.time!=savedTrailTime)
+                    trail.time = savedTrailTime;
+            }
+            
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
@@ -217,11 +225,20 @@ IEnumerator switchCor()
 
     public void die()
     {
-        ShowParticle();
         if (BulletIndex != 5)
+        {
+            ShowParticle();
+            savedTrailTime = 0;
+            trail.time = 0;
             gameObject.SetActive(false);
+        }
         else
+        {
+            ShowParticle();
+            savedTrailTime = 0;
+            trail.time = 0;
             Destroy(gameObject);
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -274,6 +291,7 @@ IEnumerator switchCor()
     public void SameColor()
     {
         Vibrate.instance.Vibe(50);
+        
         canDetect = false;
         
         ScoreMgr.instance.scoreUp(0,GameManager.instance.scoreUpValue,false);
@@ -281,9 +299,17 @@ IEnumerator switchCor()
         ShowParticle();
         SoundMgr.instance.Play(0,1,1);
         if (BulletIndex != 5)
+        {
+            savedTrailTime = 0;
+            trail.time = 0;
             gameObject.SetActive(false);
+        }
         else
+        {
+            savedTrailTime = 0;
+            trail.time = 0;
             Destroy(gameObject);
+        }
     }
 
     void ShowParticle()
@@ -300,7 +326,7 @@ IEnumerator switchCor()
 
     IEnumerator Destroy() //10초동안 보이지 않으면 파괴
     {
-        for(int i=0;i<10;i++)
+        for(int i=0;i<7;i++)
         {
             yield return new WaitForSeconds(1f);
             if (CheckCamera.instance.CheckObjectIsInCamera(gameObject))
@@ -311,9 +337,17 @@ IEnumerator switchCor()
         }
 
         if (BulletIndex != 5)
+        {
+            savedTrailTime = 0;
+            trail.time = 0;
             gameObject.SetActive(false);
+        }
         else
+        {
+            savedTrailTime = 0;
+            trail.time = 0;
             Destroy(gameObject);
+        }
     }
 
     public void SetFalse()
@@ -321,9 +355,17 @@ IEnumerator switchCor()
         if (gameObject.activeSelf)
         {
             if (BulletIndex != 5)
+            {
+                savedTrailTime = 0;
+                trail.time = 0;
                 gameObject.SetActive(false);
+            }
             else
+            {
+                savedTrailTime = 0;
+                trail.time = 0;
                 Destroy(gameObject);
+            }
         }
     }
 }
