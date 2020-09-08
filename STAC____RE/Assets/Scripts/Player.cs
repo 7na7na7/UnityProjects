@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public bool isSuper = false;
     public ParticleSystem[] particles;
     public GameObject DieParticle;
     public static Player instance;

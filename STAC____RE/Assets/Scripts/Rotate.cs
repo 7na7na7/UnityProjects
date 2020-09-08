@@ -43,6 +43,7 @@ public class Rotate : MonoBehaviour
     }
     IEnumerator RotateCor(bool isR)
     {
+        Player.instance.isSuper = true;
         if (isR)
             {
                 for(int i=0;i<120/value;i++)
@@ -66,6 +67,7 @@ public class Rotate : MonoBehaviour
                 }
                 Player.instance.transform.eulerAngles=new Vector3(Player.instance.transform.eulerAngles.x,Player.instance.transform.eulerAngles.y,Mathf.CeilToInt(Player.instance.transform.eulerAngles.z*10)/10);
             } 
+        Player.instance.isSuper = false;
         ScoreMgr.instance.scoreUp(0,GameManager.instance.liveScoreUpValue,false,false);
         RotateSound();
             Emission();

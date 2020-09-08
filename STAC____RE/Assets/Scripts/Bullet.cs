@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
         else
         {
             GetComponent<SetColor>().setColor();
-            trail.time = 0;
+            trail.time = savedTrailTime;
             canDestroy = false;
             canDetect = true;
             if (isColor1)
@@ -101,7 +101,8 @@ IEnumerator switchCor()
     IEnumerator SetTrailTime()
     {
         yield return new WaitForSeconds(0.1f);
-        savedTrailTime=1+(1/Mathf.Pow(speed,2));
+        //savedTrailTime=1+(1/Mathf.Pow(speed,2));
+        trail.time=1+(1/Mathf.Pow(speed,2));
     }
 
     public void randomStraight()
@@ -152,20 +153,20 @@ IEnumerator switchCor()
         {
             if (!CheckCamera.instance.CheckObjectIsInCamera(gameObject))
             {
-                trail.time = 0;
+                //trail.time = 0;
                 if (!canDestroy)
                 {
                     canDestroy = true;
                     StartCoroutine(Destroy());
                 }
             }
-            else
-            {
-                if(trail.time!=savedTrailTime)
-                    trail.time = savedTrailTime;
-            }
+//            else
+//            {
+//                if(trail.time!=savedTrailTime)
+//                    trail.time = savedTrailTime;
+//            }
             
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -244,31 +245,34 @@ IEnumerator switchCor()
     {
         if (!col.CompareTag("Color1") && !col.CompareTag("Color2")) //충돌체가 총알이 아니었을 경우
         {
-            if (isColor1)
+            if (!Player.instance.isSuper)
             {
-                if (col.CompareTag("Edge1")) //같은 색에 닿았으면
+                if (isColor1)
                 {
-                    if(canDetect) 
-                        SameColor();
+                    if (col.CompareTag("Edge1")) //같은 색에 닿았으면
+                    {
+                        if(canDetect) 
+                            SameColor();
+                    }
+                    else if (col.CompareTag("Edge2"))//다른 색이면
+                    {
+                        if(canDetect) 
+                            OtherColor();
+                    }
                 }
-                else if (col.CompareTag("Edge2"))//다른 색이면
+                else
                 {
-                    if(canDetect) 
-                        OtherColor();
-                }
-            }
-            else
-            {
-                if (col.CompareTag("Edge2")) //같은 색에 닿았으면
-                {
-                    if(canDetect) 
-                        SameColor();
-                }
-                else if (col.CompareTag("Edge1"))//다른 색이면
-                {
-                    if(canDetect) 
-                        OtherColor(); 
-                }
+                    if (col.CompareTag("Edge2")) //같은 색에 닿았으면
+                    {
+                        if(canDetect) 
+                            SameColor();
+                    }
+                    else if (col.CompareTag("Edge1"))//다른 색이면
+                    {
+                        if(canDetect) 
+                            OtherColor(); 
+                    }
+                }   
             }
         }
         else

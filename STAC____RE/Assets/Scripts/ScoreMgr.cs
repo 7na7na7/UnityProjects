@@ -55,6 +55,7 @@ public class ScoreMgr : MonoBehaviour
             highScore = score;
             PlayerPrefs.SetInt(highscoreKey,highScore);
             isHighScore = true;
+            GooglePlayManager.instance.SetScore(score);
         }
 
         if (isPong)

@@ -27,7 +27,7 @@ public class Tile : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.CompareTag("Edge1") || col.CompareTag("Edge2"))
+        if (col.CompareTag("Edge2"))
         {
             float a, b;
             Vector3 posA=Vector3.zero;
