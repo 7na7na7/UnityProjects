@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3146784077267578035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3146784077267578033}
+  - component: {fileID: 3146784077267578032}
+  m_Layer: 0
+  m_Name: ObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3146784077267578033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146784077267578035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 326.25, y: 163, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3146784077267578032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146784077267578035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72706a0ab0d48144f939b2ab58cc2a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletNum: 0
+  Green1Obj: {fileID: 2048562986226166147, guid: 75d55a1b31ab6ac4fbb5931286dfdb15,
+    type: 3}
+  Mint1Obj: {fileID: 8279076980268649182, guid: 0e628c21c51ff7043ad5339b16df5fa8,
+    type: 3}
+  Green2Obj: {fileID: 2048562986226166147, guid: d633a795e0f6b3645ab9c9e68743bcbe,
+    type: 3}
+  Mint2Obj: {fileID: 8279076980268649182, guid: da4a96b020a37a7468a30b4aeea1eea9,
+    type: 3}
+  Green3Obj: {fileID: 2048562986226166147, guid: a2a3541fa7ea9c94a84093d9d374a607,
+    type: 3}
+  Mint3Obj: {fileID: 2048562986226166147, guid: ebe1ada366d4d5844bd47bf98c0f3ef8,
+    type: 3}
+  Green4Obj: {fileID: 2048562986226166147, guid: 810108aee8c2bc54fb03e64b26351af8,
+    type: 3}
+  Mint4Obj: {fileID: 8279076980268649182, guid: 065e70ef097d11543b8faefa0b607530,
+    type: 3}
+  GreenClusterObj: {fileID: 2048562986226166147, guid: cecdcd262c8da2b49aa7660f030f1797,
+    type: 3}
+  MintClusterObj: {fileID: 2048562986226166147, guid: 2963d84daa24dbe4bb82422922929290,
+    type: 3}
