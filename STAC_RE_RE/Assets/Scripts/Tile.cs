@@ -7,7 +7,6 @@ public class Tile : MonoBehaviour
 {
     public Color color;
     Sprite[] tileThemes;
-    public GameObject tile;
 
     private void Start()
     {
@@ -55,10 +54,14 @@ public class Tile : MonoBehaviour
                 posB=new Vector3(posB.x,posB.y+spriteSize,posB.z);
             }
             if(a>b) 
-                Instantiate(tile, transform.position+posA, Quaternion.identity);
-            else
-                Instantiate(tile, transform.position+posB, Quaternion.identity);
-            gameObject.SetActive(false);
+                transform.Translate(posA);
+            else 
+                transform.Translate(posB);
+//            if(a>b) 
+//                Instantiate(tile, transform.position+posA, Quaternion.identity);
+//            else
+//                Instantiate(tile, transform.position+posB, Quaternion.identity);
+//            gameObject.SetActive(false);
         }
     }
 }
