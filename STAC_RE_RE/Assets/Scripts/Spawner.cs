@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    public bool isTutorial = false;
     public static Spawner instance;
     public Transform player;
     public float radMinX, radMaxX, radMinY, radMaxY;
@@ -22,7 +23,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
+        if(!isTutorial) 
+            time += Time.deltaTime;
     }
 
     void Start()
@@ -37,7 +39,7 @@ public class Spawner : MonoBehaviour
 
     public void set(int index)
     {
-        if (player != null)
+        if (player != null&&!isTutorial)
             {
                 int r = Random.Range(0, 6);
                 GameObject enemy = ObjectManager.instance.MakeObj(index);

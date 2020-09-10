@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
+    public ScoreText goldScript;
     public GameObject Clock;
     public GameObject gameoverPanel;
     public static CameraManager instance;
@@ -68,6 +69,7 @@ public class CameraManager : MonoBehaviour
     {
         if (GoldManager.instance.gold >= 30)
         {
+            goldScript.currentGold -= 30;
             GoldManager.instance.LoseGold(30);
             BGM.instance.fadeIn();
             BulletSetFalse.instance.SetFalse();

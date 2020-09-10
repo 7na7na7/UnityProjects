@@ -20,6 +20,7 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator tutorial()
     {
+        Spawner.instance.isTutorial = true;
         for (int j= 0; j < TutorialPanels.Length; j++)
         {
             currentIndex++;
@@ -39,5 +40,7 @@ public class Tutorial : MonoBehaviour
         {
             TutorialPanels[i].SetActive(false);
         }
+
+        Spawner.instance.isTutorial = false;
     }
 }
