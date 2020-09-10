@@ -18,4 +18,9 @@ public class Btn : MonoBehaviour
    {
       GooglePlayManager.instance.OnShowAchievement();
    }
+
+   public void Ad()
+   {
+      AdmobVideoScript.instance.Show();
+   }
 }
