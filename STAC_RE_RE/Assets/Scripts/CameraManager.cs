@@ -41,7 +41,13 @@ public class CameraManager : MonoBehaviour
     public IEnumerator targetChange()
     {
         BGM.instance.fadeOut();
-        Time.timeScale = 0.3f;
+        Time.timeScale = 0.9f;
+        if (BulletData.instance.currentColorIndex == 0)
+        {
+            FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1.5f * 0.9f;
+        }
+        else
+            FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 0.9f;
         float size = Camera.main.orthographicSize/2;
         while (Camera.main.orthographicSize > size)
         {
@@ -49,8 +55,6 @@ public class CameraManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSecondsRealtime(0.5f);
-        
-        Time.timeScale = 1;
         Fade.instance.fade();
         //쿠쿠루삥뽕
         System.GC.Collect();
@@ -69,6 +73,13 @@ public class CameraManager : MonoBehaviour
     {
         if (GoldManager.instance.gold >= 30)
         {
+            if (BulletData.instance.currentColorIndex == 0)
+            {
+                FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1.5f;
+            }
+            else
+                FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
+            Time.timeScale = 1;
             goldScript.currentGold -= 30;
             GoldManager.instance.LoseGold(30);
             BGM.instance.fadeIn();

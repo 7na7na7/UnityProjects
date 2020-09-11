@@ -2422,6 +2422,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 379198188, guid: 349d08750d49f164c9782d84f08a0bcd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 379198188, guid: 349d08750d49f164c9782d84f08a0bcd, type: 3}
+      propertyPath: isSuper
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1430420043, guid: 349d08750d49f164c9782d84f08a0bcd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2556,7 +2564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -23, y: 23}
+  m_AnchoredPosition: {x: -15, y: 23}
   m_SizeDelta: {x: 2473.4578, y: 1402.1509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836948455
@@ -2704,6 +2712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f65f064e7613604295df525a5ec86ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTutorial: 0
   player: {fileID: 823985107}
   radMinX: 1
   radMaxX: 1.5

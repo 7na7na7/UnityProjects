@@ -24,6 +24,12 @@ public class GoldManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.N))
+            GetGold(100);
+    }
+
     public void GetGold(int value)
     {
         gold += value;

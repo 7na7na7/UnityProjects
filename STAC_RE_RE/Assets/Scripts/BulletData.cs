@@ -8,6 +8,11 @@ public class color
 {
     public Color color1, color2;
 }
+[System.Serializable]
+public class realcolor
+{
+    public Color color1, color2;
+}
 public class BulletData : MonoBehaviour
 {
     public int isRight;
@@ -20,6 +25,7 @@ public class BulletData : MonoBehaviour
     public float[] BPMs;
     public int currentColorIndex;
     public color[] colors;
+    public realcolor[] Realcolors;
     public static BulletData instance;
     public float playerAroundValue; //플레이어 방향으로 직선 이동하는 동그라미가 인식하는 부분
     public string currentColorKey = "currentColor";
