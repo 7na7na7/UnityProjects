@@ -294,7 +294,7 @@ IEnumerator switchCor()
 
     public void SameColor()
     {
-        Vibrate.instance.Vibe(50);
+        Vibrate.instance.Vibe(40);
         
         canDetect = false;
         

@@ -9,7 +9,6 @@ public class Rotate : MonoBehaviour
 {
     //public RectTransform rotate;
     public int StartRot = 30;
-    public bool isRight = true;
     public bool isTriangle = true;
     public float delay;
     private float bpm;
@@ -18,7 +17,6 @@ public class Rotate : MonoBehaviour
     public ParticleSystem[] rotateParticles;
     private void Start()
     {
-        isRight = BulletData.instance.isRight == 1 ? true : false;
         Player.instance.transform.eulerAngles=new Vector3(0,0,StartRot);
        bpm = BulletData.instance.BPMs[BulletData.instance.currentColorIndex];
     }
@@ -31,7 +29,7 @@ public class Rotate : MonoBehaviour
         {
             //if (isTriangle)
             if(Player.instance!=null) 
-                StartCoroutine(RotateCor(isRight));
+                StartCoroutine(RotateCor());
             //else
                 //StartCoroutine(RotateCor2(isRight));
             currentTime -= 60d / bpm;
@@ -41,12 +39,10 @@ public class Rotate : MonoBehaviour
     {
         SoundMgr.instance.Play(2,4,1);
     }
-    IEnumerator RotateCor(bool isR)
+    IEnumerator RotateCor()
     {
         //Player.instance.isSuper = true;
-        if (isR)
-            {
-                for(int i=0;i<120/value;i++)
+        for(int i=0;i<120/value;i++)
                 {
                     if(Player.instance.transform.eulerAngles.z+value>=361)
                         Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z + value);
@@ -54,19 +50,6 @@ public class Rotate : MonoBehaviour
                         Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z - value);
                     yield return new WaitForSeconds(delay);
                 }
-            }
-            else
-            {
-                for(int i=0;i<120/value;i++)
-                {
-                    if(Player.instance.transform.eulerAngles.z+value>=361)
-                        Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z - value);
-                    else
-                        Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z + value);
-                    yield return new WaitForSeconds(delay);
-                }
-                Player.instance.transform.eulerAngles=new Vector3(Player.instance.transform.eulerAngles.x,Player.instance.transform.eulerAngles.y,Mathf.CeilToInt(Player.instance.transform.eulerAngles.z*10)/10);
-            } 
         //Player.instance.isSuper = false;
         ScoreMgr.instance.scoreUp(0,GameManager.instance.liveScoreUpValue,false,false);
         RotateSound();

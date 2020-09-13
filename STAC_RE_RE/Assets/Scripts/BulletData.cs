@@ -16,7 +16,6 @@ public class realcolor
 public class BulletData : MonoBehaviour
 {
     public int isRight;
-    private string isRightKey = "isRight";
     public float brightness;
     public Material[] Themes;
     public GameObject[] Colors;
@@ -34,17 +33,6 @@ public class BulletData : MonoBehaviour
 
     public string[] keys;
     
-    public void right()
-    {
-        isRight = 1;
-        PlayerPrefs.SetInt(isRightKey,1);
-    }
-
-    public void left()
-    {
-        isRight = 0;
-        PlayerPrefs.SetInt(isRightKey,0);
-    }
     void Awake()
     {
         if (instance == null)
@@ -52,7 +40,6 @@ public class BulletData : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             currentColorIndex = PlayerPrefs.GetInt(currentColorKey, 0);
-            isRight = PlayerPrefs.GetInt(isRightKey, 1);
 
             for (int i = 0; i < keys.Length; i++)
             {

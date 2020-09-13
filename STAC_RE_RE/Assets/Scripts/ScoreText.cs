@@ -8,7 +8,6 @@ public class ScoreText : MonoBehaviour
 {
     public int maxFontSize = 300;
     public int minFontSize = 250;
-    public int currentGold = 0;
     public bool isScore = true;
     private Text Txt;
     public int Upvalue = 3;
@@ -23,7 +22,7 @@ public class ScoreText : MonoBehaviour
         if (isScore)
             Txt.text = ScoreMgr.instance.score.ToString();
         else
-            Txt.text = currentGold.ToString();
+            Txt.text = GoldManager.instance.gold.ToString();
     }
 
     public void pong()

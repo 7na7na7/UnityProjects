@@ -38,7 +38,6 @@ public class ScoreMgr : MonoBehaviour
 
     public void goldPong()
     {
-        goldScript.currentGold += goldUpValue;
         goldScript.pong();
     }
 
