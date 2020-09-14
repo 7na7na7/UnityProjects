@@ -8,9 +8,9 @@ public class SoundMgr : MonoBehaviour
 {
     public static SoundMgr instance;
     public AudioSource source;
-
+    public int haptic;
     public AudioClip[] clips;
-    
+    private string hapticKey = "haptic";
     private string bgmKey = "bgmKey";
     private string seKey = "seKey";
     public float savedBgm;
@@ -22,6 +22,7 @@ public class SoundMgr : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            haptic = PlayerPrefs.GetInt(hapticKey, 1);
             savedBgm = PlayerPrefs.GetFloat(bgmKey,1);
             savedSE = PlayerPrefs.GetFloat(seKey,1);
         }
@@ -45,6 +46,11 @@ public class SoundMgr : MonoBehaviour
         PlayerPrefs.SetFloat(bgmKey,savedBgm);
     }
 
+    public void HapticValue(int v)
+    {
+        haptic = v;
+        PlayerPrefs.SetInt(hapticKey,haptic);
+    }
     public void seValue(float v)
     {
         savedSE = v;

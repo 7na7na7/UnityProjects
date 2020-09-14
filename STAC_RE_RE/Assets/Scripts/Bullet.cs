@@ -294,7 +294,8 @@ IEnumerator switchCor()
 
     public void SameColor()
     {
-        Vibrate.instance.Vibe(40);
+        if(SoundMgr.instance.haptic==1) 
+            Vibrate.instance.Vibe(50);
         
         canDetect = false;
         
@@ -328,9 +329,9 @@ IEnumerator switchCor()
         Player.instance.Die();
     }
 
-    IEnumerator Destroy() //10초동안 보이지 않으면 파괴
+    IEnumerator Destroy() //15초동안 보이지 않으면 파괴
     {
-        for(int i=0;i<7;i++)
+        for(int i=0;i<15;i++)
         {
             yield return new WaitForSeconds(1f);
             if (CheckCamera.instance.CheckObjectIsInCamera(gameObject))

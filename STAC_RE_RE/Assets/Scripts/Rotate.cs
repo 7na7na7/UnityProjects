@@ -12,27 +12,28 @@ public class Rotate : MonoBehaviour
     public bool isTriangle = true;
     public float delay;
     private float bpm;
-    private double currentTime = 0d;
     public int value;
     public ParticleSystem[] rotateParticles;
+
+    private float bpmValue;
+
+    private bool canRot = true;
     private void Start()
     {
         Player.instance.transform.eulerAngles=new Vector3(0,0,StartRot);
        bpm = BulletData.instance.BPMs[BulletData.instance.currentColorIndex];
+       bpmValue = 60f / bpm;
     }
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
-
-        if (currentTime >= 60d / bpm)
+        if (BGM.instance.source.time % bpmValue<=0.1f)
         {
-            //if (isTriangle)
-            if(Player.instance!=null) 
-                StartCoroutine(RotateCor());
-            //else
-                //StartCoroutine(RotateCor2(isRight));
-            currentTime -= 60d / bpm;
+            if (Player.instance != null)
+            {
+                if(canRot)
+                    StartCoroutine(RotateCor());
+            }
         }
     }
     public void RotateSound()
@@ -41,19 +42,27 @@ public class Rotate : MonoBehaviour
     }
     IEnumerator RotateCor()
     {
-        //Player.instance.isSuper = true;
-        for(int i=0;i<120/value;i++)
-                {
-                    if(Player.instance.transform.eulerAngles.z+value>=361)
-                        Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z + value);
-                    else
-                        Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z - value);
-                    yield return new WaitForSeconds(delay);
-                }
-        //Player.instance.isSuper = false;
-        ScoreMgr.instance.scoreUp(0,GameManager.instance.liveScoreUpValue,false,false);
+        StartCoroutine(delayCor());
         RotateSound();
+        //Player.instance.isSuper = true;
+            for(int i=0;i<120/value;i++)
+            {
+                if(Player.instance.transform.eulerAngles.z+value>=361)
+                    Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z + value);
+                else
+                    Player.instance.transform.eulerAngles = new Vector3(Player.instance.transform.eulerAngles.x, Player.instance.transform.eulerAngles.y, Player.instance.transform.eulerAngles.z - value);
+                yield return new WaitForSeconds(delay);
+            }
+            //Player.instance.isSuper = false;
+            ScoreMgr.instance.scoreUp(0,GameManager.instance.liveScoreUpValue,false,false);
             Emission();
+    }
+
+    IEnumerator delayCor()
+    {
+        canRot = false;
+        yield return new WaitForSeconds(0.2f);
+        canRot = true;
     }
 //    IEnumerator RotateCor2(bool isR)
 //    {

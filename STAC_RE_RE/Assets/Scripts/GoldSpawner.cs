@@ -6,9 +6,6 @@ using Random = UnityEngine.Random;
 
 public class GoldSpawner : MonoBehaviour
 {
-    public float minGoldTime; //골드가 나타나는 최소 빈도
-    public float timeMinusValue; 
-    public float timeMinusDelay;
     public static GoldSpawner instance;
     public float delay;
     private float radMaxX, radMinY, radMinX,radMaxY;
@@ -22,7 +19,6 @@ public class GoldSpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(spawn());
-        StartCoroutine(goldTimeMinus());
         radMaxX = FindObjectOfType<Spawner>().radMaxX;
         radMinY = FindObjectOfType<Spawner>().radMinY;
         radMinX = FindObjectOfType<Spawner>().radMinX;
@@ -64,18 +60,5 @@ public class GoldSpawner : MonoBehaviour
                 }   
             }
         }
-    }
-
-    IEnumerator goldTimeMinus()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(timeMinusDelay);
-            if (delay >= minGoldTime)
-                delay -= timeMinusValue;
-            else
-                break;
-        }
-        yield break;
     }
 }

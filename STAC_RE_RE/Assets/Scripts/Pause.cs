@@ -28,4 +28,14 @@ public class Pause : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
             pause();
     }
+
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            Time.timeScale = 0; 
+            BGM.instance.GetComponent<AudioSource>().Pause();
+            pausePanel.SetActive(true);
+        }
+    }
 }

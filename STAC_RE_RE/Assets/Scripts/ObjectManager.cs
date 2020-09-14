@@ -66,17 +66,17 @@ public class ObjectManager : MonoBehaviour
       }
 
       //동시에 나타날 수 있는 탄막의 최대 개수를 배열에 넣어줌
-      Green1 = new GameObject[40];
-      Mint1 = new GameObject[40];
+      Green1 = new GameObject[100];
+      Mint1 = new GameObject[100];
 
-      Green2 = new GameObject[60];
-      Mint2 = new GameObject[60];
+      Green2 = new GameObject[100];
+      Mint2 = new GameObject[100];
 
-      Green3 = new GameObject[20];
-      Mint3 = new GameObject[20];
+      Green3 = new GameObject[60];
+      Mint3 = new GameObject[60];
 
-      Green4 = new GameObject[40];
-      Mint4 = new GameObject[40];
+      Green4 = new GameObject[60];
+      Mint4 = new GameObject[60];
 
       GreenCluster = new GameObject[60];
       MintCluster = new GameObject[60];

@@ -72,7 +72,7 @@ public class CameraManager : MonoBehaviour
 
     public void Revival()
     {
-        if (GoldManager.instance.gold >= 30)
+        if (GoldManager.instance.gold >= 50)
         {
             if (BulletData.instance.currentColorIndex == 0)
             {
@@ -81,7 +81,7 @@ public class CameraManager : MonoBehaviour
             else
                 FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
             Time.timeScale = 1;
-            GoldManager.instance.LoseGold(30);
+            GoldManager.instance.LoseGold(50);
             BGM.instance.fadeIn();
             BulletSetFalse.instance.SetFalse();
             StartCoroutine(targetChange2());
