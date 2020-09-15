@@ -8,12 +8,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class BGM : MonoBehaviour
 {
-    public Slider ClearSlider;
+   // public Slider ClearSlider;
     public static BGM instance;
     
     public float speed;
     public AudioSource source;
-
+    private bool isClear = false;
     private void Start()
     {
         source = GetComponent<AudioSource>();
@@ -25,27 +25,28 @@ public class BGM : MonoBehaviour
         instance = this;
         source.volume = SoundMgr.instance.savedBgm;
         source.Play();
-        if (ClearSlider != null)
-        {
-            ClearSlider.maxValue = source.clip.length;
-            ClearSlider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color =
-                BulletData.instance.colors[BulletData.instance.currentColorIndex].color1;
-        }
+//        if (ClearSlider != null)
+//        {
+//            ClearSlider.maxValue = source.clip.length;
+//            ClearSlider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().color =
+//                BulletData.instance.colors[BulletData.instance.currentColorIndex].color1;
+//        }
     }
 
-    private void Update()
-    {
-        if (ClearSlider != null)
-        {
-            ClearSlider.value = source.time;
-            if (ClearSlider.value >= ClearSlider.maxValue-0.1f)
-            {
-                ClearSlider.gameObject.SetActive(false);
-                Flash.instance.flash();
-                print("끝!");
-            }
-        }
-    }
+//    private void Update()
+//    {
+//        if (ClearSlider != null&&!isClear)
+//        {
+//            ClearSlider.value = source.time;
+//            if (ClearSlider.value >= ClearSlider.maxValue-0.1f)
+//            {
+//                ClearSlider.gameObject.SetActive(false);
+//                Flash.instance.flash();
+//                isClear = true;
+//                print("끝!");
+//            }
+//        }
+//    }
 
     public void fadeOut()
     {

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        print(gameObject.name);
         if(SceneManager.GetActiveScene().name=="Play") 
             ScoreMgr.instance.GameStart();
         Bullet[] bullets = FindObjectsOfType<Bullet>();
