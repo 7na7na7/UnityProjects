@@ -24,7 +24,12 @@ public class BGM : MonoBehaviour
         }
         instance = this;
         source.volume = SoundMgr.instance.savedBgm;
-        source.Play();
+        if (!BulletData.instance.isSplash)
+        {
+            StartCoroutine(delayPlay());
+        }
+        else
+            source.Play();
 //        if (ClearSlider != null)
 //        {
 //            ClearSlider.maxValue = source.clip.length;
@@ -33,20 +38,27 @@ public class BGM : MonoBehaviour
 //        }
     }
 
-//    private void Update()
-//    {
-//        if (ClearSlider != null&&!isClear)
-//        {
-//            ClearSlider.value = source.time;
-//            if (ClearSlider.value >= ClearSlider.maxValue-0.1f)
-//            {
-//                ClearSlider.gameObject.SetActive(false);
-//                Flash.instance.flash();
-//                isClear = true;
-//                print("끝!");
-//            }
-//        }
-//    }
+    private void Update()
+    {
+        if (!isClear)
+        {
+            if (source.time >= source.clip.length-0.1f)
+            {
+                Flash.instance.flash();
+                ScoreMgr.instance.scoreUp(0,5000,false,false);
+                isClear = true;
+                GooglePlayManager.instance.Achievement(11);
+                BulletData.instance.ClearValueUp();
+            }
+        }
+    }
+    IEnumerator delayPlay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        source.Play();
+        AdmobVideoScript.instance.SetAD();
+        GooglePlayManager.instance.Set();
+    }
 
     public void fadeOut()
     {

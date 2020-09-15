@@ -18,16 +18,19 @@ public class AdmobVideoScript : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            
-            //Test ID : "ca-app-pub-3940256099942544/5224354917"
-            //광고 ID : "ca-app-pub-1298765895913983/2795590747"
-            videoID = "ca-app-pub-1298765895913983/2795590747";
-            videoAd = new RewardedAd(videoID);
-            Handle(videoAd);
-            Load();   
         }
         else
             Destroy(gameObject);
+    }
+
+    public void SetAD()
+    {
+        //Test ID : "ca-app-pub-3940256099942544/5224354917"
+        //광고 ID : "ca-app-pub-1298765895913983/2795590747"
+        videoID = "ca-app-pub-1298765895913983/2795590747";
+        videoAd = new RewardedAd(videoID);
+        Handle(videoAd);
+        Load();   
     }
 
     private void Handle(RewardedAd videoAd)

@@ -15,6 +15,7 @@ public class realcolor
 }
 public class BulletData : MonoBehaviour
 {
+    public bool isSplash = false;
     public int isRight;
     public float brightness;
     public Material[] Themes;
@@ -28,11 +29,20 @@ public class BulletData : MonoBehaviour
     public static BulletData instance;
     public float playerAroundValue; //플레이어 방향으로 직선 이동하는 동그라미가 인식하는 부분
     public string currentColorKey = "currentColor";
+    private string clearValueKey = "clearValue";
+    public int clearValue = 0;
     public float[] pitches;
     public int[] isLockArray;
 
     public string[] keys;
-    
+
+    public void ClearValueUp()
+    {
+        clearValue++;
+        PlayerPrefs.SetInt(clearValueKey,clearValue);
+        if(clearValue>=5)
+            GooglePlayManager.instance.Achievement(12);
+    }
     void Awake()
     {
         if (instance == null)
@@ -40,7 +50,7 @@ public class BulletData : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             currentColorIndex = PlayerPrefs.GetInt(currentColorKey, 0);
-
+            clearValue = PlayerPrefs.GetInt(clearValueKey, 0);
             for (int i = 0; i < keys.Length; i++)
             {
                 if (i==0)

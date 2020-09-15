@@ -25,6 +25,16 @@ public class ChangeColor : MonoBehaviour
         {
             Fade2.instance.change(ColorIndex);
             PlayerPrefs.SetInt(BulletData.instance.currentColorKey,ColorIndex);
+            GooglePlayManager.instance.Achievement(8);
+
+            int i = 0;
+            foreach (int a in BulletData.instance.isLockArray)
+            {
+                if (a == 1)
+                    i++;
+            }
+            if(i>=7)
+                GooglePlayManager.instance.Achievement(9);
         }
     }
 

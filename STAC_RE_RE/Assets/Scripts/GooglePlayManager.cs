@@ -15,9 +15,6 @@ public class GooglePlayManager : MonoBehaviour
       {
          instance = this;
          DontDestroyOnLoad(gameObject);
-         PlayGamesPlatform.DebugLogEnabled = true;
-         PlayGamesPlatform.Activate();
-         LogIn();
       }
       else
       {
@@ -25,6 +22,12 @@ public class GooglePlayManager : MonoBehaviour
       }
    }
 
+   public void Set()
+   {
+      PlayGamesPlatform.DebugLogEnabled = true;
+      PlayGamesPlatform.Activate();
+      LogIn();
+   }
    public void LogIn()
    {
       Social.localUser.Authenticate((bool success) =>
@@ -69,5 +72,48 @@ public class GooglePlayManager : MonoBehaviour
    public void SetScore(int score)
    {
       Social.ReportScore(score, GPGSIds.leaderboard_leaderboard, (bool bSuccess) => { });
+   }
+
+   public void Achievement(int index)
+   {
+      switch (index)
+      {
+         case 1:
+            Social.ReportProgress(GPGSIds.achievement_jump_over_your_limit_l,100f,null);
+            break;
+         case 2:
+            Social.ReportProgress(GPGSIds.achievement_jump_over_your_limit_ll,100f,null);
+            break;
+         case 3:
+            Social.ReportProgress(GPGSIds.achievement_jump_over_your_limit_lll,100f,null);
+            break;
+         case 4:
+            Social.ReportProgress(GPGSIds.achievement_combo_master_l,100f,null);
+            break;
+         case 5:
+            Social.ReportProgress(GPGSIds.achievement_combo_master_ll,100f,null);
+            break;
+         case 6:
+            Social.ReportProgress(GPGSIds.achievement_combo_master_lll,100f,null);
+            break;
+         case 7:
+            Social.ReportProgress(GPGSIds.achievement_rich,100f,null);
+            break;
+         case 8:
+            Social.ReportProgress(GPGSIds.achievement_new_color,100f,null);
+            break;
+         case 9:
+            Social.ReportProgress(GPGSIds.achievement_rainbow_color,100f,null);
+            break;
+         case 10:
+            Social.ReportProgress(GPGSIds.achievement_long_lifetime,100f,null);
+            break;
+         case 11:
+            Social.ReportProgress(GPGSIds.achievement_complete_a_song,100f,null);
+            break;
+         case 12:
+            Social.ReportProgress(GPGSIds.achievement_are_you_a_dj,100f,null);
+            break;
+      }
    }
 }

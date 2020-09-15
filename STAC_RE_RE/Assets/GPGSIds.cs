@@ -24,7 +24,19 @@
 
 public static class GPGSIds
 {
+        public const string achievement_complete_a_song = "CgkIqOuDgc4PEAIQDA"; // <GPGSID>
+        public const string achievement_combo_master_lll = "CgkIqOuDgc4PEAIQBw"; // <GPGSID>
+        public const string achievement_new_color = "CgkIqOuDgc4PEAIQCQ"; // <GPGSID>
+        public const string achievement_jump_over_your_limit_l = "CgkIqOuDgc4PEAIQAg"; // <GPGSID>
+        public const string achievement_rich = "CgkIqOuDgc4PEAIQCA"; // <GPGSID>
+        public const string achievement_long_lifetime = "CgkIqOuDgc4PEAIQCw"; // <GPGSID>
+        public const string achievement_are_you_a_dj = "CgkIqOuDgc4PEAIQDQ"; // <GPGSID>
+        public const string achievement_jump_over_your_limit_lll = "CgkIqOuDgc4PEAIQBA"; // <GPGSID>
         public const string leaderboard_leaderboard = "CgkIqOuDgc4PEAIQAQ"; // <GPGSID>
+        public const string achievement_combo_master_ll = "CgkIqOuDgc4PEAIQBg"; // <GPGSID>
+        public const string achievement_jump_over_your_limit_ll = "CgkIqOuDgc4PEAIQAw"; // <GPGSID>
+        public const string achievement_combo_master_l = "CgkIqOuDgc4PEAIQBQ"; // <GPGSID>
+        public const string achievement_rainbow_color = "CgkIqOuDgc4PEAIQCg"; // <GPGSID>
 
 }
 

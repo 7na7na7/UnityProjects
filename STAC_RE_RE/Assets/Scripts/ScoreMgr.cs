@@ -24,8 +24,8 @@ public class ScoreMgr : MonoBehaviour
     
     void Awake()
     {
+        GoldManager.instance.currentGold = 0;
         instance = this;
-        
         highScore = PlayerPrefs.GetInt(highscoreKey, 0); //저장된 값 받아옴
         
     }
@@ -49,6 +49,12 @@ public class ScoreMgr : MonoBehaviour
             go.GetComponent<Text>().text = count+ "콤보 +" + point;
         }
         score += point;
+        if(score>=10000)
+            GooglePlayManager.instance.Achievement(1);
+        if(score>=50000)
+            GooglePlayManager.instance.Achievement(2);
+        if(score>=100000)
+            GooglePlayManager.instance.Achievement(3);
         if (score > highScore) //최고점수 갱신
         {
             highScore = score;
@@ -65,6 +71,12 @@ public class ScoreMgr : MonoBehaviour
     
     public void comboInitialize(int v)
     {
+        if(v>=10)
+            GooglePlayManager.instance.Achievement(4);
+        if(v>=20)
+            GooglePlayManager.instance.Achievement(5);
+        if(v>=30)
+            GooglePlayManager.instance.Achievement(6);
         if (v > maxCombo)
             maxCombo = v;
     }

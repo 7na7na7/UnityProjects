@@ -40,6 +40,7 @@ public class Revival : MonoBehaviour
         text.text = Mathf.CeilToInt(time).ToString();
         if (Mathf.CeilToInt(time) <= 0)
         {
+            //
             gameOverPanel.SetActive(true); 
             gameObject.SetActive(false);
         }

@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoldManager : MonoBehaviour
 {
+    public int currentGold=0;
     public static GoldManager instance;
     private string goldKey = "goldKey";
     public int gold;
@@ -32,6 +34,12 @@ public class GoldManager : MonoBehaviour
 
     public void GetGold(int value)
     {
+        if (SceneManager.GetActiveScene().name == "Play")
+        {
+            currentGold += value;
+            if(currentGold>=100)
+                GooglePlayManager.instance.Achievement(7);
+        }
         gold += value;
         PlayerPrefs.SetInt(goldKey,gold);
     }
