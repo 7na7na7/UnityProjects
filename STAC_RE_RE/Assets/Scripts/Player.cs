@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
         Instantiate(DieParticle, transform.position, Quaternion.identity);
         CameraManager.instance.GameOver();
         CameraManager.instance.lastTr = gameObject.transform;
-        Vibrate.instance.Vibe(750);
+        if(SoundMgr.instance.haptic==1) 
+            Vibrate.instance.Vibe(700);
         Destroy(gameObject);
     }
     

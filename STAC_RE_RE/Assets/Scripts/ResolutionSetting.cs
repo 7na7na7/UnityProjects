@@ -24,7 +24,7 @@ public class ResolutionSetting : MonoBehaviour
       {
         float difference = goodRatio - ratio;
         ScrollView.GetComponent<RectTransform>().anchoredPosition=new Vector3( ScrollView.GetComponent<RectTransform>().anchoredPosition.x, 
-           ScrollView.GetComponent<RectTransform>().anchoredPosition.y+difference*1800,0);
+           ScrollView.GetComponent<RectTransform>().anchoredPosition.y+difference*900,0);
         Tab.GetComponent<RectTransform>().anchoredPosition = new Vector3(
            Tab.GetComponent<RectTransform>().anchoredPosition.x,
            Tab.GetComponent<RectTransform>().anchoredPosition.y + difference * -1800, 0);
