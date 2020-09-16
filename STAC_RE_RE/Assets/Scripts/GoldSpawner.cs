@@ -19,10 +19,10 @@ public class GoldSpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(spawn());
-        radMaxX = FindObjectOfType<Spawner>().radMaxX;
-        radMinY = FindObjectOfType<Spawner>().radMinY;
-        radMinX = FindObjectOfType<Spawner>().radMinX;
-        radMaxY = FindObjectOfType<Spawner>().radMaxY;
+        radMaxX = FindObjectOfType<Spawner>().radMaxX*2;
+        radMinY = FindObjectOfType<Spawner>().radMinY*2;
+        radMinX = FindObjectOfType<Spawner>().radMinX*2;
+        radMaxY = FindObjectOfType<Spawner>().radMaxY*2;
     }
 
     IEnumerator spawn()

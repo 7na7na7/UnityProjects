@@ -27,7 +27,7 @@ public class Rotate : MonoBehaviour
 
     private void Update()
     {
-        if (BGM.instance.source.time % bpmValue<=0.1f)
+        if (BGM.instance.source.time % bpmValue<=0.05f)
         {
             if (Player.instance != null)
             {
