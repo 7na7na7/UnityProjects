@@ -18,6 +18,10 @@ public class LoadScene : MonoBehaviour
    {
       Application.OpenURL("https://cafe.naver.com/onidefence");
    }
+   public void OtherGame()
+   {
+      Application.OpenURL("https://play.google.com/store/apps/dev?id=8269611765401672657");
+   }
    public void Title()
    {
       SoundManager.instance.select();
