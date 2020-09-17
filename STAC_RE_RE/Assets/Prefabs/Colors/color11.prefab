@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.99607843, g: 0.05490196, b: 0.4117647, a: 1}
+  m_Color: {r: 0.9960785, g: 0.098039225, b: 0.9960785, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0.58431375, b: 0.9960785, a: 0.49803922}
+  m_Color: {r: 0.22352943, g: 0.9960785, b: 0.9960785, a: 0.49803922}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.99607843, g: 0.05490196, b: 0.4117647, a: 0.49803922}
+  m_Color: {r: 0.9960785, g: 0.10196079, b: 0.9960785, a: 0.49803922}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0.6901961, b: 0.9960785, a: 1}
+  m_Color: {r: 0.2627451, g: 0.9960785, b: 0.9960785, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -773,12 +773,12 @@ PrefabInstance:
     - target: {fileID: 8238624199198643847, guid: 0bfddb7c0e480244cb8a56dfe9b6d471,
         type: 3}
       propertyPath: m_Text
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 8853847752372772890, guid: 0bfddb7c0e480244cb8a56dfe9b6d471,
         type: 3}
       propertyPath: m_Text
-      value: 'Potem - Sweet punch '
+      value: Awkward Cheer - TTRM X WOLKI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bfddb7c0e480244cb8a56dfe9b6d471, type: 3}

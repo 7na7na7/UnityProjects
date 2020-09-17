@@ -94,6 +94,14 @@ public class BulletData : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+            Reset();
+        if(Input.GetKeyDown(KeyCode.U))
+            UnlockAll();
+    }
+
     public void Reset()
     {
         for (int i = 0; i < isLockArray.Length; i++)
