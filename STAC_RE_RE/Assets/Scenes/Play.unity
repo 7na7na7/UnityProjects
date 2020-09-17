@@ -1817,8 +1817,8 @@ MonoBehaviour:
   player_GO: {fileID: 6885763691734771526, guid: 349d08750d49f164c9782d84f08a0bcd,
     type: 3}
   lastTr: {fileID: 823985107}
-  CameraSizeUpValue: 0.05
-  CameraSizeUpTime: 1.25
+  CameraSizeUpValue: 0.04
+  CameraSizeUpTime: 2
   MaxSize: 17
 --- !u!20 &519420031
 Camera:
@@ -3065,18 +3065,18 @@ MonoBehaviour:
   radMinY: 1.5
   radMaxY: 2.25
   delays:
-  - 2
-  - 1
+  - 1.8
+  - 1.2
   - 3
   - 4
   - 4
   minusPercents:
+  - 2
+  - 2
   - 1.5
-  - 1.5
-  - 1.5
-  - 1.5
-  - 1.5
-  minusDelay: 1
+  - 1.2
+  - 1.2
+  minusDelay: 3
   bulletAppearTimings:
   - 0
   - 0
