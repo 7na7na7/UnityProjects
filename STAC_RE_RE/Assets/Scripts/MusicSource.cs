@@ -8,16 +8,19 @@ public class MusicSource : MonoBehaviour
  public Animator anim;
 
  public void Source()
- { 
-  if (!isOn) 
-  { 
-   isOn = true;
-   anim.Play("SettingPanelAnim");
-  }
-  else
+ {
+  if (Application.systemLanguage == SystemLanguage.Korean)
   {
-   isOn = false;
-   anim.Play("DefaultAnim");
-  } 
+   if (!isOn) 
+   { 
+    isOn = true;
+    anim.Play("SettingPanelAnim");
+   }
+   else
+   {
+    isOn = false;
+    anim.Play("DefaultAnim");
+   } 
+  }
  }
 }

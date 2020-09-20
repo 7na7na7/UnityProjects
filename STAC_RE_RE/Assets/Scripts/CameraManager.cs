@@ -70,9 +70,34 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    public void Revival()
+    public void Revival(bool isAd = false)
     {
-        if (GoldManager.instance.gold >= 50)
+        if (!isAd)
+        {
+            if (GoldManager.instance.gold >= 50)
+            {
+                if (BulletData.instance.currentColorIndex == 0)
+                {
+                    FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1.5f;
+                }
+                else
+                    FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
+                Time.timeScale = 1;
+                GoldManager.instance.LoseGold(50);
+                BGM.instance.fadeIn();
+                BulletSetFalse.instance.SetFalse();
+                StartCoroutine(targetChange2());
+                Fade.instance.Unfade();
+                GameObject playerGO=Instantiate(player_GO, lastTr);
+                FindObjectOfType<Tile>().transform.position = playerGO.transform.position;
+                gameoverPanel.SetActive(false);
+                Clock.SetActive(false);
+                FindObjectOfType<joystick>().go_Player = playerGO;
+                transform.position = new Vector3(playerGO.transform.position.x,playerGO.transform.position.y,transform.position.z);   
+                FindObjectOfType<Pause>().RealUnPause();
+            }   
+        }
+        else
         {
             if (BulletData.instance.currentColorIndex == 0)
             {
@@ -81,7 +106,6 @@ public class CameraManager : MonoBehaviour
             else
                 FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
             Time.timeScale = 1;
-            GoldManager.instance.LoseGold(50);
             BGM.instance.fadeIn();
             BulletSetFalse.instance.SetFalse();
             StartCoroutine(targetChange2());
@@ -92,6 +116,7 @@ public class CameraManager : MonoBehaviour
             Clock.SetActive(false);
             FindObjectOfType<joystick>().go_Player = playerGO;
             transform.position = new Vector3(playerGO.transform.position.x,playerGO.transform.position.y,transform.position.z);   
+            FindObjectOfType<Pause>().RealUnPause();
         }
     }
     

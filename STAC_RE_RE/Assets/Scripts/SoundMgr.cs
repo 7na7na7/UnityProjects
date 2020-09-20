@@ -48,6 +48,8 @@ public class SoundMgr : MonoBehaviour
 
     public void HapticValue(int v)
     {
+        if(v==1)
+            Vibrate.instance.Vibe(120);
         haptic = v;
         PlayerPrefs.SetInt(hapticKey,haptic);
     }

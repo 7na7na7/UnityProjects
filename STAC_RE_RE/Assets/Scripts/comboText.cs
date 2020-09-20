@@ -23,7 +23,7 @@ public class comboText : MonoBehaviour
     {
         if (color.a > 0)
         {
-            color.a -= 0.015f;
+            color.a -= 0.01f;
             text.color = color;
         }
         else

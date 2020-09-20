@@ -38,7 +38,7 @@ public class Rotate : MonoBehaviour
     }
     public void RotateSound()
     {
-        SoundMgr.instance.Play(2,4,1);
+        SoundMgr.instance.Play(2,3,1);
     }
     IEnumerator RotateCor()
     {

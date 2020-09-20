@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using UnityEngine.SceneManagement;
 
 public class AdmobVideoScript : MonoBehaviour
 {
@@ -102,7 +103,11 @@ public class AdmobVideoScript : MonoBehaviour
     //광고를 끝까지 시청하였을 때
     public void HandleOnUserEarnedReward(object sender, EventArgs args)
     {
-        //보상이 들어갈 곳입니다.
-        GoldManager.instance.GetGold(50);
+        if(SceneManager.GetActiveScene().name=="Title")
+            GoldManager.instance.GetGold(60);
+        else if (SceneManager.GetActiveScene().name == "Play")
+        {
+            CameraManager.instance.Revival(true);
+        }
     }
 }

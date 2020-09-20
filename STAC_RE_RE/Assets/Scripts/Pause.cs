@@ -23,6 +23,18 @@ public class Pause : MonoBehaviour
         }
     }
 
+    public void RealPause()
+    {
+        Time.timeScale = 0; 
+        BGM.instance.GetComponent<AudioSource>().Pause();
+        pausePanel.SetActive(true);
+    }  
+    public void RealUnPause()
+    {
+        Time.timeScale = 1; 
+        BGM.instance.GetComponent<AudioSource>().UnPause();
+        pausePanel.SetActive(false);
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))

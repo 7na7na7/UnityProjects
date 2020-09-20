@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Bullet : MonoBehaviour
 {
-    
+    private float speedValue;
     private IEnumerator InCam;
     public TrailRenderer trail;
     public bool isColor1;
@@ -44,6 +44,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
+            speedValue = BulletData.instance.speedValue;
             GetComponent<SetColor>().setColor();
             trail.time = savedTrailTime;
             canDestroy = false;
@@ -140,9 +141,9 @@ IEnumerator switchCor()
     private void Update()
     {
         if(BulletIndex==5) 
-            transform.Translate(dir*speed*Time.deltaTime);
+            transform.Translate(dir*speed*speedValue*Time.deltaTime);
         else
-            transform.position+=new Vector3(dir.x * speed * Time.deltaTime,dir.y * speed * Time.deltaTime);
+            transform.position+=new Vector3(dir.x * speed * speedValue*Time.deltaTime,dir.y * speed *speedValue* Time.deltaTime);
         
         
     }

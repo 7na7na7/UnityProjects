@@ -15,6 +15,7 @@ public class realcolor
 }
 public class BulletData : MonoBehaviour
 {
+    public float speedValue = 1;
     public bool isSplash = false;
     public int isRight;
     public float brightness;

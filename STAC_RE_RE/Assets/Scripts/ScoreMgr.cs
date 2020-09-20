@@ -46,7 +46,31 @@ public class ScoreMgr : MonoBehaviour
         if (isCombo)
         {
             GameObject go=Instantiate(comboText,Canvas.transform);
-            go.GetComponent<Text>().text = count+ "콤보 +" + point;
+            string C="As";
+            SystemLanguage lang = Application.systemLanguage;
+            switch (lang)
+            {
+                case SystemLanguage.Chinese:
+                    C = "联合收音员";
+                    break;
+                case SystemLanguage.ChineseSimplified:
+                    C = "联合收音员";
+                    break;
+                case SystemLanguage.ChineseTraditional:
+                    C = "联合收音员";
+                    break;
+                case SystemLanguage.Korean:
+                    C = "콤보";
+                    break;
+                case SystemLanguage.Japanese:
+                    C = "コンボ";
+                    break;
+                default:
+                    C = "Combo";
+                    break;
+            }
+            
+            go.GetComponent<Text>().text = count+ C+" +" + point;
         }
         score += point;
         if(score>=10000)
