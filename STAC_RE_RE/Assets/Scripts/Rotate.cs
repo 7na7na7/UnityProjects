@@ -31,8 +31,7 @@ public class Rotate : MonoBehaviour
         {
             if (Player.instance != null)
             {
-                if(canRot)
-                    StartCoroutine(RotateCor());
+                StartCoroutine(RotateCor());
             }
         }
     }
@@ -42,9 +41,11 @@ public class Rotate : MonoBehaviour
     }
     IEnumerator RotateCor()
     {
-        StartCoroutine(delayCor());
-        RotateSound();
-        //Player.instance.isSuper = true;
+        if (canRot)
+        {
+            StartCoroutine(delayCor());       
+            RotateSound();
+            //Player.instance.isSuper = true;
             for(int i=0;i<120/value;i++)
             {
                 if(Player.instance.transform.eulerAngles.z+value>=361)
@@ -56,12 +57,13 @@ public class Rotate : MonoBehaviour
             //Player.instance.isSuper = false;
             ScoreMgr.instance.scoreUp(0,GameManager.instance.liveScoreUpValue,false,false);
             Emission();
+        }
     }
 
     IEnumerator delayCor()
     {
         canRot = false;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         canRot = true;
     }
 //    IEnumerator RotateCor2(bool isR)
