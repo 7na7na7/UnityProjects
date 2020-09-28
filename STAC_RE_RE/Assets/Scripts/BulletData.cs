@@ -17,7 +17,6 @@ public class BulletData : MonoBehaviour
 {
     public float speedValue = 1;
     public bool isSplash = false;
-    public int isRight;
     public float brightness;
     public Material[] Themes;
     public GameObject[] Colors;
@@ -32,7 +31,6 @@ public class BulletData : MonoBehaviour
     public string currentColorKey = "currentColor";
     private string clearValueKey = "clearValue";
     public int clearValue = 0;
-    public float[] pitches;
     public int[] isLockArray;
 
     public string[] keys;

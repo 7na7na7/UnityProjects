@@ -76,12 +76,7 @@ public class CameraManager : MonoBehaviour
         {
             if (GoldManager.instance.gold >= 50)
             {
-                if (BulletData.instance.currentColorIndex == 0)
-                {
-                    FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1.5f;
-                }
-                else
-                    FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
+                FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
                 Time.timeScale = 1;
                 GoldManager.instance.LoseGold(50);
                 BGM.instance.fadeIn();

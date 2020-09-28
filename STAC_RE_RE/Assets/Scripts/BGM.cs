@@ -20,7 +20,6 @@ public class BGM : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "Title")
         {
             source.clip = BulletData.instance.Clips[BulletData.instance.currentColorIndex];
-            source.pitch = BulletData.instance.pitches[BulletData.instance.currentColorIndex];   
         }
         instance = this;
         source.volume = SoundMgr.instance.savedBgm;
