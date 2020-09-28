@@ -26,8 +26,8 @@ public class SplashImg : MonoBehaviour
     IEnumerator fade()
     { 
         yield return new WaitForSeconds(1.5f);
-        Color color=Color.white;
-        Color color2=Color.white;
+        Color color = Color.black;
+        Color color2 = Color.black;
         while (color.a>0f)
         {
             yield return new WaitForSecondsRealtime(delay);

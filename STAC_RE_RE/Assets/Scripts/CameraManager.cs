@@ -94,12 +94,7 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            if (BulletData.instance.currentColorIndex == 0)
-            {
-                FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1.5f;
-            }
-            else
-                FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
+            FindObjectOfType<BGM>().GetComponent<AudioSource>().pitch = 1f;
             Time.timeScale = 1;
             BGM.instance.fadeIn();
             BulletSetFalse.instance.SetFalse();
