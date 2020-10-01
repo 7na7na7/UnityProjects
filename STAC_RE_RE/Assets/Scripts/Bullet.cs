@@ -194,7 +194,7 @@ IEnumerator switchCor()
                 float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0f, angle+30);
             }
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
     public void cluster()

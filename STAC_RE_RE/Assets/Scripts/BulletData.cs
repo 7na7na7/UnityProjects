@@ -32,7 +32,8 @@ public class BulletData : MonoBehaviour
     private string clearValueKey = "clearValue";
     public int clearValue = 0;
     public int[] isLockArray;
-
+    public bool isDeleteAD = false;
+    public string DeleteAdKey = "DeleteAD";
     public string[] keys;
 
     public void ClearValueUp()
@@ -50,6 +51,7 @@ public class BulletData : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             currentColorIndex = PlayerPrefs.GetInt(currentColorKey, 0);
             clearValue = PlayerPrefs.GetInt(clearValueKey, 0);
+            isDeleteAD = PlayerPrefs.GetInt(DeleteAdKey, 0) == 0 ? false : true;
             for (int i = 0; i < keys.Length; i++)
             {
                 if (i==0)
@@ -99,6 +101,11 @@ public class BulletData : MonoBehaviour
             Reset();
         if(Input.GetKeyDown(KeyCode.U))
             UnlockAll();
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            PlayerPrefs.SetInt(DeleteAdKey,1);
+            isDeleteAD = PlayerPrefs.GetInt(DeleteAdKey, 0) == 0 ? false : true;
+        }
     }
 
     public void Reset()

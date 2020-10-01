@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Btn : MonoBehaviour
 {
+   private bool isOn = false;
+   public Animator anim;
+   
    public void LogInOut()
    {
       GooglePlayManager.instance.LogInOrLogOut();
@@ -22,5 +25,24 @@ public class Btn : MonoBehaviour
    public void Ad()
    {
       AdmobVideoScript.instance.Show();
+   }
+
+   public void Purchase(int index)
+   {
+      IAPManager.instance.OnBtnPurchaseClicked(index);
+   }
+
+   public void PurchaseAnim()
+   {
+      if (!isOn) 
+         { 
+            isOn = true;
+            anim.Play("SettingPanelAnim");
+         }
+         else
+         {
+            isOn = false;
+            anim.Play("DefaultAnim");
+         }
    }
 }

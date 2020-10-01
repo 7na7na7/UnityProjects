@@ -7,19 +7,25 @@ using UnityEngine.UI;
 
 public class IAPManager : MonoBehaviour, IStoreListener
 {
+    public static IAPManager instance;
     private static IStoreController storeController = null;
     private static string[] sProductIds;
 
-    private int nCoin;
-
     private void Awake()
     {
-        if (storeController == null)
+        if (instance == null)
         {
-            sProductIds=new string[]{"1000_dia","delete_ad"};
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            if (storeController == null)
+            {
+                sProductIds=new string[]{"1000_dia","delete_ad"};
+            }
         }
-
-        nCoin = 0;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void InitStore()
@@ -71,14 +77,14 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
         if (isSuccess)
         {
-            Debug.Log("구매 완료");
             if (e.purchasedProduct.definition.id.Equals(sProductIds[0]))
             { 
                 GoldManager.instance.GetGold(1000); 
             }
             else if(e.purchasedProduct.definition.id.Equals(sProductIds[1]))
             {
-                print("5000코인 획득");
+                PlayerPrefs.SetInt(BulletData.instance.DeleteAdKey,1);
+                BulletData.instance.isDeleteAD = true;
             }
         }
         else
