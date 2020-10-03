@@ -72,7 +72,7 @@ public class SlimeScript : MonoBehaviour
     }
     private void Update()
     {
-        if (gameObject.name != "SlimeData")
+        if (gameObject.name != "Data")
         {
             if (hp.value <= 0)
                 {

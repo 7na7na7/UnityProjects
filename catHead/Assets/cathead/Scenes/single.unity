@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -218,6 +219,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.7578931, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -327,6 +329,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -481,6 +484,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -592,6 +596,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -839,6 +844,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -957,6 +963,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -989,15 +996,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916169563}
     m_Modifications:
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_Name
-      value: DownSpawner
+      propertyPath: samlldelay
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: bigdelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: BossMonster
+      value: 
+      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
+        type: 3}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: SpawnDelayUpValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: doubleBossWave
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7422989719226369675, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
@@ -1054,31 +1077,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: samlldelay
-      value: 2
+      propertyPath: m_Name
+      value: DownSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: bigdelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: BossMonster
-      value: 
-      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
-        type: 3}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: SpawnDelayUpValue
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: doubleBossWave
-      value: 10
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215673533453eaa4ea3853a8745207b5, type: 3}
@@ -1137,6 +1144,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.101122975, g: 1, b: 0, a: 0.392}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1312,6 +1320,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1646,6 +1655,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1678,15 +1688,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916169563}
     m_Modifications:
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_Name
-      value: BossSpawner
+      propertyPath: samlldelay
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: bigdelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: BossMonster
+      value: 
+      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
+        type: 3}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: SpawnDelayUpValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: doubleBossWave
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7422989719226369675, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
@@ -1743,31 +1769,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: samlldelay
-      value: 2
+      propertyPath: m_Name
+      value: BossSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: bigdelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: BossMonster
-      value: 
-      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
-        type: 3}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: SpawnDelayUpValue
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: doubleBossWave
-      value: 10
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215673533453eaa4ea3853a8745207b5, type: 3}
@@ -1802,6 +1812,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1858,15 +1869,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916169563}
     m_Modifications:
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_Name
-      value: RSpawner
+      propertyPath: samlldelay
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: bigdelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: BossMonster
+      value: 
+      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
+        type: 3}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: SpawnDelayUpValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: doubleBossWave
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7422989719226369675, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
@@ -1923,31 +1950,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: samlldelay
-      value: 2
+      propertyPath: m_Name
+      value: RSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: bigdelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: BossMonster
-      value: 
-      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
-        type: 3}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: SpawnDelayUpValue
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: doubleBossWave
-      value: 10
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215673533453eaa4ea3853a8745207b5, type: 3}
@@ -2041,6 +2052,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.97351444, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2073,15 +2085,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916169563}
     m_Modifications:
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_Name
-      value: RSpawner
+      propertyPath: samlldelay
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: bigdelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: BossMonster
+      value: 
+      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
+        type: 3}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: SpawnDelayUpValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: doubleBossWave
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7422989719226369675, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
@@ -2138,31 +2166,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: samlldelay
-      value: 2
+      propertyPath: m_Name
+      value: RSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: bigdelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: BossMonster
-      value: 
-      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
-        type: 3}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: SpawnDelayUpValue
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: doubleBossWave
-      value: 10
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215673533453eaa4ea3853a8745207b5, type: 3}
@@ -2221,6 +2233,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2486,15 +2499,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916169563}
     m_Modifications:
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_Name
-      value: LSpawner
+      propertyPath: samlldelay
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: bigdelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: BossMonster
+      value: 
+      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
+        type: 3}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: SpawnDelayUpValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: doubleBossWave
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7422989719226369675, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
@@ -2551,31 +2580,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: samlldelay
-      value: 2
+      propertyPath: m_Name
+      value: LSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: bigdelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: BossMonster
-      value: 
-      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
-        type: 3}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: SpawnDelayUpValue
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: doubleBossWave
-      value: 10
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215673533453eaa4ea3853a8745207b5, type: 3}
@@ -2669,6 +2682,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2880,6 +2894,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.8040035, b: 1, a: 0.392}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3071,6 +3086,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3552,6 +3568,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.7578931, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3597,11 +3614,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6320265006726953007, guid: d7ae9c927c66b274eb1a1ee21daedc3b,
-        type: 3}
-      propertyPath: m_Name
-      value: Containers
-      objectReference: {fileID: 0}
     - target: {fileID: 6320265006726953006, guid: d7ae9c927c66b274eb1a1ee21daedc3b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3657,6 +3669,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320265006726953007, guid: d7ae9c927c66b274eb1a1ee21daedc3b,
+        type: 3}
+      propertyPath: m_Name
+      value: Containers
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7ae9c927c66b274eb1a1ee21daedc3b, type: 3}
 --- !u!4 &2068554326 stripped
@@ -3676,6 +3693,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328770689909409124, guid: f456137c01f9caf47b10b8e0a235f960,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2328770689909409130, guid: f456137c01f9caf47b10b8e0a235f960,
         type: 3}
@@ -3945,6 +3967,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916169563}
     m_Modifications:
+    - target: {fileID: 168828270505133799, guid: 76f3eeb0335c6e145898dfd73e9f62ea,
+        type: 3}
+      propertyPath: delay
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1584404630209016875, guid: 76f3eeb0335c6e145898dfd73e9f62ea,
         type: 3}
       propertyPath: m_Name
@@ -4005,11 +4032,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 168828270505133799, guid: 76f3eeb0335c6e145898dfd73e9f62ea,
-        type: 3}
-      propertyPath: delay
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76f3eeb0335c6e145898dfd73e9f62ea, type: 3}
 --- !u!4 &7337079997590100910 stripped
@@ -4025,10 +4047,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 916169563}
     m_Modifications:
-    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: m_Name
-      value: UpSpawner
+      propertyPath: samlldelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: bigdelay
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: BossMonster
+      value: 
+      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
+        type: 3}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: SpawnDelayUpValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+        type: 3}
+      propertyPath: doubleBossWave
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7422989719226369675, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
@@ -4085,31 +4128,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
+    - target: {fileID: 7422989719226369677, guid: 215673533453eaa4ea3853a8745207b5,
         type: 3}
-      propertyPath: samlldelay
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: bigdelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: BossMonster
-      value: 
-      objectReference: {fileID: 1654524029472713333, guid: 927c2b15dc203184099fca7e8bf292aa,
-        type: 3}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: SpawnDelayUpValue
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7422989719226369674, guid: 215673533453eaa4ea3853a8745207b5,
-        type: 3}
-      propertyPath: doubleBossWave
-      value: 10
+      propertyPath: m_Name
+      value: UpSpawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215673533453eaa4ea3853a8745207b5, type: 3}
@@ -4120,11 +4142,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 474891653}
     m_Modifications:
-    - target: {fileID: 9219607014119055217, guid: 2389393828b8b6f489770547734adb5f,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
-      objectReference: {fileID: 0}
     - target: {fileID: 2075605495257344153, guid: 2389393828b8b6f489770547734adb5f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4239,6 +4256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_HandleRect
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219607014119055217, guid: 2389393828b8b6f489770547734adb5f,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2389393828b8b6f489770547734adb5f, type: 3}
