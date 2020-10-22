@@ -28,7 +28,7 @@ public class AdmobVideoScript : MonoBehaviour
     {
         //Test ID : "ca-app-pub-3940256099942544/5224354917"
         //광고 ID : "ca-app-pub-2912020054958141/8394618936"
-        videoID = "ca-app-pub-3940256099942544/5224354917";
+        videoID = "ca-app-pub-2912020054958141/8394618936";
         
         videoAd = new RewardedAd(videoID);
         Handle(videoAd);
