@@ -7,6 +7,10 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Dialogue" t="Include">
+          <e p="DialogueManager.cs" t="Include" />
+          <e p="NPCsenteces.cs" t="Include" />
+        </e>
         <e p="Res" t="Include">
           <e p="2DShaderCollection" t="Include">
             <e p="Demo" t="Include">
