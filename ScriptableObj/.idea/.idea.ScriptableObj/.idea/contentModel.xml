@@ -6,7 +6,11 @@
     <e p="C:\Users\mingu\Documents\GitHub\UnityProjects\ScriptableObj" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="해시테이블.cs" t="Include" />
+        <e p="ScriptableObj" t="Include">
+          <e p="Zombie.cs" t="Include" />
+          <e p="ZombieData.cs" t="Include" />
+          <e p="ZombieSpawner.cs" t="Include" />
+        </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
