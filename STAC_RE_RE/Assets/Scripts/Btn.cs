@@ -27,10 +27,7 @@ public class Btn : MonoBehaviour
       AdmobVideoScript.instance.Show();
    }
 
-   public void Purchase(int index)
-   {
-      IAPManager.instance.OnBtnPurchaseClicked(index);
-   }
+
 
    public void PurchaseAnim()
    {

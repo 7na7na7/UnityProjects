@@ -4,9 +4,7 @@
     <e p="C:\Users\mingu\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\mingu\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_STAC_RE_RE.1043396803.00" t="ExcludeRecursive" />
     <e p="C:\Users\mingu\Documents\GitHub\UnityProjects\STAC_RE_RE" t="IncludeRecursive">
-      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
-      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="ExternalDependencyManager" t="Include">
@@ -227,33 +225,6 @@
           <e p="PluginVersion.cs" t="Include" />
         </e>
         <e p="GPGSIds.cs" t="Include" />
-        <e p="Plugins" t="Include">
-          <e p="Android" t="Include">
-            <e p="GoogleMobileAdsPlugin.androidlib" t="Include">
-              <e p="AndroidManifest.xml" t="Include" />
-            </e>
-          </e>
-          <e p="UnityPurchasing" t="Include">
-            <e p="Editor" t="Include">
-              <e p="IAPButtonEditor.cs" t="Include" />
-              <e p="IAPGeneratedCredentials.cs.template" t="Include" />
-            </e>
-            <e p="script" t="Include">
-              <e p="CodelessIAPStoreListener.cs" t="Include" />
-              <e p="ComboBox.cs" t="Include" />
-              <e p="Demo" t="Include">
-                <e p="DemoInventory.cs" t="Include" />
-              </e>
-              <e p="IAPButton.cs" t="Include" />
-              <e p="IAPConfigurationHelper.cs" t="Include" />
-              <e p="IAPDemo.cs" t="Include" />
-              <e p="IAPDemoProductUI.cs" t="Include" />
-              <e p="IAPListener.cs" t="Include" />
-              <e p="link.xml" t="Include" />
-              <e p="PurchasingCheck.cs" t="Include" />
-            </e>
-          </e>
-        </e>
         <e p="Res" t="Include">
           <e p="2DShaderCollection" t="Include">
             <e p="Demo" t="Include">
@@ -443,12 +414,6 @@
           <e p="Mat_Shad" t="Include">
             <e p="Dissolve.cs" t="Include" />
           </e>
-          <e p="UnityPurchasing" t="Include">
-            <e p="generated" t="Include">
-              <e p="AppleTangle.cs" t="Include" />
-              <e p="GooglePlayTangle.cs" t="Include" />
-            </e>
-          </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="AdmobVideoScript.cs" t="Include" />
@@ -479,7 +444,6 @@
           <e p="GoldSpawner.cs" t="Include" />
           <e p="goldText.cs" t="Include" />
           <e p="GooglePlayManager.cs" t="Include" />
-          <e p="IAPManager.cs" t="Include" />
           <e p="Joystick.cs" t="Include" />
           <e p="JoyStickScale.cs" t="Include" />
           <e p="language.cs" t="Include" />
