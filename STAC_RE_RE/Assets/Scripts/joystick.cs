@@ -19,10 +19,12 @@ public class joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     
     public GameObject go_Player; //움직일 플레이어
     public float moveSpeed; //이동 속도
-  
+    public Vector3 scale;
     void Start()
     {
-        transform.localScale=new Vector3(1.5f+(JoyStickScale.instance.JoystickSize-0.5f)/1.5f,1.5f+(JoyStickScale.instance.JoystickSize-0.5f)/1.5f,1);
+        
+            //transform.localScale=new Vector3(1.5f+(JoyStickScale.instance.JoystickSize-0.5f)/1.5f,1.5f+(JoyStickScale.instance.JoystickSize-0.5f)/1.5f,1);
+            transform.localScale = scale;
         cam = Camera.main.gameObject;
         radius = rect_Background.rect.width * 0.5f; //반지름을 구함
     }
