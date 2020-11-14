@@ -360,7 +360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &117202364
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3904,7 +3904,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ad: {fileID: 2109524261}
-  noad: {fileID: 0}
   gameOverPanel: {fileID: 637617557}
   time: 5
   text: {fileID: 636245131}
@@ -5337,8 +5336,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.41363502}
   m_AnchorMax: {x: 0.76448554, y: 0.5}
-  m_AnchoredPosition: {x: -118.5, y: 68.6}
-  m_SizeDelta: {x: 816.1903, y: 1927.4008}
+  m_AnchoredPosition: {x: -205.34, y: 68.6}
+  m_SizeDelta: {x: 2331.0972, y: 1927.4008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1985536061
 MonoBehaviour:
