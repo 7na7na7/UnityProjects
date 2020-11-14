@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Revival : MonoBehaviour
 {
-    public GameObject ad, noad;
+    public GameObject ad;
     public GameObject gameOverPanel;
     float maxTime;
     public float time;
@@ -15,14 +15,8 @@ public class Revival : MonoBehaviour
     {
         maxTime = (int)time;
         time = maxTime;
-        if (BulletData.instance.isDeleteAD)
-        {
-            noad.SetActive(true);
-        }
-        else
-        {
+      
             ad.SetActive(true);
-        }
     }
 
     void Update()
