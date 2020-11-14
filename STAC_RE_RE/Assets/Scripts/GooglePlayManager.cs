@@ -24,8 +24,8 @@ public class GooglePlayManager : MonoBehaviour
 
    public void Set()
    {
-      PlayGamesPlatform.DebugLogEnabled = true;
-      PlayGamesPlatform.Activate();
+//      PlayGamesPlatform.DebugLogEnabled = true;
+//      PlayGamesPlatform.Activate();
       LogIn();
    }
    public void LogIn()
@@ -37,24 +37,24 @@ public class GooglePlayManager : MonoBehaviour
 
    public void LogInOrLogOut()
    {
-      if (Social.localUser.authenticated) // GPGS 로그인 되어 있는 경우
-      {
-         ((PlayGamesPlatform) Social.Active).SignOut(); //로그아웃
-         Social.localUser.Authenticate((bool success) =>
-         {
-         });
-      }
-      else // GPGS 로그인이 되어 있지 않은 경우
-      {
-         Social.localUser.Authenticate((bool success) =>
-         {
-         });
-      }
+//      if (Social.localUser.authenticated) // GPGS 로그인 되어 있는 경우
+//      {
+//         ((PlayGamesPlatform) Social.Active).SignOut(); //로그아웃
+//         Social.localUser.Authenticate((bool success) =>
+//         {
+//         });
+//      }
+//      else // GPGS 로그인이 되어 있지 않은 경우
+//      {
+//         Social.localUser.Authenticate((bool success) =>
+//         {
+//         });
+//      }
    }
 
    public void LogOut()
    {
-      ((PlayGamesPlatform) Social.Active).SignOut();
+//      ((PlayGamesPlatform) Social.Active).SignOut();
    }
 
    // 리더보드에 점수등록 후 보기

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +9,17 @@ public class Tutorial : MonoBehaviour
     public float delay;
     private string tutoKey = "tutorial";
     public GameObject[] TutorialPanels;
+    public GameObject to;
     void Start()
     {
         int save = PlayerPrefs.GetInt(tutoKey, 0);
         if (save == 0)
         {
             PlayerPrefs.SetInt(tutoKey,1);
+            StartCoroutine(tutorial());
+        }
+        else
+        {
             StartCoroutine(tutorial());
         }
     }
@@ -40,7 +46,21 @@ public class Tutorial : MonoBehaviour
         {
             TutorialPanels[i].SetActive(false);
         }
-
+        Destroy(to);
         Spawner.instance.isTutorial = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            for (int i = 0; i < TutorialPanels.Length; i++)
+            {
+                TutorialPanels[i].SetActive(false);
+            }
+Destroy(to);
+            Spawner.instance.isTutorial = false;
+            StopAllCoroutines();
+        }
     }
 }
