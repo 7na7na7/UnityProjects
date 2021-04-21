@@ -1,0 +1,878 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.2f1 (068178b99f32) revision 426360'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 18363.1500; Version 1909; 64bit' Language: 'ko' Physical Memory: 16232 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/mingu/Documents/GitHub/UnityProjects/Unity_Plugin
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+9456
+Successfully changed project path to: C:/Users/mingu/Documents/GitHub/UnityProjects/Unity_Plugin
+C:/Users/mingu/Documents/GitHub/UnityProjects/Unity_Plugin
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 32.49 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.2f1 (068178b99f32)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/mingu/Documents/GitHub/UnityProjects/Unity_Plugin/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 (ID=0x1c20)
+    Vendor:   
+    VRAM:     6052 MB
+    Driver:   27.21.14.5167
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56132
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002629 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 30.33 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.444 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001206 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.34 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.123 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.18 seconds
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1101 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.2 MB.
+System memory in use after: 59.3 MB.
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 1541.
+Total: 1.863600 ms (FindLiveObjects: 0.128400 ms CreateObjectMapping: 0.042800 ms MarkObjects: 1.592100 ms  DeleteObjects: 0.099000 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43d7de38be768f1e8078a41beb05e773') in 0.052823 seconds
+  Import took 0.055083 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 42.143747 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91453455499e9e689fb5a9dd31e47a20') in 0.019616 seconds
+  Import took 0.035612 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.099597 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91453455499e9e689fb5a9dd31e47a20') in 0.098770 seconds
+  Import took 0.106768 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.510828 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb866f6add08d2cd4e60b6b464c35420') in 0.039141 seconds
+  Import took 0.049698 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002278 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.22 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.267 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.3 MB.
+System memory in use after: 59.3 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1543.
+Total: 1.503600 ms (FindLiveObjects: 0.110300 ms CreateObjectMapping: 0.033300 ms MarkObjects: 1.316300 ms  DeleteObjects: 0.042700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 30.798456 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbbc04b7276eebca919a007647f727e3') in 0.005850 seconds
+  Import took 0.008504 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.930625 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '000a4a3cb85fd660294a36a1cccdc190') in 0.007976 seconds
+  Import took 0.023027 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.026919 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '000a4a3cb85fd660294a36a1cccdc190') in 0.009167 seconds
+  Import took 0.012751 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001415 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.023 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.32 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.4 MB.
+System memory in use after: 59.5 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1545.
+Total: 1.860400 ms (FindLiveObjects: 0.197000 ms CreateObjectMapping: 0.064400 ms MarkObjects: 1.536000 ms  DeleteObjects: 0.061500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.876688 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b03361e1037e550967bbd46b652b815b') in 0.004505 seconds
+  Import took 0.016117 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.076980 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b03361e1037e550967bbd46b652b815b') in 0.004801 seconds
+  Import took 0.008988 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000816 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.844 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.24 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.5 MB.
+System memory in use after: 59.6 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1547.
+Total: 1.454000 ms (FindLiveObjects: 0.123000 ms CreateObjectMapping: 0.034000 ms MarkObjects: 1.247000 ms  DeleteObjects: 0.048500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.787817 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e4f793b8446e49bed7928c56e6211ed') in 0.004678 seconds
+  Import took 0.007681 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002244 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.839 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.6 MB.
+System memory in use after: 59.7 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1549.
+Total: 2.149500 ms (FindLiveObjects: 0.149000 ms CreateObjectMapping: 0.042500 ms MarkObjects: 1.854500 ms  DeleteObjects: 0.101200 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.754103 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e31a1b4cdc5a6816d96caffb0bbd3f4') in 0.010456 seconds
+  Import took 0.018404 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.087730 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e31a1b4cdc5a6816d96caffb0bbd3f4') in 0.009962 seconds
+  Import took 0.013515 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.528822 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8854409ee19fbf786e1bc6082d206415') in 0.006127 seconds
+  Import took 0.016973 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003168 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8854409ee19fbf786e1bc6082d206415') in 0.003612 seconds
+  Import took 0.006598 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.361023 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f3631a31d83f4b12f4313086545f8ca') in 0.003146 seconds
+  Import took 0.006563 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000813 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.50 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.841 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.34 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.7 MB.
+System memory in use after: 59.8 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1551.
+Total: 2.260200 ms (FindLiveObjects: 0.128400 ms CreateObjectMapping: 0.037900 ms MarkObjects: 2.039900 ms  DeleteObjects: 0.052300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.694056 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da1b3af6dbb6c0792ffaee83e1708ed2') in 0.019794 seconds
+  Import took 0.023084 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.133319 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da1b3af6dbb6c0792ffaee83e1708ed2') in 0.009519 seconds
+  Import took 0.012862 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000806 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.31 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.890 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.24 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.8 MB.
+System memory in use after: 59.9 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1553.
+Total: 2.748200 ms (FindLiveObjects: 0.594800 ms CreateObjectMapping: 0.433700 ms MarkObjects: 1.663800 ms  DeleteObjects: 0.053600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.973189 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da57b5e368d0c3ca8b3068179efc0d0a') in 0.006440 seconds
+  Import took 0.044646 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.104012 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da57b5e368d0c3ca8b3068179efc0d0a') in 0.004110 seconds
+  Import took 0.010094 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.119140 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '994e039ea63583cd1c57a679905a810e') in 0.003703 seconds
+  Import took 0.011274 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.186870 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f92bb2943693649ee5ada0597817051d') in 0.004893 seconds
+  Import took 0.015112 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000820 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.787 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.9 MB.
+System memory in use after: 60.0 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1555.
+Total: 1.718700 ms (FindLiveObjects: 0.121100 ms CreateObjectMapping: 0.037500 ms MarkObjects: 1.504200 ms  DeleteObjects: 0.054400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.735574 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e00c3bde35d2db01db18ce90e4099b6a') in 0.021538 seconds
+  Import took 0.033143 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.089884 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e00c3bde35d2db01db18ce90e4099b6a') in 0.004582 seconds
+  Import took 0.006911 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000813 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.826 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.0 MB.
+System memory in use after: 60.1 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1557.
+Total: 1.473600 ms (FindLiveObjects: 0.123700 ms CreateObjectMapping: 0.030500 ms MarkObjects: 1.269900 ms  DeleteObjects: 0.048100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.223372 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5f9826919e3adea2663032b0b9dbafa') in 0.010792 seconds
+  Import took 0.014582 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002477 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5f9826919e3adea2663032b0b9dbafa') in 0.007871 seconds
+  Import took 0.014015 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000869 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.785 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.1 MB.
+System memory in use after: 60.2 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1559.
+Total: 1.804500 ms (FindLiveObjects: 0.192700 ms CreateObjectMapping: 0.072900 ms MarkObjects: 1.465500 ms  DeleteObjects: 0.071300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.533003 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfb4dbf7af208ada406031473b00b362') in 0.014332 seconds
+  Import took 0.024730 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.087935 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfb4dbf7af208ada406031473b00b362') in 0.003543 seconds
+  Import took 0.007024 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.818436 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94f5fa2143680f1e52ff63859be8ca09') in 0.003614 seconds
+  Import took 0.016899 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002757 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94f5fa2143680f1e52ff63859be8ca09') in 0.005824 seconds
+  Import took 0.008395 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.656630 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3eb4951539f0fc15d0c2527b8e631af') in 0.006820 seconds
+  Import took 0.009999 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000871 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.948 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.3 MB.
+System memory in use after: 60.3 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1561.
+Total: 1.404400 ms (FindLiveObjects: 0.122800 ms CreateObjectMapping: 0.034300 ms MarkObjects: 1.200800 ms  DeleteObjects: 0.045400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.542763 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59602782bb581ed8cb593b56aa1ddf79') in 0.015669 seconds
+  Import took 0.021085 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.076301 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59602782bb581ed8cb593b56aa1ddf79') in 0.007097 seconds
+  Import took 0.009685 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.194616 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d6cd1c6916a06488ebd791aedceae18') in 0.004433 seconds
+  Import took 0.014228 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.571458 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ebaf3ec4ccf079d15d915ecb01862a8c') in 0.005980 seconds
+  Import took 0.009896 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000950 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.047 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.4 MB.
+System memory in use after: 60.4 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1563.
+Total: 2.290600 ms (FindLiveObjects: 0.490400 ms CreateObjectMapping: 0.100900 ms MarkObjects: 1.642900 ms  DeleteObjects: 0.052400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 52.048235 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2ab0e5a453ee45abffb9d637e5dca08') in 0.022786 seconds
+  Import took 0.033489 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.265263 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2ab0e5a453ee45abffb9d637e5dca08') in 0.004185 seconds
+  Import took 0.006470 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.196397 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc53ec2b282c76840d12a86660a96e7c') in 0.005892 seconds
+  Import took 0.015675 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.031753 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc53ec2b282c76840d12a86660a96e7c') in 0.006232 seconds
+  Import took 0.008984 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.656647 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '976abeba7a814ab7497990499382458e') in 0.003302 seconds
+  Import took 0.012562 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.862380 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec4f83dd5e8a6a0f1a6ce4e9e7889fad') in 0.003654 seconds
+  Import took 0.013990 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.474477 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68331c613a3ebface0698ecf8f51e9ac') in 0.004948 seconds
+  Import took 0.011620 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 28.275800 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '513679b68f5cb95486d17c3beed6bf7f') in 0.004658 seconds
+  Import took 0.015205 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.016825 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '513679b68f5cb95486d17c3beed6bf7f') in 0.006347 seconds
+  Import took 0.009396 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001102 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.913 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.5 MB.
+System memory in use after: 60.5 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1565.
+Total: 2.958600 ms (FindLiveObjects: 0.267900 ms CreateObjectMapping: 0.093700 ms MarkObjects: 2.498000 ms  DeleteObjects: 0.095900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.121531 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23a8a4098b0caa8cbf0f62d8b60e91e6') in 0.013138 seconds
+  Import took 0.021361 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.258571 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23a8a4098b0caa8cbf0f62d8b60e91e6') in 0.003596 seconds
+  Import took 0.008335 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000860 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.30 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.925 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.6 MB.
+System memory in use after: 60.7 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1567.
+Total: 1.581800 ms (FindLiveObjects: 0.121900 ms CreateObjectMapping: 0.036700 ms MarkObjects: 1.376800 ms  DeleteObjects: 0.045500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.350593 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dff2c965be332cb7540d68b3b7442486') in 0.014194 seconds
+  Import took 0.019255 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000847 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.836 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.7 MB.
+System memory in use after: 60.8 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1569.
+Total: 1.658200 ms (FindLiveObjects: 0.121200 ms CreateObjectMapping: 0.040500 ms MarkObjects: 1.446400 ms  DeleteObjects: 0.048600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.072672 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65f4a9809244664bc32c955481e8f516') in 0.004877 seconds
+  Import took 0.015189 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001597 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.870 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.8 MB.
+System memory in use after: 60.9 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1571.
+Total: 1.641600 ms (FindLiveObjects: 0.201400 ms CreateObjectMapping: 0.070300 ms MarkObjects: 1.323300 ms  DeleteObjects: 0.045400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 43.653728 seconds.
+  path: Assets/AndroidPlugin.cs
+  artifactKey: Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AndroidPlugin.cs using Guid(248aa4a838124674a90ab63050bfaf58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe6f997e4936b9bec92e91389b1bc3e6') in 0.005370 seconds
+  Import took 0.007771 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000855 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.897 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1096 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 60.9 MB.
+System memory in use after: 61.0 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1573.
+Total: 2.228100 ms (FindLiveObjects: 0.118800 ms CreateObjectMapping: 0.035500 ms MarkObjects: 2.014900 ms  DeleteObjects: 0.057100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 31.092203 seconds.
+  path: Assets
+  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a6e520b92ccfc61bcfa21a7bcab8468') in 0.013414 seconds
+  Import took 0.016534 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.867479 seconds.
+  path: Assets/New Scene.unity
+  artifactKey: Guid(2dc7f0769e9bbc142bea78eb4e97b356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Scene.unity using Guid(2dc7f0769e9bbc142bea78eb4e97b356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02678f10df83a7c0f8102616086b8862') in 0.020457 seconds
+  Import took 0.022170 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.022398 seconds.
+  path: Assets/Scenes
+  artifactKey: Guid(a26c81e002e3e6a4f949141ca4a32dc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes using Guid(a26c81e002e3e6a4f949141ca4a32dc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53f5a1309842c91e7a35ed51ca2cc291') in 0.008347 seconds
+  Import took 0.011454 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.563105 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '765798e4ea99700c6a17df344b40a364') in 0.007062 seconds
+  Import took 0.016262 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
