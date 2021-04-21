@@ -1,0 +1,262 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.2f1 (068178b99f32) revision 426360'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 18363.1440; Version 1909; 64bit' Language: 'ko' Physical Memory: 16232 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.2.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/mingu/Documents/GitHub/UnityProjects/champi
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+1500
+Successfully changed project path to: C:/Users/mingu/Documents/GitHub/UnityProjects/champi
+C:/Users/mingu/Documents/GitHub/UnityProjects/champi
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 34.32 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.2f1 (068178b99f32)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/mingu/Documents/GitHub/UnityProjects/champi/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1060 (ID=0x1c20)
+    Vendor:   
+    VRAM:     6052 MB
+    Driver:   27.21.14.5167
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56532
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004814 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 30.83 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.157 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001929 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.924 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1099 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.1 MB.
+System memory in use after: 59.1 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1540.
+Total: 2.057300 ms (FindLiveObjects: 0.183300 ms CreateObjectMapping: 0.062600 ms MarkObjects: 1.744400 ms  DeleteObjects: 0.065900 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/럆렳몧_140504/faceuv.bmp
+  artifactKey: Guid(0c11453035e967640aeb74b7919898e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/faceuv.bmp using Guid(0c11453035e967640aeb74b7919898e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bc3460b692f10e5a77ef306a0ff714d') in 0.090208 seconds
+  Import took 0.092448 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000579 seconds.
+  path: Assets/럆렳몧_140406/toothuv.bmp
+  artifactKey: Guid(716b405380cffbb48aec28aca9dff17d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140406/toothuv.bmp using Guid(716b405380cffbb48aec28aca9dff17d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5e0cb32f6c7f3a475572c2f2659886c') in 0.017181 seconds
+  Import took 0.019420 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/럆렳몧_140504/bibuv.bmp
+  artifactKey: Guid(a6f6a454405d63e40abdae4acc3da74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/bibuv.bmp using Guid(a6f6a454405d63e40abdae4acc3da74c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53f79cfa72b418032f165c0908d50842') in 0.013068 seconds
+  Import took 0.015416 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000299 seconds.
+  path: Assets/럆렳몧_140406/greeneyeuv.bmp
+  artifactKey: Guid(8490dfd406c6a844f917006efbc1f635) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140406/greeneyeuv.bmp using Guid(8490dfd406c6a844f917006efbc1f635) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8325d6eb5874f01a1d4b71fd9eaef74f') in 0.040054 seconds
+  Import took 0.042428 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000213 seconds.
+  path: Assets/럆렳몧_140504/ribbon1uv.bmp
+  artifactKey: Guid(5e73aa13716b02740b71702309562a63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/ribbon1uv.bmp using Guid(5e73aa13716b02740b71702309562a63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb338e3f077ef609c4d702ed7edb1c66') in 0.014624 seconds
+  Import took 0.017191 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000333 seconds.
+  path: Assets/럆렳몧_140406
+  artifactKey: Guid(cb86bc2f6510a3a4d8a5a623d066ac66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140406 using Guid(cb86bc2f6510a3a4d8a5a623d066ac66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aed091771179a53c55bf59162c4a25cb') in 0.006628 seconds
+  Import took 0.009191 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000701 seconds.
+  path: Assets/럆렳몧_140406/bodyuv.bmp
+  artifactKey: Guid(e0dc399a9e81e1b4b8e2599f71e4caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140406/bodyuv.bmp using Guid(e0dc399a9e81e1b4b8e2599f71e4caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f60a18b8d5017b7f0afb8c9c2dda07de') in 0.018165 seconds
+  Import took 0.020947 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000288 seconds.
+  path: Assets/럆렳몧_140504/clothuv.bmp
+  artifactKey: Guid(ab74e7f2e0d70224c82351b8a4d27dc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/clothuv.bmp using Guid(ab74e7f2e0d70224c82351b8a4d27dc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '802f14f9c4b89564eabc8e070105a1f4') in 0.016789 seconds
+  Import took 0.019470 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000300 seconds.
+  path: Assets/럆렳몧_140504/ribbon2uv.bmp
+  artifactKey: Guid(e70c6cd5660141e45b4c329ad4bc0904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/ribbon2uv.bmp using Guid(e70c6cd5660141e45b4c329ad4bc0904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cda7a313472fd795d25f6fee56ccba4') in 0.019053 seconds
+  Import took 0.022508 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000206 seconds.
+  path: Assets/럆렳몧_140406/faceuv.bmp
+  artifactKey: Guid(6ee46d6061a154042b953d5087641b02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140406/faceuv.bmp using Guid(6ee46d6061a154042b953d5087641b02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '505435f8b8ccfde5002cefdc7b4cf3d8') in 0.014917 seconds
+  Import took 0.017478 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/럆렳몧_140406/redeyeuv.bmp
+  artifactKey: Guid(e35ad9a9934d6374382936e24bd41ad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140406/redeyeuv.bmp using Guid(e35ad9a9934d6374382936e24bd41ad8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61c9cad9287f30cd7f14b29840cc2c04') in 0.014600 seconds
+  Import took 0.017826 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000271 seconds.
+  path: Assets/럆렳몧_140504/backhairuv.bmp
+  artifactKey: Guid(376bc76d1c8cd0d48be7b57723f3ab6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/backhairuv.bmp using Guid(376bc76d1c8cd0d48be7b57723f3ab6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ebb6d528083a3013a118b8cc72b8b45c') in 0.016470 seconds
+  Import took 0.019735 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/럆렳몧_140504/럆렳몧140504.mqo
+  artifactKey: Guid(d59769a4947015c40bfd50e78403d14e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/럆렳몧140504.mqo using Guid(d59769a4947015c40bfd50e78403d14e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dbc75a382116edc08afebc7b3d465150') in 0.014966 seconds
+  Import took 0.017104 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000204 seconds.
+  path: Assets/럆렳몧_140504/greeneyeuv.bmp
+  artifactKey: Guid(0075d75aad70ef143adabd8571ee6cc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/greeneyeuv.bmp using Guid(0075d75aad70ef143adabd8571ee6cc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06203a3ff4a0131537b51f8ae97347c4') in 0.007267 seconds
+  Import took 0.010276 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000248 seconds.
+  path: Assets/럆렳몧_140504/toothuv.bmp
+  artifactKey: Guid(2a97ca3a129cdca4ab50b61dd4341885) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/toothuv.bmp using Guid(2a97ca3a129cdca4ab50b61dd4341885) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da9af9132b4d3eef677ae7e059331214') in 0.008277 seconds
+  Import took 0.011415 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/럆렳몧_140406/tongueuv.bmp
+  artifactKey: Guid(2b9a0ec235de09849b0d1070fd155815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140406/tongueuv.bmp using Guid(2b9a0ec235de09849b0d1070fd155815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0bf29a19db3bce1caf58afd900422c5') in 0.013091 seconds
+  Import took 0.016339 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000295 seconds.
+  path: Assets/럆렳몧_140504/underwearuv.bmp
+  artifactKey: Guid(01806c9692bded94d9edb68d27913c25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/underwearuv.bmp using Guid(01806c9692bded94d9edb68d27913c25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a71956e68f1b9c48e5f7023a110a4a2c') in 0.015711 seconds
+  Import took 0.018542 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/럆렳몧_140504/hooduv.bmp
+  artifactKey: Guid(4c5298c33d951b043a61e9dff917f75b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/hooduv.bmp using Guid(4c5298c33d951b043a61e9dff917f75b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4dccb0452090d37e1d8c89661f25cf1') in 0.014528 seconds
+  Import took 0.016773 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/럆렳몧_140504/redeyeuv.bmp
+  artifactKey: Guid(9c64af7c754c5244fb3dc8cf1ec24aac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/redeyeuv.bmp using Guid(9c64af7c754c5244fb3dc8cf1ec24aac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e092fbb419e48e3401b0902078327744') in 0.008069 seconds
+  Import took 0.010669 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/럆렳몧_140504/bodyuv.bmp
+  artifactKey: Guid(051cb32fb23277a498c872018a1bcc8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/bodyuv.bmp using Guid(051cb32fb23277a498c872018a1bcc8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7da88b1ab844d03087936d6f78fcad4d') in 0.008395 seconds
+  Import took 0.011473 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/럆렳몧_140504/shoesuv.bmp
+  artifactKey: Guid(28cd86d388fada14093429f5c354fd4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/shoesuv.bmp using Guid(28cd86d388fada14093429f5c354fd4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3bd01da8b4aed790df5de3934b48afb') in 0.012554 seconds
+  Import took 0.014690 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/럆렳몧_140504/fronthairuv.bmp
+  artifactKey: Guid(feed12f6a3d80284a8e9a5ab975dd9bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/fronthairuv.bmp using Guid(feed12f6a3d80284a8e9a5ab975dd9bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b636c253649b01471210e91adaf1d08') in 0.013636 seconds
+  Import took 0.017469 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/럆렳몧_140504/tongueuv.bmp
+  artifactKey: Guid(c2f7185c94329024380088619f6b30f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/럆렳몧_140504/tongueuv.bmp using Guid(c2f7185c94329024380088619f6b30f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed0448b530b3693f09736eca04ed908f') in 0.006931 seconds
+  Import took 0.009729 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
