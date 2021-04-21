@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 
 {
+    public float pushPower = 5f;
     private bool canJump = true;
     private bool canPowerJump = false;
     public float jumpforce = 2;
@@ -90,6 +91,20 @@ public class Player : MonoBehaviour
         {
             canPowerJump = true;
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Ball"))
+        {
+            Rigidbody body = hit.collider.attachedRigidbody;
+
+            if (hit.moveDirection.y < -0.3F)
+                return;
+        
+            Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+            body.velocity = pushDir * pushPower;
         }
     }
 }

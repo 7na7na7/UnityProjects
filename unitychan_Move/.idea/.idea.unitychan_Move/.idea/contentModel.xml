@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\mingu\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\mingu\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_unitychan_Move.-825784445.00" t="ExcludeRecursive" />
+    <e p="C:\Users\mingu\Documents\GitHub\UnityProjects\unitychan_Move" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="ExplosiveLLC" t="Include">
+          <e p="Demo Elements" t="Include">
+            <e p="Code" t="Include">
+              <e p="CameraController.cs" t="Include" />
+              <e p="GUIControls.cs" t="Include" />
+              <e p="HighJumpTrampoline.cs" t="Include" />
+              <e p="NoJumpSlime.cs" t="Include" />
+            </e>
+          </e>
+          <e p="RPG Character Mecanim Animation Pack FREE" t="Include">
+            <e p="Code" t="Include">
+              <e p="Actions" t="Include">
+                <e p="ActionHandler.cs" t="Include" />
+                <e p="Character" t="Include">
+                  <e p="Attack.cs" t="Include" />
+                  <e p="SlowTime.cs" t="Include" />
+                </e>
+                <e p="InstantActionHandler.cs" t="Include" />
+                <e p="Movement" t="Include">
+                  <e p="DiveRoll.cs" t="Include" />
+                  <e p="Fall.cs" t="Include" />
+                  <e p="GetHit.cs" t="Include" />
+                  <e p="Idle.cs" t="Include" />
+                  <e p="Jump.cs" t="Include" />
+                  <e p="Knockback.cs" t="Include" />
+                  <e p="Move.cs" t="Include" />
+                  <e p="MovementActionHandler.cs" t="Include" />
+                  <e p="Navigation.cs" t="Include" />
+                </e>
+                <e p="Null.cs" t="Include" />
+                <e p="SimpleActionHandler.cs" t="Include" />
+                <e p="Weapon" t="Include">
+                  <e p="SwitchWeapon.cs" t="Include" />
+                </e>
+              </e>
+              <e p="AnimationData.cs" t="Include" />
+              <e p="CoroutineQueue.cs" t="Include" />
+              <e p="IKHands.cs" t="Include" />
+              <e p="RPGCharacterAnimatorEvents.cs" t="Include" />
+              <e p="RPGCharacterController.cs" t="Include" />
+              <e p="RPGCharacterInputController.cs" t="Include" />
+              <e p="RPGCharacterMovementController.cs" t="Include" />
+              <e p="RPGCharacterNavigationController.cs" t="Include" />
+              <e p="RPGCharacterWeaponController.cs" t="Include" />
+            </e>
+          </e>
+          <e p="SuperCharacterController" t="Include">
+            <e p="Code" t="Include">
+              <e p="Gravity.cs" t="Include" />
+              <e p="PlayerCamera.cs" t="Include" />
+              <e p="PlayerInputController.cs" t="Include" />
+              <e p="PlayerMachine.cs" t="Include" />
+              <e p="PlayerMachineDebug.cs" t="Include" />
+              <e p="SimpleStateMachine.cs" t="Include" />
+            </e>
+            <e p="SuperCharacterController" t="Include">
+              <e p="Core" t="Include">
+                <e p="BruteForceMesh.cs" t="Include" />
+                <e p="BSPTree.cs" t="Include" />
+                <e p="SuperCharacterController.cs" t="Include" />
+                <e p="SuperCollider.cs" t="Include" />
+                <e p="SuperCollisionType.cs" t="Include" />
+                <e p="SuperMath.cs" t="Include" />
+                <e p="SuperStateMachine.cs" t="Include" />
+              </e>
+              <e p="DebugDraw.cs" t="Include" />
+              <e p="Math3d.cs" t="Include" />
+              <e p="README.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="AttackCollision.cs" t="Include" />
+          <e p="CamCtrl.cs" t="Include" />
+          <e p="EnemyCtrl.cs" t="Include" />
+          <e p="Movement3D.cs" t="Include" />
+          <e p="PlayerAnimator.cs" t="Include" />
+          <e p="PlayerCtrl.cs" t="Include" />
+        </e>
+        <e p="Toon" t="Include">
+          <e p="Editor" t="Include">
+            <e p="CopyMaterialParameter.cs" t="Include" />
+            <e p="RemoveUnusedMaterialProperties.cs" t="Include" />
+            <e p="UTS2GUI.cs" t="Include" />
+          </e>
+          <e p="Shader" t="Include">
+            <e p="README.txt" t="Include" />
+            <e p="Tess" t="Include">
+              <e p="Toon_DoubleShadeWithFeather_Clipping_Tess.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Clipping_Tess_StencilMask.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Clipping_Tess_StencilOut.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Tess.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Tess_Light.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Tess_Light_StencilMask.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Tess_Light_StencilOut.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Tess_StencilMask.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_Tess_StencilOut.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_TransClipping_Tess.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_TransClipping_Tess_StencilMask.shader" t="Include" />
+              <e p="Toon_DoubleShadeWithFeather_TransClipping_Tess_StencilOut.shader" t="Include" />
+              <e p="Toon_OutlineObject_Tess.shader" t="Include" />
+              <e p="Toon_OutlineObject_Tess_StencilOut.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_AngelRing_Tess.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_AngelRing_Tess_Light.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_AngelRing_Tess_Light_StencilOut.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_AngelRing_Tess_StencilOut.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_AngelRing_TransClipping_Tess.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_AngelRing_TransClipping_Tess_StencilOut.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_Tess.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_Tess_Light.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_Tess_Light_StencilMask.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_Tess_Light_StencilOut.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_Tess_StencilMask.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_Tess_StencilOut.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_TransClipping_Tess.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_TransClipping_Tess_StencilMask.shader" t="Include" />
+              <e p="Toon_ShadingGradeMap_TransClipping_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Clipping_Tess.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Clipping_Tess_StencilMask.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Clipping_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Tess.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Tess_StencilMask.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_TransClipping_Tess.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_TransClipping_Tess_StencilMask.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_TransClipping_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Transparent_Tess.shader" t="Include" />
+              <e p="ToonColor_DoubleShadeWithFeather_Transparent_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_AngelRing_Tess.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_AngelRing_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_AngelRing_Tess_TransClipping.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_AngelRing_TransClipping_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_Tess.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_Tess_StencilMask.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_TransClipping_Tess.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_TransClipping_Tess_StencilMask.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_TransClipping_Tess_StencilOut.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_Transparent_Tess.shader" t="Include" />
+              <e p="ToonColor_ShadingGradeMap_Transparent_Tess_StencilOut.shader" t="Include" />
+              <e p="UCTS_DoubleShadeWithFeather_tess.cginc" t="Include" />
+              <e p="UCTS_Outline_Tess.cginc" t="Include" />
+              <e p="UCTS_ShadingGradeMap_tess.cginc" t="Include" />
+              <e p="UCTS_ShadowCaster_Tess.cginc" t="Include" />
+              <e p="UCTS_Tess.cginc" t="Include" />
+            </e>
+            <e p="Toon_DoubleShadeWithFeather.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Clipping.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Clipping_StencilMask.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Clipping_StencilOut.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Mobile.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Mobile_Clipping.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Mobile_Clipping_StencilMask.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Mobile_StencilMask.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Mobile_StencilOut.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Mobile_TransClipping.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_Mobile_TransClipping_StencilMask.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_StencilMask.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_StencilOut.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_TransClipping.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_TransClipping_StencilMask.shader" t="Include" />
+            <e p="Toon_DoubleShadeWithFeather_TransClipping_StencilOut.shader" t="Include" />
+            <e p="Toon_OutlineObject.shader" t="Include" />
+            <e p="Toon_OutlineObject_StencilOut.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_AngelRing.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_AngelRing_Mobile.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_AngelRing_Mobile_StencilOut.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_AngelRing_StencilOut.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_AngelRing_TransClipping.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_AngelRing_TransClipping_StencilOut.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_Mobile.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_Mobile_StencilMask.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_Mobile_StencilOut.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_Mobile_TransClipping.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_Mobile_TransClipping_StencilMask.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_StencilMask.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_StencilOut.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_TransClipping.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_TransClipping_StencilMask.shader" t="Include" />
+            <e p="Toon_ShadingGradeMap_TransClipping_StencilOut.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_Clipping.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_Clipping_StencilMask.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_Clipping_StencilOut.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_StencilMask.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_StencilOut.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_TransClipping.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_TransClipping_StencilMask.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_TransClipping_StencilOut.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_Transparent.shader" t="Include" />
+            <e p="ToonColor_DoubleShadeWithFeather_Transparent_StencilOut.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_AngelRing.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_AngelRing_StencilOut.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_AngelRing_TransClipping.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_AngelRing_TransClipping_StencilOut.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_StencilMask.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_StencilOut.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_TransClipping.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_TransClipping_StencilMask.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_TransClipping_StencilOut.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_Transparent.shader" t="Include" />
+            <e p="ToonColor_ShadingGradeMap_Transparent_StencilOut.shader" t="Include" />
+            <e p="UCTS_DoubleShadeWithFeather.cginc" t="Include" />
+            <e p="UCTS_Outline.cginc" t="Include" />
+            <e p="UCTS_ShadingGradeMap.cginc" t="Include" />
+            <e p="UCTS_ShadowCaster.cginc" t="Include" />
+          </e>
+        </e>
+        <e p="UnityChan.SpringBone" t="Include">
+          <e p="Manual" t="Include">
+            <e p="ja" t="Include">
+              <e p="SpringBoneManualComponents.txt" t="Include" />
+              <e p="SpringBoneManualLoadAndSave.txt" t="Include" />
+              <e p="SpringBoneManualWindow.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Script" t="Include">
+            <e p="SpringBone" t="Include">
+              <e p="AngleLimits.cs" t="Include" />
+              <e p="Colliders" t="Include">
+                <e p="Circle3.cs" t="Include" />
+                <e p="SpringCapsuleCollider.cs" t="Include" />
+                <e p="SpringColliderDebug.cs" t="Include" />
+                <e p="SpringPanelCollider.cs" t="Include" />
+                <e p="SpringSphereCollider.cs" t="Include" />
+              </e>
+              <e p="Components" t="Include">
+                <e p="DynamicsNull.cs" t="Include" />
+                <e p="HighLeg.cs" t="Include" />
+              </e>
+              <e p="Editor" t="Include">
+                <e p="SpringBone" t="Include">
+                  <e p="AutoSpringBoneSetup.cs" t="Include" />
+                  <e p="GUI" t="Include">
+                    <e p="GUIElements.cs" t="Include" />
+                    <e p="Inspectors" t="Include">
+                      <e p="AngleLimitsPropertyInfo.cs" t="Include" />
+                      <e p="InspectorFloatSlider.cs" t="Include" />
+                      <e p="InspectorPropertyInfo.cs" t="Include" />
+                      <e p="SpringBoneInspector.cs" t="Include" />
+                      <e p="SpringBonePivotInspector.cs" t="Include" />
+                      <e p="SpringCapsuleColliderInspector.cs" t="Include" />
+                      <e p="SpringColliderBoneSelector.cs" t="Include" />
+                      <e p="SpringManagerInspector.cs" t="Include" />
+                      <e p="SpringPanelColliderInspector.cs" t="Include" />
+                      <e p="SpringSphereColliderInspector.cs" t="Include" />
+                    </e>
+                    <e p="SpringBoneGUIStyles.cs" t="Include" />
+                    <e p="Windows" t="Include">
+                      <e p="LoadSpringBoneSetupWindow.cs" t="Include" />
+                      <e p="MirrorSpringBoneWindow.cs" t="Include" />
+                      <e p="SaveSpringBoneSetupWindow.cs" t="Include" />
+                      <e p="SpringBoneSetupErrorWindow.cs" t="Include" />
+                      <e p="SpringBoneWindow.cs" t="Include" />
+                    </e>
+                  </e>
+                  <e p="SpringBoneEditorActions.cs" t="Include" />
+                  <e p="SpringColliderEditorActions.cs" t="Include" />
+                </e>
+                <e p="Utility" t="Include">
+                  <e p="Inspector3DRenderer.cs" t="Include" />
+                </e>
+              </e>
+              <e p="ForceProviders" t="Include">
+                <e p="ForceProvider.cs" t="Include" />
+                <e p="ForceVolume.cs" t="Include" />
+                <e p="WindVolume.cs" t="Include" />
+              </e>
+              <e p="Setup" t="Include">
+                <e p="DynamicsSetup.cs" t="Include" />
+                <e p="SpringBoneExporting.cs" t="Include" />
+                <e p="SpringBoneImporting.cs" t="Include" />
+                <e p="SpringBoneSetup.cs" t="Include" />
+                <e p="SpringColliderExporting.cs" t="Include" />
+                <e p="SpringColliderImporting.cs" t="Include" />
+                <e p="SpringColliderSetup.cs" t="Include" />
+                <e p="SpringSetupComponentDefiners.cs" t="Include" />
+              </e>
+              <e p="SpringBone.cs" t="Include" />
+              <e p="SpringBonePivot.cs" t="Include" />
+              <e p="SpringManager.cs" t="Include" />
+            </e>
+            <e p="Utility" t="Include">
+              <e p="CSVBuilder.cs" t="Include" />
+              <e p="CSVUtilities.cs" t="Include" />
+              <e p="DirectoryUtil.cs" t="Include" />
+              <e p="Editor" t="Include">
+                <e p="FindGameObjectsWindow.cs" t="Include" />
+                <e p="SetObjectParentWindow.cs" t="Include" />
+              </e>
+              <e p="FileUtil.cs" t="Include" />
+              <e p="GameObjectUtil.cs" t="Include" />
+              <e p="GizmoUtil.cs" t="Include" />
+              <e p="HandlesUtil.cs" t="Include" />
+              <e p="ObjectBuilding" t="Include">
+                <e p="StringQueueObjectBuilder.cs" t="Include" />
+                <e p="TypedStringToValueMap.cs" t="Include" />
+                <e p="UnityComponentStringListBuilder.cs" t="Include" />
+              </e>
+              <e p="PathUtil.cs" t="Include" />
+              <e p="StringUtil.cs" t="Include" />
+              <e p="TextRecordParsing.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+      <e p="unitychan_Move.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
