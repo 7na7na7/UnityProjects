@@ -10,7 +10,7 @@ public class Move_3D : MonoBehaviour
     public GameObject[] weapons;
     public bool[] hasWeapons;
     public GameObject[] grenades;
-    
+    private Camera followCamera;
     public int ammo;
     public int coin;
     public int health;
@@ -34,15 +34,19 @@ public class Move_3D : MonoBehaviour
     private bool swap1Down;
     private bool swap2Down;
     private bool swap3Down;
+    private bool reloadDown;
     private bool isJump;
     private bool isDodge;
     private bool isSwap=false;
+    private bool isReload = false;
+    private bool isBorder = false;
     private float attackDelay;
     private GameObject nearObject;
     private Weapon equipWeapon;
     private int equipWeaponIndex=-1;
     void Start()
     {
+        followCamera=Camera.main;
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
     }
@@ -58,8 +62,15 @@ public class Move_3D : MonoBehaviour
         Interaction(); //템줍기
         Swap(); //무기 교체
         Attack(); //공격
+        Reload(); //재쟝전
     }
-
+    
+    private void FixedUpdate()
+    {
+       FreezeRotation();
+       StopToWall();
+    }
+    
     void GetInput()
     {
         axis.x=Input.GetAxisRaw("Horizontal");
@@ -70,19 +81,21 @@ public class Move_3D : MonoBehaviour
         swap1Down=Input.GetButtonDown("Swap1");
         swap2Down=Input.GetButtonDown("Swap2");
         swap3Down=Input.GetButtonDown("Swap3");
-        attackDown = Input.GetButtonDown("Fire1");
+        attackDown = Input.GetButton("Fire1");
+        reloadDown = Input.GetButtonDown("Reload");
     }
 
     void Move()
     {
         if (isDodge)
             moveVec = dodgeVec;
-        else if(isSwap||!isFireReady) 
+        else if(isSwap||!isFireReady||isReload) 
             moveVec=Vector3.zero;
         else
             moveVec = new Vector3(axis.x, 0, axis.y).normalized; //정규화해서 대각선이동 속도일정
         
-        rigid.MovePosition(transform.position+moveVec*speed*Time.deltaTime*(walkDown ? 0.3f:1f)); //MovePosition이동
+        if(!isBorder) 
+            rigid.MovePosition(transform.position+moveVec*speed*Time.deltaTime*(walkDown ? 0.3f:1f)); //MovePosition이동
     }
 
     void SetAnim()
@@ -93,16 +106,52 @@ public class Move_3D : MonoBehaviour
 
     void Turn()
     {
+        //키보드회전
         if (moveVec != Vector3.zero)
         {
             Vector3 relativePos = (transform.position + moveVec) - transform.position;
             Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime*10);   
+        } 
+        //마우스회전
+        if (attackDown)
+        {
+            Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 100))
+            {
+                Vector3 nextVec = rayHit.point-transform.position; //레이가 닿은 지점 - 플레이어위치
+                nextVec.y = 0;
+                transform.LookAt(transform.position+nextVec);
+            }   
         }
-
-        //transform.LookAt(transform.position + moveVec); 을 선형보간으로 구현했다!
     }
 
+    void Reload()
+    {
+        if (equipWeapon == null)
+            return;
+        if(equipWeapon.type==Weapon.Type.Melee)
+            return;
+        if(ammo==0)
+            return;
+        if (reloadDown && !isJump && !isDodge && !isSwap && isFireReady)
+        {
+            anim.SetTrigger("doReload");
+            isReload = true;
+            Invoke("ReloadOut",2.5f);
+        }
+            
+    }
+
+    void ReloadOut()
+    {
+        int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
+        equipWeapon.curAmmo = reAmmo;
+        ammo -= reAmmo;
+        equipWeapon.curAmmo = reAmmo;
+        isReload = false;
+    }
     private void Interaction()
     {
         if (interactionDown&&nearObject!=null&&!isJump&&!isDodge&&!isSwap)
@@ -115,6 +164,17 @@ public class Move_3D : MonoBehaviour
                 Destroy(nearObject);
             }
         }
+    }
+
+    void FreezeRotation()
+    {
+        rigid.angularVelocity=Vector3.zero; //회전속도 계속 0으로 만들어주기
+    }
+
+    void StopToWall()
+    {
+        Debug.DrawRay(transform.position,transform.forward*3,Color.green);
+        isBorder = Physics.Raycast(transform.position, transform.forward, 3, LayerMask.GetMask("Wall"));
     }
     void Jump()
     {
@@ -182,10 +242,10 @@ public class Move_3D : MonoBehaviour
         attackDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < attackDelay;
 
-        if (attackDown && isFireReady && !isDodge && !isSwap)
+        if (attackDown && isFireReady && !isDodge && !isSwap&&!isReload)
         {
             equipWeapon.Use();
-            anim.SetTrigger("doSwing");
+            anim.SetTrigger(equipWeapon.type==Weapon.Type.Melee ? "doSwing":"doShot");
             attackDelay = 0;
         }
     }

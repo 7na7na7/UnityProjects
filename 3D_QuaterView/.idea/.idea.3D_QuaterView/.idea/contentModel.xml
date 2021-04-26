@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\mingu\.Rider2019.2\system\extResources" t="IncludeRecursive" />
@@ -19,7 +19,9 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Bullet.cs" t="Include" />
           <e p="Camera_3D.cs" t="Include" />
+          <e p="Enemy.cs" t="Include" />
           <e p="Item.cs" t="Include" />
           <e p="Move_3D.cs" t="Include" />
           <e p="Orbit.cs" t="Include" />
