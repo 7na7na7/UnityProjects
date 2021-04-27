@@ -15,6 +15,7 @@ public class Move_3D : MonoBehaviour
     public int coin;
     public int health;
     public int hasGrenades;
+    public GameObject grenadeObj;
     
     public int maxAmmo;
     public int maxCoin;
@@ -40,6 +41,7 @@ public class Move_3D : MonoBehaviour
     private bool isSwap=false;
     private bool isReload = false;
     private bool isBorder = false;
+    private bool grenadeDown;
     private float attackDelay;
     private GameObject nearObject;
     private Weapon equipWeapon;
@@ -63,6 +65,7 @@ public class Move_3D : MonoBehaviour
         Swap(); //무기 교체
         Attack(); //공격
         Reload(); //재쟝전
+        Grenade(); //수류탄 던지기
     }
     
     private void FixedUpdate()
@@ -82,6 +85,7 @@ public class Move_3D : MonoBehaviour
         swap2Down=Input.GetButtonDown("Swap2");
         swap3Down=Input.GetButtonDown("Swap3");
         attackDown = Input.GetButton("Fire1");
+        grenadeDown = Input.GetButtonDown("Fire2");
         reloadDown = Input.GetButtonDown("Reload");
     }
 
@@ -114,7 +118,7 @@ public class Move_3D : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime*10);   
         } 
         //마우스회전
-        if (attackDown)
+        if (attackDown&&equipWeaponIndex>0)
         {
             Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit rayHit;
@@ -166,6 +170,28 @@ public class Move_3D : MonoBehaviour
         }
     }
 
+    void Grenade()
+    {
+        if (hasGrenades <= 0)
+            return;
+        if (grenadeDown && !isReload && !isSwap)
+        {
+            Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 100))
+            {
+                Vector3 netVec = rayHit.point - transform.position;
+                netVec.y = 10;
+
+                GameObject instantGrenade = Instantiate(grenadeObj, transform.position, transform.rotation);
+                Rigidbody grenadeRigid = instantGrenade.GetComponent<Rigidbody>();
+                grenadeRigid.AddForce(netVec,ForceMode.Impulse);
+                grenadeRigid.AddTorque(Vector3.back*10,ForceMode.Impulse);
+                hasGrenades--;
+                grenades[hasGrenades].SetActive(false);
+            }
+        }
+    }
     void FreezeRotation()
     {
         rigid.angularVelocity=Vector3.zero; //회전속도 계속 0으로 만들어주기

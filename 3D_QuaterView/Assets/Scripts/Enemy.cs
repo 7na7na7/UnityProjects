@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
       }
    }
 
-   IEnumerator OnDamage(Vector3 reactVec)
+   IEnumerator OnDamage(Vector3 reactVec, bool isGeenade = false)
    {
       mat.color=Color.red;
       yield return new WaitForSeconds(0.1f);
@@ -50,10 +50,28 @@ public class Enemy : MonoBehaviour
       {
          mat.color=Color.gray;
          gameObject.layer = 12;
-         reactVec.Normalize();
-         reactVec+=Vector3.up;
-         rigid.AddForce(reactVec*5,ForceMode.Impulse);
-         Destroy(gameObject,4);
+         if (isGeenade)
+         {
+            reactVec.Normalize();
+            reactVec+=Vector3.up*3;
+            rigid.freezeRotation = false;
+            rigid.AddForce(reactVec*5,ForceMode.Impulse);
+            rigid.AddTorque(reactVec*15,ForceMode.Impulse); 
+         }
+         else
+         {
+            reactVec.Normalize();
+            reactVec+=Vector3.up;
+            rigid.AddForce(reactVec*5,ForceMode.Impulse);
+         }
+         Destroy(gameObject,4);  
       }
+   }
+
+   public void HitByGrenade(Vector3 explosionPos)
+   {
+      curHealth -= 100;
+      Vector3 reactVec = transform.position - explosionPos;
+      StartCoroutine(OnDamage(reactVec,true));
    }
 }
