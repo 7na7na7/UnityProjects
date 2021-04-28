@@ -42,15 +42,19 @@ public class Move_3D : MonoBehaviour
     private bool isReload = false;
     private bool isBorder = false;
     private bool grenadeDown;
+    private bool isDamage = false;
     private float attackDelay;
     private GameObject nearObject;
     private Weapon equipWeapon;
     private int equipWeaponIndex=-1;
+    private MeshRenderer[] meshs;
+    
     void Start()
     {
         followCamera=Camera.main;
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        meshs = GetComponentsInChildren<MeshRenderer>();
     }
     
     void Update()
@@ -338,6 +342,33 @@ public class Move_3D : MonoBehaviour
                     break;
             }
             Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("EnemyBullet"))
+        {
+            if (!isDamage)
+            {
+                Bullet enemyBullet = other.GetComponent<Bullet>();
+                health -= enemyBullet.damage;
+                
+                if(other.GetComponent<Rigidbody>()!=null)
+                    Destroy(other.gameObject);
+                StartCoroutine(OnDamage());   
+            }
+        }
+    }
+
+    IEnumerator OnDamage()
+    {
+        isDamage = true;
+        foreach (MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.yellow;
+        }
+        yield return new WaitForSeconds(1f);
+        isDamage = false;
+        foreach (MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.white;
         }
     }
 }
