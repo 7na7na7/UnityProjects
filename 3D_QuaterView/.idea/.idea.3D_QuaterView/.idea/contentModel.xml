@@ -19,6 +19,9 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Boss.cs" t="Include" />
+          <e p="BossMissile.cs" t="Include" />
+          <e p="BossRock.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
           <e p="Camera_3D.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />

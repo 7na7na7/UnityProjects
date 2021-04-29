@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public bool isMelee = true;
+    public bool isMelee;
+    public bool isRock;
 public int damage;
 
 private void OnCollisionEnter(Collision other)
 {
-    if(other.gameObject.tag=="Floor")
+    if(other.gameObject.tag=="Floor" && !isRock)
         Destroy(gameObject,3);
-    else if(other.gameObject.tag=="Wall")
-        Destroy(gameObject);
 }
 
 private void OnTriggerEnter(Collider other)
