@@ -52,7 +52,7 @@ public class Playercontrol : MonoBehaviour
         if (move.x == 0)
         {
             if (rig.velocity.y <= 0.01f)
-                rig.velocity = new Vector2(0, rig.velocity.y);
+                rig.velocity = new Vector2(rig.velocity.x*0.95f, rig.velocity.y);
         }
 
 
@@ -189,7 +189,8 @@ public class Playercontrol : MonoBehaviour
             transform.position += new Vector3(move.x * speed * Time.deltaTime, 0);
 
         }
-        Flip();
+        if(canMove) 
+            Flip();
         //wallslide
 
         if (iswall&& is_jump==true)
@@ -203,7 +204,7 @@ public class Playercontrol : MonoBehaviour
            if (Input.GetButtonDown("Jump") && !iswall_jump)
            {
                iswall_jump = true;
-               Invoke("FreezeX",0.3f);
+               Invoke("FreezeX",1);
                rig.velocity=Vector2.zero;
                rig.velocity = new Vector2(is_right * walljump_power*-1,  walljump_power);
                //rig.velocity = new Vector2(is_right * walljump_power, 0.9f * walljump_power);
@@ -212,8 +213,21 @@ public class Playercontrol : MonoBehaviour
            }
        }
     }   
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            StartCoroutine(die());
+        }
+    }
 
-
+    IEnumerator die()
+    {
+        animator.Play("Player_die");
+        canMove = false;
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
+    }
     //wall jump delay
     void FreezeX()
     {

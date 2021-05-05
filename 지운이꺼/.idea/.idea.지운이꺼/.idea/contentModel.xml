@@ -7,6 +7,8 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="script" t="Include">
+          <e p="Bullet.cs" t="Include" />
+          <e p="Enemy.cs" t="Include" />
           <e p="Glow_control.cs" t="Include" />
           <e p="movecam.cs" t="Include" />
           <e p="Playercontrol.cs" t="Include" />
