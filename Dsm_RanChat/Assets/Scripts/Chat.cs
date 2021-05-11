@@ -24,12 +24,7 @@ public class Chat : MonoBehaviour
         Fit(ChatContent);
         Invoke("ScrollDelay", 0.03f);
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-            ShowMessage("ㅎㅇㅎㅇ"+Random.Range(0,100));
-    }
+    
 
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
     //버그 방지를 위해 업데이트를 수동으로 해줌
