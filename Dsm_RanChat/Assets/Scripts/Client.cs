@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.IO;
 using System;
 using  UnityEngine.UI;
+
 public class Client : MonoBehaviour
 {
    public InputField IPInput, PortInput, NickInput; //IP, 포트, 닉네임
@@ -15,8 +16,19 @@ public class Client : MonoBehaviour
    private StreamWriter writer; //데이터 쓰기
    private StreamReader reader; //데이터 읽기
 
+   private void Start()
+   {
+//      PortInput.text = ES3.Load("port").ToString();
+//      IPInput.text = ES3.Load("ip").ToString();
+//      NickInput.text = ES3.Load("nick").ToString();
+   }
+   
+
    public void ConnectToServer()//클라이언트로 접속 버튼으로 실행
    {
+//      ES3.Save("port",PortInput.text);
+//      ES3.Save("ip",IPInput.text);
+//      ES3.Save("nick",NickInput.text);
       //이미 연결되어있다면 종료
       if (socketReady)
          return;
