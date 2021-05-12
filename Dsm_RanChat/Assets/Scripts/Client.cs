@@ -4,6 +4,9 @@ using UnityEngine;
 using System.Net.Sockets;
 using System.IO;
 using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Net;
 using  UnityEngine.UI;
 
 public class Client : MonoBehaviour
@@ -18,39 +21,55 @@ public class Client : MonoBehaviour
 
    private void Start()
    {
-      PortInput.text = ES3.Load("port").ToString();
-      IPInput.text = ES3.Load("ip").ToString();
-      NickInput.text = ES3.Load("nick").ToString();
+      IPAddress[] ips=Dns.GetHostAddresses(Dns.GetHostName());
+      foreach (IPAddress ip in ips)
+         print(ip);
    }
+   public string GetLocalIPv4()
+   {
+      return Dns.GetHostEntry(Dns.GetHostName())
+         .AddressList.First(
+            f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+         .ToString();
+   } 
    
-
    public void ConnectToServer()//클라이언트로 접속 버튼으로 실행
    {
       //이미 연결되어있다면 종료
       if (socketReady)
          return;
-      
+
+      bool can = false;
       //텍스트에 있는 IP/포트주소 받아옴, 없으면 기본값 (자기자신 127, 기본 7777)
-      string ip = IPInput.text == "" ? "127.0.0.1" : IPInput.text;
-      int port = PortInput.text == "" ? 7777 : int.Parse(PortInput.text);
-      
-      //소켓 생성
-      try
+      for (int i = 171; i < 221; i++)
       {
-         socket=new TcpClient(ip,port);
-         stream = socket.GetStream();
-         writer=new StreamWriter(stream);
-         reader=new StreamReader(stream);
-         socketReady = true; //소켓이 준비되었으므로 true
-      }
-      catch (Exception e)
-      {
-         Chat.instance.ShowMessage($"소켓에러 : {e.Message}");
-      }
+         can = false;
+         string ip = IPInput.text == "" ? "192.168.137."+i : IPInput.text;
+         int port = PortInput.text == "" ? 7777 : int.Parse(PortInput.text);
       
-      ES3.Save("port",PortInput.text);
-      ES3.Save("ip",IPInput.text);
-      ES3.Save("nick",NickInput.text);
+         //소켓 생성
+
+         try
+         {
+            print(ip+" 연결 시작!");
+            socket=new TcpClient(ip,port);
+            socket.Client.SendTimeout = 20;
+            stream = socket.GetStream();
+            writer=new StreamWriter(stream); 
+            reader=new StreamReader(stream);
+            socketReady = true; //소켓이 준비되었으므로 true    
+         }
+         catch (Exception e)
+         {
+            Chat.instance.ShowMessage($"소켓에러 : {e.Message}");
+            can = true;
+         }
+            
+
+
+         if (can == false)
+            break;
+      }
    }
 
    private void Update()
