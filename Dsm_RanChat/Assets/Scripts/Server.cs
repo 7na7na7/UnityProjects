@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Linq;
 using UnityEngine.UI;
 
 public class Server : MonoBehaviour
@@ -14,9 +15,13 @@ public class Server : MonoBehaviour
 
    private TcpListener server; //리스너, 받는 역할
    private bool isServerStarted; //서버가 시작했는가? 
-
    
    public void ServerCreate()
+   {
+      StartCoroutine(ServerOn());
+   }
+
+   IEnumerator ServerOn()
    {
       clients=new List<ServerClient>();
       disconnectList=new List<ServerClient>();
@@ -30,17 +35,15 @@ public class Server : MonoBehaviour
          StartListening();
          isServerStarted = true;
          Chat.instance.ShowMessage($"서버가 {port}에서 시작되었습니다.");
-         string ip = Dns.GetHostAddresses(Dns.GetHostName())[1].ToString();
-         ip = ip.Split('.')[3];
-
-      FindObjectOfType<Client>().ConnectToServer(int.Parse(ip));
       }
       catch (Exception e)
       {
          print(e);
+         yield break;
       }
+      yield return new WaitForSeconds(.1f);
+      FindObjectOfType<Client>().ConnectToServer(1);
    }
-   
    void StartListening()
    {
       //비동기로 듣기시작
