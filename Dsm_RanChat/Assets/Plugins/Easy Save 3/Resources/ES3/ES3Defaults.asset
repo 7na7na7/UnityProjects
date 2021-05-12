@@ -18,7 +18,7 @@ MonoBehaviour:
     encryptionType: 1
     compressionType: 0
     encryptionPassword: 
-    directory: 0
+    directory: 1
     format: 0
     prettyPrint: 1
     bufferSize: 2048
@@ -32,9 +32,9 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - PsdPlugin
-    showAdvancedSettings: 1
+    showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
-  autoUpdateReferences: 1
+  autoUpdateReferences: 0
   addAllPrefabsToManager: 1
   logDebugInfo: 0
   logWarnings: 1

@@ -18,17 +18,14 @@ public class Client : MonoBehaviour
 
    private void Start()
    {
-//      PortInput.text = ES3.Load("port").ToString();
-//      IPInput.text = ES3.Load("ip").ToString();
-//      NickInput.text = ES3.Load("nick").ToString();
+      PortInput.text = ES3.Load("port").ToString();
+      IPInput.text = ES3.Load("ip").ToString();
+      NickInput.text = ES3.Load("nick").ToString();
    }
    
 
    public void ConnectToServer()//클라이언트로 접속 버튼으로 실행
    {
-//      ES3.Save("port",PortInput.text);
-//      ES3.Save("ip",IPInput.text);
-//      ES3.Save("nick",NickInput.text);
       //이미 연결되어있다면 종료
       if (socketReady)
          return;
@@ -50,6 +47,10 @@ public class Client : MonoBehaviour
       {
          Chat.instance.ShowMessage($"소켓에러 : {e.Message}");
       }
+      
+      ES3.Save("port",PortInput.text);
+      ES3.Save("ip",IPInput.text);
+      ES3.Save("nick",NickInput.text);
    }
 
    private void Update()
