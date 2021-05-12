@@ -20,17 +20,9 @@ public class Client : MonoBehaviour
    private StreamWriter writer; //데이터 쓰기
    private StreamReader reader; //데이터 읽기
    
-   public string GetLocalIPv4()
-   {
-      return Dns.GetHostEntry(Dns.GetHostName())
-         .AddressList.First(
-            f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-         .ToString();
-   }
-   
    public void ConnectToServer(int min) //클라이언트로 접속 버튼으로 실행
    {
-      if (min > 221)
+      if (min > 240)
       {
          FindObjectOfType<Server>().ServerCreate();
          return;
@@ -40,15 +32,15 @@ public class Client : MonoBehaviour
          return;
       
       //텍스트에 있는 IP/포트주소 받아옴, 없으면 기본값 (자기자신 127, 기본 7777)
-      string ip = "192.168.137." + min;
+      string ip = "10.156.146." + min;
       int port = 7777;
 
       //소켓 생성
-      print(ip + " 연결 시작!");
+      //print(ip + " 연결 시작!");
          
       socket = new TcpClient();
       var result = socket.BeginConnect(ip, port, null, null);
-      var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(.01f));
+      var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(.025f));
       if (success)
       {
          stream = socket.GetStream();
