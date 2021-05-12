@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 public class Server : MonoBehaviour
 {
-   public InputField portInput;
-
    private List<ServerClient> clients;
    private List<ServerClient> disconnectList;
 
@@ -25,17 +23,21 @@ public class Server : MonoBehaviour
 
       try
       {
-         int port = portInput.text == "" ? 7777 : int.Parse(portInput.text); //포트번호 넣어줌
-         server=new TcpListener(IPAddress.Any,port); //IP주소와 포트로 리스너 생성
+         int port = 7777; //포트번호 넣어줌
+         server = new TcpListener(IPAddress.Any, port); //IP주소와 포트로 리스너 생성
          server.Start(); //서버 시작
 
-         StartListening(); 
+         StartListening();
          isServerStarted = true;
          Chat.instance.ShowMessage($"서버가 {port}에서 시작되었습니다.");
+         string ip = Dns.GetHostAddresses(Dns.GetHostName())[1].ToString();
+         ip = ip.Split('.')[3];
+
+      FindObjectOfType<Client>().ConnectToServer(int.Parse(ip));
       }
       catch (Exception e)
       {
-         Chat.instance.ShowMessage($"Socket error : {e.Message}");
+         print(e);
       }
    }
    
@@ -86,7 +88,8 @@ public class Server : MonoBehaviour
       for (int i = 0; i < disconnectList.Count - 1; i++)
       {
          //모든 클라에게 연결끊겼다고 보냄
-         Broadcast($"{disconnectList[i].clientName} 연결이 끊어졌습니다",clients);
+         if(disconnectList[i].clientName.Trim()!="Guest") 
+            Broadcast($"{disconnectList[i].clientName} 연결이 끊어졌습니다",clients);
          clients.Remove(disconnectList[i]);
          disconnectList.RemoveAt(i);
       }
@@ -120,7 +123,8 @@ public class Server : MonoBehaviour
          }
          catch (Exception e)
          {
-            Chat.instance.ShowMessage($"쓰기 에러 : {e.Message}를 클라이언트에게 {c.clientName}");
+            print(e);
+            //Chat.instance.ShowMessage($"쓰기 에러 : {e.Message}를 클라이언트에게 {c.clientName}");
          }
       }
    }

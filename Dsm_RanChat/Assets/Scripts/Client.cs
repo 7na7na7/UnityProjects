@@ -12,7 +12,7 @@ using  UnityEngine.UI;
 
 public class Client : MonoBehaviour
 {
-   public InputField IPInput, PortInput, NickInput; //IP, 포트, 닉네임
+   public InputField NickInput; // 닉네임
    private string clientName; //클라이언트 이름
    private bool socketReady; //현재 소켓이 준비되었는가?
    private TcpClient socket; //서버와 통신할 Tcp소켓
@@ -20,12 +20,6 @@ public class Client : MonoBehaviour
    private StreamWriter writer; //데이터 쓰기
    private StreamReader reader; //데이터 읽기
    
-   private void Start()
-   {
-      IPAddress[] ips=Dns.GetHostAddresses(Dns.GetHostName());
-      foreach (IPAddress ip in ips)
-         print(ip);
-   }
    public string GetLocalIPv4()
    {
       return Dns.GetHostEntry(Dns.GetHostName())
@@ -33,41 +27,41 @@ public class Client : MonoBehaviour
             f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
          .ToString();
    }
-
+   
    public void ConnectToServer(int min) //클라이언트로 접속 버튼으로 실행
    {
-      if (min >= 221)
+      if (min > 221)
+      {
+         FindObjectOfType<Server>().ServerCreate();
          return;
+      }
       //이미 연결되어있다면 종료
       if (socketReady)
          return;
       
       //텍스트에 있는 IP/포트주소 받아옴, 없으면 기본값 (자기자신 127, 기본 7777)
-     
-         string ip = IPInput.text == "" ? "192.168.137." + min : IPInput.text;
-         int port = PortInput.text == "" ? 7777 : int.Parse(PortInput.text);
+      string ip = "192.168.137." + min;
+      int port = 7777;
 
-         //소켓 생성
-         print(ip + " 연결 시작!");
+      //소켓 생성
+      print(ip + " 연결 시작!");
          
-         socket = new TcpClient();
-         var result = socket.BeginConnect(ip, port, null, null);
-         var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(.01f));
-         if (success)
-         {
-            //socket.Client.SendTimeout = 20;
-            stream = socket.GetStream();
-            writer=new StreamWriter(stream); 
-            reader=new StreamReader(stream);
-            socketReady = true; //소켓이 준비되었으므로 true    
-            //socket.EndConnect(result);
-            return;
-         }
-         else
-         {
-            ConnectToServer(min+1);
-       
-         }
+      socket = new TcpClient();
+      var result = socket.BeginConnect(ip, port, null, null);
+      var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(.01f));
+      if (success)
+      {
+         stream = socket.GetStream();
+         writer=new StreamWriter(stream); 
+         reader=new StreamReader(stream);
+         socketReady = true; //소켓이 준비되었으므로 true    
+         //socket.EndConnect(result);
+         return;
+      }
+      else
+      { 
+         ConnectToServer(min+1);
+      }
    }
 
    private void Update()
