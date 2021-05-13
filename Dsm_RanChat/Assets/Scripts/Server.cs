@@ -39,6 +39,7 @@ public class Server : MonoBehaviour
       catch (Exception e)
       {
          print(e);
+         //Chat.instance.ShowMessage($"에러 : {e}");
          yield break;
       }
       yield return new WaitForSeconds(.1f);

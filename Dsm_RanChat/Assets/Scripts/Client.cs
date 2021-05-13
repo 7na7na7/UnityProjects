@@ -43,7 +43,7 @@ public class Client : MonoBehaviour
 
    public void ConnectToServer(int min) //클라이언트로 접속 버튼으로 실행
    {
-      if (min > 240)
+      if (min > 255)
       {
          FindObjectOfType<Server>().ServerCreate();
          return;
@@ -65,12 +65,19 @@ public class Client : MonoBehaviour
       var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(.02f));
       if (success)
       {
-         stream = socket.GetStream();
-         writer=new StreamWriter(stream); 
-         reader=new StreamReader(stream);
-         socketReady = true; //소켓이 준비되었으므로 true    
-         //socket.EndConnect(result);
-         return;
+         if (socket.Connected)
+         {
+            stream = socket.GetStream();
+            writer=new StreamWriter(stream); 
+            reader=new StreamReader(stream);
+            socketReady = true; //소켓이 준비되었으므로 true    
+            //socket.EndConnect(result);
+            return;
+         }
+         else
+         {
+            ConnectToServer(min+1);
+         }
       }
       else
       { 
