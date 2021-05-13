@@ -1603,6 +1603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b4d0aa6a726fa4f9f9e8bbb2d69ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myIPText: {fileID: 2083518969}
   DisConnectBtn: {fileID: 1998277842}
   myWIFI: {fileID: 2053351956}
   myIP: {fileID: 1177623975}
@@ -2593,7 +2594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uB0B4 WIFI -"
+  m_Text: 
 --- !u!222 &2053351957
 CanvasRenderer:
   m_ObjectHideFlags: 0

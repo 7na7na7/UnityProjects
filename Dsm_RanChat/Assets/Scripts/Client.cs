@@ -14,6 +14,7 @@ using Random = UnityEngine.Random;
 using NativeWifi;
 public class Client : MonoBehaviour
 {
+   public Text myIPText;
    public GameObject DisConnectBtn;
    public Text myWIFI;
    public Text myIP;
@@ -28,18 +29,30 @@ public class Client : MonoBehaviour
 
    private void Start()
    {
-      IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
-      string ClientIP = string.Empty;
-      for (int i = 0; i < host.AddressList.Length; i++)
+      try
       {
-         if (host.AddressList[i].AddressFamily == AddressFamily.InterNetwork)
+         IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+         string ClientIP = string.Empty;
+         for (int i = 0; i < host.AddressList.Length; i++)
          {
-            ClientIP = host.AddressList[i].ToString();
+            if (host.AddressList[i].AddressFamily == AddressFamily.InterNetwork)
+            {
+               ClientIP = host.AddressList[i].ToString();
+            }
          }
-      }
 
-      myIP.text = ClientIP;
-      myWIFI.text = "내 WIFI - " + GetAvailableWifi();
+         myIP.text = ClientIP;
+         myWIFI.text = "내 WIFI - " + GetAvailableWifi();
+         myWIFI.text = "호스트 이름이 한글이어서 받아오는 데 오류가 발생했습니다.";
+         myIP.text = "";
+         myIPText.text="내컴퓨터-속성-설정 변경-변경-한글이 포함되지 않도록 수정하고 다시 시작해 주세요.";
+      }
+      catch (Exception e)
+      {
+         myWIFI.text = "호스트 이름이 한글이어서 받아오는 데 오류가 발생했습니다.";
+         myIP.text = "";
+         myIPText.text="내컴퓨터-속성-설정 변경-변경-한글이 포함되지 않도록 수정하고 다시 시작해 주세요.";
+      } 
    }
 
    public void ConnectToServer(int min) //클라이언트로 접속 버튼으로 실행
