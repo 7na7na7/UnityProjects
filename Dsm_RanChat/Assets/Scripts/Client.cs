@@ -7,11 +7,15 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading;
 using  UnityEngine.UI;
-
+using Random = UnityEngine.Random;
+using NativeWifi;
 public class Client : MonoBehaviour
 {
+   public Text myWIFI;
+   public Text myIP;
    public InputField NickInput; // 닉네임
    private string clientName; //클라이언트 이름
    private bool socketReady; //현재 소켓이 준비되었는가?
@@ -19,7 +23,24 @@ public class Client : MonoBehaviour
    private NetworkStream stream; //현재 데이터흐름을 관리하는 스트림
    private StreamWriter writer; //데이터 쓰기
    private StreamReader reader; //데이터 읽기
-   
+
+
+   private void Start()
+   {
+      IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+      string ClientIP = string.Empty;
+      for (int i = 0; i < host.AddressList.Length; i++)
+      {
+         if (host.AddressList[i].AddressFamily == AddressFamily.InterNetwork)
+         {
+            ClientIP = host.AddressList[i].ToString();
+         }
+      }
+
+      myIP.text = ClientIP;
+      myWIFI.text = "내 WIFI : " + GetAvailableWifi();
+   }
+
    public void ConnectToServer(int min) //클라이언트로 접속 버튼으로 실행
    {
       if (min > 240)
@@ -32,7 +53,8 @@ public class Client : MonoBehaviour
          return;
       
       //텍스트에 있는 IP/포트주소 받아옴, 없으면 기본값 (자기자신 127, 기본 7777)
-      string ip = "10.156.146." + min;
+      string[] splitedIp = myIP.text.Split('.');
+      string ip = splitedIp[0] +'.'+ splitedIp[1] +'.'+ splitedIp[2] +'.'+ min;
       int port = 7777;
 
       //소켓 생성
@@ -40,7 +62,7 @@ public class Client : MonoBehaviour
          
       socket = new TcpClient();
       var result = socket.BeginConnect(ip, port, null, null);
-      var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(.025f));
+      var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(.02f));
       if (success)
       {
          stream = socket.GetStream();
@@ -75,7 +97,7 @@ public class Client : MonoBehaviour
       if (data == "%NAME")
       {
          //클라이름이 비어있으면 게스트, 아니면 클라이름 넣어주기
-         clientName = NickInput.text == "" ? "Guest" + UnityEngine.Random.Range(1000, 10000) : NickInput.text;
+         clientName = NickInput.text == "" ? "ㅇㅇ(" + Random.Range(0,1000)+'.'+Random.Range(0,1000)+")" : NickInput.text;
          //서버에서 클라이름으로 등록해주기 위해 이렇게 보냄
          Send($"&NAME|{clientName}");
          return;
@@ -127,5 +149,25 @@ public class Client : MonoBehaviour
       string message = SendInput.text;
       SendInput.text = "";
       Send(message);
+   }
+   
+   private string GetAvailableWifi()
+   {
+      WlanClient client = new WlanClient();
+      foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
+      {
+         Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
+         foreach (Wlan.WlanAvailableNetwork network in networks)
+         {
+            Wlan.Dot11Ssid ssid = network.dot11Ssid;
+            string networkname = Encoding.ASCII.GetString(ssid.SSID, 0, (int)ssid.SSIDLength);
+            if (networkname != "")
+            {
+               return networkname;
+            }
+         }
+      }
+
+      return "null";
    }
 }
