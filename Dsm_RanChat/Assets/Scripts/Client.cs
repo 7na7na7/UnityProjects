@@ -14,6 +14,7 @@ using Random = UnityEngine.Random;
 using NativeWifi;
 public class Client : MonoBehaviour
 {
+   public GameObject DisConnectBtn;
    public Text myWIFI;
    public Text myIP;
    public InputField NickInput; // 닉네임
@@ -38,7 +39,7 @@ public class Client : MonoBehaviour
       }
 
       myIP.text = ClientIP;
-      myWIFI.text = "내 WIFI : " + GetAvailableWifi();
+      myWIFI.text = "내 WIFI - " + GetAvailableWifi();
    }
 
    public void ConnectToServer(int min) //클라이언트로 접속 버튼으로 실행
@@ -87,13 +88,20 @@ public class Client : MonoBehaviour
 
    private void Update()
    {
+      if (socketReady)
+         DisConnectBtn.SetActive(true);
+      else
+         DisConnectBtn.SetActive(false);
+
       //데이터를 읽을 수 있으면
       if (socketReady && stream.DataAvailable)
       {
          //데이터 받음
          string data = reader.ReadLine();
-         if(data!=null)
-            OnIncomingData(data);
+         if (data != null)
+         {
+            OnIncomingData(data);  
+         }
       }
    }
 
@@ -110,7 +118,10 @@ public class Client : MonoBehaviour
          return;
       }
       //이걸로 채팅 표시
-      Chat.instance.ShowMessage(data);
+//     if(data.Contains(clientName)) 
+//        Chat.instance.ShowMessage(data+" (나)");
+//     else
+        Chat.instance.ShowMessage(data);
    }
 
    void Send(string data)
@@ -131,7 +142,7 @@ public class Client : MonoBehaviour
    }
 
    //소켓 닫기
-   void CloseSocket()
+   public void CloseSocket()
    {
       if (!socketReady)
          return;
