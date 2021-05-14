@@ -43,13 +43,13 @@ public class Client : MonoBehaviour
 
          myIP.text = ClientIP;
          myWIFI.text = "내 WIFI - " + GetAvailableWifi();
-         myWIFI.text = "호스트 이름이 한글이어서 받아오는 데 오류가 발생했습니다.";
-         myIP.text = "";
-         myIPText.text="내컴퓨터-속성-설정 변경-변경-한글이 포함되지 않도록 수정하고 다시 시작해 주세요.";
+//         myWIFI.text = "호스트 이름이 한글이어서 받아오는 데 오류가 발생했습니다.";
+//         myIP.text = "";
+//         myIPText.text="내컴퓨터-속성-설정 변경-변경-한글이 포함되지 않도록 수정하고 다시 시작해 주세요.";
       }
       catch (Exception e)
       {
-         myWIFI.text = "호스트 이름이 한글이어서 받아오는 데 오류가 발생했습니다.";
+         myWIFI.text = "오류가 발생했습니다. 와이파이 연결을 확인하거나,";
          myIP.text = "";
          myIPText.text="내컴퓨터-속성-설정 변경-변경-한글이 포함되지 않도록 수정하고 다시 시작해 주세요.";
       } 
