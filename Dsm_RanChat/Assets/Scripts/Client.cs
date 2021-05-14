@@ -14,7 +14,7 @@ using Random = UnityEngine.Random;
 using NativeWifi;
 public class Client : MonoBehaviour
 {
-   public Text myIPText;
+   public InputField IPInput;
    public GameObject DisConnectBtn;
    public Text myWIFI;
    public Text myIP;
@@ -31,6 +31,7 @@ public class Client : MonoBehaviour
    {
       try
       {
+         myWIFI.text = "내 WIFI : " + GetAvailableWifi();
          IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
          string ClientIP = string.Empty;
          for (int i = 0; i < host.AddressList.Length; i++)
@@ -39,20 +40,15 @@ public class Client : MonoBehaviour
             {
                ClientIP = host.AddressList[i].ToString();
             }
-         }
+         }         
 
-         myIP.text = ClientIP;
-         myWIFI.text = "내 WIFI - " + GetAvailableWifi();
-//         myWIFI.text = "호스트 이름이 한글이어서 받아오는 데 오류가 발생했습니다.";
-//         myIP.text = "";
-//         myIPText.text="내컴퓨터-속성-설정 변경-변경-한글이 포함되지 않도록 수정하고 다시 시작해 주세요.";
+         myIP.text = ClientIP; 
+        
       }
       catch (Exception e)
       {
-         myWIFI.text = "오류가 발생했습니다. 와이파이 연결을 확인하거나,";
-         myIP.text = "";
-         myIPText.text="내컴퓨터-속성-설정 변경-변경-한글이 포함되지 않도록 수정하고 다시 시작해 주세요.";
-      } 
+         myIP.text = "윈도우-cmd-ipconfig으로 IP 확인";
+      }
    }
 
    public void ConnectToServer(int min) //클라이언트로 접속 버튼으로 실행
@@ -67,7 +63,7 @@ public class Client : MonoBehaviour
          return;
       
       //텍스트에 있는 IP/포트주소 받아옴, 없으면 기본값 (자기자신 127, 기본 7777)
-      string[] splitedIp = myIP.text.Split('.');
+      string[] splitedIp = IPInput.text.Split('.');
       string ip = splitedIp[0] +'.'+ splitedIp[1] +'.'+ splitedIp[2] +'.'+ min;
       int port = 7777;
 
