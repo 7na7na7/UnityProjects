@@ -26,8 +26,11 @@ public class Bullet : MonoBehaviour
 
         if (other.CompareTag("Sword"))
         {
-            transform.localScale=new Vector3(transform.localScale.x*-1,transform.localScale.y);
-            gameObject.tag = "Counter";
+            if (other.transform.parent.GetComponent<SpriteRenderer>().material.name == GetComponent<SpriteRenderer>().material.name)
+            {
+                transform.localScale=new Vector3(transform.localScale.x*-1,transform.localScale.y);
+                gameObject.tag = "Counter";   
+            }
         }
     }
 }

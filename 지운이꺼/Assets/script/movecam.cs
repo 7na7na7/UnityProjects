@@ -16,7 +16,10 @@ public class movecam : MonoBehaviour
     }
     void LateUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
-        transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+        if (target != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -10f);   
+        }
     }
 }

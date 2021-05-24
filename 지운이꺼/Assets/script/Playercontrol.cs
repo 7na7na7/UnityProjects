@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
 
 public class Playercontrol : MonoBehaviour
 {
+    private AudioSource source;
+    public AudioClip attackSound;
     float inputX;
     public float speed;
     public float d_speed;
@@ -35,6 +40,7 @@ public class Playercontrol : MonoBehaviour
     public float wallch_distanse;
     public float walljump_power;
     public bool is_attack;
+    
     Vector2 move;
     SpriteRenderer sr;
 
@@ -42,7 +48,7 @@ public class Playercontrol : MonoBehaviour
     {
         rig.GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-
+        source = GetComponent<AudioSource>();
     }
 
 
@@ -76,13 +82,18 @@ public class Playercontrol : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1")&& !is_attack)
         {
+         
             is_attack = true;
             sword.SetActive(true);
             animator.SetTrigger("attack");
             AttackDash();
+            
+            
+
         }
         void AttackDash()
         {
+            source.PlayOneShot(attackSound);
             Vector2 input = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 dir = input - (Vector2)transform.position;
             dir.Normalize();
@@ -114,7 +125,7 @@ public class Playercontrol : MonoBehaviour
             is_attack = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && is_dash == false && dash_count < 2)
+        if (Mathf.Abs(move.x) > 0.1 && is_dash == false && dash_count < 2 && Input.GetKeyDown(KeyCode.S))
         {
             is_dash = true;
             if (is_jump == true)
@@ -161,7 +172,7 @@ public class Playercontrol : MonoBehaviour
             {
                 
                 animator.SetTrigger("ground");
-                
+             
                 is_jump = false;
                 /*
                 animator.SetBool("is_droping", false);
@@ -204,7 +215,7 @@ public class Playercontrol : MonoBehaviour
            if (Input.GetButtonDown("Jump") && !iswall_jump)
            {
                iswall_jump = true;
-               Invoke("FreezeX",1);
+               Invoke("FreezeX",0.3f);
                rig.velocity=Vector2.zero;
                rig.velocity = new Vector2(is_right * walljump_power*-1,  walljump_power);
                //rig.velocity = new Vector2(is_right * walljump_power, 0.9f * walljump_power);
@@ -218,6 +229,7 @@ public class Playercontrol : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             StartCoroutine(die());
+            
         }
     }
 
@@ -227,7 +239,12 @@ public class Playercontrol : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
+        if (Input.anyKey)
+        {
+            SceneManager.LoadScene("Stage1");
+        }
     }
+    
     //wall jump delay
     void FreezeX()
     {
@@ -251,9 +268,9 @@ public class Playercontrol : MonoBehaviour
             is_right = -1;
         }
     }
-
-
-    private void OnCollisionEnter2D(Collision2D other)
+    
+    
+   private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
