@@ -54,8 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSound: {fileID: 8300000, guid: a70c1697cbaa73547b8923594459f99f, type: 3}
   speed: 0
-  d_speed: 3
-  jump_power: 10
+  d_speed: 6
+  jump_power: 15
   rig: {fileID: 5033520305979843132}
   animator: {fileID: 5033520305979843133}
   is_ground: 1

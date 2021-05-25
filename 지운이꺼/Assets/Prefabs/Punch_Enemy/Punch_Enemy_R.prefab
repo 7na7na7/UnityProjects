@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26c891d5bf9922442936ddc108f03d68, type: 2}
+  - {fileID: 2100000, guid: 7086cf02550604a489af0b730b8bf8b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 5302277449529459887}
   - component: {fileID: 5302277449529459886}
   - component: {fileID: 5302277449529459881}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Punch
   m_TagString: Bullet
   m_Icon: {fileID: 0}

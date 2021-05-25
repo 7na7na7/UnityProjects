@@ -13,10 +13,11 @@ public class ChangeColor : MonoBehaviour
   private Color color = new Color(0.5f,0.5f,0.5f);
   private void Update()
   {
+    
     if (Input.anyKeyDown)
     {
       if (FindObjectOfType<Playercontrol>() == null)
-        SceneManager.LoadScene("StageSelect");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     Enemy[] enemies = FindObjectsOfType<Enemy>();
     ramain.text = enemies.Length.ToString();
