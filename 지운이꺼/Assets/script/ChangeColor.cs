@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChangeColor : MonoBehaviour
@@ -12,6 +13,11 @@ public class ChangeColor : MonoBehaviour
   private Color color = new Color(0.5f,0.5f,0.5f);
   private void Update()
   {
+    if (Input.anyKeyDown)
+    {
+      if (FindObjectOfType<Playercontrol>() == null)
+        SceneManager.LoadScene("StageSelect");
+    }
     Enemy[] enemies = FindObjectsOfType<Enemy>();
     ramain.text = enemies.Length.ToString();
     if(enemies.Length<=0)
