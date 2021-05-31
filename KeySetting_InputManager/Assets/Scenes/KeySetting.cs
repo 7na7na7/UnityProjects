@@ -26,7 +26,7 @@ public class KeySetting : MonoBehaviour
     private void OnGUI()
     {
         Event keyEvent=Event.current; //현재 이벤트 가지고옴
-        if (keyEvent.isKey) //만약 이벤트가 키라면
+        if (keyEvent.isKey&&key!=-1) //만약 이벤트가 키고 설정 가능하다면
         {
             SetKey.keys[(Keys)key] = keyEvent.keyCode; //0,1,2,3을 Keys형으로 변환해 각각 UP, DOWN, LEFT, RIGHT로 캐스팅
             keyTexts[key].text = keyEvent.keyCode.ToString(); //바꾼키 텍스트 표시
