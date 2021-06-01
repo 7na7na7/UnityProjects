@@ -75,7 +75,7 @@ public  class Move1 : MonoBehaviour
         plusforce=this.transform.localScale.x;
         animator = GetComponent<Animator>();
         //dashforce += dashforce * 0.5f;
-        gold.gold = 1000;
+        //gold.gold = 1000;
     }
     
     void Update()
