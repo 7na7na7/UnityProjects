@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Thread_1 : MonoBehaviour
 {
+    private object lockObject = new object(); //lock을 걸어 쓰레드를 하나씩 실행되도록 할 수 있다.
     private void Start()
     {
         init();
@@ -13,14 +14,16 @@ public class Thread_1 : MonoBehaviour
 
     void init()
     {
-        // 파라미터 없는 ThreadStart 사용
-        Thread t1 = new Thread(new ThreadStart(Run));
-        t1.Start();
+        for (int i = 0; i < 10; i++)
+        {
+            // 파라미터 없는 ThreadStart 사용
+            new Thread(new ThreadStart(Run)).Start();
+        }
+       
 
         // ParameterizedThreadStart 파라미터 전달
         // Start()의 파라미터로 radius 전달
-        Thread t2 = new Thread(new ParameterizedThreadStart(Calc));
-        t2.Start(10.00);
+        new Thread(new ParameterizedThreadStart(Calc)).Start(10.00);
 
         // ThreadStart에서 파라미터 전달
         Thread t3 = new Thread(() => Sum(10, 20, 30));
@@ -29,7 +32,13 @@ public class Thread_1 : MonoBehaviour
 
     void Run()
     {
-        print("Run");
+        lock (lockObject)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                print("Run " + i);
+            }
+        }
     }
 
     // radius라는 파라미터를 object 타입으로 받아들임
