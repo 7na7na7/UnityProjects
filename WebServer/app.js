@@ -42,6 +42,22 @@ app.get('/', function(request,response)
     // response.send("Hello, Express Server!!")
 })
 
+//기본이벤트
+io.sockets.on('connection',function(socket)
+{
+    console.log('유저 접속됨');
+    //send이벤트 콜백으로 호출
+    socket.on('send',function(data)
+    {
+        console.log('전달된 메시지 : '+data.msg);
+    })
+    //기본 이벤트 disconnect, 접속끊길시 자동실행
+    socket.on('disconnect',function(data)
+    {
+        console.log('접속 종료');
+    })
+})
+
 //서버를 8080포트로 listen
 server.listen(8080, function()
 {
