@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.72199726, g: 1, b: 0.72075474, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -256,3 +256,4 @@ MonoBehaviour:
   pingInterval: 25
   pingTimeout: 60
   networkContainer: {fileID: 697250223}
+  playerPrefab: {fileID: 1148382477700956999, guid: 3b8a0355334879e4baa783a26531eb3d, type: 3}

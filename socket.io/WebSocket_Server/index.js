@@ -35,6 +35,15 @@ io.on('connection',function(socket)
        }
    }
 
+   socket.on('updatePosition',function(data)
+   {
+       //플레이어포지션 동기화
+       player.position.x=data.position.x;
+       player.position.y=data.position.y;
+
+       socket.broadcast.emit('updatePosition',player);
+   })
+
    socket.on('disconnect',function()
    {
        //플레이어가 나갔을 때 실행
