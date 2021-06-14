@@ -23,10 +23,10 @@ io.on('connection',function(socket)
 
    //emit은 나포함 전부한테보내고 broadcast는 나빼고 전부한테 보냄
    socket.emit('register',{id:thisPlayerID}); //register이벤트, e.data["id"]로 접근가능
-   socket.emit('spawn',player); //스폰이벤트
-   socket.broadcast.emit('spawn',player); //나빼고 전부한테
+   socket.emit('spawn',player); //나를 스폰
+   socket.broadcast.emit('spawn',player); //나를 다른사람에게 스폰
 
-   //나말고 다른플레이어 스폰
+   //다른플레이어를 나에게 스폰
    for(var playerID in players)
    {
        if(playerID!=thisPlayerID) //자기말고
@@ -42,6 +42,16 @@ io.on('connection',function(socket)
        player.position.y=data.position.y;
 
        socket.broadcast.emit('updatePosition',player);
+   })
+
+  
+   socket.on('updateRotation',function(data)
+   {
+       //회전값 동기화
+       player.tankRotation=data.tankRotation;
+       player.barrelRotation=data.barrelRotation;
+
+       socket.broadcast.emit('updateRotation',player);
    })
 
    socket.on('disconnect',function()

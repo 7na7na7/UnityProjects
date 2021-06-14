@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Project.Networking;
+using Project.Utility;
 using Project.Utility.Attributes;
 using UnityEngine;
 
@@ -62,8 +63,8 @@ namespace Project.Networking
         private void SendData()
         {
             //플레이어 데이터 설정
-            player.position.x=Mathf.Round(transform.position.x*1000.0f)/1000.0f;
-            player.position.y=Mathf.Round(transform.position.y*1000.0f)/1000.0f;
+            player.position.x = transform.position.x.TwoDecimals();
+            player.position.y = transform.position.y.TwoDecimals();
             //소켓에서 updatePosition동기화, Json으로 변환해 전달
             networkIdenity.GetSocket().Emit("updatePosition",new JSONObject(JsonUtility.ToJson(player))); 
         }

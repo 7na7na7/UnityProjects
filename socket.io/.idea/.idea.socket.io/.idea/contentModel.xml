@@ -11,6 +11,7 @@
           <e p="Networking" t="Include">
             <e p="NetworkClient.cs" t="Include" />
             <e p="NetworkIdentity.cs" t="Include" />
+            <e p="NetworkRotation.cs" t="Include" />
             <e p="NetworkTransform.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
@@ -18,6 +19,7 @@
           </e>
           <e p="Utility" t="Include">
             <e p="GreyOut.cs" t="Include" />
+            <e p="MethodExtensions.cs" t="Include" />
           </e>
         </e>
         <e p="SocketIO" t="Include">

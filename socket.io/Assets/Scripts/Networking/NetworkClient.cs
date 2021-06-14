@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using Project.Player;
 using UnityEngine;
 using SocketIO;
 using WebSocketSharp;
@@ -79,6 +80,17 @@ namespace Project.Networking
                 NetworkIdentity ni = serverObjects[id];
                 ni.transform.position = new Vector3(x, y,0);
             });
+            On("updateRotation", (e) =>
+            {
+                string id = e.data["id"].ToString().Trim('"');
+                // tankRotation, barrelRotation에 player.tankRotation, barrelRotation 저장
+                float tankRotation = e.data["tankRotation"].f;
+                float barrelRotation = e.data["barrelRotation"].f;
+
+                NetworkIdentity ni = serverObjects[id];
+                ni.transform.localEulerAngles = new Vector3(0, 0, tankRotation);
+                ni.GetComponent<PlayerManager>().SetRotation(barrelRotation);
+            });
         }
     } 
     
@@ -94,5 +106,12 @@ namespace Project.Networking
     {
         public float x;
         public float y;
+    }
+
+    [Serializable]
+    public class PlayerRotation
+    {
+        public float tankRotation;
+        public float barrelRotation;
     }
 }
