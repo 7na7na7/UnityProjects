@@ -36,7 +36,7 @@ namespace Project.Player
         }
         public void SetRotation(float Value)
         {
-         barrelPivot.rotation=quaternion.Euler(0,0,Value*BARREL_PIVOT_OFFSET);   
+         barrelPivot.rotation=quaternion.Euler(0,0,Value+BARREL_PIVOT_OFFSET);   
         }
         private void Move() //이동함수
         {
@@ -52,8 +52,8 @@ namespace Project.Player
             Vector3 dif = mousePosition - transform.position;
             dif.Normalize();
             float rot = Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg;
+            lastRotation = rot;
             barrelPivot.rotation=Quaternion.Euler(0,0,rot+BARREL_PIVOT_OFFSET);
-            lastRotation = barrelPivot.rotation.z;
         }
     }
 }
