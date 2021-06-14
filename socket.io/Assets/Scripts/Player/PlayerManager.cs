@@ -35,8 +35,8 @@ namespace Project.Player
             return lastRotation;
         }
         public void SetRotation(float Value)
-        {
-         barrelPivot.rotation=quaternion.Euler(0,0,Value+BARREL_PIVOT_OFFSET);   
+        { 
+            barrelPivot.rotation=Quaternion.Euler(0,0,Value+BARREL_PIVOT_OFFSET);
         }
         private void Move() //이동함수
         {
