@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using Project.Player;
+using Project.Scriptable;
+using Project.Utility;
 using UnityEngine;
 using SocketIO;
 using WebSocketSharp;
@@ -14,7 +16,7 @@ namespace Project.Networking
         [Header("Network Client")]
         public Transform networkContainer;
         public GameObject playerPrefab;
-
+        public ServerObjects serverSpawnables;
         public static string ClientID { get; private set; } //얻을순잇는데 변경안댐!
 
         private Dictionary<string, NetworkIdentity> serverObjects;
@@ -80,7 +82,7 @@ namespace Project.Networking
                 NetworkIdentity ni = serverObjects[id];
                 ni.transform.position = new Vector3(x, y,0);
             });
-            On("updateRotation", (e) =>
+            On("updateRotation", (e) =>   
             {
                 string id = e.data["id"].ToString().Trim('"');
                 // tankRotation, barrelRotation에 player.tankRotation, barrelRotation 저장
@@ -90,6 +92,46 @@ namespace Project.Networking
                 NetworkIdentity ni = serverObjects[id];
                 ni.transform.localEulerAngles = new Vector3(0, 0, tankRotation);
                 ni.GetComponent<PlayerManager>().SetRotation(barrelRotation);
+            });
+            On("serverSpawn", (e) =>
+            {
+                //스폰
+                string name = e.data["name"].str; //이름
+                string id = e.data["id"].ToString().RemoveQuotes();
+                
+                float x = e.data["position"]["x"].f; //위치값 x
+                float y = e.data["position"]["y"].f; //위치값 y
+                print("server wants us to spawn a "+name+" at "+x+", "+y);
+                
+                if (!serverObjects.ContainsKey(id)) //서버오브젝트중에 
+                { 
+                    ServerObjectData sod = serverSpawnables.GetObjectByName(name); //이름으로 스폰할 오브젝트 가지고 옴
+                    GameObject spawnObject = Instantiate(sod.Prefab, networkContainer); //스폰
+                    spawnObject.transform.position = new Vector3(x, y, 0); //위치셋
+                    var ni = spawnObject.GetComponent<NetworkIdentity>(); //네트워크오브젝트면 가지고있는 ni가져옴
+                    ni.SetControllerID(id); //ni설정 첫번째
+                    ni.SetSocketReference(this); //ni설정 두번째
+
+                    if (name == "Bullet") //총알아면
+                    {
+                        float dirX = e.data["direction"]["x"].f; //direction.x
+                        float dirY = e.data["direction"]["y"].f; //direction.y로 방향 갖고옴
+
+                        float rot = Mathf.Atan2(dirY, dirX) * Mathf.Rad2Deg;
+                        Vector3 currentRotation=new Vector3(0,0,rot-90);
+                        spawnObject.transform.rotation=Quaternion.Euler(currentRotation);
+                    }
+                    
+                    serverObjects.Add(id,ni); //서버오브젝트에 스폰한 오브젝트 추가
+                }
+            });
+            On("serverUnSpawn", (e) =>
+            {
+                //디스폰
+                string id = e.data["id"].ToString().RemoveQuotes();
+                NetworkIdentity ni = serverObjects[id];
+                serverObjects.Remove(id);
+                DestroyImmediate(ni.gameObject); //서버상에서 빠르게 지워야하기때문에 쓰는거같다!
             });
         }
     } 
@@ -113,5 +155,13 @@ namespace Project.Networking
     {
         public float tankRotation;
         public float barrelRotation;
+    }
+
+    [Serializable]
+    public class BulletData
+    {
+        public string id;
+        public Position position;
+        public Position direction;
     }
 }

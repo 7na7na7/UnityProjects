@@ -1,5 +1,5 @@
 var shortID=require('shortid');
-var Vector2=require('./Vector2');
+var Vector2=require('./Vector2.js');
 //Player클래스 배출
 module.exports=class Player
 {

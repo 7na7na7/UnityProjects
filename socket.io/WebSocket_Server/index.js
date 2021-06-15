@@ -3,11 +3,56 @@ var io=require('socket.io')(process.env.PORT || 52300);
 
 //커스텀 클래스
 var Player=require('./Classes/Player.js');
+var Bullet=require('./Classes/Bullet.js');
 
 console.log('Server has started');
 
 var players=[];
 var sockets=[];
+var bullets=[];
+
+setInterval(()=>
+{
+    bullets.forEach(bullet=>
+        {
+            var isDestroyed=bullet.onUpdate();
+
+            if(isDestroyed) //파괴된 상태라면
+            {
+                var index=bullets.indexOf(bullet);
+                if(index>-1)
+                {
+                    bullets.splice(index,1); //제거
+
+                    var returnData=
+                    {
+                        id:bullet.id
+                    }
+
+                    for(var playerID in players)
+                    {
+                        sockets[playerID].emit('serverUnSpawn',returnData);
+                    }
+                }
+            }
+            else
+            {
+                var returnData=
+                {
+                    id:bullet.id,
+                    position:
+                    {
+                        x:bullet.position.x,
+                        y:bullet.position.y
+                    }
+                }
+                for(var playerID in players)
+                {
+                    sockets[playerID].emit('updatePosition',returnData);
+                }
+            }
+        });
+},10,0)
 
 io.on('connection',function(socket)
 {
@@ -21,7 +66,7 @@ io.on('connection',function(socket)
    players[thisPlayerID]=player;
    sockets[thisPlayerID]=socket;
 
-   //emit은 나포함 전부한테보내고 broadcast는 나빼고 전부한테 보냄
+   //emit은 나한테보내고 broadcast는 나빼고 전부한테 보냄
    socket.emit('register',{id:thisPlayerID}); //register이벤트, e.data["id"]로 접근가능
    socket.emit('spawn',player); //나를 스폰
    socket.broadcast.emit('spawn',player); //나를 다른사람에게 스폰
@@ -53,7 +98,35 @@ io.on('connection',function(socket)
 
        socket.broadcast.emit('updateRotation',player);
    })
+   socket.on('fireBullet',function(data)
+   {
+       var bullet=new Bullet();
+       bullet.name='Bullet'; //이름설정
+       bullet.position.x=data.position.x; //총알위치
+       bullet.position.y=data.position.y;
+       bullet.direction.x=data.direction.x; //총알방향
+       bullet.direction.y=data.direction.y;
 
+       bullets.push(bullet); //bullets에 bullet추가
+
+       var returnData= //모두에게 뿌릴 총알생성데이터
+       {
+           name:bullet.name,
+           id:bullet.id,
+           position:   
+           {
+               x:bullet.position.x,
+               y:bullet.position.y
+           },
+           direction: //총알에만 있는 direction
+           {
+               x:bullet.direction.x,
+               y:bullet.direction.y
+           }
+       }
+       socket.emit('serverSpawn',returnData);
+       socket.broadcast.emit('serverSpawn',returnData);
+   });
    socket.on('disconnect',function()
    {
        //플레이어가 나갔을 때 실행
@@ -63,6 +136,29 @@ io.on('connection',function(socket)
        delete sockets[thisPlayerID];
        socket.broadcast.emit('disconnected',player);
    })
-
-
 });
+
+function Interval(func, wait, times)
+{
+    var interv=function(w,t)
+    {
+        return function()
+        {
+            if(typeof(t === "undefined" || t-- > 0))
+            {
+                setTimeout(interv,w); //w초후에 interv함수실행
+                try
+                {
+                    func.call(null);
+                }
+                catch(e)
+                {
+                    t=0;
+                    throw e.toString();
+                }
+            }
+        };
+    }(wait,times);
+
+    setTimeout(interv,wait);
+}
