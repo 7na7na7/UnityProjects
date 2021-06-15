@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1505945456}
   - component: {fileID: 1505945455}
   - component: {fileID: 1668815840907802798}
+  - component: {fileID: 1689111473767374335}
   m_Layer: 0
   m_Name: Player_Prefab
   m_TagString: Untagged
@@ -97,6 +98,22 @@ MonoBehaviour:
   oldTankRotation: 0
   oldBarrelRotation: 0
   playerManager: {fileID: 9007208117920798861}
+--- !u!58 &1689111473767374335
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148382477700956999}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0053316355, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.45201534
 --- !u!1 &3492104545779341298
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +380,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Time: 0.25
   m_Parameters:
     serializedVersion: 3

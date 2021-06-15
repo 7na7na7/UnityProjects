@@ -8,6 +8,10 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="Gameplay" t="Include">
+            <e p="CollisionDestroyer.cs" t="Include" />
+            <e p="WhoActivateMe.cs" t="Include" />
+          </e>
           <e p="Networking" t="Include">
             <e p="NetworkClient.cs" t="Include" />
             <e p="NetworkIdentity.cs" t="Include" />

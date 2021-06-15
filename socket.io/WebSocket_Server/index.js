@@ -52,7 +52,7 @@ setInterval(()=>
                 }
             }
         });
-},10,0)
+},10,0) //10밀리세컨드마다 실행
 
 io.on('connection',function(socket)
 {
@@ -102,6 +102,7 @@ io.on('connection',function(socket)
    {
        var bullet=new Bullet();
        bullet.name='Bullet'; //이름설정
+       bullet.activator=data.activator; //총알쏜사람
        bullet.position.x=data.position.x; //총알위치
        bullet.position.y=data.position.y;
        bullet.direction.x=data.direction.x; //총알방향
@@ -113,6 +114,7 @@ io.on('connection',function(socket)
        {
            name:bullet.name,
            id:bullet.id,
+           activator:bullet.activator,
            position:   
            {
                x:bullet.position.x,
@@ -124,9 +126,21 @@ io.on('connection',function(socket)
                y:bullet.direction.y
            }
        }
-       socket.emit('serverSpawn',returnData);
-       socket.broadcast.emit('serverSpawn',returnData);
+       socket.emit('serverSpawn',returnData); //자신에게스폰
+       socket.broadcast.emit('serverSpawn',returnData); //다른사람들에게 스폰
    });
+   socket.on('collisionDestroy',function(data)
+   {
+       console.log("Collision with bullet id : "+data.id); 
+       let returnBullets = bullets.filter(bullet=>{
+           //총알중 해당 id와 같은 총알을 고름
+           return bullet.id==data.id;
+       });
+       returnBullets.forEach(bullet=>
+        {
+            bullet.isDestroyed=true; //다음검사에 해당 총알이 파괴되도록 함
+        })
+   })
    socket.on('disconnect',function()
    {
        //플레이어가 나갔을 때 실행

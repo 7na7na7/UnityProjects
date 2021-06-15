@@ -81,7 +81,8 @@ namespace Project.Player
              {
                  shootingCooldown.StartCooldown(); //쿨돔
                  
-                 //총알위치, 방향넣어줌
+                 //총알쏜사람, 총알위치, 방향넣어줌
+                 bulletData.activator = NetworkClient.ClientID; 
                  bulletData.position.x = bulletSpawnPoint.position.x.TwoDecimals();
                  bulletData.position.y = bulletSpawnPoint.position.y.TwoDecimals();
                  bulletData.direction.x = -bulletSpawnPoint.up.x;

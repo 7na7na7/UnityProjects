@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using Project.Gameplay;
 using Project.Player;
 using Project.Scriptable;
 using Project.Utility;
@@ -95,7 +96,7 @@ namespace Project.Networking
             });
             On("serverSpawn", (e) =>
             {
-                //스폰
+                //스폰 
                 string name = e.data["name"].str; //이름
                 string id = e.data["id"].ToString().RemoveQuotes();
                 
@@ -103,12 +104,12 @@ namespace Project.Networking
                 float y = e.data["position"]["y"].f; //위치값 y
                 print("server wants us to spawn a "+name+" at "+x+", "+y);
                 
-                if (!serverObjects.ContainsKey(id)) //서버오브젝트중에 
+                if (!serverObjects.ContainsKey(id)) //서버오브젝트중에 해당 id를 가진오브젝트가 없다면(중복생성방지)
                 { 
                     ServerObjectData sod = serverSpawnables.GetObjectByName(name); //이름으로 스폰할 오브젝트 가지고 옴
-                    GameObject spawnObject = Instantiate(sod.Prefab, networkContainer); //스폰
-                    spawnObject.transform.position = new Vector3(x, y, 0); //위치셋
-                    var ni = spawnObject.GetComponent<NetworkIdentity>(); //네트워크오브젝트면 가지고있는 ni가져옴
+                    GameObject spawnedObject = Instantiate(sod.Prefab, networkContainer); //스폰
+                    spawnedObject.transform.position = new Vector3(x, y, 0); //위치셋
+                    var ni = spawnedObject.GetComponent<NetworkIdentity>(); //네트워크오브젝트면 가지고있는 ni가져옴
                     ni.SetControllerID(id); //ni설정 첫번째
                     ni.SetSocketReference(this); //ni설정 두번째
 
@@ -116,10 +117,16 @@ namespace Project.Networking
                     {
                         float dirX = e.data["direction"]["x"].f; //direction.x
                         float dirY = e.data["direction"]["y"].f; //direction.y로 방향 갖고옴
+                        string activator = e.data["activator"].ToString().RemoveQuotes(); //총알쏜사람갖고오기
+                        
 
                         float rot = Mathf.Atan2(dirY, dirX) * Mathf.Rad2Deg;
                         Vector3 currentRotation=new Vector3(0,0,rot-90);
-                        spawnObject.transform.rotation=Quaternion.Euler(currentRotation);
+                        spawnedObject.transform.rotation=Quaternion.Euler(currentRotation);
+
+                        //총쏜사람 설정
+                        WhoActivateMe whoActivateMe = spawnedObject.GetComponent<WhoActivateMe>();
+                        whoActivateMe.SetActivator(activator);
                     }
                     
                     serverObjects.Add(id,ni); //서버오브젝트에 스폰한 오브젝트 추가
@@ -161,7 +168,14 @@ namespace Project.Networking
     public class BulletData
     {
         public string id;
+        public string activator;
         public Position position;
         public Position direction;
+    }
+
+    [Serializable]
+    public class IDdata
+    {
+        public string id;
     }
 }
