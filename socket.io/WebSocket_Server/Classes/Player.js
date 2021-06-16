@@ -5,8 +5,9 @@ module.exports=class Player
 {
     constructor()
     {
-        this.username=''; //플레이어이름
+        this.username='Default Player'; //플레이어이름
         this.id=shortID.generate(); //식별 ID
+        this.lobby=0; //로비 ID
         this.position=new Vector2(); //위치
         this.tankRotation=new Number(0); //탱크회전값
         this.barrelRotation=new Number(0); //주포회전값
@@ -15,7 +16,13 @@ module.exports=class Player
         this.respawnTicker=new Number(0); //리스폰시간재는거
         this.respawnTime=new Number(0); //리스폰딜레이
     }
-
+    
+    
+    displayPlayerInformation()
+    {
+        let player=this;
+        return '('+player.username+':'+player.id+')';
+    }
     setHpFull()
     {
         this.health=new Number(100);

@@ -47,6 +47,7 @@ namespace Project.Networking
             });
             On("register", (e) =>
             {
+                print(e.data["id"].ToString());
                 //회원가입
                 ClientID = e.data["id"].ToString().Trim('"'); //양옆에 "" 없애기
                 print("Our Client's ID : "+ClientID);
@@ -55,7 +56,7 @@ namespace Project.Networking
             {
                 //플레이어 스폰 담당
                 string id = e.data["id"].ToString().Trim('"');
-
+                
                 //networkContainer에 플레이어 스폰
                 GameObject go = Instantiate(playerPrefab, networkContainer);
                 go.name = string.Format("Player [{0}]", id);
@@ -132,7 +133,7 @@ namespace Project.Networking
                     serverObjects.Add(id,ni); //서버오브젝트에 스폰한 오브젝트 추가
                 }
             });
-            On("serverUnSpawn", (e) =>
+            On("serverUnspawn", (e) =>
             {
                 //디스폰
                 string id = e.data["id"].ToString().RemoveQuotes();
@@ -140,7 +141,7 @@ namespace Project.Networking
                 serverObjects.Remove(id);
                 DestroyImmediate(ni.gameObject); //서버상에서 빠르게 지워야하기때문에 쓰는거같다!
             });
-            On("playerDied", (e) =>
+            On("playerDead", (e) =>
             {
                 //플레이어 죽었을때
                 string id = e.data["id"].ToString().RemoveQuotes();
@@ -158,6 +159,11 @@ namespace Project.Networking
                 ni.gameObject.transform.position=new Vector3(x,y,0);
                 ni.gameObject.SetActive(true); //다시보이게
             });
+        }
+
+        public void AttemptToJoinLobby()
+        {
+            Emit("joinGame");
         }
     } 
     
