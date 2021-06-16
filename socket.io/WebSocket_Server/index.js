@@ -13,29 +13,17 @@ var bullets=[];
 
 setInterval(()=>
 {
+    //해당 밀리세컨드마다 실행 1
     bullets.forEach(bullet=>
         {
+            
             var isDestroyed=bullet.onUpdate();
 
             if(isDestroyed) //파괴된 상태라면
             {
-                var index=bullets.indexOf(bullet);
-                if(index>-1)
-                {
-                    bullets.splice(index,1); //제거
-
-                    var returnData=
-                    {
-                        id:bullet.id
-                    }
-
-                    for(var playerID in players)
-                    {
-                        sockets[playerID].emit('serverUnSpawn',returnData);
-                    }
-                }
+               despawnBullet(bullet); //총알삭제
             }
-            else
+            else //아니라면 위치 업데이트
             {
                 var returnData=
                 {
@@ -52,7 +40,52 @@ setInterval(()=>
                 }
             }
         });
+        //해당 밀리세컨드마다 실행 2
+        for(var playerID in players)
+        {
+            let player=players[playerID];
+            
+            if(player.isDead)
+            {
+                let isRespawn=player.respawnCounter();
+                
+                if(isRespawn)
+                {
+                    let returnData=
+                    {
+                        id:player.id,
+                        position:
+                        {
+                            x:player.position.x,
+                            y:player.position.y
+                        }
+                    }
+                    sockets[playerID].emit('playerRespawn',returnData);
+                    sockets[playerID].broadcast.emit('playerRespawn',returnData);
+                }
+            }
+        }
 },10,0) //10밀리세컨드마다 실행
+
+function despawnBullet(bullet=Bullet)
+{
+    console.log('Destroying bullet ('+bullet.id+')');
+    var index=bullets.indexOf(bullet);
+    if(index>-1)
+    {
+        bullets.splice(index,1); //제거
+
+        var returnData=
+        {
+            id:bullet.id
+        }
+
+        for(var playerID in players)
+        {
+            sockets[playerID].emit('serverUnSpawn',returnData);
+        }
+    }
+}
 
 io.on('connection',function(socket)
 {
@@ -136,9 +169,42 @@ io.on('connection',function(socket)
            //총알중 해당 id와 같은 총알을 고름
            return bullet.id==data.id;
        });
-       returnBullets.forEach(bullet=>
+
+        returnBullets.forEach(bullet=>
         {
-            bullet.isDestroyed=true; //다음검사에 해당 총알이 파괴되도록 함
+            let playerHit=false;
+            for(var playerID in players)
+            {
+                if(bullet.activator!=playerID) //쏜 당사자가 아니라면
+                {
+                    let player=players[playerID];
+                    let distance=bullet.position.Distance(bullet.position);
+                    if(distance<0.65) //해당총알과 거리가 0.65이하로 가깝다면
+                    {
+                        playerHit=true;
+                        let isDead=player.dealDamage(50);
+                        if(isDead)
+                        {
+                            console.log("Player with id : "+player.id+" has Dead.");
+                            let returnData=
+                            {
+                                id:player.id
+                            }
+                            sockets[playerID].emit('playerDied',returnData);
+                            sockets[playerID].broadcast.emit('playerDied',returnData);
+                        }
+                        else
+                        {
+                            console.log("Player with id : "+player.id+" has "+player.health+" left.");
+                        }
+                        despawnBullet(bullet);
+                    }
+                }
+            }
+            if(!playerHit)
+            {
+                bullet.isDestroyed=true; //다음검사에 해당 총알이 파괴되도록 함
+            }
         })
    })
    socket.on('disconnect',function()

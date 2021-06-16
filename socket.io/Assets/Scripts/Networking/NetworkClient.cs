@@ -140,6 +140,24 @@ namespace Project.Networking
                 serverObjects.Remove(id);
                 DestroyImmediate(ni.gameObject); //서버상에서 빠르게 지워야하기때문에 쓰는거같다!
             });
+            On("playerDied", (e) =>
+            {
+                //플레이어 죽었을때
+                string id = e.data["id"].ToString().RemoveQuotes();
+                NetworkIdentity ni = serverObjects[id];
+                ni.gameObject.SetActive(false); //안보이게
+            });
+            On("playerRespawn", (e) =>
+            {
+                //죽은 플레이어를 리스폰시킴
+                string id = e.data["id"].ToString().RemoveQuotes();
+                NetworkIdentity ni = serverObjects[id];
+                //스폰위치
+                float x = e.data["position"]["x"].f;
+                float y = e.data["position"]["y"].f;
+                ni.gameObject.transform.position=new Vector3(x,y,0);
+                ni.gameObject.SetActive(true); //다시보이게
+            });
         }
     } 
     
