@@ -3,8 +3,10 @@ let GameLobbySettings=require('./GameLobbySettings');
 let Connection=require('../Connection');
 let Bullet=require('../Bullet');
 
+//로비에 입장한 후, 게임플레이를 위한 클래스
 module.exports=class GameLobby extends LobbyBase
 {
+    //GameLobbySettings를 상속받은 생성자
     constructor(id,settings=GameLobbySettings)
     {
         super(id); //LobbyBase의 생성자 호출
@@ -18,7 +20,7 @@ module.exports=class GameLobby extends LobbyBase
         lobby.updateBullets();
         lobby.updateDeadPlayers();
     }
-    //로비에드갈수있나요?
+    //로비에 들어갈 수 있는지 확인
     canEnterLobby(connection=Connection)
     {
         let lobby=this;
@@ -47,7 +49,9 @@ module.exports=class GameLobby extends LobbyBase
 
         lobby.removePlayer(connection);
     }
-    updateBullets() //총알업데이트 
+
+    //총알포지션 업데이트
+    updateBullets() 
     {
         let lobby=this;
         let bullets=lobby.bullets;
@@ -78,6 +82,7 @@ module.exports=class GameLobby extends LobbyBase
             }
         });
     }
+
     updateDeadPlayers()
     {
         let lobby=this;

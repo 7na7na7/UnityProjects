@@ -2,15 +2,12 @@
 var io=require('socket.io')(process.env.PORT || 52300);
 let Server=require('./Classes/Server');
 
-
 console.log('Server has started');
 
 let server=new Server();
 setInterval(()=>
-{
-    server.onUpdate();
+{server.onUpdate();},10,0); //10밀리세컨드마다 서버의 onUpdate()호출
 
-},10,0);
 io.on('connection',function(socket) //소켓 연결
 {
     let connection=server.onConnected(socket); //서버연결시 설정을위해호출

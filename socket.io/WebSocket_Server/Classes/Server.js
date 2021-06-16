@@ -4,8 +4,10 @@ let Player=require('./Player');
 let LobbyBase=require('./Lobbies/LobbyBase');
 let GameLobby=require('./Lobbies/GameLobby');
 let GameLobbySettings=require('./Lobbies/GameLobbySettings');
+//기본 설정들을 하는 서버 클래스
 module.exports=class Server
 {
+    //생성자 - connection, lobby, lobbies 생성
     constructor()
     {
         this.connections=[];

@@ -1,15 +1,16 @@
+//클라이언트에 보내는 모든 이벤트를 하나로 묶어 처리하는 클래스
 module.exports=class Connection
 {
+    //생성자 - 소켓, 플레이어, 서버, 로비 전부 가지고있음
     constructor()
     {
-        //소켓, 플레이어, 서버, 로비 전부 가지고있음
         this.socket;
         this.player;
         this.server;
         this.lobby;  
     }
 
-    //이벤트 처리
+    //모든 이벤트 처리 - disconnect, joinGame, fireBullet, collisionDestroy, updatePosition, updateRotation
     createEvents()
     {
         let connection = this;
