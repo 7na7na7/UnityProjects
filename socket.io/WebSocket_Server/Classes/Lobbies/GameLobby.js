@@ -49,7 +49,6 @@ module.exports=class GameLobby extends LobbyBase
 
         lobby.removePlayer(connection);
     }
-
     //총알포지션 업데이트, 파괴되었는지아닌지 확인
     updateBullets() 
     {
@@ -60,13 +59,14 @@ module.exports=class GameLobby extends LobbyBase
         bullets.forEach(b => 
         {
             let isDestroyed=b.onUpdate();
+                  
+        
             if(isDestroyed)
             {
                 lobby.despawnBullet(b);
             }
             else
-            {
-                /*
+            {    
                 var returnData=
                 {
                     id:b.id,
@@ -77,15 +77,14 @@ module.exports=class GameLobby extends LobbyBase
                     }
                 }
                 this.connections.forEach(c=>
-                    {
-                        c.socket.emit('updatePosition',returnData);
-                    })
-                    */
-                   //서버에서 직접 움직이지 않고 방향과 스피드만 넣어주고 클라의 Projectile로 움직인다!
+                {
+                    c.socket.emit('updatePosition',returnData);
+                })
+               
+                //서버에서 직접 움직이지 않고 방향과 스피드만 넣어주고 클라의 Projectile로 움직인다!
             }
         });
     }
-
     updateDeadPlayers()
     {
         let lobby=this;
@@ -157,13 +156,14 @@ module.exports=class GameLobby extends LobbyBase
     {
         let lobby=this;
 
-        let returnBullets=lobby.bullets.filter(bullet=>{
+        let returnBullets=lobby.bullets.filter(b=>{
             //총알중 해당 id와 같은 총알을 고름
-            return bullet.id==data.id;
+            return b.id==data.id;
         });
-   
+        
         returnBullets.forEach(bullet=>
         {
+
             let playerHit=false;
 
             lobby.connections.forEach(c=>

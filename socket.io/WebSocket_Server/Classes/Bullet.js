@@ -7,7 +7,7 @@ module.exports=class Bullet extends ServerObject
     {
         super(); //부모 생성자 호출
         this.direction=new Vector2(); //날아가는방향
-        this.speed=0.75; //총알속도
+        this.speed=0.1; //총알속도
         this.isDestroyed=false; //파괴되었는가?
         this.activator=''; //닿은놈 이름
     }

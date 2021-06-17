@@ -10,7 +10,7 @@ namespace Project.Gameplay
     {
         public NetworkIdentity networkIdentity;
         public WhoActivateMe whoActivedMe;
-
+ 
         private void OnCollisionEnter2D(Collision2D col)
         {
             NetworkIdentity ni = col.gameObject.GetComponent<NetworkIdentity>();
