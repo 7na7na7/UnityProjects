@@ -50,7 +50,7 @@ module.exports=class GameLobby extends LobbyBase
         lobby.removePlayer(connection);
     }
 
-    //총알포지션 업데이트
+    //총알포지션 업데이트, 파괴되었는지아닌지 확인
     updateBullets() 
     {
         let lobby=this;
@@ -66,6 +66,7 @@ module.exports=class GameLobby extends LobbyBase
             }
             else
             {
+                /*
                 var returnData=
                 {
                     id:b.id,
@@ -79,6 +80,8 @@ module.exports=class GameLobby extends LobbyBase
                     {
                         c.socket.emit('updatePosition',returnData);
                     })
+                    */
+                   //서버에서 직접 움직이지 않고 방향과 스피드만 넣어주고 클라의 Projectile로 움직인다!
             }
         });
     }
@@ -142,7 +145,8 @@ module.exports=class GameLobby extends LobbyBase
             {
                 x:bullet.direction.x,
                 y:bullet.direction.y
-            }
+            },
+            speed:bullet.speed
         }
 
         //동기화

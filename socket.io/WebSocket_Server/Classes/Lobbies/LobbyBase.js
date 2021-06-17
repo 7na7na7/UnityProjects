@@ -10,6 +10,12 @@ module.exports=class LobbyBase
         this.connections=[];
     }
 
+    //서버에서 호출
+    onUpdate()
+    {
+
+    }
+
     //로비 들어가기
     onEnterLobby(connection=Connection)
     {

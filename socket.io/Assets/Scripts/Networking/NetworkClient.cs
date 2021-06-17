@@ -14,6 +14,8 @@ namespace Project.Networking
 {
     public class NetworkClient : SocketIOComponent
     {
+        public const float SERVER_UPDATE_TIME = 10;
+        
         [Header("Network Client")]
         public Transform networkContainer;
         public GameObject playerPrefab;
@@ -119,7 +121,7 @@ namespace Project.Networking
                         float dirX = e.data["direction"]["x"].f; //direction.x
                         float dirY = e.data["direction"]["y"].f; //direction.y로 방향 갖고옴
                         string activator = e.data["activator"].ToString().RemoveQuotes(); //총알쏜사람갖고오기
-                        
+                        float speed = e.data["speed"].f;
 
                         float rot = Mathf.Atan2(dirY, dirX) * Mathf.Rad2Deg;
                         Vector3 currentRotation=new Vector3(0,0,rot-90);
@@ -128,6 +130,10 @@ namespace Project.Networking
                         //총쏜사람 설정
                         WhoActivateMe whoActivateMe = spawnedObject.GetComponent<WhoActivateMe>();
                         whoActivateMe.SetActivator(activator);
+
+                        Projectile projectile = spawnedObject.GetComponent<Projectile>();
+                        projectile.Direction=new Vector2(dirX,dirY);
+                        projectile.Speed = speed;
                     }
                     
                     serverObjects.Add(id,ni); //서버오브젝트에 스폰한 오브젝트 추가
