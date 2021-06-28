@@ -55,27 +55,70 @@ public class NemoManager : MonoBehaviour
         //세로
         for (int y = 0; y < ElementArray.GetLength(1)-1; y++)
         {
-            int blackCount = 0;
+            List<int> blackCounts=new List<int>();
+            blackCounts.Add(0);
+            int index = 0;
             for (int x = 0; x < ElementArray.GetLength(0)-1; x++)
             {
                 if (ElementArray[x, y].isBlack)
-                    blackCount++;
+                {
+                    if (blackCounts.Count > index)
+                    {
+                        blackCounts[index]++;
+                    }
+                    else
+                    {
+                        blackCounts.Add(1);
+                    }
+                }
+                else
+                {
+                    index++;
+                }
             }
-            Text number=Instantiate(BlackNumberPrefab, ElementArray[0, y].transform.position+new Vector3(-0.4f,0,0),quaternion.identity).GetComponent<Text>();
-            number.text = blackCount.ToString();
+
+            blackCounts.RemoveAll(i => i==0);
+            string str = "";
+            foreach (int i in blackCounts)
+            {
+                str += " "+i;
+            }
+            
+            Text number=Instantiate(BlackNumberPrefab, ElementArray[0, y].transform.position+new Vector3(-.75f,0,0),quaternion.identity).GetComponent<Text>();
+            number.text = str;
         }
         //가로
         for (int x = 0; x < ElementArray.GetLength(0)-1; x++)
         {
-            int blackCount = 0;
+            List<int> blackCounts=new List<int>();
+            blackCounts.Add(0);
+            int index = 0;
             for (int y = 0; y < ElementArray.GetLength(1)-1; y++)
             {
-                print(x+" "+y+"는 "+ (ElementArray[x, y].isBlack ? "블랙입니다! " : "화이트입니다!"));
                 if (ElementArray[x, y].isBlack)
-                    blackCount++;
+                {
+                    if (blackCounts.Count > index)
+                    {
+                        blackCounts[index]++;
+                    }
+                    else
+                    {
+                        blackCounts.Add(1);
+                    }
+                }
+                else
+                {
+                    index++;
+                }
             }
-            Text number=Instantiate(BlackNumberPrefab, ElementArray[x, 0].transform.position+new Vector3(0,0.4f,0),quaternion.identity).GetComponent<Text>();
-            number.text = blackCount.ToString();
+            blackCounts.RemoveAll(i => i==0);
+            string str = "";
+            foreach (int i in blackCounts)
+            {
+                str += i+"\n";
+            }
+            Text number=Instantiate(BlackNumberPrefab, ElementArray[x, 0].transform.position+new Vector3(0,.75f,0),quaternion.identity).GetComponent<Text>();
+            number.text = str;
         }
     }
     Element CloneElement(int p_x,int p_y,bool isBlack)
