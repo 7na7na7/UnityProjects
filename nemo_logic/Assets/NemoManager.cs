@@ -25,7 +25,7 @@ public class NemoManager : MonoBehaviour
     {
         xSize = GetSpriteSize(ElementPrefab).x;
         ySize = GetSpriteSize(ElementPrefab).y;
-        transform.position+=new Vector3(xSize*Y[0].X.Length/-2,ySize*Y.Length/-2,0);
+        transform.position+=new Vector3(xSize*Y[0].X.Length/-2,ySize*Y.Length/2,0);
         ElementArray=new Element[Y[0].X.Length+1,Y.Length+1];
         Generate();
         SetBlackCount();
@@ -35,7 +35,7 @@ public class NemoManager : MonoBehaviour
     {
         if (correctCount == 0 && unCorrectCount == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameObject.Find("ClearText").GetComponent<Text>().color=Color.yellow;
         }
     }
 
@@ -58,10 +58,12 @@ public class NemoManager : MonoBehaviour
             List<int> blackCounts=new List<int>();
             blackCounts.Add(0);
             int index = 0;
+            bool canGo = true;
             for (int x = 0; x < ElementArray.GetLength(0)-1; x++)
             {
                 if (ElementArray[x, y].isBlack)
                 {
+                    canGo = true;
                     if (blackCounts.Count > index)
                     {
                         blackCounts[index]++;
@@ -73,7 +75,11 @@ public class NemoManager : MonoBehaviour
                 }
                 else
                 {
-                    index++;
+                    if (canGo)
+                    {
+                        index++;
+                        canGo = false;
+                    }
                 }
             }
 
@@ -93,10 +99,12 @@ public class NemoManager : MonoBehaviour
             List<int> blackCounts=new List<int>();
             blackCounts.Add(0);
             int index = 0;
+            bool canGo = true;
             for (int y = 0; y < ElementArray.GetLength(1)-1; y++)
             {
                 if (ElementArray[x, y].isBlack)
                 {
+                    canGo = true;
                     if (blackCounts.Count > index)
                     {
                         blackCounts[index]++;
@@ -108,7 +116,11 @@ public class NemoManager : MonoBehaviour
                 }
                 else
                 {
-                    index++;
+                    if (canGo)
+                    {
+                        index++;
+                        canGo = false;
+                    }
                 }
             }
             blackCounts.RemoveAll(i => i==0);
