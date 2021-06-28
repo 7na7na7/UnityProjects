@@ -1,0 +1,116 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+[System.Serializable]
+public class grid
+{
+    public bool[] X;
+}
+public class NemoManager : MonoBehaviour
+{
+    public int correctCount = 0;
+    public int unCorrectCount = 0;
+    public grid[] Y;
+    public GameObject ElementPrefab;
+    public GameObject BlackNumberPrefab;
+    private Element[,] ElementArray;
+    private float xSize, ySize;
+
+    void Start()
+    {
+        xSize = GetSpriteSize(ElementPrefab).x;
+        ySize = GetSpriteSize(ElementPrefab).y;
+        transform.position+=new Vector3(xSize*Y[0].X.Length/-2,ySize*Y.Length/-2,0);
+        ElementArray=new Element[Y[0].X.Length+1,Y.Length+1];
+        Generate();
+        SetBlackCount();
+    }
+
+    private void Update()
+    {
+        if (correctCount == 0 && unCorrectCount == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    void Generate()
+    {
+        for (int y = 0; y < Y.Length; y++)
+        {
+            for (int x = 0; x < Y[y].X.Length; x++)
+            {
+                ElementArray[x, y]=CloneElement(x,-y,Y[y].X[x]);
+            }
+        }
+    }
+
+    void SetBlackCount()
+    {
+        //세로
+        for (int y = 0; y < ElementArray.GetLength(1)-1; y++)
+        {
+            int blackCount = 0;
+            for (int x = 0; x < ElementArray.GetLength(0)-1; x++)
+            {
+                if (ElementArray[x, y].isBlack)
+                    blackCount++;
+            }
+            Text number=Instantiate(BlackNumberPrefab, ElementArray[0, y].transform.position+new Vector3(-0.4f,0,0),quaternion.identity).GetComponent<Text>();
+            number.text = blackCount.ToString();
+        }
+        //가로
+        for (int x = 0; x < ElementArray.GetLength(0)-1; x++)
+        {
+            int blackCount = 0;
+            for (int y = 0; y < ElementArray.GetLength(1)-1; y++)
+            {
+                print(x+" "+y+"는 "+ (ElementArray[x, y].isBlack ? "블랙입니다! " : "화이트입니다!"));
+                if (ElementArray[x, y].isBlack)
+                    blackCount++;
+            }
+            Text number=Instantiate(BlackNumberPrefab, ElementArray[x, 0].transform.position+new Vector3(0,0.4f,0),quaternion.identity).GetComponent<Text>();
+            number.text = blackCount.ToString();
+        }
+    }
+    Element CloneElement(int p_x,int p_y,bool isBlack)
+    {
+        GameObject copyObj = Instantiate(ElementPrefab);
+        copyObj.transform.SetParent(this.transform);
+        
+        Vector2 tempPos = Vector2.zero;
+        
+        copyObj.transform.SetParent(this.transform);
+        tempPos.Set(transform.position.x+p_x*xSize,transform.position.y+ p_y*ySize);
+        copyObj.transform.position = tempPos;
+        copyObj.name = "CloneBlock_" + p_x.ToString() + "_" + p_y.ToString();
+        if (isBlack)
+        {
+            correctCount++;
+            copyObj.GetComponent<Element>().SetData(isBlack);
+        }
+        return copyObj.GetComponent<Element>();
+    }
+    public Vector3 GetSpriteSize(GameObject _target)
+    {
+        Vector3 worldSize = Vector3.zero;
+        if(_target.GetComponent<SpriteRenderer>())
+        {
+            Vector2 spriteSize = _target.GetComponent<SpriteRenderer>().sprite.rect.size;
+            Vector2 localSpriteSize = spriteSize / _target.GetComponent<SpriteRenderer>().sprite.pixelsPerUnit;
+            worldSize = localSpriteSize;
+            worldSize.x *= _target.transform.lossyScale.x;
+            worldSize.y *= _target.transform.lossyScale.y;
+        }
+        else
+        {
+            Debug.Log ("SpriteRenderer Null");
+        }
+        return worldSize;
+    }
+}
