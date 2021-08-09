@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileSchool
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: a88c10c370961403c86e6cc1ee704850, type: 3}
+    totalSpriteSurfaceArea: 244068
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d88a92b0c1e9347b1b1893abc8a7696b, type: 3}
+  - {fileID: 21300000, guid: a5c782f0c5a2e4e0e9a63c4fb1a7fc45, type: 3}
+  - {fileID: 21300000, guid: 77635b611d2dd49f9b8fffc77c6873ed, type: 3}
+  - {fileID: 21300000, guid: 9b9bbca1ba513418fb709836d5ccba34, type: 3}
+  - {fileID: 21300000, guid: 974a27c1d6f5c44ed9e657a3156c6a1e, type: 3}
+  - {fileID: 21300000, guid: 1781b2822e1cf4a9696198e9660ce62f, type: 3}
+  - {fileID: 21300000, guid: f9b07ad4aa33c4c718145e5fa1895702, type: 3}
+  - {fileID: 21300000, guid: 6d6b4be4f919e43a0a9b9f24ff04ebbe, type: 3}
+  - {fileID: 21300000, guid: fdc91a563a8c14aeda087422cb8dedf6, type: 3}
+  - {fileID: 21300000, guid: 8a754d6641cb74a1085487a7a190f93b, type: 3}
+  - {fileID: 21300000, guid: 70f25b07e976b49c189b66dfc373dab9, type: 3}
+  - {fileID: 21300000, guid: 5d043c77e91154903b6397d7d88807fe, type: 3}
+  - {fileID: 21300000, guid: afd0104861b8b47479f10f83020b433a, type: 3}
+  - {fileID: 21300000, guid: dc0925782fddb4877ba9ebdac6ef7b1f, type: 3}
+  - {fileID: 21300000, guid: 1e0018a83c6c4431980cca7014e6d9e6, type: 3}
+  - {fileID: 21300000, guid: 9a243bf89202b44e4926dda446282ec5, type: 3}
+  - {fileID: 21300000, guid: edabc7ba86ee44adbb7eb106db39bf7a, type: 3}
+  - {fileID: 21300000, guid: 39afd51bfab3d4a20a0c7f8048f0543e, type: 3}
+  - {fileID: 21300000, guid: 9717979be40eb456c915afa241c2780a, type: 3}
+  - {fileID: 21300000, guid: 769918bb9f60b4fac8fa4d183c4d4f49, type: 3}
+  - {fileID: 21300000, guid: 90c9a91c6a9a34cf297964a59ae17e4f, type: 3}
+  - {fileID: 21300000, guid: 1ed6ec1ddf3a9465eb5e4be3cc5904be, type: 3}
+  - {fileID: 21300000, guid: 630e8d7da7f3b4549a855a65dd4064ca, type: 3}
+  - {fileID: 21300000, guid: 3cd368ddc36734dcb95b712e7da2ee65, type: 3}
+  - {fileID: 21300000, guid: 6354bdfdc71b3412dbd99f022b1d41be, type: 3}
+  - {fileID: 21300000, guid: 03fb5d8e4a2ca49bda415f6f7de97c0d, type: 3}
+  - {fileID: 21300000, guid: 9d394cae4cfc942b0b2ee4793aae4a29, type: 3}
+  - {fileID: 21300000, guid: a51c8cfe5bdbc49f5a3375f25bbaa523, type: 3}
+  - {fileID: 21300000, guid: 965c293fa5f794cfebf9ace9e215987b, type: 3}
+  - {fileID: 21300000, guid: bbd03d4ff597a465e8d57b62e7ba1cb8, type: 3}
+  - {fileID: 21300000, guid: 3b29f75f4b40d4c0198e7d6386755c80, type: 3}
+  - {fileID: 21300000, guid: 9040616f20d264e36a51308c737511ff, type: 3}
+  - {fileID: 21300000, guid: 5cb8f79f9589f4bf7842ee427ae07f7f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - school027
+  - school004
+  - school012
+  - school013
+  - school019
+  - school028
+  - school010
+  - school015
+  - school031
+  - school025
+  - school023
+  - school05
+  - school026
+  - school011
+  - school003
+  - school017
+  - school016
+  - school033
+  - school008
+  - school002
+  - school021
+  - school020
+  - school018
+  - school024
+  - school007
+  - school030
+  - school014
+  - school022
+  - school006
+  - school001
+  - school009
+  - school029
+  - school032
+  m_RenderDataMap: {}
+  m_Tag: TileSchool
+  m_IsVariant: 0

@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileFlag
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: aab29837d35634a28b183451e7f00a86, type: 3}
+    totalSpriteSurfaceArea: 221880
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: bde467605627843849ab308cbc4bfdd1, type: 3}
+  - {fileID: 21300000, guid: 6fdc05904b0534929a0ed8f5db09164b, type: 3}
+  - {fileID: 21300000, guid: 8b44dd9055b2749e78b49c441feb2160, type: 3}
+  - {fileID: 21300000, guid: a89ff6017a21249bfb64e4ec9ab3bb20, type: 3}
+  - {fileID: 21300000, guid: 563459513bb684e3aa088aa5d93c50f9, type: 3}
+  - {fileID: 21300000, guid: e55836c1bb2f74861a6325eac498ff8d, type: 3}
+  - {fileID: 21300000, guid: b87fdee1faf2f4e9d8f6cc5d3f44d50a, type: 3}
+  - {fileID: 21300000, guid: fd5acf6298ca0453c8d28030acb04db2, type: 3}
+  - {fileID: 21300000, guid: 2cf56834ca4d94d23971a7e5e9c7b75c, type: 3}
+  - {fileID: 21300000, guid: 9f0598746a8ad475b87b2607e8dbf13a, type: 3}
+  - {fileID: 21300000, guid: 55e290c446db44dc7824263a88fd4d63, type: 3}
+  - {fileID: 21300000, guid: be1240f4504c148a59ddab0ac91e6b5c, type: 3}
+  - {fileID: 21300000, guid: 227a9f85799e742be952035b793837f0, type: 3}
+  - {fileID: 21300000, guid: 185efcb50625d4ddd8df3d49a468f59b, type: 3}
+  - {fileID: 21300000, guid: d6feb47657a3c492e8c4060b8bfd89af, type: 3}
+  - {fileID: 21300000, guid: 9f1b2a760fa68475abcf26407c31dc47, type: 3}
+  - {fileID: 21300000, guid: 79951d968e03744c8a96fb27efcc239e, type: 3}
+  - {fileID: 21300000, guid: c38892f6e831346fea130a3f81995aba, type: 3}
+  - {fileID: 21300000, guid: 831a1437414b048e18fd50be8fb40157, type: 3}
+  - {fileID: 21300000, guid: f38d9657a94e34f86843f98f13403ffe, type: 3}
+  - {fileID: 21300000, guid: 5840e578f5971487dbf8df56af5aebf1, type: 3}
+  - {fileID: 21300000, guid: 74e769785f5a34e17bb57f8136e19941, type: 3}
+  - {fileID: 21300000, guid: ef0930c93d6af4e44819e05fec1fdf80, type: 3}
+  - {fileID: 21300000, guid: d6f5595a285304a32a1bff1e24b98334, type: 3}
+  - {fileID: 21300000, guid: 999b8bfbacff445bbaf64104d079d34f, type: 3}
+  - {fileID: 21300000, guid: c4bbc25c76aed46dea08f48ad5f75b6f, type: 3}
+  - {fileID: 21300000, guid: cd2c7cac253bf493a90f35b4598a7d61, type: 3}
+  - {fileID: 21300000, guid: 184a249de746a4008aafebad08fe929e, type: 3}
+  - {fileID: 21300000, guid: e91677ae780cd43b5bdbc34d5cb7e12f, type: 3}
+  - {fileID: 21300000, guid: 5ae8b7aeb902f4bffa21c30b4227fbc7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - flag19
+  - flag29
+  - flag13
+  - flag21
+  - flag09
+  - flag06
+  - flag10
+  - flag30
+  - flag14
+  - flag12
+  - flag07
+  - flag04
+  - flag23
+  - flag22
+  - flag17
+  - flag15
+  - flag02
+  - flag24
+  - flag28
+  - flag11
+  - flag08
+  - flag26
+  - flag27
+  - flag16
+  - flag03
+  - flag05
+  - flag01
+  - flag25
+  - flag18
+  - flag20
+  m_RenderDataMap: {}
+  m_Tag: TileFlag
+  m_IsVariant: 0

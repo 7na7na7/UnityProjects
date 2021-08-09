@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileCamp
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2d636af2c445a4628a69d7c5212ba35b, type: 3}
+    totalSpriteSurfaceArea: 236672
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f8f0f3d19210b40d0be46fbb7fefc10e, type: 3}
+  - {fileID: 21300000, guid: 1643bb02d06ca4706bfe20d1d02c17cd, type: 3}
+  - {fileID: 21300000, guid: 6a55f832c811b43779037e1ceed71f4e, type: 3}
+  - {fileID: 21300000, guid: 4062c342bfdd348b7b23c1089c54ee44, type: 3}
+  - {fileID: 21300000, guid: e3db54f203c6b4607be8b3cb50e485d0, type: 3}
+  - {fileID: 21300000, guid: 2094c833d0de743529328a7fc15d44f0, type: 3}
+  - {fileID: 21300000, guid: 210e5d4321815488b82b887d34f86689, type: 3}
+  - {fileID: 21300000, guid: adb7c8e3b8e054cdfa1efa5e975f8ac6, type: 3}
+  - {fileID: 21300000, guid: afe9b5b5ed2fd4823883f0094b5e8478, type: 3}
+  - {fileID: 21300000, guid: 69681b069dd744c4ba2d2cf0176b7195, type: 3}
+  - {fileID: 21300000, guid: 1e91c716487984021acb9bcc74ba32b5, type: 3}
+  - {fileID: 21300000, guid: cd6b78f674a5a4956ba773bc5f8d1890, type: 3}
+  - {fileID: 21300000, guid: d21e97f7247b54cf3be096d1713658ee, type: 3}
+  - {fileID: 21300000, guid: 4c81cda8bd83846e28d18922f9fb4579, type: 3}
+  - {fileID: 21300000, guid: 89b3f929b91c94d64830048123ad9c7f, type: 3}
+  - {fileID: 21300000, guid: 1048a7695b0f54313b9aeaedcd88088a, type: 3}
+  - {fileID: 21300000, guid: 242157dab1bac453493f66dbf4aeeaf9, type: 3}
+  - {fileID: 21300000, guid: 06acfb1b0c7e54460931bb20af6f0b50, type: 3}
+  - {fileID: 21300000, guid: ae437c3b7ad5f4c76b9849629563ec05, type: 3}
+  - {fileID: 21300000, guid: 230b574bdf3a84b78b29b32defe0dcca, type: 3}
+  - {fileID: 21300000, guid: fe88072c2c15c4e78bf3b56ed8d65b22, type: 3}
+  - {fileID: 21300000, guid: 32f37d9ccffa44292b4ca802f665f7c6, type: 3}
+  - {fileID: 21300000, guid: 44884edcf29da402d9edc6e541f03d4c, type: 3}
+  - {fileID: 21300000, guid: 3652608d76b8c4c9ba8644a646fa28fb, type: 3}
+  - {fileID: 21300000, guid: 5bf4ec8d0ac5c478ab724d9354943d51, type: 3}
+  - {fileID: 21300000, guid: 88da949dfa8df4674855d034dce232db, type: 3}
+  - {fileID: 21300000, guid: 6519bc7e09dab444480ba9e7c6b548ee, type: 3}
+  - {fileID: 21300000, guid: 469fb3aefb6ca4432acf8cab6f3532a9, type: 3}
+  - {fileID: 21300000, guid: 10d0c33fcd7964fccb6faabbc22ad71f, type: 3}
+  - {fileID: 21300000, guid: 98ba2f5f7fed445d6bc29d7ec2fcfdbd, type: 3}
+  - {fileID: 21300000, guid: 1971597fbda914ae7be5b3e0c729a54f, type: 3}
+  - {fileID: 21300000, guid: 96d5be8fbab4c4b7d860c29f10d5717e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - camp013
+  - camp010
+  - camp027
+  - camp024
+  - camp009
+  - camp025
+  - camp001
+  - camp029
+  - camp026
+  - camp023
+  - camp032
+  - camp022
+  - camp018
+  - camp005
+  - camp028
+  - camp006
+  - camp011
+  - camp020
+  - camp008
+  - camp016
+  - camp003
+  - camp031
+  - camp002
+  - camp030
+  - camp019
+  - camp015
+  - camp007
+  - camp004
+  - camp014
+  - camp017
+  - camp021
+  - camp012
+  m_RenderDataMap: {}
+  m_Tag: TileCamp
+  m_IsVariant: 0

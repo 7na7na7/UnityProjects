@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileGPS
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 308cba220db154cbd896ce863a33ddba, type: 3}
+    totalSpriteSurfaceArea: 229276
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2c362030939a84d08a4001cfc0097c62, type: 3}
+  - {fileID: 21300000, guid: 74e99540751884fa8a792eac6e151b7e, type: 3}
+  - {fileID: 21300000, guid: 3e1d7aa02ce174319af1d78d81e0df8d, type: 3}
+  - {fileID: 21300000, guid: b9c069015ea654182878bbf57f66faf7, type: 3}
+  - {fileID: 21300000, guid: fecebfd1894cc4109a87032d2c9381fe, type: 3}
+  - {fileID: 21300000, guid: 6f82d2f12d8ec4546965f820b157ddc8, type: 3}
+  - {fileID: 21300000, guid: 7c0e28338a3134b32bfc2440662d36fb, type: 3}
+  - {fileID: 21300000, guid: cc17de93c1c524085a768499249b8729, type: 3}
+  - {fileID: 21300000, guid: 6005fba3e871243a1853e1270bf8297e, type: 3}
+  - {fileID: 21300000, guid: d4b10104db44c4f7fb0295bcdbaee0ac, type: 3}
+  - {fileID: 21300000, guid: 8e3f7424e34d743fe8cc3baaf1acbbd0, type: 3}
+  - {fileID: 21300000, guid: ccef93c4de21846a295b3f2059aa9f4e, type: 3}
+  - {fileID: 21300000, guid: 21ab3df44f8f7493abf999cd65e8e40d, type: 3}
+  - {fileID: 21300000, guid: 583eb305aa56849b6807197a7136fbb9, type: 3}
+  - {fileID: 21300000, guid: ea650e4589e924b509dede90cebfb3ba, type: 3}
+  - {fileID: 21300000, guid: 511af667fbf1c4dd287cecfd257549a0, type: 3}
+  - {fileID: 21300000, guid: 6da59ef71d5b245c9b3e004033292820, type: 3}
+  - {fileID: 21300000, guid: 73ab61086d30f4227b59fe2e0f0fd762, type: 3}
+  - {fileID: 21300000, guid: 0081746ab29e84fff9200a165fd35356, type: 3}
+  - {fileID: 21300000, guid: 75a4a98a9b14444eaac4d0f2fb671c6d, type: 3}
+  - {fileID: 21300000, guid: b91a2a0b8b5b646899fd8390c21c32fd, type: 3}
+  - {fileID: 21300000, guid: 3efeaf1cadd574d01b68a748b25cf21d, type: 3}
+  - {fileID: 21300000, guid: 371ae74c30d764ad3b56a4bf528d228b, type: 3}
+  - {fileID: 21300000, guid: e980758c9788c4aaa8f38f61bbdb9055, type: 3}
+  - {fileID: 21300000, guid: 95904aacd666a4c86a35125179a58420, type: 3}
+  - {fileID: 21300000, guid: ae7bbb0dca15448c8b6c092b69a52107, type: 3}
+  - {fileID: 21300000, guid: 2c28841d58c1044d7a97effba0aaf8cf, type: 3}
+  - {fileID: 21300000, guid: 4940a53d935ca4b258bd79f0fdf441b3, type: 3}
+  - {fileID: 21300000, guid: 780104cdc0ef6405b9780875bb2a38e8, type: 3}
+  - {fileID: 21300000, guid: 17d6e42e948944a14bea8f9d8624008f, type: 3}
+  - {fileID: 21300000, guid: f27d93df39df84b74a46d3df33c6bf54, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - gps009
+  - gps023
+  - gps006
+  - gps008
+  - gps027
+  - gps019
+  - gps029
+  - gps010
+  - gps005
+  - gps024
+  - gps020
+  - gps025
+  - gps001
+  - gps021
+  - gps022
+  - gps018
+  - gps009
+  - gps011
+  - gps013
+  - gps003
+  - gps002
+  - gps026
+  - gps030
+  - gps012
+  - gps007
+  - gps014
+  - gps028
+  - gps015
+  - gps017
+  - gps004
+  - gps016
+  m_RenderDataMap: {}
+  m_Tag: TileGPS
+  m_IsVariant: 0

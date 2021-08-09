@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileFruits
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: bdbcab89c386045b0aa0b662d549bb4c, type: 3}
+    totalSpriteSurfaceArea: 207088
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2956687008c084bf6a09e144e93dbea3, type: 3}
+  - {fileID: 21300000, guid: 98e269b0e5b6743c29eeef203ae81959, type: 3}
+  - {fileID: 21300000, guid: 682b8ef06311941b1bb2c3797553bab7, type: 3}
+  - {fileID: 21300000, guid: be3115415a7c54ee1a561924e0a0a7ff, type: 3}
+  - {fileID: 21300000, guid: 8b429f423a42b4141b0751b12f1fb6df, type: 3}
+  - {fileID: 21300000, guid: 29b58f7362d434fcf869ba10c95a259a, type: 3}
+  - {fileID: 21300000, guid: d0557983af62f460591b2431485e5883, type: 3}
+  - {fileID: 21300000, guid: edc129a3ab00048aba37401ccb7e487a, type: 3}
+  - {fileID: 21300000, guid: 012d7d5458e764a9393b04ae55f6e526, type: 3}
+  - {fileID: 21300000, guid: c7ccd8e5fb8cc4b2f86a334735ee880c, type: 3}
+  - {fileID: 21300000, guid: 97767806a96d844d1a92d8f2f81901c8, type: 3}
+  - {fileID: 21300000, guid: 06268c07f233946b6b1de5dc856858bc, type: 3}
+  - {fileID: 21300000, guid: 59c802a72785d40d39bc3bb0b8ba3740, type: 3}
+  - {fileID: 21300000, guid: 043400185f76047fc93d1045380f1a94, type: 3}
+  - {fileID: 21300000, guid: d306e81a85b4f4b6f8bbdaec222d7eb3, type: 3}
+  - {fileID: 21300000, guid: 5d4068aac44c4484a9a95dd3bb098ccf, type: 3}
+  - {fileID: 21300000, guid: 28041ada239524e83b3afe74df9496f5, type: 3}
+  - {fileID: 21300000, guid: 827ae6ea0527d46e08305098a703624a, type: 3}
+  - {fileID: 21300000, guid: 3b401b8b27dc249efae9b37828c705d8, type: 3}
+  - {fileID: 21300000, guid: 671de55c420c444429d32b995dda2067, type: 3}
+  - {fileID: 21300000, guid: 50d5b85c8282b4a5ca4b030a6a7586de, type: 3}
+  - {fileID: 21300000, guid: 384b99ac9d9324b469024775130d1d41, type: 3}
+  - {fileID: 21300000, guid: 7a7843ec09e0f4551ad2de064b1dfc8a, type: 3}
+  - {fileID: 21300000, guid: a7130d4d836554248b60188e06e46d82, type: 3}
+  - {fileID: 21300000, guid: 67967ead278594d67b5b79042cc5c902, type: 3}
+  - {fileID: 21300000, guid: 7a1ae3cd53cab4aed97ef5a67f0e267d, type: 3}
+  - {fileID: 21300000, guid: 164bf70f00a7347bbbfb87d8d58b0d50, type: 3}
+  - {fileID: 21300000, guid: 92eb352f2dce4485a89a36578f33ee5c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - fruits010
+  - fruits009
+  - fruits016
+  - fruits007
+  - fruits024
+  - fruits018
+  - fruits019
+  - fruits015
+  - fruits005
+  - fruits004
+  - fruits021
+  - fruits008
+  - fruits027
+  - fruits013
+  - fruits028
+  - fruits012
+  - fruits026
+  - fruits001
+  - fruits023
+  - fruits003
+  - fruits017
+  - fruits006
+  - fruits014
+  - fruits020
+  - fruits002
+  - fruits022
+  - fruits011
+  - fruits025
+  m_RenderDataMap: {}
+  m_Tag: TileFruits
+  m_IsVariant: 0

@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileTools
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 953d83c186ae2463883db46d438c5301, type: 3}
+    totalSpriteSurfaceArea: 221880
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: feb185100ce7942f8b7d70635b61fd85, type: 3}
+  - {fileID: 21300000, guid: 2ea5f930ce35b40a1b634a312b9f7519, type: 3}
+  - {fileID: 21300000, guid: 337f6b4178d684ba3994140227cea09c, type: 3}
+  - {fileID: 21300000, guid: b25db762f376c499fa03072dfe563f6f, type: 3}
+  - {fileID: 21300000, guid: c5ed967378c0348d7a859eb888164870, type: 3}
+  - {fileID: 21300000, guid: 8dd23b142731e4c3faa71e4c35525c5b, type: 3}
+  - {fileID: 21300000, guid: 9c1e7524d3ad94170b668f99497da496, type: 3}
+  - {fileID: 21300000, guid: 4eff8364c8c2c440e99960a649630ab2, type: 3}
+  - {fileID: 21300000, guid: e8d72465769ab40229bd47a3d281b5fd, type: 3}
+  - {fileID: 21300000, guid: b6f582e5d052c4331b15f582eb6810d8, type: 3}
+  - {fileID: 21300000, guid: 8d582f669dc3843be8b719de8c39cc65, type: 3}
+  - {fileID: 21300000, guid: 7219327784c934d4d93d48e7e52145be, type: 3}
+  - {fileID: 21300000, guid: caf81ad7291374f44a8672af81c98447, type: 3}
+  - {fileID: 21300000, guid: a7e59828681574760b4e1e741361014b, type: 3}
+  - {fileID: 21300000, guid: 55a05f58485ae441a89c7c2f12d121fe, type: 3}
+  - {fileID: 21300000, guid: 790158095318d449eb3508f2f8389f95, type: 3}
+  - {fileID: 21300000, guid: 6e7fba592f22945239f5acb4a21d365d, type: 3}
+  - {fileID: 21300000, guid: c22f86f9f28e14e669e1afe257ebe3f7, type: 3}
+  - {fileID: 21300000, guid: c712964a19d1a4cf48a32c7d07c36361, type: 3}
+  - {fileID: 21300000, guid: 2d156eaa229ef4c719bc4c4255aa0255, type: 3}
+  - {fileID: 21300000, guid: dc99afaa3a4ef49b5b341d2346b4c3da, type: 3}
+  - {fileID: 21300000, guid: 3d844fea0c85740ac9fa1efba14dfa5e, type: 3}
+  - {fileID: 21300000, guid: b8a097fad2491407b889f60a1ee45fc5, type: 3}
+  - {fileID: 21300000, guid: c3b268fac196c47148b9dfaaa297d729, type: 3}
+  - {fileID: 21300000, guid: 940a6b7dc021a4eff9355c34e3c8d29b, type: 3}
+  - {fileID: 21300000, guid: 50d1efdd3f4b34a96aa05e7f994c60a5, type: 3}
+  - {fileID: 21300000, guid: fb439c3e72eb240c186bd0d8f0dd57e8, type: 3}
+  - {fileID: 21300000, guid: 75d2b7aeac8354bc79282fefb0a84a4f, type: 3}
+  - {fileID: 21300000, guid: 9a3dc8aec45b04420a705e52b17405d2, type: 3}
+  - {fileID: 21300000, guid: f19c6f3f7349b401d9c67a15d5579e17, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - tools002
+  - tools018
+  - tools005
+  - tools030
+  - tools029
+  - tools024
+  - tools025
+  - tools001
+  - tools021
+  - tools014
+  - tools015
+  - tools012
+  - tools023
+  - tools006
+  - tools022
+  - tools011
+  - tools013
+  - tools017
+  - tools016
+  - tools003
+  - tools004
+  - tools010
+  - tools019
+  - tools009
+  - tools027
+  - tools020
+  - tools008
+  - tools026
+  - tools007
+  - tools028
+  m_RenderDataMap: {}
+  m_Tag: TileTools
+  m_IsVariant: 0

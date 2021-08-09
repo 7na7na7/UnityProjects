@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Victory
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 28371ec7137f4414fa12de260b1729bb, type: 3}
+    totalSpriteSurfaceArea: 1352425
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: fac32581ff97a4c959234576ac775ab2, type: 3}
+  - {fileID: 21300000, guid: 215a5ad1d4af34e74a05b4007e73f4f6, type: 3}
+  - {fileID: 21300000, guid: bc667702df0434b8cb63459b98d9c05f, type: 3}
+  - {fileID: 21300000, guid: 872c91523e90b4192977d2ab14f2a3da, type: 3}
+  - {fileID: 21300000, guid: c4098ac243e1549388fb10f1a109b40a, type: 3}
+  - {fileID: 21300000, guid: cb6f1d9439c1b481983842a80c570b7d, type: 3}
+  - {fileID: 21300000, guid: b101ab261b5424cb0918a47acd0ef810, type: 3}
+  - {fileID: 21300000, guid: 5af09ea6ecaac4659ab63293600dff3d, type: 3}
+  - {fileID: 21300000, guid: 265a93c70c86548e9b9ff5a6d4f57e3d, type: 3}
+  - {fileID: 21300000, guid: dcf1ce8a4c7b8472fb693bfb0db3d562, type: 3}
+  - {fileID: 21300000, guid: 1157ed0b445384a0cb66d78ac6b60357, type: 3}
+  - {fileID: 21300000, guid: 50a7a62b04ac241af9c4c177e91755de, type: 3}
+  - {fileID: 21300000, guid: f06a30bcf4d0a4037b72197442c6dbe3, type: 3}
+  - {fileID: 21300000, guid: 8d28426dd5c6048d6891135e06ad60a0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Tile_Victory_Base
+  - BackBoard
+  - Victory_Single_0009_Leaf_Right1
+  - Victory_Single_0003_Totem_Left
+  - Victory_Single_0006_Vine_Left
+  - Victory_Single_0001_Text
+  - Victory_Single_0008_Leaf_Left2
+  - Victory_Single_0010_Leaf_Right2
+  - Victory_Single_0007_Leaf_Left1
+  - Victory_Single_0005_Leaf_Under_Left1
+  - Victory_Single
+  - Victory_Single_0011_Leaf_Under_Right1
+  - Victory_Single_0004_Vine_Under
+  - Victory_Single_0000_Totem_Right
+  m_RenderDataMap: {}
+  m_Tag: Victory
+  m_IsVariant: 0

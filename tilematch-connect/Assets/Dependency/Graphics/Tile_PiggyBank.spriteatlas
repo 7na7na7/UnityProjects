@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tile_PiggyBank
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ba93de4c64a8a47719e4ec64b6df57fe, type: 3}
+    totalSpriteSurfaceArea: 2486382
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d5870f5034523419c82d4deb818be031, type: 3}
+  - {fileID: 21300000, guid: 36f1cac03a12e42929e018c48032d5f3, type: 3}
+  - {fileID: 21300000, guid: b901316152cfd45f79531466f8c853eb, type: 3}
+  - {fileID: 21300000, guid: c899cec20c6ee4f8c87adc7dc39f1bc9, type: 3}
+  - {fileID: 21300000, guid: 61e33b23e12d448498dbaa49d4b4406d, type: 3}
+  - {fileID: 21300000, guid: f66bbc43dd7c04db2bedb478c7c03330, type: 3}
+  - {fileID: 21300000, guid: 418d4f55b6bd645f19642823d7320826, type: 3}
+  - {fileID: 21300000, guid: 0978db37e74484a809f0c98d9ef7ecb1, type: 3}
+  - {fileID: 21300000, guid: ab3ecd573be83412f80fc0254d707cda, type: 3}
+  - {fileID: 21300000, guid: 0738b26763ff94ab391b2b4d7888c153, type: 3}
+  - {fileID: 21300000, guid: 0eebcc8a92d344c0783ea0e78886e6a4, type: 3}
+  - {fileID: 21300000, guid: 04c501dcd1cca4fb1afa7ffb8d466391, type: 3}
+  - {fileID: 21300000, guid: b2bbdb8d0d3b14e188c3eb5dba913bfa, type: 3}
+  - {fileID: 21300000, guid: 6ceef68e980104d12a0cf564ae20f4f9, type: 3}
+  - {fileID: 21300000, guid: 2bb4fd8f412374280a5490a4037ab798, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Tile_Master_-Piggy-bank_0003_ear_Left
+  - Tile_Piggy Bank
+  - BackBase
+  - Tile_Master_-Piggy-bank_0005_Leg_Left
+  - Tile_Master_-Piggy-bank_0000_Vine
+  - Tile_Master_-Piggy-bank_0010_Leaf_Under_1
+  - Tile_Master_-Piggy-bank_0008_Leaf_Upper_1
+  - Tile_Master_-Piggy-bank_0006_Leg_Back
+  - Tile_Master_-Piggy-bank_0002_Body
+  - Tile_Master_-Piggy-bank_0009_Leaf_Upper_2
+  - Tile_Master_-Piggy-bank_0011_Leaf_Left_2
+  - Tile_Master_-Piggy-bank_0004_Leg_Right
+  - Tile_Master_-Piggy-bank_0001_ear_Right
+  - Tile_Master_-Piggy-bank_0007_Leaf_Right_1
+  - Tile_Master_-Piggy-bank_0012_Leaf_Under_2
+  m_RenderDataMap: {}
+  m_Tag: Tile_PiggyBank
+  m_IsVariant: 0

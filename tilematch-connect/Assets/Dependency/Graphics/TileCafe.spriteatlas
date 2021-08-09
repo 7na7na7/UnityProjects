@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileCafe
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7a2a3765363c549f0a47a0006f41f11a, type: 3}
+    totalSpriteSurfaceArea: 214484
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: eae53770879cf43858704d3525c61a12, type: 3}
+  - {fileID: 21300000, guid: 4ba154804d9284b7da9e6e0bbc874e7f, type: 3}
+  - {fileID: 21300000, guid: ba7c89e0c67f7446d8a4d84be6b2779c, type: 3}
+  - {fileID: 21300000, guid: aea4ad52a8d354b63be8f92dba4ec9bf, type: 3}
+  - {fileID: 21300000, guid: 7a55b3a220bd049efa09517b4321d903, type: 3}
+  - {fileID: 21300000, guid: cc5710b2930f24e9b8f01ab50c75d5b3, type: 3}
+  - {fileID: 21300000, guid: 9ee9c663f5954405985599a9c11b6dad, type: 3}
+  - {fileID: 21300000, guid: d4e2d3b367be14520a0d7516060a645b, type: 3}
+  - {fileID: 21300000, guid: fc96e3b3077584168854f1b6b0be6a2b, type: 3}
+  - {fileID: 21300000, guid: eda00f94938254cb2ba9d04896b47a7d, type: 3}
+  - {fileID: 21300000, guid: 14bab9f474fc54c0981e596b166343f8, type: 3}
+  - {fileID: 21300000, guid: 0b5508f5071c44cd6ab502156e4965c5, type: 3}
+  - {fileID: 21300000, guid: 3fb918f6a46184ae6b5c91a769f3fcd8, type: 3}
+  - {fileID: 21300000, guid: f838d549bbad04aa49cf4b39d2b77e4f, type: 3}
+  - {fileID: 21300000, guid: 268981a9ac0544c33b9e1cb198fd6c95, type: 3}
+  - {fileID: 21300000, guid: e6e2f25a16bd44b47bf641696b9ab109, type: 3}
+  - {fileID: 21300000, guid: 6d7eecda295c44b9a92652ac05b618fb, type: 3}
+  - {fileID: 21300000, guid: eca1c21b50352433a92951c5831218c8, type: 3}
+  - {fileID: 21300000, guid: 08f3384bb81eb421395af60227f5fb93, type: 3}
+  - {fileID: 21300000, guid: ec43b45b7f573473bbd8e063ab98b7d7, type: 3}
+  - {fileID: 21300000, guid: 529a4abb220e94b899ac659e04f4f4fe, type: 3}
+  - {fileID: 21300000, guid: ad5f3c1cc49de42e69c40a8f6880ab68, type: 3}
+  - {fileID: 21300000, guid: 2c23753cfa5304cde979ded10b9a2a54, type: 3}
+  - {fileID: 21300000, guid: 1ba9479ce40994fc8aed10bf868a10f9, type: 3}
+  - {fileID: 21300000, guid: 51e7eeec3a5d84bba95f4015582bd7da, type: 3}
+  - {fileID: 21300000, guid: d3aafeec2e5be428eb8d125615b5f7a8, type: 3}
+  - {fileID: 21300000, guid: 4fac29fca118f4fb680b612185c63da3, type: 3}
+  - {fileID: 21300000, guid: e88fc3cd9fe0c4ee89af351878b7d818, type: 3}
+  - {fileID: 21300000, guid: 0638b12faefe64ed7bd5e83bc2d64c73, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - cafe004
+  - cafe013
+  - cafe009
+  - cafe026
+  - cafe003
+  - cafe023
+  - cafe005
+  - cafe006
+  - cafe010
+  - cafe002
+  - cafe012
+  - cafe018
+  - cafe017
+  - cafe027
+  - cafe019
+  - cafe011
+  - cafe025
+  - cafe030
+  - cafe028
+  - cafe015
+  - cafe001
+  - cafe008
+  - cafe022
+  - cafe021
+  - cafe029
+  - cafe014
+  - cafe007
+  - cafe024
+  - cafe016
+  m_RenderDataMap: {}
+  m_Tag: TileCafe
+  m_IsVariant: 0

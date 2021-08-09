@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fail
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 624f7645fff9d418989913217aae2fe2, type: 3}
+    totalSpriteSurfaceArea: 1300902
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 65ebc601ee3ef4b6494e97ae49899680, type: 3}
+  - {fileID: 21300000, guid: 4f8104f19ec614126b9aa8a2471b92e7, type: 3}
+  - {fileID: 21300000, guid: e34ff593ee1aa4adbb93c2e8de055eda, type: 3}
+  - {fileID: 21300000, guid: a33be844f47104855adfac1464b23040, type: 3}
+  - {fileID: 21300000, guid: d970df74483eb4cf68902cb3d64d390f, type: 3}
+  - {fileID: 21300000, guid: 2a6f7884c10a44dd6b24ccaa6cdcbb7a, type: 3}
+  - {fileID: 21300000, guid: 4039fd96218534a2498fdfe859ff9730, type: 3}
+  - {fileID: 21300000, guid: 91d9b1083e8c84f92bd1af34b635ffc5, type: 3}
+  - {fileID: 21300000, guid: a2a23d38a981b4858b838813054bc5ec, type: 3}
+  - {fileID: 21300000, guid: 4bb57b58cf5d746a7acd170cea5b9851, type: 3}
+  - {fileID: 21300000, guid: 461bd4d87182b407e960e4c9400bf18e, type: 3}
+  - {fileID: 21300000, guid: 2025ccab6c0714c54bae38b073ae9a1a, type: 3}
+  - {fileID: 21300000, guid: 219ed15eef64f4451b5ca586aa522efc, type: 3}
+  - {fileID: 21300000, guid: cacc544f8eddb43ccbb2364904c5352e, type: 3}
+  - {fileID: 21300000, guid: e6e2646f774e6486298ba65f31364973, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Fail_Single_0000s_0001s_0005_Leaf_Right_1
+  - Fail_Single_0000s_0001s_0003_Leaf_Under_Left1
+  - Fail_Single
+  - Fail_Single_0000s_0003_Totem_Left
+  - Fail_Single_0000s_0001s_0002_Vine_Left
+  - Fail_Single_0000_Background
+  - Tile_Fail_Base
+  - Fail_Single_0000s_0001_FAIL
+  - Fail_Single_0000s_0001s_0004_Leaf_Left_1
+  - Fail_Single_0000s_0000_Totem_Right
+  - Fail_Single_0000s_0001s_0000_Vine_under
+  - Fail_Single_0000s_0001s_0007_Leaf_Under_Right_1
+  - Fail_Single_0000s_0001s_0006_Leaf_Right_2
+  - Fail_Single_0000s_0001s_0001_Leaf_Under_Left2
+  - Fail_Single_BackBoard
+  m_RenderDataMap: {}
+  m_Tag: Fail
+  m_IsVariant: 0

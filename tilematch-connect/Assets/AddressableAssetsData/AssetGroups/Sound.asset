@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sound
+  m_EditorClassIdentifier: 
+  m_GroupName: Sound
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f7bc98ba60b9141c0806323041e6f7b4
+  m_SerializeEntries:
+  - m_GUID: 1eb73b4cc9d9e455e888e7ac047bddab
+    m_Address: Sound_UI_Stop
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 1eb73b4cc9d9e455e888e7ac047bddab, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 1eb73b4cc9d9e455e888e7ac047bddab, type: 2}
+  - m_GUID: 4b1ebb7fb734c4f78b7ffae941add1d1
+    m_Address: Music_Stop
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 4b1ebb7fb734c4f78b7ffae941add1d1, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 4b1ebb7fb734c4f78b7ffae941add1d1, type: 2}
+  - m_GUID: 1e8e05f51e458459fb9cdc31dc9c3ddd
+    m_Address: Music_Play
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 1e8e05f51e458459fb9cdc31dc9c3ddd, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 1e8e05f51e458459fb9cdc31dc9c3ddd, type: 2}
+  - m_GUID: 02a2435938ccb4b2b9d98556e39ae0a3
+    m_Address: Music_Lobby
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 02a2435938ccb4b2b9d98556e39ae0a3, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 02a2435938ccb4b2b9d98556e39ae0a3, type: 2}
+  - m_GUID: daa39c66b1922405fb880e7ad44dd81c
+    m_Address: Music_Intro
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: daa39c66b1922405fb880e7ad44dd81c, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: daa39c66b1922405fb880e7ad44dd81c, type: 2}
+  - m_GUID: 8d1c4ce1441e24c2e839b033daedc7ed
+    m_Address: Sound_FX_Tile_Dead
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 8d1c4ce1441e24c2e839b033daedc7ed, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 8d1c4ce1441e24c2e839b033daedc7ed, type: 2}
+  - m_GUID: 1918a3ff2ad6c441ab1bf302720afc7f
+    m_Address: Sound_ UI_BTN_Play
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 1918a3ff2ad6c441ab1bf302720afc7f, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 1918a3ff2ad6c441ab1bf302720afc7f, type: 2}
+  - m_GUID: b0ede62f4bd9f4e5089f9edf000f87ea
+    m_Address: Sound_FX_Tile_Shuffle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: b0ede62f4bd9f4e5089f9edf000f87ea, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: b0ede62f4bd9f4e5089f9edf000f87ea, type: 2}
+  - m_GUID: 7f20bb22fa0dd488fb4fb4e2876500f9
+    m_Address: Sound_FX_Tile_Pick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 7f20bb22fa0dd488fb4fb4e2876500f9, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 7f20bb22fa0dd488fb4fb4e2876500f9, type: 2}
+  - m_GUID: 1fee4c30eee6e4ba794c83f0b1dab319
+    m_Address: Sound_UI_BTN_Special
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 1fee4c30eee6e4ba794c83f0b1dab319, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 1fee4c30eee6e4ba794c83f0b1dab319, type: 2}
+  - m_GUID: e41e82e5a5f3b467295032f8b94d2247
+    m_Address: Sound_UI_POP_Result_Negative
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: e41e82e5a5f3b467295032f8b94d2247, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: e41e82e5a5f3b467295032f8b94d2247, type: 2}
+  - m_GUID: 0f24c2d7e53874e288c611b3da751217
+    m_Address: Sound_UI_POP_Result_Positive
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 0f24c2d7e53874e288c611b3da751217, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 0f24c2d7e53874e288c611b3da751217, type: 2}
+  - m_GUID: 441408df0eb894deeaf3ce8710815205
+    m_Address: Sound_UI_POP_Close
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 441408df0eb894deeaf3ce8710815205, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 441408df0eb894deeaf3ce8710815205, type: 2}
+  - m_GUID: 6c9f2aad4e2a14590bafa7e2930c166f
+    m_Address: Sound_UI_POP_Open
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 6c9f2aad4e2a14590bafa7e2930c166f, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 6c9f2aad4e2a14590bafa7e2930c166f, type: 2}
+  - m_GUID: 5995a4cecfa3c48b79cd1081fe166b6a
+    m_Address: Sound_UI_BTN_Spin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 5995a4cecfa3c48b79cd1081fe166b6a, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 5995a4cecfa3c48b79cd1081fe166b6a, type: 2}
+  - m_GUID: 9fb607bbbf7c2456a8dcd6533de13021
+    m_Address: Sound_UI_BTN_Common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 9fb607bbbf7c2456a8dcd6533de13021, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 9fb607bbbf7c2456a8dcd6533de13021, type: 2}
+  - m_GUID: 8745c15c3deb841a895e56a6991fca9f
+    m_Address: Sound_UI_BTN_Squeeky
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 8745c15c3deb841a895e56a6991fca9f, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 8745c15c3deb841a895e56a6991fca9f, type: 2}
+  - m_GUID: 761e4e02b25c94352963390d66df3107
+    m_Address: Sound_UI_BTN_Toggle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 761e4e02b25c94352963390d66df3107, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 761e4e02b25c94352963390d66df3107, type: 2}
+  - m_GUID: 39d7cca7fc6d84aa7bcd089b8171a0be
+    m_Address: Sound_FX_Tile_Undo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameSound
+    m_MainAsset: {fileID: 11400000, guid: 39d7cca7fc6d84aa7bcd089b8171a0be, type: 2}
+    m_TargetAsset: {fileID: 11400000, guid: 39d7cca7fc6d84aa7bcd089b8171a0be, type: 2}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f5b7f267b8ec4434c8a22340618f0001, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d84da50fd30ab49c8b4aad1c6a15d53b, type: 2}
+    - {fileID: 11400000, guid: 4e36e5e0a8707465f83a949fe8bcc860, type: 2}
