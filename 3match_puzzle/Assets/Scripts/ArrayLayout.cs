@@ -9,6 +9,6 @@ public class ArrayLayout  {
 		public bool[] row;
 	}
 
-    public Grid grid;
+	public Grid grid;
     public rowData[] rows = new rowData[14]; //Grid of 7x7
 }
