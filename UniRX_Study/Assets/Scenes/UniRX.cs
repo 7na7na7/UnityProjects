@@ -12,8 +12,9 @@ public class UniRX : MonoBehaviour
         //SubjectSample();
         //ReactivePropSample();
         //ObservableSample();
-        CoroutineRxSample();
+        //CoroutineRxSample();
         UGUIRxSample();
+        StopSubscribeSample();
     }
 
 
@@ -45,7 +46,8 @@ public class UniRX : MonoBehaviour
         var currentValue = rp.Value; //5
 
         //Subscribe 사용가능!
-        rp.Subscribe(x => Debug.Log(x + "로 값이 변경되었어요!")); //구독 설정
+        rp.Subscribe(x => Debug.Log(x + "로 값이 변경되었어요!")).AddTo(gameObject);
+        //이 게임오브젝트가 파괴되면 Dispose를 호출해 자동으로 구독 중단
         rp.Value = 10;
     }
 
@@ -62,7 +64,7 @@ public class UniRX : MonoBehaviour
         //);
 
         this.OnTriggerEnter2DAsObservable().Subscribe(col =>
-        print("충돌한 오브젝트의 이름 : "+col.name)
+        print("충돌한 오브젝트의 이름 : " + col.name)
         );
     }
 
@@ -71,17 +73,17 @@ public class UniRX : MonoBehaviour
     {
         //Coroutine 함수를 Observable 객체로 변환
         Observable.FromCoroutine<int>(observer => GameTimerCoroutine(observer, 10))
-            .Subscribe(t =>Debug.Log(t==0 ? "끗!" :"카운트다운 "+t+"!"));
+            .Subscribe(t => Debug.Log(t == 0 ? "끗!" : "카운트다운 " + t + "!"));
     }
-    IEnumerator GameTimerCoroutine(System.IObserver<int> observer,int initialCount)
+    IEnumerator GameTimerCoroutine(System.IObserver<int> observer, int initialCount)
     {
         var count = initialCount; //100으로 카운트 초기화
-        while(count>0)
+        while (count > 0)
         {
             observer.OnNext(count--); //1초마다 1씩 감소시켜서 보냄
             yield return new WaitForSeconds(1);
         }
-        observer.OnNext(0); //끄
+        observer.OnNext(0); //끗
     }
 
 
@@ -89,10 +91,26 @@ public class UniRX : MonoBehaviour
     void UGUIRxSample()
     {
         var button = GameObject.Find("버튼").GetComponent<Button>();
-        button.OnClickAsObservable().Subscribe(x=>
+        button.OnClickAsObservable().Subscribe(x =>
         print("버튼이 눌렸어요!!!")); //Button의 OnClick에 해당
 
         //var slider = GetComponent<Slider>();
         //slider.OnValueChangedAsObservable().Subscribe(); //Slider의 OnValueChanged()에 해당
+    }
+
+    //구독 중단하는 
+    void StopSubscribeSample()
+    {
+        var subject = new Subject<int>();
+
+        var stream1 = subject.Subscribe(x => Debug.Log("stream 1 : " + x),
+            () => Debug.Log("Stream1 Complete!")); //Oncompleted를 호출할 수 있다.
+
+        var stream2 = subject.Subscribe(x => Debug.Log("stream 2 : " + x),
+            () => Debug.Log("Stream2 Complete!"));
+        subject.OnNext(1);
+        //subject.OnCompleted(); //구독 완전 중단
+        stream1.Dispose(); //스트림1만 중단, 2는 살아잇음  
+        subject.OnNext(2);
     }
 }
