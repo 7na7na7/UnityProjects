@@ -15,6 +15,8 @@ public class UniRX : MonoBehaviour
         //CoroutineRxSample();
         UGUIRxSample();
         StopSubscribeSample();
+        WhereSelectSample();
+        SelectMany();
     }
 
 
@@ -112,5 +114,29 @@ public class UniRX : MonoBehaviour
         //subject.OnCompleted(); //구독 완전 중단
         stream1.Dispose(); //스트림1만 중단, 2는 살아잇음  
         subject.OnNext(2);
+    }
+
+    //Where은 발동조건 정해주는거라보면 댐, Select는 값걸러내는거라보면댐
+    void WhereSelectSample()
+    {
+        //클릭중이면 마우스좌표 표
+        Observable.EveryUpdate()
+            .Where(_ => Input.GetMouseButton(0)) //Where로 마우스 클릭시만 걸러냄
+            .Select(_ => Input.mousePosition) //Select로 기존 스트림에서 값 바꾸는 처리
+            .Subscribe(_vector => print(_vector)); //Vector3형으로 출력
+
+        //그 외 여러 오퍼레이터들 - https://skuld2000.tistory.com/48
+    }
+
+    void SelectMany()
+    {
+        var button = GameObject.Find("버튼2").GetComponent<Button>();
+        button.OnPointerDownAsObservable() //마우스 눌렀을 때 실행
+            .SelectMany(_ => button.UpdateAsObservable()) //이 순간 스트림을 매프레임 관찰 스트림으로 대체!
+            .TakeUntil(button.OnPointerUpAsObservable()) //버튼에서 뗄때까지 계속관찰
+            .Subscribe(_ =>
+            {
+                print("버튼 누르는 중...");
+            });
     }
 }
