@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class UniRX : MonoBehaviour
 {
+    private List<int> intList;
     void Start()
     {
         //SubjectSample();
@@ -14,9 +16,14 @@ public class UniRX : MonoBehaviour
         //ObservableSample();
         //CoroutineRxSample();
         UGUIRxSample();
-        StopSubscribeSample();
-        WhereSelectSample();
+        //StopSubscribeSample();
+        //WhereSelectSample();
         SelectMany();
+        //WaitUntilEnd();
+        //GetReturn();
+        OnNextInCoroutine();
+        //ToYieldInstruction();
+        DoubleCor();
     }
 
 
@@ -77,7 +84,7 @@ public class UniRX : MonoBehaviour
         Observable.FromCoroutine<int>(observer => GameTimerCoroutine(observer, 10))
             .Subscribe(t => Debug.Log(t == 0 ? "끗!" : "카운트다운 " + t + "!"));
     }
-    IEnumerator GameTimerCoroutine(System.IObserver<int> observer, int initialCount)
+    IEnumerator GameTimerCoroutine(IObserver<int> observer, int initialCount)
     {
         var count = initialCount; //100으로 카운트 초기화
         while (count > 0)
@@ -138,5 +145,104 @@ public class UniRX : MonoBehaviour
             {
                 print("버튼 누르는 중...");
             });
+    }
+
+    //해당 코루틴 끝날때까지 대기
+    void WaitUntilEnd()
+    {
+        Observable.FromCoroutine(SampleCor).Subscribe //코루틴 끝날떄실행
+            (
+            _ => print("OnNext"),
+            () => print("OnCompleted")
+            ).AddTo(gameObject); //Destroy될때 스트림도 끝나게
+    }
+    IEnumerator SampleCor()
+    {
+        print("코루틴 시작!");
+        yield return new WaitForSeconds(3);
+        print("코루틴 끝!");
+    }
+
+    //코루틴 yield return 반환값 받기
+    void GetReturn()
+    {
+        intList = new List<int>();
+        intList.Add(1);
+        intList.Add(2);
+        intList.Add(3);
+
+        Observable.FromCoroutineValue<int>(SampleCor2).Subscribe
+            (
+            x => print(x)
+            ).AddTo(gameObject);
+    }
+    //리스트에서 1프레임마다 1개씩 값을 리턴
+    IEnumerator SampleCor2()
+    {
+        foreach(var i in intList)
+        {
+            //yield return new WaitForSeconds(1);
+            yield return i;
+        }
+    }
+
+    //IObserver<T>를 인자로 코루틴에 넘겨 주어 코루틴 안에서 OnNext실행 가능
+    void OnNextInCoroutine()
+    {
+        Observable.FromCoroutine<int>(observer => SampleCor3(observer))
+            .Subscribe(x => print(x)).AddTo(gameObject);
+    }
+    IEnumerator SampleCor3(IObserver<int> observer)
+    {
+        observer.OnNext(1);
+        yield return new WaitForSeconds(1);
+        observer.OnNext(2);
+        yield return new WaitForSeconds(1);
+        observer.OnNext(3);
+    }
+
+    //IObservable을 코루틴으로 변환
+    void ToYieldInstruction()
+    {
+        StartCoroutine(SamepleCor3());
+    }
+    IEnumerator SamepleCor3()
+    {
+        print("1초 대기...");
+        yield return Observable.Timer(TimeSpan.FromSeconds(1)).ToYieldInstruction();
+        print("아무 키나 누르세요.");
+        //키 입력 대기
+        yield return this.UpdateAsObservable()
+            .FirstOrDefault(_ => Input.anyKeyDown)
+            //FirstOrDefault - 조건 만족시 OnNext,OnCompleted 모두 실행
+            .ToYieldInstruction();
+            //ToYieldInstrunction의 OnCompleted메시지를 받아야만 yield return이 완료된다. 
+        print("키가 눌렸습니다.");
+    }
+
+    //코루틴 2개 순차 실해
+    void DoubleCor()
+    {
+        var cancel = Observable.FromCoroutine(Cor1)
+            .SelectMany(Cor2) //SelectMany로 다른 스트림으로 교체
+            .Subscribe(_=>print("코루틴 2개 실행 끝!"));
+
+        /*
+        Observable.WhenAll(
+            Observable.FromCoroutine<string>(x => CoroutineA(x),
+            Observable.FromCoroutine<string>(x => CoroutineB(x)
+            .Subscribe();
+        */
+        //WhenAll을 활용하여 다수의 코루틴이 모두 실행 완료되었을 때 Subscribe가 실행되도록 할 수도 있다.
+    }
+    IEnumerator Cor1()
+    {
+        print("코루틴1");
+        yield return new WaitForSeconds(2);
+    }
+    IEnumerator Cor2()
+    {
+        print("코루틴2");
+        yield return new WaitForSeconds(2);
     }
 }
