@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: LinkServer Test
+  m_EditorClassIdentifier: 
+  m_GroupName: LinkServer Test
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8962f82618554483d8219c00b83fffbd
+  m_SerializeEntries:
+  - m_GUID: 895f6b0b5c5a749b498859561a5f51b1
+    m_Address: "\uCE58\uCE74"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 6754194182311898509, guid: 895f6b0b5c5a749b498859561a5f51b1, type: 3}
+    m_TargetAsset: {fileID: 6754194182311898509, guid: 895f6b0b5c5a749b498859561a5f51b1, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c50c8babf4b2c4671a52c8926569ab02, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7b601ab2a14374534b479d7018fd874c, type: 2}
+    - {fileID: 11400000, guid: 19df6b8dca3824845875f048f6cfc0d1, type: 2}

@@ -446,18 +446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4851a9fac55403d9fa499ee2c7e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xStart: 0
-  yStart: 0
-  row: 5
-  col: 5
-  rowSpace: 1
-  colSpace: 1
-  prefabTile: {fileID: 8455124126222659625, guid: 48ed7d508bdce4bad88ed17fe1a3e1f2,
-    type: 3}
-  field: {fileID: 0}
-  backGroundImage: {fileID: 0}
-  tileImage: []
-  tileBG: []
 --- !u!850595691 &691366348
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1913,6 +1901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894668254446037590, guid: e5bb1a935ebfc44df8eee2f9e912b417,
+        type: 3}
+      propertyPath: musicVolume
+      value: 0.148
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5bb1a935ebfc44df8eee2f9e912b417, type: 3}

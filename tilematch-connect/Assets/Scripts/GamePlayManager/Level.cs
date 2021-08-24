@@ -15,6 +15,7 @@ public class Level
 
     public void Init(int _col, int _row, int _leftTime, int _tileSize, int _tileComplexSize)
     {
+        Debug.Log("타일 종류 : "+tileComplexSize+", 타일 사이즈 : "+_tileSize);
         if (_tileComplexSize > 30)
         {
             Debug.LogError("타일 컴플렉스 사이즈 초과");
