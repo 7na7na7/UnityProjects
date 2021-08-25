@@ -6,9 +6,9 @@ using System;
 /// <summary>
 /// 선택한 타일 구조체
 /// </summary>
-public struct PickTile
+public struct PickTile //픽한 타일 데이터를 저장할 구조체 
 {
-    public int X, Y, ImageID, TileID;
+    public int X, Y, ImageID, TileID; //타일 선택 시 TilePresenter에서 넘겨주는 값
     public PickTile(int x, int y, int imageId, int tileId)
     {
         X = x;
@@ -24,8 +24,8 @@ public struct PickTile
 public struct DrawNode
 {
     public bool lineIsMatched;
-    public Color lineColor;
-    public float lineLiveTime;
+    public Color lineColor; //라인 색 설정
+    public float lineLiveTime; //라인이 유지되는 시간
 
     public DrawNode(Color color, float time, bool isMatched)
     {
@@ -47,7 +47,7 @@ public static class MatchModel
     static List<Node> OpenList, ClosedList; //갈수있는 노드리스트들과 갈수없는 노드리스트들
     public static List<Node> FinalNodeList; //길찾기를 거친 최종 노드리스트
     public static Vector2Int bottomLeft, topRight, startPos, targetPos; //길찾기가능범위 그리드를 알게 해주는 왼쪽아래와 오른쪽위 모서리
-    public static PickTile firstTile;
+    public static PickTile firstTile; //픽한 첫번째 타일 
 
     // 라인 및 별을 그리기 위한 용도
     //public static BoolReactiveProperty drawNode = new BoolReactiveProperty(false);
@@ -61,20 +61,20 @@ public static class MatchModel
     /// <param name="y"></param>
     /// <param name="imageId"></param>
     /// <param name="tileId"></param>
-    public static void PickTile(int x, int y, int imageId, int tileId)
+    public static void PickTile(int x, int y, int imageId, int tileId) //타일 고르기 
     {
         //Debug.Log($"firstpick? {isFirstPick}");
         if (isFirstPick)
         {
-            firstTile = new PickTile(x, y, imageId, tileId);
-            FieldModel.GlowTile(tileId);
-            isFirstPick = false;
+            firstTile = new PickTile(x, y, imageId, tileId); //첫번째 고른 타일 저장
+            FieldModel.GlowTile(tileId); //선택한 타일을 반짝거리게 함
+            isFirstPick = false; //이제 다음선택할 타일은 첫번째 타일이 아니니까...
         }
-        else
+        else //두번째에서는 두 개가 동일할지 여부를 판단해야 하지 때문에 더 복잡해진다.
         {
             // 두 번째 픽(매칭 여부 검토)
             // 이미지가 서로 같은지 체크
-            if (firstTile.ImageID == imageId && firstTile.TileID != tileId)
+            if (firstTile.ImageID == imageId && firstTile.TileID != tileId) //두 개의 이미지아이디가 같고, 동일한 타일이 아니라면 매치 대상이 된다!
             {
                 // 경로가 맞는지 체크
                 bool isCorrect = MatchTile(firstTile.X, firstTile.Y, x, y);
@@ -90,7 +90,8 @@ public static class MatchModel
                     // 두 타일 비활성화 하기
                     FieldModel.SetLive(firstTile.TileID, false);
                     FieldModel.SetLive(tileId, false);
-                    drawNode.SetValueAndForceNotify(new DrawNode(Color.yellow, 0.275f, true));//맞으면 노랑으로 선을 표시해 준다! 그리고 1초 유지된다.
+                    //SetValueAndForceNotify - 같은 값을 넘겨도 같은 값으로 제대로 통지해 준다.
+                    drawNode.SetValueAndForceNotify(new DrawNode(Color.yellow, 0.275f, true));//맞으면 노랑으로 선을 표시해 준다! 0.275초 동안 유지된다.
                     //이걸로 FieldPresenter에 있는 구독이 탐지할 수 있게 된다!
 
                     FieldModel.GlowTile(-1);
@@ -101,8 +102,8 @@ public static class MatchModel
                     // 경로 안 맞음
                     //IngameUIPresenter.DrawLine(FinalNodeList, Color.red, 0.5f); // debug
                     //drawNode.Value = new DrawNode(Color.red, 3.0f);
-                    drawNode.SetValueAndForceNotify(new DrawNode(Color.red, 0.5f, false)); //틀리면 빨강으로 선을 표시해 준다! 그리고 0.5초동안 짧게 유지된다.
-                    //FieldModel.SetLive(firstTile.TileID, false);
+                    drawNode.SetValueAndForceNotify(new DrawNode(Color.red, 0.5f, false)); //틀리면 빨강으로 선을 표시해 준다! 0.5초 동안 유지된다.
+                    //FieldModel.SetLive(firstTile.TileID, false)
                     //FieldModel.SetLive(tileId, false);
                     FieldModel.GlowTile(-1);
                     isFirstPick = true;
@@ -113,7 +114,7 @@ public static class MatchModel
                 // 매칭되지 않는 다른 이미지를 선택함
                 firstTile = new PickTile(x, y, imageId, tileId);
                 FieldModel.GlowTile(tileId);
-                isFirstPick = true;
+                isFirstPick = false; //원래코드 : isFirstPick = true에서 고침
             }
 
         }
@@ -126,14 +127,14 @@ public static class MatchModel
     /// <param name="startTile"></param>
     /// <param name="endTile"></param>
     /// <returns></returns>
-    public static bool MatchTile(int dptX, int dptY, int avlX, int avlY)
+    public static bool MatchTile(int dptX, int dptY, int avlX, int avlY) //넘겨준 두 좌표의 위치에 있는 타일들이 서로 매치가 될 수 있는가?
     {
         // 경로 찾기 요청
-        List<Node> FinalNodeList = RunPathFinding(dptX, dptY, avlX, avlY);
-        if (FinalNodeList == null) return false;
+        List<Node> FinalNodeList = RunPathFinding(dptX, dptY, avlX, avlY); //길찾기를 실행해 최단 경로를 FinalNodeList에 저장
+        if (FinalNodeList == null) return false; //최단 경로가 비었다면(제대로 길찾기를 하지 못했다면) false반환
 
         PathLog(FinalNodeList);
-        int totalDirectionCount = TotalDirectionCount(FinalNodeList);
+        int totalDirectionCount = TotalDirectionCount(FinalNodeList); //회전수 계 
 
         // 경로 시각화 // todo: 이 위치에 놓는것을 고민해 봐야 한다.
         if (totalDirectionCount < 3)
@@ -171,26 +172,18 @@ public static class MatchModel
     public static List<Node> RunPathFinding(int dptX, int dptY, int avlX, int avlY)
     {
         //시작 노드 좌표 xy와 마지막 노드 좌표 xy를 받음
-        List<Node> forwardPath = PathFinding(dptX, dptY, avlX, avlY);
-        List<Node> backwardPath = PathFinding(avlX, avlY, dptX, dptY);
+        List<Node> forwardPath = PathFinding(dptX, dptY, avlX, avlY); //시작타일부터 목표타일까지 길찾기한 노드리스트
+        List<Node> backwardPath = PathFinding(avlX, avlY, dptX, dptY); //목표타일부터 시작타일까지 길찾기한 노드리스트
 
-        /*
-        for(int i=0;i<backwardPath.Count;i++)
-        {
-            if(backwardPath[i].isWall)
-                id=backwardPath[i].is
-        }
-        return forwardPath;
-        */
-        if (TotalDirectionCount(forwardPath) < TotalDirectionCount(backwardPath)) //횟수가 더 작은것을 선택
+        if (TotalDirectionCount(forwardPath) < TotalDirectionCount(backwardPath)) //회전수가 더 작은것을 선택
         {
             return forwardPath;
         }
-        else if (TotalDirectionCount(forwardPath) == TotalDirectionCount(backwardPath)) //횟수가 같으면 최단경로를 선택
+        else if (TotalDirectionCount(forwardPath) == TotalDirectionCount(backwardPath)) //회전수가 같으면 최단경로를 선택
         {
             return (forwardPath.Count <= backwardPath.Count) ? forwardPath : backwardPath;
         }
-        else
+        else //회전수가 더 적은것을 선택 
         {
             return backwardPath;
         }
@@ -203,13 +196,11 @@ public static class MatchModel
     /// <param name="nodes"></param>
     public static void PathLog(List<Node> nodes)
     {
-        /*
         Debug.Log("<color=cyan>match: ================================</color>");
         foreach(Node node in nodes)
         {
             Debug.Log($"x: {node.x} y: {node.y} t: {node.turn}");
         }
-        */
     }
 
     /// <summary>
@@ -220,15 +211,15 @@ public static class MatchModel
     private static int TotalDirectionCount(List<Node> finalNodeList)
     {
         if (finalNodeList == null) return 0;
-        return finalNodeList[finalNodeList.Count - 1].turn;
+        return finalNodeList[finalNodeList.Count - 1].turn; //노드의 마지막에서 turn값이 어떻게 되었는지 반환
     }
 
-    public static List<Node> PathFinding(int dptX, int dptY, int avlX, int avlY)
+    public static List<Node> PathFinding(int dptX, int dptY, int avlX, int avlY) //이게 실제로 길찾기 알고리즘을 수행하는 스크립트!
     {
         //sizeX = topRight.x - bottomLeft.x + 1;
         //sizeY = topRight.y - bottomLeft.y + 1;
-        int sizeX = FieldModel.tileMap.GetLength(0);
-        int sizeY = FieldModel.tileMap.GetLength(1);
+        int sizeX = FieldModel.tileMap.GetLength(0); //tilemap[x,y]의 x
+        int sizeY = FieldModel.tileMap.GetLength(1); //tilemap[x,y]의 y
         NodeArray = new Node[sizeX, sizeY];
 
         // 장애물을 체크해서 길찾기 지도를 만든다.
@@ -258,19 +249,7 @@ public static class MatchModel
             }
         }
 
-        /*
-        Debug.Log("----------------------------------------");
-        string a = "";
-     for(int i=7;i>0;i--)
-        {
-            a = "";
-            for(int j=1;j<6;j++)
-            { 
-                a += NodeArray[j, i].isWall == true ? "ㅁ" : "ㄴ" + " "; //월 체크용 코드
-            }
-            Debug.Log(a + "\n");
-        }
-        */
+
         // 맵을 완성했으면 이웃을 추가한다.
         for (int i = 0; i < sizeX; i++)
         {
@@ -364,12 +343,12 @@ public static class MatchModel
             OpenList.Remove(CurNode);
             ClosedList.Add(CurNode);
 
-            // 이웃 처리? 코드를 봐야 할듯
+            // 갈수있는 이웃 검ㅅ
             List<Node> neighbors = CurNode.neighbors;
             for (int i = 0; i < neighbors.Count; i++)
             {
                 Node n = neighbors[i];
-                if (n == null || ClosedList.Contains(n) || n.isWall == true) //이미 닫힌 이웃(갈수없는 이웃)이면
+                if (n == null || ClosedList.Contains(n) || n.isWall == true) //노드가 비었거나, 닫힌(갈수없는)리스트에 존재하거나, 벽이라면 갈수없음
                 {
                     continue; //다음 이웃으로
                 }
@@ -399,7 +378,7 @@ public static class MatchModel
 
     }
 
-    private static double Heuristic(Node start, Node end)
+    private static double Heuristic(Node start, Node end) //H - 시작부터 끝까지의 거리
     {
         return Math.Sqrt(Math.Pow(end.x - start.x, 2) + Math.Pow(end.y - start.y, 2)); //피타고라스로 스타트에서 엔드까지 거리 리턴
     }

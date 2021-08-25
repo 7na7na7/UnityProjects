@@ -13,7 +13,6 @@ public class Tile
         }
     }
 
-
     public ReactiveProperty<int> TileID;
     public ReactiveProperty<int> ImageID;
     public ReactiveProperty<TileCoords> Coords; //타일 포지션

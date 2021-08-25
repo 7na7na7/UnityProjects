@@ -70,20 +70,20 @@ public static class FieldModel
     /// <param name="liveStatus">타일 상태 bool</param>
     public static void SetLive(int tileId, bool liveStatus)
     {
-        foreach (Tile item in tileMap)
+        foreach (Tile item in tileMap)//타일맵 전부 검사
         {
             if (item == null) continue;
 
-            if (tileId == item.TileID.Value)
+            if (tileId == item.TileID.Value) //해당 타일 ID가 같다면
             {
-                item.TileLive.Value = liveStatus;
+                item.TileLive.Value = liveStatus; //상태를 넘겨받은 상태로 바꿔줌
                 if (liveStatus)
                 {
-                    leftTileCount.Value++;
+                    leftTileCount.Value++;//활성 상태면 남은 타일 갯수 증가
                 }
                 else
                 {
-                    leftTileCount.Value--; // 남은 타일 개수 감소
+                    leftTileCount.Value--; //활성 상태가 아니면 남은 타일 갯수 감소 
                 }
 
                 break;

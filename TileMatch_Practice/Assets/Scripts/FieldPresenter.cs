@@ -149,35 +149,34 @@ public class FieldPresenter : MonoBehaviour
     // 경로 따라서 선 그리기
     public void DrawLine(List<Node> nodes, Color lineColor, float destroyTime)
     {
-        if (nodes == null) return;
+        if (nodes == null) return; //선을 연결할 노드들이 없으면 종료
 
         foreach (Node node in nodes)
         {
 
-            GameObject _go = Instantiate(
-                                prefabLine
-                            );
+            GameObject _go = Instantiate(prefabLine); //일단 라인 생성하고
 
-            _go.GetComponent<LineRenderer>().startColor = lineColor;
-            _go.GetComponent<LineRenderer>().endColor = lineColor;
+            _go.GetComponent<LineRenderer>().startColor = lineColor; //색 바꾸고
+            _go.GetComponent<LineRenderer>().endColor = lineColor; //끝색도 바궈준다
 
-            if (node.prev != null)
+            if (node.prev != null) //이전 노드가 존재한다면(처음 생성하는 라인이 아니라면)
             {
-                float offsetX = FieldModel.fieldXOffset;
+                //노드가 있는 필드가 중심을 맞추기 위해 offset으로 조정되어 있으므로 라인도 동일하게 offset값을 더해 주어야 한다!
+                float offsetX = FieldModel.fieldXOffset; 
                 float offsetY = FieldModel.fieldYOffset;
-                // 생성 전 세팅
+                // 현재 노드와 이전 노드를 이어 주며 진행한다.
                 _go.GetComponent<LineRenderer>().SetPosition(0, new Vector3(node.x + offsetX, node.y + offsetY, 0));
                 _go.GetComponent<LineRenderer>().SetPosition(1, new Vector3(node.prev.x + offsetX, node.prev.y + offsetY, 0));
             }
-            else
+            else //이전 노드가 존재하지 않는다면(처음 생성하는 라인이라면)
             {
                 //_go.GetComponent<LineRenderer>().SetPosition(0, new Vector3(0, 0, 0));
                 //_go.GetComponent<LineRenderer>().SetPosition(1, new Vector3(0, 0, 0));
-                _go.SetActive(false);
+                _go.SetActive(false); //그냥 없앰 필요없음 ㅋㅋ
             }
 
             // worldForeground에 생성한다.
-            _go.GetComponent<Transform>().SetParent(worldForeground);
+            _go.GetComponent<Transform>().SetParent(worldForeground); //타일 앞에 보이게
 
 
             Destroy(_go, destroyTime); // todo: 이후에 삭제 이펙트 및 모션에 대해서 고민해야 함
