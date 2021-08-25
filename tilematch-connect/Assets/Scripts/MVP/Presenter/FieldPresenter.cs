@@ -33,7 +33,7 @@ public class FieldPresenter : MonoBehaviour
         #endregion
 
         #region 타일 배치
-        FieldModel.Init(col, row, 34, 5);
+        FieldModel.Init(col, row, 34, 12);
 
         // 타일에서 사용할 이미지 및 백그라운드 가져오기
         tileImage = Resources.LoadAll<Sprite>("Tileset/TileImg/sample-tile");

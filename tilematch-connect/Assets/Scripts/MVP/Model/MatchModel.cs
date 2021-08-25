@@ -113,7 +113,7 @@ public static class MatchModel
                 // 매칭되지 않는 다른 이미지를 선택함
                 firstTile = new PickTile(x, y, imageId, tileId);
                 FieldModel.GlowTile(tileId);
-                isFirstPick = true;
+                isFirstPick = false;
             }
 
         }
@@ -188,7 +188,15 @@ public static class MatchModel
         }
         else if (TotalDirectionCount(forwardPath) == TotalDirectionCount(backwardPath)) //횟수가 같으면 최단경로를 선택
         {
-            return (forwardPath.Count <= backwardPath.Count) ? forwardPath : backwardPath;
+            try
+            {
+                return (forwardPath.Count <= backwardPath.Count) ? forwardPath : backwardPath;
+            }
+            catch
+            {
+                Debug.Log("연결할 수 없어요!");
+                return null;
+            }
         }
         else
         {
