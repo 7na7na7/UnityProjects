@@ -181,7 +181,15 @@ public static class MatchModel
         }
         else if (TotalDirectionCount(forwardPath) == TotalDirectionCount(backwardPath)) //회전수가 같으면 최단경로를 선택
         {
-            return (forwardPath.Count <= backwardPath.Count) ? forwardPath : backwardPath;
+            try
+            {
+                return (forwardPath.Count <= backwardPath.Count) ? forwardPath : backwardPath;
+            }
+            catch
+            {
+                Debug.Log("경로 탐색 불가!");
+                return null;
+            }    
         }
         else //회전수가 더 적은것을 선택 
         {
