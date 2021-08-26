@@ -266,19 +266,6 @@ public static class MatchModel
             }
         }
         
-        /*
-        Debug.Log("----------------------------------------");
-        string a = "";
-     for(int i=7;i>0;i--)
-        {
-            a = "";
-            for(int j=1;j<6;j++)
-            { 
-                a += NodeArray[j, i].isWall == true ? "ㅁ" : "ㄴ" + " "; //월 체크용 코드
-            }
-            Debug.Log(a + "\n");
-        }
-        */
         // 맵을 완성했으면 이웃을 추가한다.
         for (int i = 0; i < sizeX; i++)
         {

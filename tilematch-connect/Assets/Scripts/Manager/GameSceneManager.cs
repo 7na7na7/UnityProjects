@@ -34,7 +34,7 @@ public class GameSceneManager : MonoBehaviour
     }
     #endregion
 
-    public SceneType? GetSceneType(string _name)
+    public SceneType? GetSceneType(string _name) //씬 이름을 주면 씬 타입을 반환해 줌 
     {
         switch (_name)
         {

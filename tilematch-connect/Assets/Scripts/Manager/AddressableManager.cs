@@ -119,6 +119,7 @@ public class AddressableManager : MonoBehaviour
     /// <param name="_label">어드레서블 리소스 라벨</param>
     private void LoadResourceAsync<Type>(string _label) where Type : Object
     {
+        print(_label);
         Addressables.LoadResourceLocationsAsync(_label).Completed += OnAssetLoaded;
     }
     /// <summary>

@@ -62,7 +62,7 @@ public class PopupController : MonoBehaviour
         CloseObject(_currentShowedObject);
     }
 
-
+    
 
     /// <summary>
     /// 어드레서블 키로 접근하여 팝업 프리팹을 꺼내와 캔버스 위치에 인스턴스 시킴
@@ -72,9 +72,9 @@ public class PopupController : MonoBehaviour
     /// <returns></returns>
     public GameObject GetPopup(string _name, ShowCanvas _canvas = ShowCanvas.Popup)
     {
-        GameObject _prefab = ResourceController.Instance.GetPopupPrefab(_name);
-        GameObject popupObject = Instantiate(_prefab, Vector3.zero, Quaternion.identity,
-            _canvas == ShowCanvas.Popup ? PopupCanvas.transform : CoverCanvas.transform);
+        GameObject _prefab = ResourceController.Instance.GetPopupPrefab(_name); //팝업 프리팹 얻어옴
+        GameObject popupObject = Instantiate(_prefab, Vector3.zero, Quaternion.identity,//프리팹 생성
+        _canvas == ShowCanvas.Popup ? PopupCanvas.transform : CoverCanvas.transform); //팝업이면 팝업캔버스, 아니면 커버캔버스에 생성
         popupObject.transform.localScale = Vector3.one;
 
         RectTransform rectTransform = popupObject.GetComponent<RectTransform>();
@@ -83,8 +83,8 @@ public class PopupController : MonoBehaviour
         rectTransform.offsetMin = Vector2.zero;
 
         _currentShowedObject = popupObject;
-        _objectContainer.Add(popupObject);
-        return popupObject;
+        _objectContainer.Add(popupObject); //오브젝트 컨테이너에 추가하고
+        return popupObject;//반환
     }
 
 
