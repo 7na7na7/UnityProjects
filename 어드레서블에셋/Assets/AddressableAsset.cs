@@ -102,16 +102,15 @@ public class AddressableAsset : MonoBehaviour
         }
     }
 
-    public void ClickSound() //서버로드 함수 
+    public void ClickSound() //서버로드 함수임
     {
         if(player!=null)
         {
-            Addressables.ReleaseInstance(player); 
+            Addressables.ReleaseInstance(player);
             player = null;
         }
-        else//serverAddress
+        else
         {
-            //serverAddress라는 이름의 어드레서블 에셋을 하나만 불러옴과 동시에 생성
             Addressables.InstantiateAsync(serverAddress, new Vector3(0, 0, 0), Quaternion.identity).Completed +=
               (AsyncOperationHandle<GameObject> obj) =>
               {

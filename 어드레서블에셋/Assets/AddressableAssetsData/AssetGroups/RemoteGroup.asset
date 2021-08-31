@@ -29,14 +29,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sound
-    m_MainAsset: {fileID: 2857568076949799786, guid: 4c01c15b5b097405f973a7cb4853ea15, type: 3}
-    m_TargetAsset: {fileID: 2857568076949799786, guid: 4c01c15b5b097405f973a7cb4853ea15, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 6be8838b5d66040ada161462072238ee
     m_Address: Banana
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sound2
-    - Sound
     m_MainAsset: {fileID: 4873766377947597212, guid: 6be8838b5d66040ada161462072238ee, type: 3}
     m_TargetAsset: {fileID: 4873766377947597212, guid: 6be8838b5d66040ada161462072238ee, type: 3}
   - m_GUID: cbda0968b579545459883aaaf22b0228
@@ -44,7 +43,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sound2
-    - Sound
     m_MainAsset: {fileID: 6822737171406470328, guid: cbda0968b579545459883aaaf22b0228, type: 3}
     m_TargetAsset: {fileID: 6822737171406470328, guid: cbda0968b579545459883aaaf22b0228, type: 3}
   m_ReadOnly: 0

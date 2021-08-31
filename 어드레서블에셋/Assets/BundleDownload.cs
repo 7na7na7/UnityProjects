@@ -13,7 +13,6 @@ public class BundleDownload : MonoBehaviour
 
     public void ClickBundleDown()
     {
-        //LableForBundleDown이라는 레이블로 해당 레이블에 대항하는 에셋들을 전부 불러올 수 있음
         Addressables.DownloadDependenciesAsync(LableForBundleDown).Completed +=
             (AsyncOperationHandle Handle) =>
             {
