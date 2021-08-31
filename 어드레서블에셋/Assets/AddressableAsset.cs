@@ -6,21 +6,28 @@ using UnityEngine.UI;
 //이거 두개 잇어야 함
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
+
 
 public class AddressableAsset : MonoBehaviour
 {
+    public string spriteName;
+    public string prefabName;
+    public string sceneName;
+    bool isLoaded = false;
     public AssetReference PrefabReference;
     GameObject TempObj;
 
     public Image Image;
     AsyncOperationHandle Handle;
+    SceneInstance LoadedScene;
 
 
     private void Start()
     {
         //주소를 가지고 와 로드와 동시에 생성
         PrefabReference.InstantiateAsync(transform.position, Quaternion.identity).Completed +=
-        (AsyncOperationHandle<GameObject> obj) =>
+        (AsyncOperationHandle<GameObject> obj) => //제대로 에셋을 로드하였을 경우 처리
         {
             TempObj = obj.Result;
             Invoke("ReleaseDestroy", 3f); //3초 후 메모리 할당 해제
@@ -38,8 +45,8 @@ public class AddressableAsset : MonoBehaviour
     public void ClickLoad()
     {
         //Sprite타입의 NyarukoSprite라는 어드레서블 에셋을 로드해 추가함
-        Addressables.LoadAssetAsync<Sprite>("NyarukoSprite").Completed +=
-           (AsyncOperationHandle<Sprite> Obj) =>
+        Addressables.LoadAssetAsync<Sprite>(spriteName).Completed +=
+           (AsyncOperationHandle<Sprite> Obj) => //제대로 에셋을 로드하였을 경우 처리
            {
                Handle = Obj;
                Image.sprite = Obj.Result;
@@ -53,9 +60,42 @@ public class AddressableAsset : MonoBehaviour
         Image.sprite = null;
     }
 
-    public void LoadByServer()
+    public void ClickPrefab()
     {
-        Addressables.InstantiateAsync("치카", GameObject.Find("Canvas").transform);
+        Addressables.InstantiateAsync(prefabName, transform.position, Quaternion.identity);
     }
 
+    public void ClickLoadScene()
+    {
+        if (!isLoaded)
+            Addressables.LoadSceneAsync(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive).Completed += OnSceneLoaded; //모드를 Additive로 하여 서브씬 형태로 현재 씬에 합쳐지게 함
+        else
+            Addressables.UnloadSceneAsync(LoadedScene).Completed += OnSceneUnLoaded;
+    }
+
+    void OnSceneLoaded(AsyncOperationHandle<SceneInstance> obj)
+    {
+        if(obj.Status==AsyncOperationStatus.Succeeded) //제대로 로드됐다면
+        {
+            LoadedScene = obj.Result; //씬인스턴스를 저장해 놓음, 나중에 언로드할 때 사용
+            isLoaded = true;
+        }
+        else
+        {
+            print("로드 실패!");
+        }
+    }
+
+    void OnSceneUnLoaded(AsyncOperationHandle<SceneInstance> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            isLoaded = false;
+            LoadedScene = new SceneInstance();
+        }
+        else
+        {
+            print("언로드 실패!");
+        }
+    }
 }
