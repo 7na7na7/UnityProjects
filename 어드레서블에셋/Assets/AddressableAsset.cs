@@ -11,6 +11,9 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 
 public class AddressableAsset : MonoBehaviour
 {
+    GameObject player = null;
+
+    public string serverAddress;
     public string spriteName;
     public string prefabName;
     public string sceneName;
@@ -77,7 +80,7 @@ public class AddressableAsset : MonoBehaviour
     {
         if(obj.Status==AsyncOperationStatus.Succeeded) //제대로 로드됐다면
         {
-            LoadedScene = obj.Result; //씬인스턴스를 저장해 놓음, 나중에 언로드할 때 사용
+            LoadedScene = obj.Result; //씬인스턴스를 저장해 놓음, 나중에 언로드할 때 사
             isLoaded = true;
         }
         else
@@ -96,6 +99,23 @@ public class AddressableAsset : MonoBehaviour
         else
         {
             print("언로드 실패!");
+        }
+    }
+
+    public void ClickSound() //서버로드 함수임
+    {
+        if(player!=null)
+        {
+            Addressables.ReleaseInstance(player);
+            player = null;
+        }
+        else
+        {
+            Addressables.InstantiateAsync(serverAddress, new Vector3(0, 0, 0), Quaternion.identity).Completed +=
+              (AsyncOperationHandle<GameObject> obj) =>
+              {
+                  player = obj.Result;
+              };
         }
     }
 }

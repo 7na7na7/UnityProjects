@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: RemoteGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: RemoteGroup
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 66af3b984de334077a529fad7c656480
+  m_SerializeEntries:
+  - m_GUID: c7378cf153edc41b5ab7f878276e29dd
+    m_Address: Sword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    m_MainAsset: {fileID: 4937139490088653975, guid: c7378cf153edc41b5ab7f878276e29dd, type: 3}
+    m_TargetAsset: {fileID: 4937139490088653975, guid: c7378cf153edc41b5ab7f878276e29dd, type: 3}
+  - m_GUID: 4c01c15b5b097405f973a7cb4853ea15
+    m_Address: Apple
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6be8838b5d66040ada161462072238ee
+    m_Address: Banana
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound2
+    m_MainAsset: {fileID: 4873766377947597212, guid: 6be8838b5d66040ada161462072238ee, type: 3}
+    m_TargetAsset: {fileID: 4873766377947597212, guid: 6be8838b5d66040ada161462072238ee, type: 3}
+  - m_GUID: cbda0968b579545459883aaaf22b0228
+    m_Address: Potion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sound2
+    m_MainAsset: {fileID: 6822737171406470328, guid: cbda0968b579545459883aaaf22b0228, type: 3}
+    m_TargetAsset: {fileID: 6822737171406470328, guid: cbda0968b579545459883aaaf22b0228, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c50c8babf4b2c4671a52c8926569ab02, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 77dda17eb51bc408faefda708e639e24, type: 2}
+    - {fileID: 11400000, guid: f800523eb940b4064bfc06d146aebc98, type: 2}
