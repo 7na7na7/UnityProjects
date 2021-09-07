@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bullet
+  - Wall
+  - Teleport
+  - Enemy
+  - Item
+  - SpawnPoint
+  - Rooms
+  - Entry
+  - DoorCol
+  - Minimap
+  - MinimapHead
+  - WallSpawner
+  - Exp
+  - BulletItem
+  - Slash
+  - Bush
+  - Swamp
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Wall
+  - Item
+  - doorCol
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Tile
+    uniqueID: 263690145
+    locked: 0
+  - name: Player
+    uniqueID: 128337273
+    locked: 0
+  - name: Gun
+    uniqueID: 2456796375
+    locked: 0
+  - name: Tile2
+    uniqueID: 110052107
+    locked: 0
