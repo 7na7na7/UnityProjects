@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems; 
+using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class Minion : MonoBehaviour
 {
@@ -12,12 +13,16 @@ public class Minion : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (Player.instance.CanDash(this))
+            spr.material = mat;
         Player.instance.Dash(transform.position,this);
-        spr.material = mat;
     }
 
     void Start()
     {
+        transform.localScale = Vector3.zero;
+        transform.DOScale(new Vector3(1, 1, 1), 0.25f).SetEase(Ease.OutBack);
+
         spr = GetComponent<SpriteRenderer>();
         originalMat = spr.material;
     }

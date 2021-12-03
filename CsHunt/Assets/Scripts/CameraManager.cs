@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    public bool isLerp = true;
     Transform target;
     private void Start()
     {
@@ -13,7 +14,10 @@ public class CameraManager : MonoBehaviour
     {
         if(target!=null)
         {
-            transform.position = Vector3.Lerp(transform.position,new Vector3(target.position.x, target.position.y, transform.position.z),5f*Time.deltaTime);
+            if (isLerp)
+                transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y, transform.position.z), 5f * Time.deltaTime);
+            else
+                transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
         }
     }
 }

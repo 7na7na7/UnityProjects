@@ -48,6 +48,24 @@ public class Player : MonoBehaviour
         }
     }
     */
+    public bool CanDash(Minion minion)
+    {
+        if (currentMinion == null)
+        {
+            return true;
+        }
+        else
+        {
+            if (nextMinion == null)
+            {
+                if (currentMinion != minion)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
     public void Dash(Vector2 pos, Minion minion = null)
     {
         //Vector2 pos = Camera.main.ScreenToWorldPoint(position);
